@@ -36,7 +36,7 @@ export default function Journey() {
               </Link>
             </div>
             <div className="col-md-6">
-              <Link href="/jobs#pills-profile">
+              <Link href="/jobs">
                 <div className="card">
                   <img
                     alt="Group of interns working together"
