@@ -16,7 +16,7 @@ export default function Offcanvas() {
               href="index.html"
               className="d-flex align-items-center  mb-md-0 me-md-auto text-dark text-decoration-none desk-logo"
             >
-              <img src="./assets/images/logo.png" alt="Logo Image" />
+              <img src="./assets/img/logo.png" alt="Logo Image" />
             </Link>
           </h5>
           <button
@@ -35,7 +35,7 @@ export default function Offcanvas() {
                   Our Story
                 </Link>
               </li>
-              <li className="nav-item mob-dropdown">
+              {/* <li className="nav-item mob-dropdown">
                 <div className="accordion" id="familyAccordion">
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="headingOne">
@@ -73,7 +73,7 @@ export default function Offcanvas() {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link href="/corporate" className="nav-link">
                   Corporate
@@ -97,11 +97,7 @@ export default function Offcanvas() {
             </ul>
           </div>
 
-          <img
-            src="./assets/images/footer-vacation.webp"
-            alt="Logo Image"
-            className="foot-img"
-          />
+          
           {/* 
       <div className="mob-social-mediabx">
         <ul>

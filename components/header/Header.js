@@ -23,7 +23,7 @@ export default function Topbar() {
               className="collapse navbar-collapse justify-content-end"
               id="navbarNav"
             >
-              <ul className="navbar-nav">
+              <ul className="navbar-nav mobile-none">
                 <li className="nav-item">
                   <Link className="nav-link" href="#">
                     Our services
@@ -50,6 +50,8 @@ export default function Topbar() {
                   </Link>
                 </li>
               </ul>
+
+              <Link className="burger-menu desktop-none" data-bs-toggle="offcanvas" role="button" aria-controls=" offcanvasExample" href="/#offcanvasExample"><img src="./assets/img/icon/menu.png" alt="Menu Png"/></Link>
             </div>
           </header>
         </div>

@@ -17,10 +17,10 @@ export default function Testimonials() {
               centeredSlides={true}
               loop={true}
               slidesPerView={3}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
               pagination={{
                 clickable: true,
               }}
@@ -30,14 +30,18 @@ export default function Testimonials() {
               }}
               breakpoints={{
                 240: {
-                  slidesPerView: 1.5,
+                  slidesPerView: 1.1,
                   spaceBetween: 10,
                 },
                 768: {
-                  slidesPerView: 2.2,
+                  slidesPerView: 1.5,
                   spaceBetween: 20,
                 },
-                1024: {
+                840: {
+                  slidesPerView: 1.7,
+                  spaceBetween: 20,
+                },
+                1240: {
                   slidesPerView: 3,
                   spaceBetween: 20,
                 },
@@ -286,10 +290,10 @@ export default function Testimonials() {
               centeredSlides={true}
               loop={true}
               slidesPerView={3}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 2000,
+              //   disableOnInteraction: false,
+              // }}
               pagination={{
                 clickable: true,
               }}
@@ -299,14 +303,18 @@ export default function Testimonials() {
               }}
               breakpoints={{
                 240: {
-                  slidesPerView: 1.5,
+                  slidesPerView: 1.1,
                   spaceBetween: 10,
                 },
                 768: {
-                  slidesPerView: 2.2,
+                  slidesPerView: 1.5,
                   spaceBetween: 20,
                 },
-                1024: {
+                840: {
+                  slidesPerView: 1.7,
+                  spaceBetween: 20,
+                },
+                1240: {
                   slidesPerView: 3,
                   spaceBetween: 20,
                 },

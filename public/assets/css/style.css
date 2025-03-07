@@ -7715,7 +7715,7 @@ ul.contact-address > li:first-child {
 
 	.accordion-portfolio-lists li.out {
 		width: 100%;
-		padding-top: 200px;
+		padding-top: 150px;
 		height: auto;
 	}
 
@@ -8142,11 +8142,11 @@ ul.contact-address > li:first-child {
 
 
 	/* Why Choose Us */
-	.choose-us-style-one-thumb .video-play-button {
+	/* .choose-us-style-one-thumb .video-play-button {
 		right: auto;
 		left: 50%;
 		transform: translateX(-50%);
-	}
+	} */
 
 	ul.list-item {
 		margin-top: 0;
@@ -8285,7 +8285,7 @@ ul.contact-address > li:first-child {
 
 	.accrdion-portfolio-area .accordion-overlay {
 		padding: 0;
-		text-align: center;
+		/* text-align: center; */
 		width: 100%;
 	}
 
@@ -8639,11 +8639,11 @@ ul.contact-address > li:first-child {
 
 
 	/* Why Choose Us */
-	.choose-us-style-one-thumb .video-play-button {
+	/* .choose-us-style-one-thumb .video-play-button {
 		right: auto;
 		left: 50%;
 		transform: translateX(-50%);
-	}
+	} */
 
 	ul.list-item {
 		margin-top: 0;

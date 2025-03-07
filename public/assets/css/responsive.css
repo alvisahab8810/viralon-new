@@ -1,0 +1,497 @@
+@media (max-width: 1240px) and (min-width: 1024px) {
+    /* Your CSS styles here */
+
+
+    .choose-us-style-one-thumb .video-play-button {
+        right: 112px;
+        bottom: -158px;
+    }
+    .right-para {
+        max-width: 70%;
+    }
+
+    .first-content .why-numbers {
+        font-size: 70px;
+
+    }
+
+    .first-content h3 {
+        font-size: 16px;
+        padding-left: 7px;
+    }
+
+    p.fris-para {
+        font-size: 13px;
+    }
+
+    .banner-one-item h2 {
+        font-size: 70px;
+
+    }
+    .lets-cta-section .up-arrow{
+        bottom: unset;
+    }
+
+    .accrdion-portfolio-area .out .accordion-overlay p{
+        font-size: 14px;
+    }
+
+    .accrdion-portfolio-area .out .accordion-overlay a {
+        font-size: 30px;
+
+    }
+
+    .form-content h1 {
+        font-size: 60px;
+     
+    }
+
+    .btn-submit{
+        width:100%;
+    }
+
+    .form-content {
+        padding: 2rem;
+        padding-left: 60px;
+    }
+
+    .footer-para {
+        font-size: 35px;
+    }
+    .banner-one-item h4{
+        font-size: 14px;;
+    }
+
+
+}
+
+
+@media(max-width:1023px){
+    .mobile-none{
+        display: none;
+    }
+    .desktop-none{
+        display: block;
+    }
+    a.navbar-brand {
+        position: unset!important;
+        transform: unset!important;
+    }
+
+    .choose-us-style-one-thumb .video-play-button {
+        right: 60px !important;
+        bottom: -45px!important;
+    }
+
+    .banner-one-item img {
+        position: absolute;
+        right: 34%;
+        top: 74%;
+        width: 96px;
+    }
+
+    .default-padding {
+        padding-top: 50px;
+    }
+    .form-content {
+        padding-left: 40px;
+    }
+
+    .form-content h1 {
+        font-size: 40px;
+    }
+
+    .btn-submit {
+        margin: 20px auto;
+        height: 45px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .form-content p {
+        font-size: 18px;
+    }
+
+    .lets-cta-section .up-arrow {
+   
+        right: 12%;
+        bottom: 87px;
+    }
+
+    .brands-link {
+
+        font-size: 16px;
+       
+    }
+
+    .footer-para {
+        font-size: 22px;
+        line-height: 1.4;
+        margin-top: 20px;
+    }
+    .logo a img{
+        width:110px
+    }
+
+    .footer .pl-100 {
+        padding-left: 20px;
+    }
+
+    .footer h5 {
+        font-size: 18px;
+    }
+
+    .footer .pl-50 {
+        padding-left: 10px;
+    }
+
+    .ptb-80 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .mob-canvas {
+        width: 70%;
+    }
+    .mob-canvas .offcanvas-header {
+        background-color: #EE4C49;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .desk-logo {
+        margin-bottom: 0 !important;
+    }
+    .desk-logo img {
+        width: 170px;
+    }
+
+    .mob-menus ul {
+        display: flex
+;
+        padding: 0;
+        flex-flow: column;
+    }
+
+    .mob-menus ul.nav.nav-pills > li {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .mob-menus ul li a {
+        padding-left: 0;
+        color: #373737!important;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .mob-dropdown .accordion-button:not(.collapsed) {
+        color: unset;
+        background-color: unset;
+        box-shadow: unset;
+    }
+
+    .accordion-item {
+        border: none;
+    }
+
+    .list-unstyled li {
+        margin: 10px 0px;
+    }
+
+    .mob-canvas .btn-close {
+        filter: brightness(0) invert(1);
+        padding: 9px;
+        transform: scale(.9);
+    }
+    .mob-canvas .desk-logo img {
+        width: 87px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    /* Your CSS styles here */
+    .banner-one-item h2 {
+        font-size: 70px;
+    }
+
+    .banner-one-item h2 strong {
+        float: unset;
+    }
+
+   
+}
+
+
+
+@media(max-width:768px){
+
+    .navbar-brand>img {
+        max-height: 35px!important;
+    }
+    .banner-one-item h4 {
+    
+        font-size: 16px;
+    }
+
+    .banner-one-item h2 {
+        font-size: 44px;
+        text-align: center;
+    }
+
+    .video-play-button i {
+        height: 50px;
+        width: 50px;
+        line-height: 53px;
+        font-size: 24px!important;
+    }
+    .video-play-button .effect {
+        width: 50px;
+        height: 50px;
+     
+      
+    }
+
+    .video-play-button .effect::before {
+   
+        width: 50px;
+        height: 50px;
+        left: 55%;
+    top: 55%;
+     
+    }
+
+    .video-play-button .effect::after {
+        width: 50px;
+        height: 50px;
+        left: 55%;
+    top: 55%;
+
+    }
+
+    .choose-us-style-one-thumb .video-play-button {
+        right: 37px !important;
+        bottom: -25px !important;
+    }
+    .bg-dark .banner-one-item h2 strong {
+        -webkit-text-stroke: .4px var(--white);
+    }
+
+    .accrdion-portfolio-area .accordion-overlay > a {
+        height: 50px;
+        width: 50px;
+        line-height: 2;
+     
+        font-size: 25px;
+    }
+    .accrdion-portfolio-area .accordion-overlay span{
+        font-size: 13px;
+        font-weight: normal;
+    }
+    .accordion-portfolio-lists li {
+        padding:20px;
+    }
+    .accrdion-portfolio-area .out .accordion-overlay h2 {
+        font-size: 22px;
+    }
+
+    .our-work-section .banner-one-item h2{
+        text-align: left;
+    }
+    .banner-one-item img {
+        right: 55%;
+        top: 107%;
+        width: 71px;
+    }
+
+    .why-us-items-section ol {
+        flex-wrap: wrap;
+    }
+
+    .why-us-items-section ol li {
+        width:100%;
+        margin-bottom: 15px!important;
+        margin:0;
+
+    }
+
+    .first-content .why-numbers {
+        font-size: 65px;
+        line-height: 0;
+    }
+
+    .first-content h3 {
+        font-size: 14px;
+        padding-left: 8px;
+ 
+ 
+    }
+
+    .right-para {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .why-us-items.active, .why-us-items:hover {
+        width: 100%;
+    }
+
+    p.fris-para {
+        padding-top: 5px;
+        font-size: 11px;
+        color: white;
+        text-align: justify;
+        line-height: 1.5;
+        font-weight: normal;
+    }
+   .why-us-item-bx {
+        height: 75px;
+        width:60%;
+    }
+
+    .why-us-content-bx {
+        width: 40%;
+    }
+
+    .cteative-service-item {
+        padding: 10px;
+    }
+
+    .brands-link {
+        font-size: 13px;
+        top: 72%;
+    }
+    .our-work-section .default-padding{
+        padding-top:0;
+    }
+
+    .pt-80 {
+        padding-top: 50px;
+    }
+
+    .testimonials .text-4xl{
+        font-size: 25px;;
+    }
+
+    .why-us-section  .text-4xl{
+        font-size: 25px;
+    }
+
+
+    .bg-linear1 .text-4xl{
+        font-size: 25px;
+    }
+
+    .btn-submit {
+        margin: 20px auto;
+        height: 45px;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .form-content {
+        padding-left: 0px;
+        padding: 0;
+    }
+
+    .form-content h1 {
+        font-size: 25px;
+    }
+
+    .pt-80 {
+        padding-top: 50px;
+    }
+
+    .scroller__inner {
+    
+        gap: 1rem;
+    }
+    .scroller__inner img {
+        margin-right: 8px;
+        height: 22px;
+    }
+
+    .testimonials  .ptb-80 {
+        padding-top: 0;;
+    }
+    .pt-80 {
+        padding-top: 50px!important;
+    }
+
+    .lets-cta-section .up-arrow {
+        height: 50px;
+        width: 50px;
+        padding: 14px;
+      
+    }
+
+    .lets-cta-section .up-arrow {
+        right: 2%;
+        bottom: 49px;
+    }
+
+    
+    .lets-cta-section{
+        padding-bottom: 0!important;
+    }
+
+    .footer .pl-100 {
+        padding-left: 10px;
+        padding-top: 50px;
+    }
+
+    .testimonial-card .review-main-img {
+        width: 125px;
+        height: 185px;
+    }
+    .testimonial-card p {
+        color: white !important;
+        font-size: 10px;
+        margin: 0;
+        line-height: 1.4;
+    }
+    .testimonial-card img {
+        width: 65px;
+    }
+
+    .testimonial-card .review-right-bx {
+        width: 65%;
+        padding-left: 28px;
+    }
+
+    .testimonial-card .company {
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 5px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .form-container .form-control {
+        font-size: 14px;
+    }
+
+    .blog-hero-section {
+        background-image: url(../img/blog/hero.webp);
+        height: 308px;
+        background-size: cover;
+        background-position: center;
+    }
+    .bg-dark .blog-area .post-title a {
+        font-size: 20px;
+    }
+    .blog-area blockquote {
+        font-size: 17px;
+        padding: 41px 20px;
+    }
+
+    .accordion-portfolio-lists blockquote::after {
+        bottom: -25px;
+        font-size: 50px;
+    }
+
+    .comments-area .comments-title h3 {
+        font-size: 18px;
+    }
+
+
+}

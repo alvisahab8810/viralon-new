@@ -6,11 +6,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        {/* <link
+        <link
           rel="icon"
           type="image/x-icon"
-          href="./images/favicon-32x32.png"
-        /> */}
+          href="/assets/img/favicon.png"
+        />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"

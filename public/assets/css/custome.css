@@ -51,6 +51,7 @@ header{
     ;
         justify-content: space-between;
         padding: 25px 0px;
+        align-items: center;
 }
 .accrdion-portfolio-area1 {
     padding-top: 35px;
@@ -940,3 +941,10 @@ ul.import-list li {
 .blog-content .info h4 a{
     color:white;
 }
+
+.desktop-none{
+    display: none;
+}
+
+
+
