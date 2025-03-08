@@ -45,7 +45,7 @@ export default function Jobs() {
               tabIndex="0"
             >
               <div className="position-card">
-                <div className="position-main-bx d-flex flex-column flex-lg-row pt-50">
+                <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-50">
                   <div className="content d-flex flex-column  flex-grow-1">
                     <div className="year-title text-muted mb-4">/2025</div>
                     <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">
@@ -121,7 +121,7 @@ export default function Jobs() {
               </div>
 
               <div className="position-card">
-                <div className="position-main-bx d-flex flex-column flex-lg-row pt-80">
+                <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-80">
                   <div className="content d-flex flex-column  flex-grow-1">
                     <div className="year-title text-muted mb-4">/2025</div>
                     <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">
@@ -206,8 +206,8 @@ export default function Jobs() {
               <div className="collapse" id="collapseExample">
                 <div className="card card-body">
                   <div className="position-card">
-                    <div className="position-main-bx d-flex flex-column flex-lg-row pt-50">
-                      <div className="content d-flex flex-column  flex-grow-1">
+                    <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-50">
+                      <div className="content d-flex flex-column flex-column1  flex-grow-1">
                         <div className="year-title text-muted mb-4">/2025</div>
                         <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">
                           CONTENT WRITER INTERN
@@ -291,7 +291,7 @@ export default function Jobs() {
               tabIndex="0"
             >
               <div className="position-card">
-                <div className="position-main-bx d-flex flex-column flex-lg-row pt-50">
+                <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-50">
                   <div className="content d-flex flex-column  flex-grow-1">
                     <div className="year-title text-muted mb-4">/2025</div>
                     <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">
@@ -367,7 +367,7 @@ export default function Jobs() {
               </div>
 
               <div className="position-card">
-                <div className="position-main-bx d-flex flex-column flex-lg-row pt-80">
+                <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-80">
                   <div className="content d-flex flex-column  flex-grow-1">
                     <div className="year-title text-muted mb-4">/2025</div>
                     <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">
@@ -402,7 +402,7 @@ export default function Jobs() {
               </div>
 
               <div className="position-card">
-                <div className="position-main-bx d-flex flex-column flex-lg-row pt-80">
+                <div className="position-main-bx d-flex flex-column  flex-lg-row pt-80">
                   <div className="position-img flex-grow-1">
                     <img
                       src="./assets/img/careers/img3.webp"
@@ -452,7 +452,7 @@ export default function Jobs() {
               <div className="collapse" id="collapseExample">
                 <div className="card card-body">
                   <div className="position-card">
-                    <div className="position-main-bx d-flex flex-column flex-lg-row pt-50">
+                    <div className="position-main-bx d-flex flex-column flex-column1 flex-lg-row pt-50">
                       <div className="content d-flex flex-column  flex-grow-1">
                         <div className="year-title text-muted mb-4">/2025</div>
                         <h2 className="display-4 font-weight-bold mb-4 marcellus-regular">

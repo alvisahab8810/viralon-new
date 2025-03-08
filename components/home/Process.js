@@ -233,8 +233,6 @@ export default function Process() {
                     />
                   </div>
 
-                
-
                   </div>
 
                   <div className="right-para">

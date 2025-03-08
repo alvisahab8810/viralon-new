@@ -13,7 +13,7 @@ export default function Offcanvas() {
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">
             <Link
-              href="index.html"
+              href="/"
               className="d-flex align-items-center  mb-md-0 me-md-auto text-dark text-decoration-none desk-logo"
             >
               <img src="./assets/img/logo.png" alt="Logo Image" />
@@ -30,9 +30,9 @@ export default function Offcanvas() {
           <div className="mob-menus">
             <ul className=" nav nav-pills">
               <li className="nav-item">
-                <Link href="/about" className="nav-link ">
+                <Link href="#" className="nav-link ">
                   {" "}
-                  Our Story
+                  Our Services
                 </Link>
               </li>
               {/* <li className="nav-item mob-dropdown">
@@ -75,13 +75,8 @@ export default function Offcanvas() {
                 </div>
               </li> */}
               <li className="nav-item">
-                <Link href="/corporate" className="nav-link">
-                  Corporate
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/honeymoon" className="nav-link">
-                  Honeymoon
+                <Link href="#" className="nav-link">
+                  Our Work
                 </Link>
               </li>
               <li className="nav-item">
@@ -89,8 +84,15 @@ export default function Offcanvas() {
                   Blogs
                 </Link>
               </li>
+           
               <li className="nav-item">
-                <Link href="contact-us" className="nav-link">
+                <Link href="/career" className="nav-link">
+                  Career
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link href="#" className="nav-link">
                   Contact Us
                 </Link>
               </li>
