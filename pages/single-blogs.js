@@ -3,11 +3,14 @@ import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Hero from "../components/blogs/Hero";
 import Link from "next/link";
+import Offcanvas from "../components/header/Offcanvas";
 
 export default function SingleBlogs() {
   return (
     <div className="bg-dark">
       <Topbar />
+      <Offcanvas/>
+
       <Hero />
       <div className="blog-area single full-blog full-blog default-padding">
         <div className="container">
