@@ -30,7 +30,7 @@ export default function Topbar() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="/our-work">
                     Our Work
                   </Link>
                 </li>

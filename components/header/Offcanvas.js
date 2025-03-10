@@ -29,53 +29,16 @@ export default function Offcanvas() {
         <div className="offcanvas-body">
           <div className="mob-menus">
             <ul className=" nav nav-pills">
+              
               <li className="nav-item">
                 <Link href="#" className="nav-link ">
                   {" "}
                   Our Services
                 </Link>
               </li>
-              {/* <li className="nav-item mob-dropdown">
-                <div className="accordion" id="familyAccordion">
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="headingOne">
-                      <button
-                        className="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                      >
-                        Family
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseOne"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingOne"
-                      data-bs-parent="#familyAccordion"
-                    >
-                      <div className="accordion-body">
-                        <ul className="list-unstyled">
-                          <li>
-                            <Link href="/national-destination">
-                              - National Destination
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/international-destination">
-                              - International Destination
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li> */}
+              
               <li className="nav-item">
-                <Link href="#" className="nav-link">
+                <Link href="/our-work" className="nav-link">
                   Our Work
                 </Link>
               </li>

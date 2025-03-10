@@ -601,6 +601,34 @@
 .flex-column1{
     flex-flow: column-reverse !important;
 }
+
+
+.our-work-heading {
+    font-size: 105px;
+    padding: 50px 0px;
+
+}
+
+.our-work-sub {
+    font-size: 12px;
+    letter-spacing: 2px;
+    width: 100%;
+    text-align: center;
+
+
+
+}
+
+.image-text {
+
+    font-size: 18px;
+}
+
+
+section.work-area .py-5 {
+    padding-top: 0 !important;
+}
+
 }
 @media (max-width: 1024px) and (min-width: 768px) {
     /* Your CSS styles here */

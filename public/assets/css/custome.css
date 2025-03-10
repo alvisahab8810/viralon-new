@@ -570,7 +570,7 @@ p.fris-para {
 }
 
 .footer-para {
-    font-size: 50px;
+    font-size: 35px;
     line-height: 1;
     margin-top: 40px;
     color: #828282 !important;
@@ -946,5 +946,47 @@ ul.import-list li {
     display: none;
 }
 
+.our-work-heading {
+    font-size: 260px;
+    font-weight: bolder;
+    -webkit-text-stroke: 1px var(--white);
+    color: transparent !important;
+    opacity: 0.8;
+    text-align: center;
+    padding: 70px 0px;
+}
+.our-work-sub {
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 5px;
+}
+
+.our-work-hero{
+    position: relative;
+}
 
 
+.work-area .image-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.work-area  .image-container img {
+    width: 100%;
+    height: auto;
+}
+ .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color:white;
+}
