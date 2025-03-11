@@ -628,7 +628,11 @@
 section.work-area .py-5 {
     padding-top: 0 !important;
 }
-
+.quote-bx {
+    height: 35px;
+    width: 35px;
+    padding: 10px;
+}
 }
 @media (max-width: 1024px) and (min-width: 768px) {
     /* Your CSS styles here */

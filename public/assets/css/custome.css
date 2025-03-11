@@ -6,6 +6,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 
+
+body{
+    overflow: auto!important;
+}
 .anton-regular {
     font-family: "Anton", sans-serif;
     font-weight: 400;
