@@ -647,3 +647,8 @@ section.work-area .py-5 {
    
 }
 
+@media(max-width:375px){
+    .testimonial-card .review-main-img {
+        width: 112px;
+    }
+}
