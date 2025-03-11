@@ -1,6 +1,53 @@
 import React from "react";
 import Link from "next/link";
+import { useEffect } from "react";
+
 export default function Hero() {
+
+
+    useEffect(() => {
+        const handleEvent = (event) => {
+            event.stopPropagation();
+            const element = event.currentTarget;
+            
+            if (element.classList.contains("out")) {
+                element.classList.add("out");
+            } else {
+                element.classList.add("out");
+                Array.from(element.parentElement.children).forEach((sibling) => {
+                    if (sibling !== element) {
+                        sibling.classList.remove("out");
+                    }
+                });
+            }
+        };
+
+        const accordions = document.querySelectorAll("#accordion > li");
+        const isWideScreen = window.innerWidth > 767;
+        
+        if (isWideScreen) {
+            accordions.forEach((accordion) => {
+                accordion.addEventListener("mouseenter", handleEvent);
+                accordion.addEventListener("click", handleEvent);
+            });
+        } else {
+            accordions.forEach((accordion) => {
+                accordion.addEventListener("touchstart", handleEvent);
+                accordion.addEventListener("touchend", handleEvent);
+            });
+        }
+
+        return () => {
+            accordions.forEach((accordion) => {
+                accordion.removeEventListener("mouseenter", handleEvent);
+                accordion.removeEventListener("click", handleEvent);
+                accordion.removeEventListener("touchstart", handleEvent);
+                accordion.removeEventListener("touchend", handleEvent);
+            });
+        };
+    }, []);
+
+    
   return (
     <>
       <div className="height-auto accrdion-portfolio-area">
@@ -35,7 +82,7 @@ export default function Hero() {
         {/* <!-- ACCORDION ROW --> */}
         <div className="container-fluid">
           <div className="row">
-            <ul className="accordion-portfolio-lists text-light" id="accordion">
+            <ul className="accordion-portfolio-lists text-light" id="accordion" >
               <li
                 style={{
                   backgroundImage: "url('assets/img/portfolio/h1.jpg')",
