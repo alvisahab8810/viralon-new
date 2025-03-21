@@ -994,3 +994,126 @@ ul.import-list li {
     font-weight: bold;
     color:white;
 }
+
+.blog-area.blog-grid-colum .thumb img {
+    border-radius: inherit;
+    margin-bottom: 30px;
+    height: 308px;
+    object-fit: cover;
+}
+
+.dash-img img{
+    width:100px!important;
+    height:100px!important;
+
+}
+
+.blog-item-box .thumb img{
+    width:100%;
+    object-fit: cover;
+}
+
+.blog-lists .thumb img {
+    border-radius: 10px 10px 0 0;
+    height: 308px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.blog-item-box .or-list{
+    margin-bottom: 25px;
+    margin-top: 25px;
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.blog-item-box .or-list li{
+    list-style: disc;
+}
+
+
+
+.blog-item-box tbody, td, tfoot, th, thead, tr {
+    border-color: inherit !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    padding: 7px !important;
+}
+
+.main-nav .navbar{
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%)!important;
+    position: fixed;
+    top: 0;
+ }
+ .main-nav ul.navbar-nav li {
+    margin: 0px 0px 0px 0px;
+}
+
+.main-nav nav.navbar ul.nav>li>a {
+    padding: 5px 15px!important;
+}
+.main-nav .navbar-brand>img{
+    height: auto;
+}
+.main-nav .navbar-nav.navbar-left .input-group {
+    padding-top: 0px;
+}
+
+.main-nav .breadcrumb-item {
+    position: relative;
+    padding: 0px 0;
+    padding-top: 0px;
+}
+
+.main-nav .btn.btn-icon, .navbar .navbar-nav>a.btn.btn-icon {
+
+    padding: 0 !important;
+
+}
+
+.main-nav button, input, select, a {
+    font-weight: normal;
+}
+
+.block-header .form-control[type=file] {
+    line-height: 2.4;
+}
+
+
+
+#editor .codex-editor:first-child{
+    display: none;
+}
+
+
+#editor .ce-block__content{
+    margin: unset!important;
+}
+
+.blogs-heading{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.block-header li.breadcrumb-item .active {
+    color: #f96332;
+}
+
+.block-header h2 {
+    font-size: 24px!important;
+}
+.block-header li.breadcrumb-item a {
+    color: #00000091;
+    font-size: 14px;
+}
+
+
+.block-header .table .btn-primary {
+    padding: 10px !important;
+    border-radius: 5px;
+}
+.block-header .delete-btn {
+    background-color: #546e7a !important;
+    background: linear-gradient(90deg, #546e7a 29%, #546e7a 95%);
+}

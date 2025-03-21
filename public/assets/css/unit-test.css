@@ -1027,7 +1027,7 @@ nav.woocommerce-breadcrumb a {
 	font-style: normal;
 }
 
-.blog-area blockquote p {
+/* .blog-area blockquote p {
 	margin: 0;
 	position: relative;
 	z-index: 1;
@@ -1036,7 +1036,7 @@ nav.woocommerce-breadcrumb a {
 	font-style: italic;
 	font-weight: 800;
 	color: #c3d2ff;
-}
+} */
 
 .responsive-video {
 	position: relative;

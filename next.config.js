@@ -18,6 +18,15 @@ const nextConfig = {
   fileUrl: 'http://localhost:3000/' // Update to localhost
 };
 
+
+
+// next.config.js
+module.exports = {
+  images: {
+    domains: ['http://localhost:3000/'],
+  },
+};
+
 module.exports = nextConfig;
 
 

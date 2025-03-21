@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Script from "next/script";
-
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -43,6 +43,8 @@ function MyApp({ Component, pageProps }) {
         <link href="/assets/css/helper.css" rel="stylesheet" />
         <link href="/assets/css/unit-test.css" rel="stylesheet" />
 
+      
+
         <title>Viralon</title>
       </Head>
       {/* Non-Critical Scripts */}
@@ -68,6 +70,10 @@ function MyApp({ Component, pageProps }) {
       <Script src="/assets/js/horizontal-accordion-init.js" defer></Script>
       <Script src="/assets/js/main.js" defer></Script>
       <Script src="/assets/js/bootstrap.bundle.min.js" defer></Script>
+
+      <Toaster position="top-right" />
+
+      
       <Component {...pageProps} />
     </>
   );

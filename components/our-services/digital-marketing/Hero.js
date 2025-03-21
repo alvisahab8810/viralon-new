@@ -59,10 +59,10 @@ export default function Hero() {
           </div> */}
 
           <div className="row align-center">
-            <div className="col-lg-8 banner-one-item">
+            <div className="col-lg-7 banner-one-item">
               <h4>Creative digital studio</h4>
               <h2>
-                Brands made <strong>Iconic!</strong>
+              Digital <br/><strong>Marketing</strong>
               </h2>
             </div>
             <div className="col-lg-3 offset-lg-1 banner-one-item text-center">

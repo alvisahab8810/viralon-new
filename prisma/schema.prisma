@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  avatar    String
+  bio       String
+  createdAt DateTime @db.Date
+  email     String   @unique
+  name      String
+  password  String
+  site      String
+  updatedAt DateTime @db.Date
+  username  String
+  posts     Post[] // ✅ Relation added
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   Json
+  createdAt DateTime @default(now())
+  authorId  String   @db.ObjectId // ✅ Use ObjectId for MongoDB relations
+  author    User     @relation(fields: [authorId], references: [id])
+  image     String?
+  type      String?
+  views     Int      @default(0) // ✅ View tracking enabled
+}

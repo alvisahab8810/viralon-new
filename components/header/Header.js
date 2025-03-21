@@ -10,7 +10,7 @@ export default function Topbar() {
             <div className="navbar-header">
               <Link className="navbar-brand" href="/">
                 <img
-                  src="assets/img/logo.png"
+                  src="/assets/img/logo.png"
                   className="logo logo-scrolled"
                   alt="Logo"
                 />
@@ -25,7 +25,7 @@ export default function Topbar() {
             >
               <ul className="navbar-nav mobile-none">
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="/our-services/digital-marketing">
                     Our services
                   </Link>
                 </li>

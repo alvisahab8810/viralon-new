@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "components/posts/DeletePostModal.js", "components/posts/Editor.js", "components/posts/PostArticle.js", "components/posts/PostCard.js", "components/posts/UserProfileCard.js", "components/Editor.tsx", "editorjs.config.ts", "pages/api/upload.js"  ],
   "exclude": [
     "node_modules"
   ]
