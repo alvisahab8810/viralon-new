@@ -6,10 +6,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
 
 body{
     overflow: auto!important;
 }
+
+.londrina-outline-regular {
+    font-family: "Londrina Outline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 .anton-regular {
     font-family: "Anton", sans-serif;
     font-weight: 400;
@@ -1116,4 +1123,106 @@ ul.import-list li {
 .block-header .delete-btn {
     background-color: #546e7a !important;
     background: linear-gradient(90deg, #546e7a 29%, #546e7a 95%);
+}
+
+.strap-section {
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    height: 72px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
+.strap-section .text-container {
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 0;
+}
+.strap-section .dot {
+    font-size: 70px;
+    line-height: 0;
+}
+
+.strap-section .scroller__inner {
+    gap: unset;
+}
+
+.strap-section[data-animated="true"]{
+    mask:unset!important
+}
+
+.mtb-80{
+    margin-top: 80px;
+    /* margin-bottom: 80px; */
+}
+.main-class .bg-linear{
+    background: linear-gradient(90deg, #5A57FB 29%, #02EBAD 95%);
+    border-radius: 60px;
+}
+
+.main-class .testimonial-card .review-right-bx {
+    width: 66%;
+    margin-left: auto;
+}
+
+.main-class .testimonial-card .review-main-img {
+    position: absolute;
+    width: 30%;
+}
+
+.main-class .form-section .bg-linear {
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+}
+.main-class .form-content {
+    padding: 2rem;
+    padding-left: 50px;
+}
+.main-class .testimonial-card p {
+    font-size: 12px;
+}
+
+
+
+/* ============================= Faq css ===================== */
+
+
+.faq-section .accordion-button {
+    background-color: #1D1D1D;
+    font-size: 24px;
+    color: white;
+}
+.faq-section .accordion-button:focus {
+    box-shadow: none;
+}
+.faq-section .accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #1D1D1D;
+}
+.faq-section .accordion-item {
+    border:none
+}
+.faq-section .text-orange {
+    padding: 0;
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 0;;
+}
+
+.faq-section .accordion-body {
+    background: #1D1D1D;
+}
+
+.faq-section .fs-24{
+    font-size: 24px;;
+}
+
+.faq-section .display-4{
+    font-size: 48px!important;
 }

@@ -18,7 +18,7 @@ export default function CTA() {
                 <a href="#">
                   <div className="up-arrow">
                     <img
-                      src="./assets/img/icon/up-arrow.png"
+                      src="/assets/img/icon/up-arrow.png"
                       alt="Up Arrow"
                     ></img>
                   </div>

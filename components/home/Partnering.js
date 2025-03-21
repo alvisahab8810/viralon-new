@@ -20,51 +20,51 @@ export default function Partnering() {
                     >
                       <div className="scroller__inner">
                         <img
-                          src="./assets/img/home/clients-logos/partner1.png"
+                          src="/assets/img/home/clients-logos/partner1.png"
                           alt="Client Logo"
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner2.png"
+                          src="/assets/img/home/clients-logos/partner2.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner3.png"
+                          src="/assets/img/home/clients-logos/partner3.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner4.png"
+                          src="/assets/img/home/clients-logos/partner4.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner5.png"
+                          src="/assets/img/home/clients-logos/partner5.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner1.png"
+                          src="/assets/img/home/clients-logos/partner1.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner1.png"
+                          src="/assets/img/home/clients-logos/partner1.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner2.png"
+                          src="/assets/img/home/clients-logos/partner2.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner3.png"
+                          src="/assets/img/home/clients-logos/partner3.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner4.png"
+                          src="/assets/img/home/clients-logos/partner4.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner5.png"
+                          src="/assets/img/home/clients-logos/partner5.png"
                           alt=""
                         />
                         <img
-                          src="./assets/img/home/clients-logos/partner1.png"
+                          src="/assets/img/home/clients-logos/partner1.png"
                           alt=""
                         />
                       </div>

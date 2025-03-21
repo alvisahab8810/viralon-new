@@ -85,13 +85,13 @@ export default function Hero() {
             <ul className="accordion-portfolio-lists text-light" id="accordion" >
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h1.jpg')",
+                  backgroundImage: "url('/assets/img/portfolio/h1.jpg')",
                 }}
               >
-                <h3>Marketing</h3>
+                <h3>Social media marketing</h3>
                 <span>01</span>
                 <div className="accordion-overlay">
-                  <span>Design</span>
+                  <span>Social media marketing</span>
                   <h2>
                     <a
                       href="#"
@@ -118,13 +118,13 @@ export default function Hero() {
               <li
                 className="out"
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h2.jpg')",
+                  backgroundImage: "url('/assets/img/portfolio/h2.jpg')",
                 }}
               >
-                <h3>Artboard Studio</h3>
+                <h3>Search Engine Optimization</h3>
                 <span>02</span>
                 <div className="accordion-overlay">
-                  <span>Branding</span>
+                  <span>Search Engine Optimization</span>
                   <h2>
                     <a
                       href="#"
@@ -150,13 +150,13 @@ export default function Hero() {
               </li>
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h3.jpg')",
+                  backgroundImage: "url('/assets/img/portfolio/h3.jpg')",
                 }}
               >
-                <h3>Creative Ideas</h3>
+                <h3>Paid Advertisement</h3>
                 <span>03</span>
                 <div className="accordion-overlay">
-                  <span>Photo</span>
+                  <span>Paid Advertisement</span>
                   <h2>
                     <a
                       href="#"
@@ -182,13 +182,13 @@ export default function Hero() {
               </li>
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h4.jpg')",
+                  backgroundImage: "url('/assets/img/portfolio/h4.jpg')",
                 }}
               >
-                <h3>Branding</h3>
+                <h3>Email Marketing</h3>
                 <span>04</span>
                 <div className="accordion-overlay">
-                  <span>Creative</span>
+                  <span>Email Marketing</span>
                   <h2>
                     <a
                       href="#"
@@ -240,7 +240,7 @@ export default function Hero() {
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="project-thumb">
-                      <img src="assets/img/portfolio/14.jpg" alt="Thumb" />
+                      <img src="/assets/img/portfolio/14.jpg" alt="Thumb" />
                     </div>
                   </div>
                   <div className="col-xl-10 offset-xl-1">
@@ -324,11 +324,11 @@ export default function Hero() {
                         <div className="col-lg-7">
                           <div className="thumb-grid">
                             <img
-                              src="assets/img/portfolio/v1.jpg"
+                              src="/assets/img/portfolio/v1.jpg"
                               alt="Thumb"
                             />
                             <img
-                              src="assets/img/portfolio/v2.jpg"
+                              src="/assets/img/portfolio/v2.jpg"
                               alt="Thumb"
                             />
                           </div>
@@ -363,10 +363,10 @@ export default function Hero() {
                       </p>
                       <div className="row mt-50 mt-xs-30">
                         <div className="col-lg-6 col-md-6">
-                          <img src="assets/img/portfolio/11.jpg" alt="Thumb" />
+                          <img src="/assets/img/portfolio/11.jpg" alt="Thumb" />
                         </div>
                         <div className="col-lg-6 col-md-6 mt-xs-30">
-                          <img src="assets/img/portfolio/12.jpg" alt="Thumb" />
+                          <img src="/assets/img/portfolio/12.jpg" alt="Thumb" />
                         </div>
                       </div>
                     </div>

@@ -12,7 +12,7 @@ export default function Footer() {
                   href="/"
                   className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
                 >
-                  <img src="./assets/img/logo.png" alt="Logo Image" />{" "}
+                  <img src="/assets/img/logo.png" alt="Logo Image" />{" "}
                 </Link>
               </div>
               <p className="footer-para manrope">

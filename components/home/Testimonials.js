@@ -11,7 +11,7 @@ export default function Testimonials() {
             <br />
             WHAT OUR CLIENTS ARE SAYING
           </h1>
-          <div className="p-relative ptb-80">
+          <div className="p-relative pb-80">
             <Swiper
               spaceBetween={20}
               centeredSlides={true}
@@ -52,7 +52,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/1.png"
+                    src="/assets/img/home/testimonials/1.png"
                     alt="Testimonials"
                     width="150"
                     height="220"
@@ -61,7 +61,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -80,7 +80,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/2.png"
+                    src="/assets/img/home/testimonials/2.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -89,7 +89,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -109,7 +109,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/3.png"
+                    src="/assets/img/home/testimonials/3.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -118,7 +118,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -138,7 +138,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/4.png"
+                    src="/assets/img/home/testimonials/4.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -147,7 +147,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -167,7 +167,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/1.png"
+                    src="/assets/img/home/testimonials/1.png"
                     alt="Testimonials"
                     width="150"
                     height="220"
@@ -177,7 +177,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -196,7 +196,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/2.png"
+                    src="/assets/img/home/testimonials/2.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -205,7 +205,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -225,7 +225,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/3.png"
+                    src="/assets/img/home/testimonials/3.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -234,7 +234,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -254,7 +254,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/4.png"
+                    src="/assets/img/home/testimonials/4.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -263,7 +263,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -325,7 +325,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/1.png"
+                    src="/assets/img/home/testimonials/1.png"
                     alt="Testimonials"
                     width="150"
                     height="220"
@@ -335,7 +335,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -355,7 +355,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/2.png"
+                    src="/assets/img/home/testimonials/2.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -364,7 +364,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -383,7 +383,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/3.png"
+                    src="/assets/img/home/testimonials/3.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -392,7 +392,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -412,7 +412,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/4.png"
+                    src="/assets/img/home/testimonials/4.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -421,7 +421,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -441,7 +441,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/1.png"
+                    src="/assets/img/home/testimonials/1.png"
                     alt="Testimonials"
                     width="150"
                     height="220"
@@ -451,7 +451,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -471,7 +471,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/2.png"
+                    src="/assets/img/home/testimonials/2.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -480,7 +480,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -500,7 +500,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide tt-50">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/3.png"
+                    src="/assets/img/home/testimonials/3.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -509,7 +509,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
@@ -529,7 +529,7 @@ export default function Testimonials() {
               <SwiperSlide className="swiper-slide">
                 <div className="testimonial-card">
                   <img
-                    src="./assets/img/home/testimonials/4.png"
+                    src="/assets/img/home/testimonials/4.png"
                     alt="Testimonials"
                     width="150"
                     height="270"
@@ -538,7 +538,7 @@ export default function Testimonials() {
                   <div className="review-right-bx">
                     <div className="rating d-flex align-items-center">
                       <img
-                        src="./assets/img/icon/star.png"
+                        src="/assets/img/icon/star.png"
                         alt="Star Review"
                       ></img>
                       <span>5.0 rating</span>
