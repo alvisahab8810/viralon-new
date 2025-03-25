@@ -1,6 +1,10 @@
+"use client"; // Required for Next.js (App Router)
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+// import { Autoplay, Navigation } from "swiper/modules";
+
+import "swiper/css/free-mode";
+import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 export default function Testimonials() {
   return (
     <>
@@ -11,23 +15,26 @@ export default function Testimonials() {
             <br />
             WHAT OUR CLIENTS ARE SAYING
           </h1>
-          <div className="p-relative pb-80">
+          <div className="p-relative pb-80 ">
             <Swiper
-              spaceBetween={20}
-              centeredSlides={true}
-              loop={true}
-              slidesPerView={3}
-              // autoplay={{
-              //   delay: 2500,
-              //   disableOnInteraction: false,
-              // }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
+            
+            modules={[Autoplay, FreeMode, Navigation, Pagination]}
+            slidesPerView="auto"
+            spaceBetween={10} // Reduced space for smooth scrolling
+            centeredSlides={false} // Disabled centering for continuous scrolling
+            loop={true} // Ensures infinite loop
+            speed={5000} // Adjust speed for a smooth effect
+            autoplay={{
+              delay: 0, // No delay for continuous movement
+              disableOnInteraction: false,
+            }}
+            freeMode={true} // Allows smooth scrolling without abrupt stops
+            // pagination={{
+            //   clickable: true,
+            // }}
+            // navigation={true} // Enables navigation buttons
+
+
               breakpoints={{
                 240: {
                   slidesPerView: 1.1,
@@ -46,7 +53,7 @@ export default function Testimonials() {
                   spaceBetween: 20,
                 },
               }}
-              modules={[Autoplay, Navigation]}
+           
               className="swiper mySwiper pt-80"
             >
               <SwiperSlide className="swiper-slide">
@@ -286,21 +293,17 @@ export default function Testimonials() {
             </Swiper>
 
             <Swiper
-              spaceBetween={20}
-              centeredSlides={true}
-              loop={true}
-              slidesPerView={3}
-              // autoplay={{
-              //   delay: 2000,
-              //   disableOnInteraction: false,
-              // }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
+             modules={[Autoplay, FreeMode, Navigation, Pagination]}
+             slidesPerView="auto"
+             spaceBetween={10} // Reduced space for smooth scrolling
+             centeredSlides={false} // Disabled centering for continuous scrolling
+             loop={true} // Ensures infinite loop
+             speed={5000} // Adjust speed for a smooth effect
+             autoplay={{
+               delay: 0, // No delay for continuous movement
+               disableOnInteraction: false,
+             }}
+             freeMode={true} // Allows smooth scrolling without abrupt stops
               breakpoints={{
                 240: {
                   slidesPerView: 1.1,
@@ -319,7 +322,7 @@ export default function Testimonials() {
                   spaceBetween: 20,
                 },
               }}
-              modules={[Autoplay, Navigation]}
+           
               className="swiper mySwiper pt-80"
             >
               <SwiperSlide className="swiper-slide tt-50">

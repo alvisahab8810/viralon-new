@@ -1226,3 +1226,22 @@ ul.import-list li {
 .faq-section .display-4{
     font-size: 48px!important;
 }
+
+
+
+
+
+
+.marquee-content {
+  
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}

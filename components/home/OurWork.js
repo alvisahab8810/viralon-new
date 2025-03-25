@@ -1,6 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+// import { Autoplay, Navigation } from "swiper/modules";
+
+import "swiper/css/free-mode";
+import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 export default function OurWork() {
   return (
     <>
@@ -50,22 +53,32 @@ export default function OurWork() {
                     </div>
                   </div> */}
                   <Swiper
-                    spaceBetween={20}
-                    centeredSlides={true}
-                    loop={true}
-                    grabCursor={true}
-                    slidesPerView={4.9}
-                    // autoplay={{
-                    //   delay: 2500,
-                    //   disableOnInteraction: false,
+                    // spaceBetween={20}
+                    // centeredSlides={true}
+                    // loop={true}
+                    // grabCursor={true}
+                    // slidesPerView={4.9}
+                   
+                    // pagination={{
+                    //   clickable: true,
                     // }}
-                    pagination={{
-                      clickable: true,
+                    // navigation={{
+                    //   nextEl: ".swiper-button-next-1",
+                    //   prevEl: ".swiper-button-prev-1",
+                    // }}
+
+
+                    modules={[Autoplay, FreeMode, Navigation, Pagination]}
+                    slidesPerView="auto"
+                    spaceBetween={10} // Reduced space for smooth scrolling
+                    centeredSlides={false} // Disabled centering for continuous scrolling
+                    loop={true} // Ensures infinite loop
+                    speed={5000} // Adjust speed for a smooth effect
+                    autoplay={{
+                      delay: 0, // No delay for continuous movement
+                      disableOnInteraction: false,
                     }}
-                    navigation={{
-                      nextEl: ".swiper-button-next-1",
-                      prevEl: ".swiper-button-prev-1",
-                    }}
+                    freeMode={true} // Allows smooth scrolling without abrupt stops
                     breakpoints={{
                       240: {
                         slidesPerView: 1.5,
@@ -80,7 +93,7 @@ export default function OurWork() {
                         spaceBetween: 20,
                       },
                     }}
-                    modules={[Autoplay, Navigation]}
+                
                     className="services-carousel swiper"
                   >
                     {/* <!-- Additional required wrapper --> */}

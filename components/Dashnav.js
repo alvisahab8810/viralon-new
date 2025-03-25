@@ -16,23 +16,7 @@ export default function Dashnav() {
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-left">
-              {/* <li>
-                <a href="#" className="ls-toggle-btn" data-close="true">
-                  <i className="zmdi zmdi-swap"></i>
-                </a>
-              </li> */}
-              {/* <li className="hidden-sm-down">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search..."
-                  />
-                  <span className="input-group-addon">
-                    <i className="zmdi zmdi-search"></i>
-                  </span>
-                </div>
-              </li> */}
+              
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown">
