@@ -1,35 +1,72 @@
 import React from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Jobs() {
+
+  const router = useRouter();
+  const { tab } = router.query; // Get tab from URL
+
+  const [activeTab, setActiveTab] = useState("internship"); // Default tab
+
+  useEffect(() => {
+    if (tab === "experienced") {
+      setActiveTab("experienced");
+    } else {
+      setActiveTab("internship");
+    }
+  }, [tab]);
+
+
+
   return (
     <>
       <section className="job-tab-section pb-80">
         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link active marcellus-regular"
+              // className="nav-link active marcellus-regular"
+              className={`nav-link marcellus-regular ${activeTab === "internship" ? "active" : ""}`}
+              // id="pills-home-tab"
+              // data-bs-toggle="pill"
+              // data-bs-target="#pills-home"
+              // type="button"
+              // role="tab"
+              // aria-controls="pills-home"
+              // aria-selected="true"
+
               id="pills-home-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-home"
               type="button"
               role="tab"
               aria-controls="pills-home"
-              aria-selected="true"
+              aria-selected={activeTab === "internship"}
+            
             >
               Experienced professional
             </button>
           </li>
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link marcellus-regular"
-              id="pills-profile-tab"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-profile"
-              type="button"
-              role="tab"
-              aria-controls="pills-profile"
-              aria-selected="false"
+
+                className={`nav-link marcellus-regular ${activeTab === "experienced" ? "active" : ""}`}
+                id="pills-profile-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#pills-profile"
+                type="button"
+                role="tab"
+                aria-controls="pills-profile"
+                aria-selected={activeTab === "experienced"}
+              // className="nav-link marcellus-regular"
+              // id="pills-profile-tab"
+              // data-bs-toggle="pill"
+              // data-bs-target="#pills-profile"
+              // type="button"
+              // role="tab"
+              // aria-controls="pills-profile"
+              // aria-selected="false"
             >
               Experienced professional
             </button>
@@ -38,7 +75,8 @@ export default function Jobs() {
         <div className="container">
           <div className="tab-content" id="pills-tabContent">
             <div
-              className="tab-pane fade show active"
+              // className="tab-pane fade show active"
+              className={`tab-pane fade ${activeTab === "internship" ? "show active" : ""}`}
               id="pills-home"
               role="tabpanel"
               aria-labelledby="pills-home-tab"
@@ -284,7 +322,8 @@ export default function Jobs() {
               </div>
             </div>
             <div
-              className="tab-pane fade"
+              // className="tab-pane fade"
+              className={`tab-pane fade ${activeTab === "experienced" ? "show active" : ""}`}
               id="pills-profile"
               role="tabpanel"
               aria-labelledby="pills-profile-tab"

@@ -19,7 +19,7 @@ export default function Journey() {
         <div className="container card_section">
           <div className="row pt-80">
             <div className="col-md-6">
-              <Link href="/jobs">
+              <Link href="/jobs?tab=internship">
                 <div className="card">
                   <img
                     alt="Experienced professionals collaborating"
@@ -34,9 +34,10 @@ export default function Journey() {
                   </div>
                 </div>
               </Link>
+
             </div>
             <div className="col-md-6">
-              <Link href="/jobs">
+              <Link href="/jobs?tab=experienced">
                 <div className="card">
                   <img
                     alt="Group of interns working together"
