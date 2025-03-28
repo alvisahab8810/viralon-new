@@ -1,5 +1,5 @@
 // pages/index.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomHead from "../components/CustomHead";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -13,6 +13,9 @@ import Partnering from "../components/home/Partnering";
 import CTA from "../components/home/CTA";
 
 export default function IndexPage({ data }) {
+
+
+
   return (
     <section id="home" className="bg-dark">
       <CustomHead title="Viralon" keywords="" description="#" />
@@ -25,12 +28,6 @@ export default function IndexPage({ data }) {
       <Form />
       <Partnering />
       <CTA />
-
-      {/* <Instagram/> */}
-      {/* <Kashmircta/> */}
-      {/* <Help/> */}
-      {/* <Faq/> */}
-      {/* <OnloadPopup/> */}
       <Footer />
     </section>
   );
