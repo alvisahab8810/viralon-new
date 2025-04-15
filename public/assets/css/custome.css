@@ -1245,3 +1245,349 @@ ul.import-list li {
         transform: translateX(-50%);
     }
 }
+
+.seo-hero-content h1 {
+    font-size: 70px;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.seo-hero-content p{
+    text-align: center;
+    max-width: 800px;
+    margin: 30px auto;
+    color: white;
+
+}
+
+.core-task-bg{
+    background-image: url(../img/seo/core-task.webp);
+    width: 100%;
+    height: 700px;
+}
+
+.seo-hero-img {
+    position: relative;
+    height: 377px; /* Set height as needed */
+    overflow: hidden;
+}
+
+.seo-hero-content {
+    padding-bottom: 50px;
+}
+
+.seo-hero-img img {
+    position: absolute;
+    top: -115%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Make it square */
+    height: auto;
+    border-radius: 50%; /* Make it a circle */
+    animation: rotateCircle 200s linear infinite;
+}
+  
+@keyframes rotateCircle {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+.core-content h1{
+    font-size:45px;
+    color: white;
+    text-align: center;
+
+
+}
+.core-content p {
+    color: white;
+    text-align: center;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.core-bx h2{
+    font-size: 20px;
+}
+
+.core-bx > p{
+    font-size: 16px;
+    color: #666666;
+    max-width: 800px;
+    margin: auto;
+}
+
+.core-bx h2 {
+    font-size: 20px;
+    color: black;
+}
+
+.core-bx {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    height: 300px;
+}
+
+.ptb-100{
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+
+/* ================ process csss--------------- */
+
+.step-box-orange {
+    background-color: #FF6F61;
+}
+
+.step-box {
+    /* background-color: #FF6F61; */
+    border-radius: 10px;
+    padding: 15px;
+    border:2px solid #FF6F61;
+}
+.step-box h2 {
+    color: #FF6F61;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.step-box-orange h2 {
+    color: white;
+}
+
+.process-btn {
+    background-color: #5138EE;
+    color: white;
+    border-radius: 50px;
+    width: 250px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    padding: 10px 30px;
+    font-family: 'Manrope';
+}
+
+.process-section .process-heading {
+    color: #FF6F61;
+    line-height: 1;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.process-section .step-box p{
+     font-size: 14px;
+     font-weight: 400;
+     color: white;
+     margin-bottom: 0;
+     line-height: 20px;
+}
+
+.step-box .width-20{
+    width:12%;
+}
+
+.step-box .width-80{
+    width:88%;
+}
+
+.steps-bxx {
+    display: flex;
+    align-items: center;
+}
+
+.main-d-flex .step-number{
+    width:10%;
+    margin-right: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.main-d-flex .step-box{
+    width:90%;
+}
+
+
+.nubmer-lists li{
+    font-size: 30px;
+    font-weight: bold;
+    height: 62px;
+    display: flex;
+    color: white;
+    align-items: center;
+    width:62px;
+    justify-content: center;
+    background-color: #5138EE;
+    border-radius: 50px;
+}
+.main-d-flex{
+    align-items: center;
+}
+
+.main-d-flex .step-number::before {
+    content: '';
+    position: absolute;
+    height: 154px;
+    border: 1px solid #ffffff;
+    left: 50%;
+    bottom: -44px;
+    z-index: -1;
+}
+
+.max-500{
+    max-width: 500px;
+}
+
+.significance-content h1{
+        font-size: 45px;
+        color: white;
+        text-align: center;
+}
+
+.significance-content p{
+    color: white;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+
+.significance-section{
+background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+width: 100%;;
+}
+
+
+.significance-row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.significance-row > div{
+    display: flex;
+    width: calc(20% - 15px);
+    padding: 15px;
+    background: white;
+    flex-flow: column;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.significance-row > div h2{
+    font-size: 21px;
+    color:#1D1D1D;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.significance-row > div p{
+    font-size: 14px;
+    color:#666666;
+    margin-bottom: 0;
+}
+
+
+
+
+/* ============== 5solid reasons css===== */
+
+
+.solid-reasons-section .process-heading {
+    color: #FF6F61;
+    line-height: 1;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.solid-reasons-section .why-c-heading{
+    font-size: 50px;
+    font-weight: 400;
+    color: white;
+}
+.reasons-bxx h3 {
+    color: #FF6F61;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.reasons-bxx p{
+    font-size: 16px;
+    color: white;
+    font-weight: lighter;
+    margin-bottom: 0;
+}
+
+.check-img-bx img{
+    width: 26px;
+    margin-top: 4px;
+    margin-right: 20px;
+}
+.check-img-bx > li{
+    align-items: flex-start;
+}
+
+.about--bx .text-first{
+    font-size: 16px;
+    color:#5138EE;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.about--bx{
+    padding:20px;
+    border-radius: 8px;
+    height: 260px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.about--bx .text-second{
+    color:#202942;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 10px;
+}
+
+.solid_reason-bx .process-btn {
+    background-color: #5138EE;
+    color: white;
+    border-radius: 50px;
+    width: 220px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 7px 20px;
+    font-family: 'Manrope';
+}
+.solid-reasons-section .mt-45 {
+    margin-top: -163px;
+}
+
+.pattern-img img {
+    position: absolute;
+    top: -77px;
+    z-index: -1;
+    left: 32%;
+}
+
+.z-in{
+    z-index:1;
+    position: relative
+}
+
+.pl-70{
+    padding-left: 70px;
+}

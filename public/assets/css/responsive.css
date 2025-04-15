@@ -644,6 +644,10 @@ section.work-area .py-5 {
         float: unset;
     }
 
+    .clients-logo {
+        width: 350px;
+    }
+
    
 }
 

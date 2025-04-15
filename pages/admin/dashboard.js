@@ -1,15 +1,12 @@
 
-
-
 // pages/dashboard.js
 import { useEffect, useState } from 'react';
-
 import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
- import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-  import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Dashboard() {
   const [posts, setPosts] = useState([]);
