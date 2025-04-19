@@ -3,7 +3,7 @@ import React from "react";
 export default function Partnering() {
   return (
     <>
-      <section className="partnering-section pt-80">
+      <section className="partnering-section pt-100">
         <div className="container">
           <div className="company-design-area ">
             <div className="container">

@@ -6,7 +6,7 @@ export default function Work() {
     <>
       <section className="work-area">
         <div className="container">
-          <div className="container py-5">
+          <div className="container">
             <div className="row">
               {/* <!-- Column 1 --> */}
               <div className="col-md-6">

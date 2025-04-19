@@ -28,6 +28,7 @@ export default function IndexPage({ data }) {
       <Form />
       <Partnering />
       <CTA />
+
       <Footer />
     </section>
   );

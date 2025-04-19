@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export default function Form() {
   return (
-    <section className="form-section pt-80">
+    <section className="form-section pt-100">
       <div className="container-fluid bg-linear ptb-80">
         <div className="container">
           <div className="form-container d-flex flex-column flex-md-row">

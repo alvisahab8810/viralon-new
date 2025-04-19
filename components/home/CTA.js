@@ -3,7 +3,7 @@ import React from "react";
 export default function CTA() {
   return (
     <>
-      <section className="lets-cta-section ptb-80">
+      <section className="lets-cta-section ptb-100">
         <div className="container">
           <div className="row align-center">
             <div className="col-lg-8 banner-one-item">

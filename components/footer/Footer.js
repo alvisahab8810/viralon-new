@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <footer className="footer-area ptb-80">
+      <footer className="footer-area pb-100">
         <div className="container footer">
           <div className="row">
             <div className="col-md-3">

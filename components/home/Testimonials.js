@@ -8,14 +8,14 @@ import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 export default function Testimonials() {
   return (
     <>
-      <section className="testimonials  pt-80">
+      <section className="testimonials  pt-100">
         <div className="container-fluid bg-linear pt-80">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-10 text-center">
             HAVE A LOOK
             <br />
             WHAT OUR CLIENTS ARE SAYING
           </h1>
-          <div className="p-relative pb-80 ">
+          <div className="p-relative pt-50 pb-50 ">
             <Swiper
             
             modules={[Autoplay, FreeMode, Navigation, Pagination]}
