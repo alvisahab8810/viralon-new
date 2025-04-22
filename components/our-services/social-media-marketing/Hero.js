@@ -78,7 +78,11 @@ export default function Hero() {
         </div>
 
        <div className="smm-hero-section">
-        <img src="/assets/img/our-services/smm/smm-hero.webp" alt="Social Meadia Hero Image"></img>
+        <img src="/assets/img/our-services/smm/smm-hero.webp" alt="Social Meadia Hero Image" className="mobile-none"></img>
+        <img src="/assets/img/our-services/smm/smm-hero-mobile.webp" alt="Social Meadia Hero Image" className="desktop-none"></img>
+
+
+        
        </div>
       </div>
 

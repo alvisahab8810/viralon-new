@@ -48,6 +48,7 @@
 
     .btn-submit{
         width:100%;
+
     }
 
     .form-content {
@@ -103,10 +104,14 @@
 
     .btn-submit {
         margin: 20px auto;
-        height: 45px;
-        font-size: 16px;
+        height: 40px;
+        font-size: 14px;
         width: 100%;
+        text-align: center;
+        width: 100%;
+        padding: 0;
     }
+  
     .form-content p {
         font-size: 18px;
     }
@@ -206,12 +211,378 @@
     .mob-canvas .desk-logo img {
         width: 87px;
     }
+
+    .faq-section .text-orange {
+   
+        font-size: 22px;
+    }
 }
 
 
+@media (max-width: 1024px) and (min-width: 768px) {
+
+    .form-image {
+        border-radius: 18px;
+    }
+    .solid-reasons-section .why-c-heading {
+        font-size: 40px;
+    }
+
+    .solid-reasons-section .process-heading {
+        font-size: 30px;
+    }
+
+    .solid-reasons-section .pl-70 {
+        padding-left: 0px;
+    }
+    
+
+    .col-lg-6.mt-5.mt-lg-0::before {
+        left: 6%;
+    }
+
+    .core-bx {
+        height: 245px;
+    }
+
+    .core-bx h2 {
+        font-size: 18px;
+    }
+
+    .core-bx > p {
+        font-size: 13px;
+    }
+
+    .seo-hero-content {
+        padding-bottom: 0px;
+    }
+
+    .seo-hero-content h1 {
+        font-size: 40px;
+    }
+
+    .about-section1 .image-column .image-1 img {
+        height: auto;
+    }
+
+    .lets-cta-section .banner-one-item {
+        position: relative;
+        max-width: 500px;
+    }
+
+    .solid_reason-bx .process-btn {
+        background-color: #5138EE;
+        color: white;
+        border-radius: 50px;
+        width: 150px;
+        letter-spacing: 1px;
+        margin-top: 15px;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 4px 13px;
+        font-family: 'Manrope';
+    }
+    .about--bx .text-second {
+        font-size: 20px;
+    }
+    .significance-row{
+        flex-wrap: wrap;
+    }
+
+    .significance-row > div {
+        width: calc(33.33% - 7.5px);
+        margin-bottom: 15px;
+    }
+
+    .significance-content h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .significance-content p {
+        max-width: 600px;
+    }
+
+    .seo-hero-img {
+        height: 191px;
+    }
+    /* Your CSS styles here */
+    .banner-one-item h2 {
+        font-size: 70px;
+    }
+
+    .banner-one-item h2 strong {
+        float: unset;
+    }
+
+    .clients-logo {
+        width: 350px;
+    }
+
+
+.our-work-primary .banner-one-item img {
+    right: 0;
+    top: 70%;
+    width: 74px;
+}
+.blog-area .single-item {
+    margin-bottom: 30px !important;
+}
+
+.banner-one-item .float-right {
+    float: left;
+    padding-left: 100px;
+}
+
+.social-icons a i {
+
+    margin: 2px 2px;
+    font-size: 15px;
+
+}
+
+.footer .pl-100 {
+    padding-left: 10px;
+    padding-top: 0px;
+}
+
+.social-icons {
+    display: flex
+;
+    flex-wrap: wrap;
+}
+.footer h5 {
+    font-size: 14px;
+}
+.import-list li a {
+    color: #CCCCCC;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.footer .news-para {
+    font-size: 12px;
+    color: #CCCCCC;
+}
+}
 
 
 @media(max-width:768px){
+
+    .significance-content p {
+        margin-top: 10px;
+    }
+
+    .faq-section .mt-5{
+        margin-top: 0!important
+        ;
+    }
+
+    .lets-cta-section .banner-one-item {
+        max-width: 300px;
+        margin: auto;
+    }
+
+    .lets-cta-section .banner-one-item h2 strong {
+        padding-left: 0px;
+    }
+
+    .lets-cta-section .banner-one-item h4 {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .blog-area .item .info {
+        padding: 20px!important;
+    }
+
+    .check-img-bx img {
+        width: 15px;
+    }
+
+    .reasons-bxx p {
+        font-size: 14px;
+        margin-bottom: 0;
+        line-height: 1.3;
+        padding-top: 5px;
+    }
+    .reasons-bxx h3 {
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    .solid-reasons-section .why-c-heading {
+        font-size: 25px;
+    }
+    .solid-reasons-section .process-heading {
+        padding-top: 50px;
+        font-size: 18px;
+    }
+
+    .solid_reason-bx .row > div{
+        margin-bottom: 0!important;
+    }
+    .solid-reasons-section .pl-70{
+        padding-left: 20px;
+    }
+
+    .about--bx .text-first {
+        font-size: 13px;
+    }
+
+    
+.solid_reason-bx .process-btn {
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 3px 20px;
+}
+
+    .about--bx {
+        padding: 16px;
+        border-radius: 8px;
+        height: auto;
+        display: flex
+    ;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .super-img{
+        /* margin-top: 0; */
+    }
+    .super-img img{
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    .about--bx .text-second {
+        font-size: 25px;
+    }
+
+ 
+    .core-bx h2 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .core-content p {
+        font-size: 14px;
+        padding-top: 15px;
+    }
+
+    .core-content h1 {
+        font-size: 25px;
+    }
+
+    .seo-hero.about-section1 {
+        padding-bottom: 50px;
+    }
+    .about-section1 .image-column .image-2 {
+        right: unset;
+        top: 50%;
+        left: auto;
+        transform: translate(-50%, -50%);
+        height: auto;
+        width: 100px;
+    }
+
+    .about-section1 .image-column .image-1 img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .about-section1 .image-column .inner-column {
+        padding-right: 0px;
+        padding-left: 51px;
+    }
+
+    .seo-hero-content p {
+        max-width: 100%;
+        font-size: 14px;
+        font-weight: 300;
+        margin: 15px auto;
+    }
+    .seo-hero-content h1 {
+        font-size: 25px;
+    }
+
+    .seo-hero-img {
+        height: 150px;
+    }
+    .seo-hero-img img {
+        top: -50%;
+    }
+
+    #smm .accrdion-portfolio-area .banner-one-item h4 {
+        border: 1px solid #FF6F61!important;
+        color: #FF6F61!important;
+    }
+
+    .text-end.mt-5 {
+        margin-top: 15px !important;
+    }
+    .ptb-100 {
+        padding-top: 50px!important;
+        padding-bottom: 50px!important;
+    }
+    .blog-area .site-heading {
+        margin-bottom: 25px;
+    }
+    .blog-area h2 {
+        font-size: 25px!important;
+    }
+
+    .ptb-80 {
+        padding-top: 25px!important;
+        padding-bottom: 25px!important;
+    }
+    .main-class .form-content {
+        padding: 0;
+
+        padding-left: 15px;
+    }
+    .main-class .bg-linear {
+        border-radius: 18px;
+    }
+
+
+    .scroller__inner{
+        padding:0;
+    }
+    .company-design-area h2{
+        margin-bottom: 25px;;
+    }
+
+    .strap-section {
+        height: 40px !important;
+     
+     
+    }
+
+    .strap-section .text-container {
+        font-size: 18px;
+    }
+
+    .strap-section .dot {
+        font-size: 40px;
+        }
+    .mt-100 {
+        margin-top: 50px!important;
+    }
+
+   .our-work-mobile .scroller__inner img {
+        margin-right: 8px;
+        height: 160px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .our-work-mobile .scroller__inner{
+        padding:0;
+    }
+
+    .accordion-portfolio-area .choose-us-style-one-thumb {
+        margin-bottom: 0px!important;
+    }
 
     .navbar-brand>img {
         max-height: 35px!important;
@@ -222,15 +593,24 @@
     }
 
     .banner-one-item h2 {
-        font-size: 44px;
-        text-align: center;
+        font-size: 33px;
+        text-align: left;
+    }
+    .banner-one-item h2 strong{
+        padding-left:60px;
     }
 
+    .pt-50 {
+        padding-top: 25px!important;
+    }
     .video-play-button i {
-        height: 50px;
-        width: 50px;
-        line-height: 53px;
-        font-size: 24px!important;
+        height: 40px;
+        width: 40px;
+        font-size: 17px !important;
+        display: flex
+;
+        align-items: center;
+        justify-content: center;
     }
     .video-play-button .effect {
         width: 50px;
@@ -258,7 +638,7 @@
 
     .choose-us-style-one-thumb .video-play-button {
         right: 37px !important;
-        bottom: -25px !important;
+        bottom: 0 !important;
     }
     .bg-dark .banner-one-item h2 strong {
         -webkit-text-stroke: .4px var(--white);
@@ -371,8 +751,9 @@
 
     .btn-submit {
         margin: 20px auto;
-        height: 45px;
-        font-size: 16px;
+        margin-bottom: 0;;
+        height: 40px;
+        font-size: 14px;
         width: 100%;
         text-align: center;
         width: 100%;
@@ -385,7 +766,7 @@
     }
 
     .form-content h1 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .pt-80 {
@@ -409,10 +790,14 @@
     }
 
     .lets-cta-section .up-arrow {
-        height: 50px;
-        width: 50px;
-        padding: 14px;
-      
+        right: 8%;
+        bottom: 45px;
+        height: 30px;
+        padding: 8px;
+        width: 30px;
+    }
+    .pb-100 {
+        padding-bottom: 50px!important;
     }
 
     .lets-cta-section .up-arrow {
@@ -422,7 +807,7 @@
 
     
     .lets-cta-section{
-        padding-bottom: 0!important;
+        padding-bottom: 50px!important;
     }
 
     .footer .pl-100 {
@@ -457,7 +842,9 @@
     }
 
     .form-container .form-control {
-        font-size: 14px;
+        font-size: 13px;
+        height: 40px;
+        min-height: 40px;
     }
 
     .blog-hero-section {
@@ -633,24 +1020,249 @@ section.work-area .py-5 {
     width: 35px;
     padding: 10px;
 }
-}
-@media (max-width: 1024px) and (min-width: 768px) {
-    /* Your CSS styles here */
-    .banner-one-item h2 {
-        font-size: 70px;
-    }
 
-    .banner-one-item h2 strong {
-        float: unset;
-    }
-
-    .clients-logo {
-        width: 350px;
-    }
-
-   
+#smm .bg-dark .banner-one-item h4 {
+    border: 1px solid #FF6F61;
+    color: #FF6F61;
 }
 
+.smm-hero-section img {
+    height: auto;
+}
+.pt-100 {
+    padding-top: 50px!important;
+}
+
+.form-content p {
+    font-size: 16px;
+}
+
+.testimonials .pt-80 {
+    padding-top: 50px !important;
+}
+.main-class .testimonial-card p {
+    font-size: 10px;
+}
+.pb-50 {
+    padding-bottom: 25px!important;
+}
+
+.faq-section .display-4 {
+    font-size: 25px !important;
+}
+.faq-section .accordion-button {
+    font-size: 16px;
+}
+.faq-section .accordion-body {
+    font-size: 13px;
+}
+.faq-section .fs-24 {
+    font-size: 16px;
+}
+
+.blog-area h2 {
+    font-size: 25px;
+}
+.site-heading p {
+    padding: 0;
+    font-size: 14px;
+    margin-top: 0;
+    font-weight: 300;
+}
+.blog-area h2 {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+.site-heading .devider {
+
+    top: -20px;
+}
+
+.blog-area .item .info h4 {
+    font-size: 18px;
+}
+.blog-area .item .info p:last-child {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.blog-area .item .info {
+    padding: 30px 15px;
+}
+.blog-area .item .date span {
+    display: block;
+    font-size: 13px;
+    background: #5138ee;
+    color: white;
+    padding: 0 14px;
+    border-radius: 0 0 8px 8px;
+    min-width: 50px;
+}
+
+
+
+.blog-area .item .date {
+    display: inline-block;
+    background: white;
+    /* padding: 5px 25px; */
+    color: #202942;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 900;
+    /* margin-bottom: 15px; */
+    right:11px; 
+    text-align: center;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.blog-area .item{
+    margin-bottom: 15px!important;
+}
+.container.footer .row > div {
+    width: 50%;
+    padding-top: 0;
+}
+
+.social-icons a i {
+    margin: 0px 2px;
+    font-size: 13px;
+    height: 25px;
+    width: 25px;
+}
+
+ul.import-list li {
+    margin: 5px 0px;
+}
+
+.footer h5 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+
+.news-emailbx input {
+    font-size: 13px;
+    min-height: 40px;
+}
+
+.news-emailbx button {
+    height: 30px;
+    width: 30px;
+  
+}
+
+.import-list li a {
+    font-size: 13px;
+}
+.footer .news-para {
+    font-size: 13px;
+}
+
+.process-section .process-heading {
+    font-size: 25px;
+}
+
+.max-500 {
+    max-width: 500px;
+    margin-top: 0 !important;
+}
+
+.max-500 p {
+    font-size: 14px;
+    text-align: justify;
+}
+
+.process-btn {
+    width: auto;
+    font-size: 14px;
+    padding: 8px 30px;
+    margin-top: 0 !important;
+}
+
+.nubmer-lists li {
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+}
+
+.col-lg-6.mt-5.mt-lg-0::before {
+    left: 9%;
+    width: unset;
+}
+
+.step-box h2 {
+    font-size: 16px;
+}
+.process-section .step-box p {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 17px;
+}
+
+.step-box{
+    padding:7px;
+}
+
+.step-box .width-20 {
+    width: 17%;
+    margin-right: 10px;
+}
+
+.significance-content h1 {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+.significance-content p {
+    font-size: 14px;
+}
+
+.significance-row > div {
+    width: calc(50% - 7.5px);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.significance-row {
+    flex-wrap: wrap;
+}
+
+.significance-row > div h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.significance-row > div p {
+    font-size: 13px;
+    line-height: 1.5;
+}
+}
+
+
+
+@media(max-width:540px){
+    .main-class .form-content {
+        padding-left: 0px;
+    }
+
+    .core-bx > p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .testimonial-card .review-main-img {
+        width: 112px;
+    }
+
+    .core-bx {
+        height: 237px;
+    }
+
+    .our-work-primary .banner-one-item img {
+        right: 33px;
+        top: 41%;
+        width: 50px;
+    }
+}
 @media(max-width:375px){
     .testimonial-card .review-main-img {
         width: 112px;

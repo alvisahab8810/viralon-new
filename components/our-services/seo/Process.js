@@ -144,7 +144,7 @@ export default function Process() {
                 </div>
               </div>
 
-              <div class="d-flex main-d-flex mb-4 overflow-hidden">
+              <div class="d-flex main-d-flex  overflow-hidden">
                 <div class="step-number">
                   <ul className="nubmer-lists">
                     <li>5</li>

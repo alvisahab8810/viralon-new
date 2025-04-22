@@ -1,7 +1,7 @@
 /* ===================================================================
     
-    Author          : Valid Theme
-    Template Name   : Avrix - Digital Agency Portfolio Template
+    Author          : Viralon
+    Template Name   : Viralon - Digital Agency 
     Version         : 1.0
     
 * ================================================================= */

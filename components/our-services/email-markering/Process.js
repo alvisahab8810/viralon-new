@@ -4,12 +4,12 @@ import Strap from "../digital-marketing/Strap";
 export default function Process() {
   return (
     <>
-      <section className="process-section pt-100">
+      <section className="process-section">
         <Strap/>
         <div class="container">
 
 
-          <div class="row">
+          <div class="row pt-100 ">
             <div class="col-lg-6">
               <h1 class="process-heading">
                 Our Proven Email

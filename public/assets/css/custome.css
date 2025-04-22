@@ -594,7 +594,7 @@ p.fris-para {
     display: inline-block;
 }
 
-.social-icons a {
+.social-icons a i {
     color: white;
     font-weight: normal;
     background: #403E44;
@@ -1659,7 +1659,7 @@ figure.image-2 img {
 }
 
 .blog-area .item {
-    background: white!important;
+    background: transparent!important;
     margin-bottom: 30px;
     box-shadow: 1px 4px 20px -2px rgb(0 0 0 / 10%);
     border-radius: 8px;
@@ -1671,6 +1671,7 @@ figure.image-2 img {
 
 .blog-area .item .info {
     padding: 30px;
+    background-color: white;
 }
 
 .blog-area .item .info .meta {
@@ -1902,3 +1903,5 @@ figure.image-2 img {
 .col-lg-6.mt-5.mt-lg-0{
     position:relative;
 }
+
+

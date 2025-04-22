@@ -27,7 +27,7 @@ export default function OurWork() {
 
           <div className="container">
             <div className="row">
-              <div className="our-work-row ">
+              <div className="our-work-row mobile-none">
                 <div className="our-work-items">
                     <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
                 </div>
@@ -74,6 +74,70 @@ export default function OurWork() {
                 </div>
                
               </div>
+
+
+
+              <div className="company-list desktop-none  our-work-mobile">
+                    <div
+                      className="scroller"
+                      data-direction="left"
+                      data-speed="slow"
+                      data-lag="0"
+                      data-animated="true"
+                    >
+                      <div className="scroller__inner">
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+
+
+                      <div className="our-work-items">
+                          <img src="/assets/img/our-services/smm/img1.png" alt="Our Work Image"></img>
+                      </div>
+                      
+                      </div>
+                    </div>
+                  </div>
             </div>
           </div>
         </div>

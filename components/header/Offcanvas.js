@@ -16,7 +16,7 @@ export default function Offcanvas() {
               href="/"
               className="d-flex align-items-center  mb-md-0 me-md-auto text-dark text-decoration-none desk-logo"
             >
-              <img src="./assets/img/logo.png" alt="Logo Image" />
+              <img src="/assets/img/logo.png" alt="Logo Image" />
             </Link>
           </h5>
           <button

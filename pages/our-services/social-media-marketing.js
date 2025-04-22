@@ -18,7 +18,7 @@ import Blogs from '../../components/our-services/seo/Blogs'
 
 export default function SocialMediaMarketing() {
   return (
-    <div className='bg-dark'>
+    <div className='bg-dark'id='smm'>
        <Topbar/>
        <Hero/>
        <OurWork/>
@@ -26,12 +26,12 @@ export default function SocialMediaMarketing() {
         <Videos/>
         <Partnering/>
         <div className="main-class container">
-                <Testimonials/>
-                <Form/>
-              </div>
-              <FAQ/>
-              <Blogs/>
-              <CTA/>  
+          <Testimonials/>
+          <Form/>
+        </div>
+        <FAQ/>
+        <Blogs/>
+        <CTA/>  
        <Offcanvas/>
        <Footer/>
     </div>

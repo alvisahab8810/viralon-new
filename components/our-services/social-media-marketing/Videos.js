@@ -227,13 +227,14 @@ export default function Videos() {
           <Swiper
             spaceBetween={20}
             loop={true}
+            grabCursor={true}
             slidesPerView={4}
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
             }}
             breakpoints={{
-              240: { slidesPerView: 1.5, spaceBetween: 10 },
+              240: { slidesPerView: 1.5, spaceBetween: 10,  centeredSlides: true },
               768: { slidesPerView: 2.5, spaceBetween: 20 },
               1024: { slidesPerView: 4, spaceBetween: 20 },
             }}
@@ -242,7 +243,7 @@ export default function Videos() {
               prevEl: ".swiper-button-prev-1",
             }}
             modules={[Autoplay, Navigation]}
-            className="swiper mySwiper4 pt-100"
+            className="swiper mySwiper4"
           >
             {videoSources.map((src, index) => (
               <SwiperSlide key={index} className="swiper-slide relative">

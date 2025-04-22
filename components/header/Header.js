@@ -51,7 +51,7 @@ export default function Topbar() {
                 </li>
               </ul>
 
-              <Link className="burger-menu desktop-none" data-bs-toggle="offcanvas" role="button" aria-controls=" offcanvasExample" href="/#offcanvasExample"><img src="./assets/img/icon/menu.png" alt="Menu Png"/></Link>
+              <Link className="burger-menu desktop-none" data-bs-toggle="offcanvas" role="button" aria-controls=" offcanvasExample" href="/#offcanvasExample"><img src="/assets/img/icon/menu.png" alt="Menu Png"/></Link>
             </div>
           </header>
         </div>
