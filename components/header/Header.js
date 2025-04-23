@@ -33,6 +33,8 @@ export default function Topbar() {
                      <li> <Link className="nav-link" href="/our-services/social-media-marketing">Social Media Marketing</Link> </li>
                      <li> <Link className="nav-link" href="/our-services/paid-media-marketing">Paid Media Marketing</Link> </li>
                      <li> <Link className="nav-link" href="/our-services/email-marketing">Email Marketing</Link> </li>
+                     <li> <Link className="nav-link" href="/our-services/logo-design">Logo Design</Link> </li>
+
                      <li> <Link className="nav-link" href="/our-services/seo">Seo</Link> </li>
 
                   </ul>
