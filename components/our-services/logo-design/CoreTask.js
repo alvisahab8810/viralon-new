@@ -33,6 +33,7 @@ export default function CoreTask() {
             }}
             breakpoints={{
               240: {
+                centeredSlides:true,
                 slidesPerView: 1.5,
                 spaceBetween: 10,
               },

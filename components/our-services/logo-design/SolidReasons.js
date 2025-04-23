@@ -18,7 +18,15 @@ export default function SolidReasons() {
                 </div>
               </div>
 
-              <div className="col-12 col-sm-6 mt-150 p-relative z-in">
+              <div className="col-12 col-sm-6 super-img">
+                <img
+                  alt="A futuristic dashboard on a laptop screen"
+                  className="img-fluid rounded shadow"
+                  src="/assets/img/our-services/logo-design/img3.png"
+                />
+              </div>
+
+              <div className="col-12 col-sm-6 mt-150 p-relative z-in mobile-none">
                 <div className="pattern-img">
                   <img src="/assets/img/seo/pattern.png"></img>
                 </div>
@@ -29,7 +37,7 @@ export default function SolidReasons() {
                 />
               </div>
             </div>
-            <div className="row g-3">
+            <div className="row g-3 mobile-none">
               <div className="col-12 col-sm-6 mt-45">
                 <img
                   alt="A futuristic dashboard on a laptop screen"

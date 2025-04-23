@@ -24,10 +24,18 @@ export default function Topbar() {
               id="navbarNav"
             >
               <ul className="navbar-nav mobile-none">
-                <li className="nav-item">
-                  <Link className="nav-link" href="/our-services/digital-marketing">
-                    Our services
+                <li className="nav-item dropdown ">
+                  <Link className="d-flex align-items-center nav-link" href="/our-services/digital-marketing ">
+                    Our services  <i className="ri-arrow-down-s-line"></i>
                   </Link>
+
+                  <ul className="dropdown-menu">
+                     <li> <Link className="nav-link" href="/our-services/social-media-marketing">Social Media Marketing</Link> </li>
+                     <li> <Link className="nav-link" href="/our-services/paid-media-marketing">Paid Media Marketing</Link> </li>
+                     <li> <Link className="nav-link" href="/our-services/email-marketing">Email Marketing</Link> </li>
+                     <li> <Link className="nav-link" href="/our-services/seo">Seo</Link> </li>
+
+                  </ul>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" href="/our-work">

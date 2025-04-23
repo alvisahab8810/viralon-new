@@ -56,12 +56,13 @@ body{
 
 ul.navbar-nav li {
     margin: 0px 0px 0px 70px;
+    padding:25px 0px;
 }
 header{
     display: flex
     ;
         justify-content: space-between;
-        padding: 25px 0px;
+        /* padding: 25px 0px; */
         align-items: center;
 }
 .accrdion-portfolio-area1 {
@@ -1905,3 +1906,27 @@ figure.image-2 img {
 }
 
 
+ul.dropdown-menu li a {
+    color: black !important;
+    font-size: 14px!important;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+ul.dropdown-menu  li {
+    margin-left: 0;
+    padding: 0!important;
+}
+
+.dropdown > a i{
+ margin-left: 5px;
+}
+
+
+.navbar-nav .dropdown-menu {
+    min-width: 260px!important;
+    padding: 15px 10px!important;
+    border-radius: 0px 0px 4px 4px!important;
+}
