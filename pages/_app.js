@@ -6,11 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="/assets/img/favicon.png"
-        />
+        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -43,7 +39,8 @@ function MyApp({ Component, pageProps }) {
         <link href="/assets/css/helper.css" rel="stylesheet" />
         <link href="/assets/css/unit-test.css" rel="stylesheet" />
 
-      
+
+
 
         <title>Viralon</title>
       </Head>
@@ -71,9 +68,14 @@ function MyApp({ Component, pageProps }) {
       <Script src="/assets/js/main.js" defer></Script>
       <Script src="/assets/js/bootstrap.bundle.min.js" defer></Script>
 
+      {/* <Script src="/assets/js/ScrollSmoother.min.js" defer></Script>
+      <Script src="/assets/js/scrollTriger-init.js" defer></Script>
+      <Script src="/assets/js/cursol-hover.js" defer></Script> */}
+
+
+
       <Toaster position="top-right" />
 
-      
       <Component {...pageProps} />
     </>
   );

@@ -3,16 +3,18 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <footer className="footer-area pb-100">
+      <footer className="footer-area pt-100">
+        <div className="before-bg"></div>
         <div className="container footer">
+          
           <div className="row">
             <div className="col-md-3">
-              <div className="logo">
+              <div className="logo footer-logo">
                 <Link
                   href="/"
                   className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
                 >
-                  <img src="/assets/img/logo.png" alt="Logo Image" />{" "}
+                  <img src="/assets/img/logo-light.png" alt="Logo Image" />{" "}
                 </Link>
               </div>
               <p className="footer-para manrope">
@@ -44,7 +46,7 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
-            <div className="col-md-3 pl-100">
+            <div className="col-md-3  pl-100">
               <h5> Company </h5>
               <ul className="import-list">
                 <li>
@@ -112,6 +114,9 @@ export default function Footer() {
           </div>
         </div>
       </footer>
+      <div className="footer-2nd">
+        <p>Copyright © 2025 <span><Link href="/">Viralon</Link></span>. All Rights Reserved</p>
+      </div>
     </>
   );
 }

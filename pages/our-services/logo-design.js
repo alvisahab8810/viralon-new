@@ -12,20 +12,20 @@ import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import FAQ from "../../components/our-services/logo-design/FAQ";
 import Blogs from "../../components/our-services/seo/Blogs";
+import Slider from "../../components/our-services/logo-design/Slider";
 
 export default function LogoDesgin() {
   return (
-    <div className="bg-dark">
+    <div className="bg-dark" id="logo-design">
       <Topbar />
+      <Slider/>
       <Hero />
-      +
-
       <CoreTask />
       <Process />
       <CTA />
       <Significance />
       <SolidReasons />
-      <div className="main-class container">
+      <div className="parallax-container">
         <Testimonials />
         <Form />
       </div>

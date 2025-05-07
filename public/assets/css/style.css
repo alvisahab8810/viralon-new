@@ -790,7 +790,7 @@ p {
 .site-heading p {
 	margin-bottom: 0;
 	margin-top: 25px;
-	padding: 0 10%;
+	/* padding: 0 10%; */
 }
 
 .site-heading .devider {
@@ -3748,7 +3748,7 @@ a.btn-round-animation.dark {
 	font-weight: 400;
 	display: inline-block;
 	position: relative;
-	padding: 10px 20px;
+	padding: 7px 20px;
 	color: var(--color-secondary);
 	border: 1px solid;
 	border-radius: 30px;
@@ -3783,7 +3783,7 @@ a.btn-round-animation.dark {
 }
 
 .bg-dark .banner-one-item h2 strong {
-	-webkit-text-stroke: 1px var(--white);
+	-webkit-text-stroke: 1px #ffffff99;
 	color: transparent;
 	opacity: 0.8;
 }
@@ -4043,10 +4043,10 @@ a.btn-round-animation.dark {
 
 .services-item-one-items .services-carousel {
 	position: relative;
-	padding: 30px;
-	top: -30px;
-	margin: -30px;
-	margin-bottom: -60px;
+	/* padding: 30px; */
+	/* top: -30px; */
+	/* margin: -30px; */
+	/* margin-bottom: -60px; */
 }
 
 .cteative-service-item {
@@ -6591,9 +6591,9 @@ ul.list-item li:first-child {
 }
 
 footer {
-	width: 92%;
+	/* width: 92%; */
 	margin: auto;
-	padding-bottom: 4%;
+	/* padding-bottom: 4%; */
 }
 
 footer .f-item.about {
@@ -6864,7 +6864,7 @@ footer .f-item.link li a:hover {
 	padding: 1.6em;
 	list-style: none;
 	width: 16.66666667%;
-	height: 500px;
+	height: 570px;
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -6884,22 +6884,29 @@ footer .f-item.link li a:hover {
 	content: "";
 	height: 100%;
 	width: 100%;
-	background: var(--bg-gradient);
+	/* background: var(--bg-gradient); */
+	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
 	z-index: -1;
 	opacity: 0.75;
 	transition: all 0.35s ease-in-out;
 }
 
 .accordion-portfolio-lists li:nth-child(2)::after {
-	background: #fba065;
+	/* background: #fba065; */
+	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
 }
 
 .accordion-portfolio-lists li:nth-child(3)::after {
-	background: #bccd7e;
+	/* background: #bccd7e; */
+	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+
+	
 }
 
 .accordion-portfolio-lists li:nth-child(4)::after {
-	background: #6a850b;
+	/* background: #6a850b; */
+	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+
 }
 
 .accordion-portfolio-lists li.out::after {
@@ -6952,7 +6959,7 @@ footer .f-item.link li a:hover {
 	transform: translateX(-50%);
 	font-weight: 900;
 	font-size: 80px;
-	bottom: -50px;
+	bottom: -24px;
 	-webkit-text-stroke: 1px var(--white);
 	color: transparent;
 	transition: all 0.35s ease-in-out;
@@ -6990,7 +6997,7 @@ footer .f-item.link li a:hover {
 	border-radius: 30px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
-	font-size: 14px;
+	font-size: 25px;
 	font-weight: 600;
 	position: relative;
 	z-index: 1;
@@ -7818,7 +7825,7 @@ ul.contact-address > li:first-child {
 	}
 
 	.accrdion-portfolio-area .out .accordion-overlay h2 {
-		font-size: 36px;
+		font-size: 25px;
 	}
 
 	/* Banner Style One */
@@ -8279,9 +8286,9 @@ ul.contact-address > li:first-child {
 		transform: translateX(0);
 	}
 
-	.accrdion-portfolio-area .accordion-overlay span::after {
+	/* .accrdion-portfolio-area .accordion-overlay span::after {
 		display: none;
-	}
+	} */
 
 	.accrdion-portfolio-area .accordion-overlay {
 		padding: 0;

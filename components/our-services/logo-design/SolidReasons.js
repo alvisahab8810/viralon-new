@@ -2,28 +2,30 @@ import React from "react";
 
 export default function SolidReasons() {
   return (
-    <section className="solid-reasons-section pt-100">
+    <section className="solid-reasons-section ptb-100">
       <div className="container  solid_reason-bx">
         <div className="row">
           {/* <!-- Left Section --> */}
+         
+
           <div className="col-lg-6 mb-4">
             <div className="row g-3">
+              <div className="col-12 col-sm-6  desktop-none super-img">
+                <img
+                  alt="A futuristic dashboard on a laptop screen"
+                  className="img-fluid rounded shadow"
+                  src="/assets/img/our-services/paid-media-marketing/img3.png"
+                />
+              </div>
+
               <div className="col-12 col-sm-6">
                 <div className="about--bx bg-white ">
                   <h2 className="text-first">LET'S TALK</h2>
                   <h1 className="text-second ">About Your Next Project</h1>
-                  <button class="process-btn" fdprocessedid="rut8u">
+                  <button className="process-btn" fdprocessedid="rut8u">
                     LET’S TALK
                   </button>
                 </div>
-              </div>
-
-              <div className="col-12 col-sm-6 super-img">
-                <img
-                  alt="A futuristic dashboard on a laptop screen"
-                  className="img-fluid rounded shadow"
-                  src="/assets/img/our-services/logo-design/img3.png"
-                />
               </div>
 
               <div className="col-12 col-sm-6 mt-150 p-relative z-in mobile-none">
@@ -33,7 +35,7 @@ export default function SolidReasons() {
                 <img
                   alt="A futuristic dashboard on a laptop screen"
                   className="img-fluid rounded shadow"
-                  src="/assets/img/seo/img1.png"
+                  src="/assets/img/our-services/logo-design/img1.png"
                 />
               </div>
             </div>
@@ -49,7 +51,7 @@ export default function SolidReasons() {
                 <img
                   alt="A person working on a laptop with charts on the screen"
                   className="img-fluid rounded shadow"
-                  src="/assets/img/seo/img2.png"
+                  src="/assets/img/our-services/logo-design/img2.png"
                 />
               </div>
             </div>

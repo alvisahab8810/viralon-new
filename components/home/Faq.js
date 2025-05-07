@@ -1,42 +1,39 @@
 import React from "react";
 
-export default function Faq() {
+export default function FAQ() {
   return (
     <>
-      <section className="faq-sections ptb-80">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h2 className="subtitle text-center">Still Having Queries ?</h2>
-              <h1 className="heading lh-75">Frequently Asked Questions</h1>
-            </div>
+      <section className="faq-section pt-80">
+        <div className="container ">
+          <div className="text-center">
+            <p className="text-orange">Still Having Queries ?</p>
+            <h2 className="display-4 fw-bold mt-2">
+              Frequently Asked Questions
+            </h2>
           </div>
-
-          <div className="accordion-bx pt-80">
-            <div className="accordion" id="accordionExample">
+          <div className="mt-5">
+            <div className="accordion" id="faqAccordion">
               <div className="accordion-item">
                 <h2 className="accordion-header" id="headingOne">
                   <button
-                    className="accordion-button"
+                    className="accordion-button show"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
-                    aria-expanded="true"
+                    aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    How does TourWatchOut ensure my trip is stress-free?
+                    <span className="fs-3 fw-bold me-3">01</span> What services do you offer?
                   </button>
                 </h2>
                 <div
                   id="collapseOne"
                   className="accordion-collapse collapse show"
                   aria-labelledby="headingOne"
-                  data-bs-parent="#accordionExample"
+                  data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    With 24/7 on-trip support, we ensure that you have
-                    assistance whenever needed, making your journey smooth and
-                    enjoyable.
+                    Viralon offers a comprehensive range of services, including digital marketing, social media management, SEO, content creation, email marketing, and paid advertising. Our tailored strategies are designed to enhance brand visibility and drive engagement across various platforms.
                   </div>
                 </div>
               </div>
@@ -50,19 +47,17 @@ export default function Faq() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    What if we need help during the trip?
+                    <span className="fs-3 fw-bold me-3">02</span> Will I have a dedicated account manager? 
                   </button>
                 </h2>
                 <div
                   id="collapseTwo"
                   className="accordion-collapse collapse"
                   aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample"
+                  data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Our 24/7 support system via WhatsApp and a dedicated POC
-                    ensures that any issue is resolved quickly, wherever you
-                    are.
+                    Yes, at Viralon, you will have a dedicated account manager who serves as your primary point of contact. This ensures personalized communication, consistent updates, and a tailored approach to meet your specific marketing needs and goals.
                   </div>
                 </div>
               </div>
@@ -76,23 +71,20 @@ export default function Faq() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    How do you ensure the safety of my family during the trip?
+                    <span className="fs-3 fw-bold me-3">03</span>  Do you provide content creation services? 
                   </button>
                 </h2>
                 <div
                   id="collapseThree"
                   className="accordion-collapse collapse"
                   aria-labelledby="headingThree"
-                  data-bs-parent="#accordionExample"
+                  data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    We prioritize safety with trusted drivers, vetted
-                    accommodations, and secure activities, ensuring a worry-free
-                    and safe experience for your family.
+                    Absolutely! Viralon specializes in content creation, offering services such as blog writing, social media posts, videos, and graphics. Our team crafts engaging, high-quality content that resonates with your audience and enhances your brand's online presence.
                   </div>
                 </div>
               </div>
-
               <div className="accordion-item">
                 <h2 className="accordion-header" id="headingFour">
                   <button
@@ -103,50 +95,24 @@ export default function Faq() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    Can TourWatchOut plan trips for corporate groups?
+                    <span className="fs-3 fw-bold me-3">04</span> Can I see examples of your previous work?
                   </button>
                 </h2>
                 <div
                   id="collapseFour"
                   className="accordion-collapse collapse"
                   aria-labelledby="headingFour"
-                  data-bs-parent="#accordionExample"
+                  data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Yes! We provide bespoke corporate travel solutions, focusing
-                    on team-building experiences and hassle-free corporate
-                    retreats
-                  </div>
-                </div>
-              </div>
-
-              <div className="accordion-item">
-                <h2 className="accordion-header" id="headingFive">
-                  <button
-                    className="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive"
-                    aria-expanded="false"
-                    aria-controls="collapseFive"
-                  >
-                    Is there a limit to the number of people I can book for?
-                  </button>
-                </h2>
-                <div
-                  id="collapseFive"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingFive"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div className="accordion-body">
-                    No! Whether you’re booking for a small family, a corporate
-                    group, or a large gathering, we can accommodate all group
-                    sizes.
+                     Yes, we are happy to share case studies and examples of our previous work at Viralon. These showcase our successful campaigns and the results we've achieved for clients across various industries, demonstrating our expertise and effectiveness.
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-end mt-5">
+            <p className="text-orange fs-24">Ask Your Queries...</p>
           </div>
         </div>
       </section>

@@ -29,14 +29,13 @@ export default function Offcanvas() {
         <div className="offcanvas-body">
           <div className="mob-menus">
             <ul className=" nav nav-pills">
-              
               <li className="nav-item">
                 <Link href="#" className="nav-link ">
                   {" "}
                   Our Services
                 </Link>
               </li>
-              
+
               <li className="nav-item">
                 <Link href="/our-work" className="nav-link">
                   Our Work
@@ -47,7 +46,7 @@ export default function Offcanvas() {
                   Blogs
                 </Link>
               </li>
-           
+
               <li className="nav-item">
                 <Link href="/career" className="nav-link">
                   Career
@@ -62,7 +61,6 @@ export default function Offcanvas() {
             </ul>
           </div>
 
-          
           {/* 
       <div className="mob-social-mediabx">
         <ul>

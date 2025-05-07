@@ -34,7 +34,6 @@ export default function Journey() {
                   </div>
                 </div>
               </Link>
-
             </div>
             <div className="col-md-6">
               <Link href="/jobs?tab=experienced">

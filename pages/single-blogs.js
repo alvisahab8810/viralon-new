@@ -9,8 +9,7 @@ export default function SingleBlogs() {
   return (
     <div className="bg-dark">
       <Topbar />
-      <Offcanvas/>
-
+      <Offcanvas />
       <Hero />
       <div className="blog-area single full-blog full-blog default-padding">
         <div className="container">

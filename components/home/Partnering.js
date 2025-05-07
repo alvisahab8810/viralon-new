@@ -6,7 +6,7 @@ export default function Partnering() {
       <section className="partnering-section pt-100">
         <div className="container">
           <div className="company-design-area ">
-            <div className="container">
+           
               <div className="row">
                 <div className="col-lg-12">
                   <h2>Proudly Partnering</h2>
@@ -72,7 +72,7 @@ export default function Partnering() {
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
         </div>
       </section>

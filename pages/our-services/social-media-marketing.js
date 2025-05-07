@@ -24,11 +24,12 @@ export default function SocialMediaMarketing() {
        <OurWork/>
        <Strap/>
         <Videos/>
-        <Partnering/>
+      
         <div className="main-class container">
           <Testimonials/>
           <Form/>
         </div>
+        <Partnering/>
         <FAQ/>
         <Blogs/>
         <CTA/>  

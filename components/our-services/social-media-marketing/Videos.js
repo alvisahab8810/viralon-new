@@ -6,7 +6,7 @@
 //   return (
 //     <div className="container">
 //       <section className="instagram-section national-dest pb-80">
-        
+
 //         <div className="contianer">
 //           <Swiper
 //             spaceBetween={20}
@@ -43,7 +43,6 @@
 //             className="swiper mySwiper4 pt-100"
 //           >
 
-             
 //             <SwiperSlide className="swiper-slide">
 //               <Link href="# "target="_blank" rel="noopener noreferrer" >
 //               <video
@@ -180,13 +179,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -222,7 +214,7 @@ export default function Videos() {
 
   return (
     <div className="container">
-      <section className="instagram-section national-dest pt-100">
+      <section className="instagram-section national-dest ptb-100">
         <div className="contianer">
           <Swiper
             spaceBetween={20}
@@ -234,7 +226,11 @@ export default function Videos() {
               disableOnInteraction: false,
             }}
             breakpoints={{
-              240: { slidesPerView: 1.5, spaceBetween: 10,  centeredSlides: true },
+              240: {
+                slidesPerView: 1.5,
+                spaceBetween: 10,
+                centeredSlides: true,
+              },
               768: { slidesPerView: 2.5, spaceBetween: 20 },
               1024: { slidesPerView: 4, spaceBetween: 20 },
             }}

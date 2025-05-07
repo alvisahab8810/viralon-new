@@ -7,9 +7,9 @@ import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 export default function OurWork() {
   return (
     <>
-      <section className="our-work-section">
+      <section className="our-work-section ptb-100">
         <div className="container">
-          <div className="row align-center ptb-50">
+          <div className="row align-center pb-50">
             <div className="col-lg-8 banner-one-item">
               <h2>
                 Have a look at <strong>Our work</strong>
@@ -32,16 +32,11 @@ export default function OurWork() {
 
         {/* <!-- Start Services
     ============================================= --> */}
-        <div className="creative-services-area overflow-hidden default-padding">
-          {/* <div className="bg-static">
-            <img
-              className="bg-move"
-              src="assets/img/shape/5.png"
-              alt="Image Not Found"
-            />
-          </div> */}
+    <div className="container">
+        <div className="creative-services-area  pt-50">
+        
 
-          <div className="container-fluid">
+          
             <div className="row">
               <div className="col-lg-12">
                 <div className="services-item-one-items">
@@ -58,7 +53,7 @@ export default function OurWork() {
                     // loop={true}
                     // grabCursor={true}
                     // slidesPerView={4.9}
-                   
+
                     // pagination={{
                     //   clickable: true,
                     // }}
@@ -66,7 +61,6 @@ export default function OurWork() {
                     //   nextEl: ".swiper-button-next-1",
                     //   prevEl: ".swiper-button-prev-1",
                     // }}
-
 
                     modules={[Autoplay, FreeMode, Navigation, Pagination]}
                     slidesPerView="auto"
@@ -93,7 +87,6 @@ export default function OurWork() {
                         spaceBetween: 20,
                       },
                     }}
-                
                     className="services-carousel swiper"
                   >
                     {/* <!-- Additional required wrapper --> */}

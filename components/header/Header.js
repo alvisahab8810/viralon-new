@@ -25,18 +25,57 @@ export default function Topbar() {
             >
               <ul className="navbar-nav mobile-none">
                 <li className="nav-item dropdown ">
-                  <Link className="d-flex align-items-center nav-link" href="/our-services/digital-marketing ">
-                    Our services  <i className="ri-arrow-down-s-line"></i>
+                  <Link
+                    className="d-flex align-items-center nav-link"
+                    href="/our-services/digital-marketing "
+                  >
+                    Our services <i className="ri-arrow-down-s-line"></i>
                   </Link>
 
                   <ul className="dropdown-menu">
-                     <li> <Link className="nav-link" href="/our-services/social-media-marketing">Social Media Marketing</Link> </li>
-                     <li> <Link className="nav-link" href="/our-services/paid-media-marketing">Paid Media Marketing</Link> </li>
-                     <li> <Link className="nav-link" href="/our-services/email-marketing">Email Marketing</Link> </li>
-                     <li> <Link className="nav-link" href="/our-services/logo-design">Logo Design</Link> </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/social-media-marketing"
+                      >
+                        Social Media Marketing
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/paid-media-marketing"
+                      >
+                        Paid Media Marketing
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/email-marketing"
+                      >
+                        Email Marketing
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/logo-design"
+                      >
+                        Logo Design
+                      </Link>{" "}
+                    </li>
 
-                     <li> <Link className="nav-link" href="/our-services/seo">Seo</Link> </li>
-
+                    <li>
+                      {" "}
+                      <Link className="nav-link" href="/our-services/seo">
+                        Seo
+                      </Link>{" "}
+                    </li>
                   </ul>
                 </li>
                 <li className="nav-item">
@@ -61,7 +100,15 @@ export default function Topbar() {
                 </li>
               </ul>
 
-              <Link className="burger-menu desktop-none" data-bs-toggle="offcanvas" role="button" aria-controls=" offcanvasExample" href="/#offcanvasExample"><img src="/assets/img/icon/menu.png" alt="Menu Png"/></Link>
+              <Link
+                className="burger-menu desktop-none"
+                data-bs-toggle="offcanvas"
+                role="button"
+                aria-controls=" offcanvasExample"
+                href="/#offcanvasExample"
+              >
+                <img src="/assets/img/icon/menu.png" alt="Menu Png" />
+              </Link>
             </div>
           </header>
         </div>

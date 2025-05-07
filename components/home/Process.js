@@ -2,16 +2,16 @@ import React from "react";
 
 export default function Process() {
   return (
-    <>
-      <section className="why-us-section  pt-80 mobile-none">
-        <div className="container-fluid bg-linear1 ptb-80">
+    <div className="parallax-section ">
+      <section className="why-us-section  mobile-none ">
+        <div className="container bg-linear1 parallax-section ptb-80">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-10 text-center">
             KNOW THE SECRET OF OUR
             <br />
             RESULTS!
           </h1>
 
-          <div className="container">
+          <div className="why-container">
             <div className="why-us-items-section pt-50">
               <ol>
                 <li className="why-us-items ">
@@ -115,7 +115,7 @@ export default function Process() {
       </section>
 
       <section className="why-us-section  pt-80 desktop-none">
-        <div className="container-fluid bg-linear1 ptb-80">
+        <div className="container bg-linear1 ptb-80">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-10 text-center">
             KNOW THE SECRET OF OUR
             <br />
@@ -232,6 +232,6 @@ export default function Process() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

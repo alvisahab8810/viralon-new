@@ -10,7 +10,6 @@
 //       .catch((err) => console.error("Error fetching blogs:", err));
 //   }, []);
 
-
 //   const formatDate = (dateString) => {
 //     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 //     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -53,7 +52,7 @@
 //                         Continue Reading <i className="fas fa-arrow-right"></i>
 //                     </Link>
 //                 </div>
-                
+
 //                 {/* <div className="card-body">
 //                   <h5 className="card-title text-dark">{blog.title}</h5>
 //                   <p className="card-text">{blog.subtitle}</p>
@@ -68,8 +67,6 @@
 //   );
 // }
 
-
-
 // pages/index.js or wherever your blog list is rendered
 
 import React, { useEffect, useState } from "react";
@@ -80,13 +77,14 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/posts")
+    axios
+      .get("http://localhost:3000/api/posts")
       .then((res) => setBlogs(res.data))
       .catch((err) => console.error("Error fetching blogs:", err));
   }, []);
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
@@ -100,7 +98,11 @@ export default function Blogs() {
               <div className="blog-style-one">
                 <div className="thumb">
                   <Link href={`/posts/${blog._id}`}>
-                    <img src={blog.image} alt="Blog Cover" className="card-img-top" />
+                    <img
+                      src={blog.image}
+                      alt="Blog Cover"
+                      className="card-img-top"
+                    />
                   </Link>
                 </div>
                 <div className="info">
@@ -108,11 +110,11 @@ export default function Blogs() {
                     <ul>
                       <li>
                         {/* <Link href={`/author/${blog.authorId}`}>{blog.authorName}</Link> */}
-                        <li><Link href="/single-blogs">Riyaz Ali</Link></li>
+                        <li>
+                          <Link href="/single-blogs">Riyaz Ali</Link>
+                        </li>
                       </li>
-                      <li>
-                        {formatDate(blog.createdAt)}
-                      </li>
+                      <li>{formatDate(blog.createdAt)}</li>
                     </ul>
                   </div>
                   <h3 className="post-title">

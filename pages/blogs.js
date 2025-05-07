@@ -13,7 +13,7 @@ export default function blogs() {
       <Topbar />
       <Offcanvas />
       <Hero />
-      <Blogs/>
+      <Blogs />
       {/* <BlogList /> */}
       <Footer />
     </div>

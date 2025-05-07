@@ -3,127 +3,139 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Hero() {
+  useEffect(() => {
+    const handleEvent = (event) => {
+      event.stopPropagation();
+      const element = event.currentTarget;
 
+      if (element.classList.contains("out")) {
+        element.classList.add("out");
+      } else {
+        element.classList.add("out");
+        Array.from(element.parentElement.children).forEach((sibling) => {
+          if (sibling !== element) {
+            sibling.classList.remove("out");
+          }
+        });
+      }
+    };
 
-    useEffect(() => {
-        const handleEvent = (event) => {
-            event.stopPropagation();
-            const element = event.currentTarget;
-            
-            if (element.classList.contains("out")) {
-                element.classList.add("out");
-            } else {
-                element.classList.add("out");
-                Array.from(element.parentElement.children).forEach((sibling) => {
-                    if (sibling !== element) {
-                        sibling.classList.remove("out");
-                    }
-                });
-            }
-        };
+    const accordions = document.querySelectorAll("#accordion > li");
+    const isWideScreen = window.innerWidth > 767;
 
-        const accordions = document.querySelectorAll("#accordion > li");
-        const isWideScreen = window.innerWidth > 767;
-        
-        if (isWideScreen) {
-            accordions.forEach((accordion) => {
-                accordion.addEventListener("mouseenter", handleEvent);
-                accordion.addEventListener("click", handleEvent);
-            });
-        } else {
-            accordions.forEach((accordion) => {
-                accordion.addEventListener("touchstart", handleEvent);
-                accordion.addEventListener("touchend", handleEvent);
-            });
-        }
+    if (isWideScreen) {
+      accordions.forEach((accordion) => {
+        accordion.addEventListener("mouseenter", handleEvent);
+        accordion.addEventListener("click", handleEvent);
+      });
+    } else {
+      accordions.forEach((accordion) => {
+        accordion.addEventListener("touchstart", handleEvent);
+        accordion.addEventListener("touchend", handleEvent);
+      });
+    }
 
-        return () => {
-            accordions.forEach((accordion) => {
-                accordion.removeEventListener("mouseenter", handleEvent);
-                accordion.removeEventListener("click", handleEvent);
-                accordion.removeEventListener("touchstart", handleEvent);
-                accordion.removeEventListener("touchend", handleEvent);
-            });
-        };
-    }, []);
+    return () => {
+      accordions.forEach((accordion) => {
+        accordion.removeEventListener("mouseenter", handleEvent);
+        accordion.removeEventListener("click", handleEvent);
+        accordion.removeEventListener("touchstart", handleEvent);
+        accordion.removeEventListener("touchend", handleEvent);
+      });
+    };
+  }, []);
 
-    
   return (
     <>
+    <img src="/assets/img/shape/pattern.png" alt="shape Gradient Image" className="blur-shape"/>
+    <div className="container">
       <div className="height-auto accrdion-portfolio-area">
-        <div className="container">
-          {/* <div 
-            className="banner-style-one" 
-            style={{ backgroundImage: "url(/assets/img/shape/1.png)" }}
-          >
-          </div> */}
-
-          <div className="row align-center">
-            <div className="col-lg-8 banner-one-item">
-              <h4>Creative digital studio</h4>
-              <h2>
-                Brands made <strong>Iconic!</strong>
-              </h2>
-            </div>
-            <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
-              <div className="choose-us-style-one-thumb">
-                <a
-                  href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
-                  className="popup-youtube video-play-button"
-                >
-                  <i className="fas fa-play"></i>
-                  <div className="effect"></div>
-                </a>
-              </div>
+      
+        <div className="row align-center">
+          <div className="col-lg-8 banner-one-item">
+            <h4>Creative digital studio</h4>
+            <h2>
+              Brands made <strong>Iconic!</strong>
+            </h2>
+          </div>
+          <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
+            <div className="choose-us-style-one-thumb">
+              <a
+                href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
+                className="popup-youtube video-play-button"
+              >
+                <i className="fas fa-play"></i>
+                <div className="effect"></div>
+              </a>
             </div>
           </div>
         </div>
 
         {/* <!-- ACCORDION ROW --> */}
-        <div className="container-fluid">
+        <div className="container-fluid mobile-none">
           <div className="row">
-            <ul className="accordion-portfolio-lists text-light" id="accordion" >
+            <ul className="accordion-portfolio-lists text-light" id="accordion">
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h1.jpg')",
+                  backgroundImage: "url('assets/img/portfolio/h1.webp')",
                 }}
               >
-                <h3>Marketing</h3>
+                <h3>Digital Marketing</h3>
                 <span>01</span>
                 <div className="accordion-overlay">
-                  <span>Design</span>
-                  <h2>
-                    <a
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#projectSingleModal"
-                    >
-                      Art Vectors & Illustrationst
-                    </a>
-                  </h2>
-                  <p>
-                    Seeing rather her you not esteem men settle genius excuse.{" "}
-                    <br /> Deal say over you age from. Comparison new hormonic
-                    melancholy.
-                  </p>
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#projectSingleModal"
-                  >
-                    <i className="fas fa-arrow-right"></i>
-                  </a>
-                </div>
+                 
+                 <h2>
+                     <span>Digital Marketing</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Social Media Marketing</h2>
+                   <a
+                     href="#"
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Search Engine Optimization</h2>
+                   <a
+                     href="#"
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Paid Advertisement</h2>
+                   <a
+                     href="#"
+                  
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Email Marketing</h2>
+                   <a
+                     href="#"
+                     
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
               </li>
               <li
                 className="out"
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h2.jpg')",
+                  backgroundImage: "  url('assets/img/portfolio/h2.webp')",
                 }}
               >
-                <h3>Artboard Studio</h3>
+                <h3>Branding</h3>
                 <span>02</span>
-                <div className="accordion-overlay">
+                {/* <div className="accordion-overlay">
                   <span>Branding</span>
                   <h2>
                     <a
@@ -146,49 +158,81 @@ export default function Hero() {
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
-                </div>
+                </div> */}
+
+              <div className="accordion-overlay">
+                 
+                 <h2>
+                     <span>Branding</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Logo Design</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Brand Identity Design</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Product Packaging</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
+
+
+                
               </li>
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h3.jpg')",
+                  backgroundImage: "url('assets/img/portfolio/h3.webp')",
                 }}
               >
-                <h3>Creative Ideas</h3>
+                <h3>Web Development</h3>
                 <span>03</span>
                 <div className="accordion-overlay">
-                  <span>Photo</span>
+                 
                   <h2>
+                      <span>Web Development</span>
+                  </h2>
+                  <div className="redirect-arrow">
+                    <h2>Web Development</h2>
                     <a
                       href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#projectSingleModal"
+                     
                     >
-                      Creative Project Ideas
+                      <i className="fas fa-arrow-right"></i>
                     </a>
-                  </h2>
-                  <p>
-                    Seeing rather her you not esteem men settle genius excuse.{" "}
-                    <br /> Deal say over you age from. Comparison new hormonic
-                    melancholy.
-                  </p>
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#projectSingleModal"
-                  >
-                    <i className="fas fa-arrow-right"></i>
-                  </a>
+                  </div>
+                 
                 </div>
               </li>
               <li
                 style={{
-                  backgroundImage: "url('assets/img/portfolio/h4.jpg')",
+                  backgroundImage: "url('assets/img/portfolio/h4.webp')",
                 }}
               >
-                <h3>Branding</h3>
+                <h3>Production</h3>
                 <span>04</span>
-                <div className="accordion-overlay">
-                  <span>Creative</span>
+                {/* <div className="accordion-overlay">
+                  <span>Production</span>
                   <h2>
                     <a
                       href="#"
@@ -210,11 +254,191 @@ export default function Hero() {
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
-                </div>
+                </div> */}
+
+                  <div className="accordion-overlay">
+                 
+                 <h2>
+                     <span>Production</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Ad Shoot</h2>
+                   <a
+                     href="#"
+                     
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
+
+                
               </li>
             </ul>
           </div>
-          {/* <!-- BEGIN NEW ROW AFTER ACCORDION --> */}
+        </div>
+
+        <div className="container-fluid desktop-none">
+          <div className="row">
+            <ul className="accordion-portfolio-lists text-light" id="accordion">
+              <li
+                className="out"
+                style={{
+                  backgroundImage: "url('assets/img/portfolio/h1.webp')",
+                }}
+              >
+                <h3>Digital Marketing</h3>
+                <span>01</span>
+                <div className="accordion-overlay">
+                 
+                 <h2>
+                     <span>Digital Marketing</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Social Media Marketing</h2>
+                   <a
+                     href="#"
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Search Engine Optimization</h2>
+                   <a
+                     href="#"
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Paid Advertisement</h2>
+                   <a
+                     href="#"
+                  
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Email Marketing</h2>
+                   <a
+                     href="#"
+                     
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
+              </li>
+              <li
+                
+                style={{
+                  backgroundImage: "  url('assets/img/portfolio/h2.webp')",
+                }}
+              >
+                <h3>Branding</h3>
+                <span>02</span>
+              
+
+              <div className="accordion-overlay">
+                 
+                 <h2>
+                     <span>Branding</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Logo Design</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Brand Identity Design</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+
+                 <div className="redirect-arrow">
+                   <h2>Product Packaging</h2>
+                   <a
+                     href="#"
+                    
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
+
+
+                
+              </li>
+              <li
+                style={{
+                  backgroundImage: "url('assets/img/portfolio/h3.webp')",
+                }}
+              >
+                <h3>Web Development</h3>
+                <span>03</span>
+                <div className="accordion-overlay">
+                 
+                  <h2>
+                      <span>Web Development</span>
+                  </h2>
+                  <div className="redirect-arrow">
+                    <h2>Web Development</h2>
+                    <a
+                      href="#"
+                     
+                    >
+                      <i className="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                 
+                </div>
+              </li>
+              <li
+                style={{
+                  backgroundImage: "url('assets/img/portfolio/h4.webp')",
+                }}
+              >
+                <h3>Production</h3>
+                <span>04</span>
+               
+
+                  <div className="accordion-overlay">
+                 
+                 <h2>
+                     <span>Production</span>
+                 </h2>
+                 <div className="redirect-arrow">
+                   <h2>Ad Shoot</h2>
+                   <a
+                     href="#"
+                     
+                   >
+                     <i className="fas fa-arrow-right"></i>
+                   </a>
+                 </div>
+                
+               </div>
+
+                
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -377,6 +601,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

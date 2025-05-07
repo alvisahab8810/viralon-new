@@ -70,7 +70,7 @@ const ViewPost = () => {
             </blockquote>
           );
 
-          case 'table':
+        case "table":
           return (
             <table key={index} className="table-block">
               <tbody>

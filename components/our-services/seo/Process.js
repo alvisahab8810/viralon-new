@@ -5,45 +5,40 @@ export default function Process() {
   return (
     <>
       <section className="process-section">
-        <Strap/>
-        <div class="container">
-          <div class="row pt-100">
-            <div class="col-lg-6">
-              <h1 class="process-heading">
-                Our Proven SEO
-                <br /> Process
+        <Strap />
+        <div className="container">
+          <div className="row pt-100">
+            <div className="col-lg-6">
+              <h1 className="process-heading">
+              Data-Powered<br/>
+              SEO Strategies
               </h1>
               <div className="max-500 mt-5">
-              <p>
-                In today's digital world, the internet is the go-to destination
-                for almost everything. Whether you're a business, a content
-                creator, or an individual looking to share your passion, being
-                visible online is paramount. That's where Search Engine
-                Optimization (SEO) comes into play—it's the secret sauce that
-                ensures your digital presence doesn't go unnoticed.
-              </p>
-              <p>
-                At Viralon, we believe that effective SEO is built on a
-                foundation of thorough research and strategic planning. Our
-                comprehensive approach ensures that every aspect of your SEO is
-                meticulously crafted to drive results. Here's how we do it:
-              </p>
+                <p>
+                At Viralon, we believe that effective SEO is built on a foundation of thorough research and strategic planning. Our comprehensive approach ensures that every aspect of your SEO is meticulously crafted to drive results. Here’s how we do it:
+                </p>
+
+                <h1 className="process-heading">
+                Data-Powered<br/>
+                SEO Strategies
+              </h1>
+               
               </div>
-              <button class="process-btn mt-4">LET’S TALK</button>
+              <button className="process-btn mt-5">LET’S TALK</button>
             </div>
-            <div class="col-lg-6 mt-5 mt-lg-0">
-              <div class="d-flex main-d-flex mb-4 overflow-hidden">
-                <div class="step-number">
+            <div className="col-lg-6 mt-5 mt-lg-0">
+              <div className="d-flex main-d-flex mb-4 overflow-hidden">
+                <div className="step-number">
                   <ul className="nubmer-lists">
                     <li>1</li>
                   </ul>
                 </div>
-                <div class="ml-4 step-box step-box-orange">
-                  <div class="steps-bxx">
+                <div className="ml-4 step-box step-box-orange">
+                  <div className="steps-bxx">
                     <div className="width-20">
                       <img
                         alt="SEO Audit Icon"
-                        class="mr-2"
+                        className="mr-2"
                         src="/assets/img/seo/icons/icon1.png"
                       />
                     </div>
@@ -60,18 +55,18 @@ export default function Process() {
                 </div>
               </div>
 
-              <div class="d-flex main-d-flex mb-4">
-                <div class="step-number">
+              <div className="d-flex main-d-flex mb-4">
+                <div className="step-number">
                   <ul className="nubmer-lists">
                     <li>2</li>
                   </ul>
                 </div>
-                <div class="ml-4 step-box ">
-                  <div class="steps-bxx">
+                <div className="ml-4 step-box ">
+                  <div className="steps-bxx">
                     <div className="width-20">
                       <img
                         alt="SEO Audit Icon"
-                        class="mr-2"
+                        className="mr-2"
                         src="/assets/img/seo/icons/icon2.png"
                       />
                     </div>
@@ -88,19 +83,18 @@ export default function Process() {
                 </div>
               </div>
 
-
-              <div class="d-flex main-d-flex mb-4">
-                <div class="step-number">
+              <div className="d-flex main-d-flex mb-4">
+                <div className="step-number">
                   <ul className="nubmer-lists">
                     <li>3</li>
                   </ul>
                 </div>
-                <div class="ml-4 step-box ">
-                  <div class="steps-bxx">
+                <div className="ml-4 step-box ">
+                  <div className="steps-bxx">
                     <div className="width-20">
                       <img
                         alt="SEO Audit Icon"
-                        class="mr-2"
+                        className="mr-2"
                         src="/assets/img/seo/icons/icon3.png"
                       />
                     </div>
@@ -108,27 +102,27 @@ export default function Process() {
                       <h2>Custom Strategy</h2>
 
                       <p>
-                        Our team develops a tailored SEO strategy that aligns with your
-                        business goals and targets user intent to drive relevant traffic.
+                        Our team develops a tailored SEO strategy that aligns
+                        with your business goals and targets user intent to
+                        drive relevant traffic.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-
-              <div class="d-flex main-d-flex mb-4">
-                <div class="step-number">
+              <div className="d-flex main-d-flex mb-4">
+                <div className="step-number">
                   <ul className="nubmer-lists">
                     <li>4</li>
                   </ul>
                 </div>
-                <div class="ml-4 step-box ">
-                  <div class="steps-bxx">
+                <div className="ml-4 step-box ">
+                  <div className="steps-bxx">
                     <div className="width-20">
                       <img
                         alt="SEO Audit Icon"
-                        class="mr-2"
+                        className="mr-2"
                         src="/assets/img/seo/icons/icon4.png"
                       />
                     </div>
@@ -136,26 +130,27 @@ export default function Process() {
                       <h2>On-Page & Off-Page Optimization</h2>
 
                       <p>
-                        We enhance your site’s structure and content while building
-                        authority through effective link-building and online engagement.
+                        We enhance your site’s structure and content while
+                        building authority through effective link-building and
+                        online engagement.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="d-flex main-d-flex  overflow-hidden">
-                <div class="step-number">
+              <div className="d-flex main-d-flex  overflow-hidden">
+                <div className="step-number">
                   <ul className="nubmer-lists">
                     <li>5</li>
                   </ul>
                 </div>
-                <div class="ml-4 step-box ">
-                  <div class="steps-bxx">
+                <div className="ml-4 step-box ">
+                  <div className="steps-bxx">
                     <div className="width-20">
                       <img
                         alt="SEO Audit Icon"
-                        class="mr-2"
+                        className="mr-2"
                         src="/assets/img/seo/icons/icon5.png"
                       />
                     </div>
@@ -163,8 +158,9 @@ export default function Process() {
                       <h2>Performance Monitoring & Reporting</h2>
 
                       <p>
-                      We continuously track results and provide clear monthly reports,
-                      refining strategies based on data-driven insights.
+                        We continuously track results and provide clear monthly
+                        reports, refining strategies based on data-driven
+                        insights.
                       </p>
                     </div>
                   </div>

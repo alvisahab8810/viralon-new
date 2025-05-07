@@ -15,7 +15,7 @@ import Blogs from "../../components/our-services/seo/Blogs";
 
 export default function EmailMarketing() {
   return (
-    <div className="bg-dark">
+    <div className="bg-dark" id="email-marketing">
       <Topbar />
       <Hero />
       <CoreTask />
@@ -24,7 +24,7 @@ export default function EmailMarketing() {
       <Significance />
       <SolidReasons />
 
-      <div className="main-class container">
+      <div className="parallax-container">
         <Testimonials />
         <Form />
       </div>

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 export default function Instagram() {
   return (
-    <>
+    <div className="container">
       <section className="instagram-section national-dest pb-80">
         <div className="contianer">
           <div className="row ">
@@ -170,6 +170,6 @@ export default function Instagram() {
           </Swiper>
         </div>
       </section>
-    </>
+    </div>
   );
 }

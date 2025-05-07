@@ -24,7 +24,7 @@ export default function PMM() {
       <Significance />
       <SolidReasons />
 
-      <div className="main-class container">
+      <div className="parallax-container">
         <Testimonials />
         <Form />
       </div>

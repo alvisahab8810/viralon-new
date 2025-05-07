@@ -5,13 +5,13 @@ import mongoose from "mongoose";
 const PersonSchema = new mongoose.Schema({
   name: { type: String, required: true },
   // Here you might store a filename or URL for the uploaded government ID
-  governmentId: { type: String }
+  governmentId: { type: String },
 });
 
 // Schema for each child
 const KidSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  age: { type: Number, required: true }
+  age: { type: Number, required: true },
 });
 
 // Main Family Check-in Schema
@@ -27,8 +27,6 @@ const KidSchema = new mongoose.Schema({
 //   },
 //   { timestamps: true }
 // );
-
-
 
 const FamilyCheckinSchema = new mongoose.Schema(
   {

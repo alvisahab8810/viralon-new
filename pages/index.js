@@ -11,10 +11,11 @@ import OurWork from "../components/home/OurWork";
 import Process from "../components/home/Process";
 import Partnering from "../components/home/Partnering";
 import CTA from "../components/home/CTA";
+import Blogs from "../components/our-services/seo/Blogs"
+import Faq from "../components/home/Faq";
 
 export default function IndexPage({ data }) {
-
-
+  
 
   return (
     <section id="home" className="bg-dark">
@@ -23,12 +24,15 @@ export default function IndexPage({ data }) {
       <Offcanvas />
       <Hero />
       <OurWork />
+      <div className="parallax-container">
       <Testimonials />
       <Process />
       <Form />
+      </div>
       <Partnering />
+      <Faq/>
+      <Blogs/>
       <CTA />
-
       <Footer />
     </section>
   );

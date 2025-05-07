@@ -13,8 +13,6 @@
 
 // export default mongoose.models.Checkin || mongoose.model("Checkin", CheckinSchema);
 
-
-
 import mongoose from "mongoose";
 
 const CheckinSchema = new mongoose.Schema({
@@ -28,4 +26,5 @@ const CheckinSchema = new mongoose.Schema({
   timestamp: { type: Date, default: Date.now }, // Store actual date
 });
 
-export default mongoose.models.Checkin || mongoose.model("Checkin", CheckinSchema);
+export default mongoose.models.Checkin ||
+  mongoose.model("Checkin", CheckinSchema);

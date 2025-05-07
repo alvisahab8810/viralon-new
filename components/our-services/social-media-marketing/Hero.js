@@ -3,64 +3,61 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Hero() {
+  useEffect(() => {
+    const handleEvent = (event) => {
+      event.stopPropagation();
+      const element = event.currentTarget;
 
+      if (element.classList.contains("out")) {
+        element.classList.add("out");
+      } else {
+        element.classList.add("out");
+        Array.from(element.parentElement.children).forEach((sibling) => {
+          if (sibling !== element) {
+            sibling.classList.remove("out");
+          }
+        });
+      }
+    };
 
-    useEffect(() => {
-        const handleEvent = (event) => {
-            event.stopPropagation();
-            const element = event.currentTarget;
-            
-            if (element.classList.contains("out")) {
-                element.classList.add("out");
-            } else {
-                element.classList.add("out");
-                Array.from(element.parentElement.children).forEach((sibling) => {
-                    if (sibling !== element) {
-                        sibling.classList.remove("out");
-                    }
-                });
-            }
-        };
+    const accordions = document.querySelectorAll("#accordion > li");
+    const isWideScreen = window.innerWidth > 767;
 
-        const accordions = document.querySelectorAll("#accordion > li");
-        const isWideScreen = window.innerWidth > 767;
-        
-        if (isWideScreen) {
-            accordions.forEach((accordion) => {
-                accordion.addEventListener("mouseenter", handleEvent);
-                accordion.addEventListener("click", handleEvent);
-            });
-        } else {
-            accordions.forEach((accordion) => {
-                accordion.addEventListener("touchstart", handleEvent);
-                accordion.addEventListener("touchend", handleEvent);
-            });
-        }
+    if (isWideScreen) {
+      accordions.forEach((accordion) => {
+        accordion.addEventListener("mouseenter", handleEvent);
+        accordion.addEventListener("click", handleEvent);
+      });
+    } else {
+      accordions.forEach((accordion) => {
+        accordion.addEventListener("touchstart", handleEvent);
+        accordion.addEventListener("touchend", handleEvent);
+      });
+    }
 
-        return () => {
-            accordions.forEach((accordion) => {
-                accordion.removeEventListener("mouseenter", handleEvent);
-                accordion.removeEventListener("click", handleEvent);
-                accordion.removeEventListener("touchstart", handleEvent);
-                accordion.removeEventListener("touchend", handleEvent);
-            });
-        };
-    }, []);
+    return () => {
+      accordions.forEach((accordion) => {
+        accordion.removeEventListener("mouseenter", handleEvent);
+        accordion.removeEventListener("click", handleEvent);
+        accordion.removeEventListener("touchstart", handleEvent);
+        accordion.removeEventListener("touchend", handleEvent);
+      });
+    };
+  }, []);
 
-    
   return (
     <>
+      <img src="/assets/img/shape/pattern.png" alt="shape Gradient Image" className="blur-shape"/>
+    <div className="container">
       <div className="height-auto accrdion-portfolio-area">
-        <img src="/assets/img/shape/grade.png" alt="shape Gradient Image" className="blur-shape"
-        ></img>
-        <div className="container">
-         
-
+      
+   
           <div className="row align-center">
             <div className="col-lg-7 banner-one-item">
               <h4>Creative digital studio</h4>
               <h2>
-              Social media  <br/><strong>Marketing</strong>
+                Social media <br />
+                <strong>Marketing</strong>
               </h2>
             </div>
             <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
@@ -75,15 +72,20 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
-
-       <div className="smm-hero-section">
-        <img src="/assets/img/our-services/smm/smm-hero.webp" alt="Social Meadia Hero Image" className="mobile-none"></img>
-        <img src="/assets/img/our-services/smm/smm-hero-mobile.webp" alt="Social Meadia Hero Image" className="desktop-none"></img>
-
-
         
-       </div>
+
+        <div className="smm-hero-section">
+          <img
+            src="/assets/img/our-services/smm/smm-hero.webp"
+            alt="Social Meadia Hero Image"
+            className="mobile-none"
+          ></img>
+          <img
+            src="/assets/img/our-services/smm/smm-hero-mobile.webp"
+            alt="Social Meadia Hero Image"
+            className="desktop-none"
+          ></img>
+        </div>
       </div>
 
       <div
@@ -245,6 +247,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

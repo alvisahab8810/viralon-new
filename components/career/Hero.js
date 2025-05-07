@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Hero() {
   return (
     <>
-      <section className='career-hero-section'>
-         
-      </section>
+      <section className="career-hero-section"></section>
     </>
-  )
+  );
 }
