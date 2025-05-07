@@ -25,7 +25,7 @@ export default function SocialMediaMarketing() {
        <Strap/>
         <Videos/>
       
-        <div className="main-class container">
+        <div className="parallax-container">
           <Testimonials/>
           <Form/>
         </div>

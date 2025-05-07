@@ -193,6 +193,9 @@ const videoSources = [
   "/assets/img/our-services/instagram/video4.mp4",
   "/assets/img/our-services/instagram/video5.mp4",
   "/assets/img/our-services/instagram/video6.mp4",
+  "/assets/img/our-services/instagram/video7.mp4",
+  "/assets/img/our-services/instagram/video8.mp4",
+
 ];
 
 export default function Videos() {
@@ -221,10 +224,10 @@ export default function Videos() {
             loop={true}
             grabCursor={true}
             slidesPerView={4}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //   delay: 2500,
+            //   disableOnInteraction: false,
+            // }}
             breakpoints={{
               240: {
                 slidesPerView: 1.5,

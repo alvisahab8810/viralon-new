@@ -1843,7 +1843,7 @@ button {
 	background: var(--color-primary);
 }
 
-button::after {
+/* button::after {
 	position: absolute;
 	top: inherit;
 	right: inherit;
@@ -1858,12 +1858,12 @@ button::after {
 	transition: all 0.25s ease-in-out;
 	-webkit-transform: translateY(-45%) skew(25deg) scale(0);
 	transform: translateY(-45%) skew(25deg) scale(0);
-}
+} */
 
-button:hover::after {
+/* button:hover::after {
 	-webkit-transform: translateY(-45%) skew(25deg) scale(1.2);
 	transform: translateY(-45%) skew(25deg) scale(1.2);
-}
+} */
 
 button i {
 	margin-right: 4px;

@@ -29,11 +29,116 @@ export default function Offcanvas() {
         <div className="offcanvas-body">
           <div className="mob-menus">
             <ul className=" nav nav-pills">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link href="#" className="nav-link ">
                   {" "}
                   Our Services
                 </Link>
+              </li> */}
+
+
+              <li className="nav-item mob-dropdown">
+              <div className="accordion" id="familyAccordion">
+                  <div className="accordion-item">
+                    <h2 className="accordion-header" id="headingOne">
+                      <button
+                        className="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        Our Services
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseOne"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="headingOne"
+                      data-bs-parent="#familyAccordion"
+                    >
+                      <div className="accordion-body">
+                        <ul className="list-unstyled">
+                        <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/social-media-marketing"
+                      >
+                        - Social Media Marketing
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/paid-media-marketing"
+                      >
+                        - Paid Media Marketing
+                      </Link>{" "}
+                    </li>
+                
+
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/brand-identity-design"
+                      >
+                        - Brand Identity Design
+                      </Link>{" "}
+                    </li>
+
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/product-packaging"
+                      >
+                        - Product Packaging
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/web-development"
+                      >
+                        - Web Development
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/email-marketing"
+                      >
+                        - Email Marketing
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/logo-design"
+                      >
+                        - Logo Design
+                      </Link>{" "}
+                    </li>
+
+                    <li>
+                      {" "}
+                      <Link className="nav-link" href="/our-services/seo">
+                      - Seo
+                      </Link>{" "}
+                    </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </li>
 
               <li className="nav-item">

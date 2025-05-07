@@ -51,6 +51,36 @@ export default function Topbar() {
                         Paid Media Marketing
                       </Link>{" "}
                     </li>
+                
+
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/brand-identity-design"
+                      >
+                        Brand Identity Design
+                      </Link>{" "}
+                    </li>
+
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/product-packaging"
+                      >
+                        Product Packaging
+                      </Link>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className="nav-link"
+                        href="/our-services/web-development"
+                      >
+                        Web Development
+                      </Link>{" "}
+                    </li>
                     <li>
                       {" "}
                       <Link
