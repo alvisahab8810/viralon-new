@@ -94,60 +94,7 @@ export default function CoreTask() {
               </div>
             </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Mockups of the Logo</h2>
-                <p>
-                  We provide realistic mockups of the logo in various
-                  applications, allowing you to visualize how it will look
-                  across different mediums.
-                </p>
-              </div>
-            </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Understanding Your Vision</h2>
-                <p>
-                  We begin by understanding your vision, thoughts about your
-                  brand, and the values you deliver, ensuring alignment with
-                  your goals.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Target Audience Analysis</h2>
-                <p>
-                  We identify your brand's target audience and strategize how to
-                  align the design with both your brand identity and audience
-                  expectations.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Concept Creation</h2>
-                <p>
-                  Our talented designers create multiple logo concepts that
-                  embody your brand’s vision and values, ensuring a unique and
-                  memorable identity.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Complimentary Style</h2>
-                <p>
-                  We design secondary logo icons and shapes that complement the
-                  primary logo, enhancing brand recognition across various
-                  applications.
-                </p>
-              </div>
-            </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
               <div className="core-bx">
@@ -159,6 +106,8 @@ export default function CoreTask() {
                 </p>
               </div>
             </SwiperSlide>
+
+            
           </Swiper>
         </div>
       </div>

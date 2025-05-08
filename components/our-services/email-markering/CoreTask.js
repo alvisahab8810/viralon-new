@@ -114,69 +114,7 @@ export default function CoreTask() {
               </div>
             </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Strategic Campaign <br />
-                  Planning
-                </h2>
-                <p>
-                  Our seasoned strategists develop tailored email marketing
-                  strategies designed to achieve your specific business goals
-                  and maximize campaign effectiveness
-                </p>
-              </div>
-            </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Segmentation and
-                  <br /> Personalization
-                </h2>
-                <p>
-                  We utilize advanced segmentation techniques to deliver highly
-                  relevant, personalized emails that resonate with each
-                  recipient, enhancing engagement and response rates.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Compelling Content <br />
-                  Creation
-                </h2>
-                <p>
-                  Our experts craft engaging content, including eye-catching
-                  subject lines and persuasive copy, designed to capture
-                  attention and drive action from your audience.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Automated Workflows</h2>
-                <p>
-                  We implement automated workflows that trigger timely messages
-                  based on user behavior, ensuring personalized communication
-                  throughout the customer journey.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Performance Optimization</h2>
-                <p>
-                  Continuous monitoring and A/B testing allow us to refine
-                  strategies, improving campaign performance and maximizing open
-                  and conversion rates effectively.
-                </p>
-              </div>
-            </SwiperSlide>
           </Swiper>
         </div>
       </div>

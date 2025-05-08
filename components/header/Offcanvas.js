@@ -36,9 +36,8 @@ export default function Offcanvas() {
                 </Link>
               </li> */}
 
-
               <li className="nav-item mob-dropdown">
-              <div className="accordion" id="familyAccordion">
+                <div className="accordion" id="familyAccordion">
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="headingOne">
                       <button
@@ -60,85 +59,83 @@ export default function Offcanvas() {
                     >
                       <div className="accordion-body">
                         <ul className="list-unstyled">
-                        <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/social-media-marketing"
-                      >
-                        - Social Media Marketing
-                      </Link>{" "}
-                    </li>
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/paid-media-marketing"
-                      >
-                        - Paid Media Marketing
-                      </Link>{" "}
-                    </li>
-                
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/social-media-marketing"
+                            >
+                              - Social Media Marketing
+                            </Link>{" "}
+                          </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/paid-media-marketing"
+                            >
+                              - Paid Media Marketing
+                            </Link>{" "}
+                          </li>
 
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/brand-identity-design"
-                      >
-                        - Brand Identity Design
-                      </Link>{" "}
-                    </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/brand-identity-design"
+                            >
+                              - Brand Identity Design
+                            </Link>{" "}
+                          </li>
 
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/product-packaging"
-                      >
-                        - Product Packaging
-                      </Link>{" "}
-                    </li>
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/web-development"
-                      >
-                        - Web Development
-                      </Link>{" "}
-                    </li>
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/email-marketing"
-                      >
-                        - Email Marketing
-                      </Link>{" "}
-                    </li>
-                    <li>
-                      {" "}
-                      <Link
-                        className="nav-link"
-                        href="/our-services/logo-design"
-                      >
-                        - Logo Design
-                      </Link>{" "}
-                    </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/product-packaging"
+                            >
+                              - Product Packaging
+                            </Link>{" "}
+                          </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/web-development"
+                            >
+                              - Web Development
+                            </Link>{" "}
+                          </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/email-marketing"
+                            >
+                              - Email Marketing
+                            </Link>{" "}
+                          </li>
+                          <li>
+                            {" "}
+                            <Link
+                              className="nav-link"
+                              href="/our-services/logo-design"
+                            >
+                              - Logo Design
+                            </Link>{" "}
+                          </li>
 
-                    <li>
-                      {" "}
-                      <Link className="nav-link" href="/our-services/seo">
-                      - Seo
-                      </Link>{" "}
-                    </li>
+                          <li>
+                            {" "}
+                            <Link className="nav-link" href="/our-services/seo">
+                              - Seo
+                            </Link>{" "}
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </li>
 
               <li className="nav-item">

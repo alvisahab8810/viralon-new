@@ -38,23 +38,24 @@ const images = [
 
 const ProductCoverflowSlider = () => {
   return (
-    <div className="container logo-sliders w-full max-w-6xl pt-10 mx-auto">
+    <div className="container logo-sliders w-full max-w-6xl pt-10 mx-auto mx-900">
       <Swiper
         effect={'coverflow'}
+        slidesPerView={3}
         grabCursor={true}
         centeredSlides={true}
         loop={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 200,
-          modifier: 2.5,
+          depth: 110,
+          modifier: 1,
           slideShadows: false,
         }}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         breakpoints={{
           320: {
             slidesPerView: 1.8,

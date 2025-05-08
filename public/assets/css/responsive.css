@@ -125,13 +125,6 @@
 
 
 
-
-
-
-
-
-
-
 @media (max-width: 1240px) and (min-width: 1024px) {
     .about-section1 .image-column .image-1 img{
         height: auto;
@@ -261,6 +254,39 @@
 
 
 @media(max-width:1023px){
+
+    .faq-section .accordion-item{
+        background:unset;
+        font-weight: 500;
+    }
+
+    .accordion-portfolio-lists li > span {
+     
+        -webkit-text-stroke: .3px var(--white)!important;
+
+    }
+
+    .accordion-portfolio-lists li::after {
+      
+        /* background: var(--bg-gradient); */
+        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+       
+    }
+     
+.accordion-portfolio-lists li:nth-child(4)::after {
+    /* background: #6a850b; */
+    background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+}
+
+    .accordion-portfolio-lists li:nth-child(3)::after {
+        /* background: #bccd7e; */
+        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+    }
+
+    .accordion-portfolio-lists li:nth-child(2)::after {
+        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+    }
+
 
     .our-work-section .banner-one-item img {
         width: 45px!important;
@@ -465,6 +491,28 @@
     .faq-section .text-orange {
    
         font-size: 22px;
+    }
+
+    .parallax-section .ptb-80 {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .nubmer-lists::before {
+        content:'';
+        position:absolute;
+        /* border:1px solid #ddd; */
+        height: 300px;
+        width: 1px;
+        background: white;
+        top: -100px;
+        left: 50%;
+        z-index: 0!important;
+    }
+    
+    ul.nubmer-lists {
+        width: 50px;
+        position: relative;
     }
 }
 
@@ -686,6 +734,13 @@ footer .before-bg::before {
 
 @media(max-width:560px){
 
+
+    .accordion-portfolio-lists li::after {
+        opacity: 80%!important;
+    }
+    .accordion-portfolio-lists li.out::after {
+        opacity: 0!important;
+    }
     #web-development .core-bx {
         height: 195px;
     }
@@ -1217,7 +1272,14 @@ footer .before-bg::before {
 
      
 
-    
+    #smm .our-work-section .banner-one-item h2 {
+        max-width: 275px;
+    }
+    #smm .our-work-primary .banner-one-item img {
+        right: 77px;
+        top: 63%;
+        width: 50px;
+    }
     .lets-cta-section{
         padding-bottom: 50px!important;
     }
@@ -1242,8 +1304,8 @@ footer .before-bg::before {
     }
 
     .testimonial-card .review-right-bx {
-        width: 65%;
-        padding-left: 28px;
+        width: 70%;
+        /* padding-left: 28px; */
     }
 
     .testimonial-card .company {
@@ -1464,7 +1526,8 @@ section.work-area .py-5 {
 }
 .faq-section .accordion-button {
     font-size: 16px;
-    padding-left: 0;;
+    padding-left: 0;
+    font-weight: 500;
 }
 .faq-section .accordion-body {
     font-size: 13px;
@@ -1491,9 +1554,12 @@ section.work-area .py-5 {
 
     top: -20px;
 }
-
+.blog-area .item .info .meta {
+    margin-bottom: 5px;
+}
 .blog-area .item .info h4 {
     font-size: 18px;
+    margin-bottom: 5px;
 }
 .blog-area .item .info p:last-child {
     font-size: 14px;

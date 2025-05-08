@@ -23,7 +23,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    <span className="fs-3 fw-bold me-3">01</span>  What types of services fall under web development?
+                    <span className="fs-3 fw-bold me-3">01</span> What types of
+                    services fall under web development?
                   </button>
                 </h2>
                 <div
@@ -33,7 +34,9 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Viralon offers custom web design, eCommerce development, CMS solutions, website redesign, web portal development, and ongoing maintenance to meet diverse business needs.
+                    Viralon offers custom web design, eCommerce development, CMS
+                    solutions, website redesign, web portal development, and
+                    ongoing maintenance to meet diverse business needs.
                   </div>
                 </div>
               </div>
@@ -47,7 +50,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    <span className="fs-3 fw-bold me-3">02</span> Why should I choose Viralon over other web development agencies?
+                    <span className="fs-3 fw-bold me-3">02</span> Why should I
+                    choose Viralon over other web development agencies?
                   </button>
                 </h2>
                 <div
@@ -74,7 +78,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    <span className="fs-3 fw-bold me-3">03</span> When is the right time for a website redesign?  
+                    <span className="fs-3 fw-bold me-3">03</span> When is the
+                    right time for a website redesign?
                   </button>
                 </h2>
                 <div
@@ -101,7 +106,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    <span className="fs-3 fw-bold me-3">04</span> How do you support clients after the website launch?
+                    <span className="fs-3 fw-bold me-3">04</span> How do you
+                    support clients after the website launch?
                   </button>
                 </h2>
                 <div

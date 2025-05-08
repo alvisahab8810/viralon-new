@@ -1,7 +1,7 @@
 // components/BrandIdentitySlider.jsx
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow } from "swiper/modules";
+import { Swiper, SwiperSlide  } from "swiper/react";
+import { EffectCoverflow, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
@@ -12,7 +12,6 @@ const brandImages = [
   "/assets/img/our-services/logo-design/img1.png",
   "/assets/img/our-services/logo-design/img2.png",
   "/assets/img/our-services/logo-design/img3.png",
-
   "/assets/img/our-services/logo-design/img1.png",
   "/assets/img/our-services/logo-design/img2.png",
   "/assets/img/our-services/logo-design/img3.png",
@@ -25,9 +24,6 @@ const brandImages = [
   "/assets/img/our-services/logo-design/img1.png",
   "/assets/img/our-services/logo-design/img2.png",
   "/assets/img/our-services/logo-design/img3.png",
-
-  
-
 ];
 
 const BrandIdentitySlider = () => {
@@ -36,18 +32,23 @@ const BrandIdentitySlider = () => {
       <div className="brand-identity-design mx-auto position-relative mx-900">
         <Swiper
           effect="coverflow"
+        
           grabCursor={true}
           centeredSlides={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
           loop={true}
           slidesPerView="4"
+       
           coverflowEffect={{
-            rotate:18,
+            rotate: 18,
             stretch: 0,
             depth: 200,
             modifier: 1.5,
             slideShadows: false,
           }}
-
           breakpoints={{
             320: {
               slidesPerView: 1.2,
@@ -65,7 +66,7 @@ const BrandIdentitySlider = () => {
               slidesPerView: 4,
             },
           }}
-          modules={[EffectCoverflow]}
+             modules={[EffectCoverflow, Autoplay]}
           className="mySwiper"
         >
           {brandImages.map((src, index) => (

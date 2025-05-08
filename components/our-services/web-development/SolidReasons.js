@@ -71,7 +71,8 @@ export default function SolidReasons() {
                 <div className="reasons-bxx">
                   <h3 className="reasons-points">Expert Developers</h3>
                   <p>
-                    Our skilled developers use the latest technology to build high-quality, scalable websites tailored to your needs.
+                    Our skilled developers use the latest technology to build
+                    high-quality, scalable websites tailored to your needs.
                   </p>
                 </div>
               </li>
@@ -81,7 +82,8 @@ export default function SolidReasons() {
                 <div className="reasons-bxx">
                   <h3 className="reasons-points">Tailored Solutions</h3>
                   <p>
-                    We customize every project to align perfectly with your unique business goals and target audience.
+                    We customize every project to align perfectly with your
+                    unique business goals and target audience.
                   </p>
                 </div>
               </li>
@@ -89,9 +91,12 @@ export default function SolidReasons() {
                 <img src="/assets/img/seo/icons/arrow.png"></img>
 
                 <div className="reasons-bxx">
-                  <h3 className="reasons-points">Agile & Transparent Process</h3>
+                  <h3 className="reasons-points">
+                    Agile & Transparent Process
+                  </h3>
                   <p>
-                    We ensure clear communication and agile workflows, keeping clients informed and involved throughout the project.
+                    We ensure clear communication and agile workflows, keeping
+                    clients informed and involved throughout the project.
                   </p>
                 </div>
               </li>
@@ -100,8 +105,10 @@ export default function SolidReasons() {
 
                 <div className="reasons-bxx">
                   <h3 className="reasons-points">Comprehensive Support</h3>
-                   <p>
-                   Viralon provides ongoing maintenance and improvements, ensuring your website remains relevant and performs optimally.
+                  <p>
+                    Viralon provides ongoing maintenance and improvements,
+                    ensuring your website remains relevant and performs
+                    optimally.
                   </p>
                 </div>
               </li>
@@ -111,7 +118,9 @@ export default function SolidReasons() {
                 <div className="reasons-bxx">
                   <h3 className="reasons-points">Industry Expertise</h3>
                   <p>
-                    Our extensive experience across various industries enables us to understand and address unique client challenges effectively.
+                    Our extensive experience across various industries enables
+                    us to understand and address unique client challenges
+                    effectively.
                   </p>
                 </div>
               </li>

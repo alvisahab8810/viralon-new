@@ -122,77 +122,8 @@ export default function CoreTask() {
               </div>
             </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Technical SEO
-                  <br />
-                  Audits
-                </h2>
-                <p>
-                  Our team performs detailed technical audits to identify and
-                  fix issues that may affect your website's performance,
-                  including site speed and mobile-friendliness.
-                </p>
-              </div>
-            </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Keyword Research and
-                  <br /> Optimization
-                </h2>
-                <p>
-                  We conduct thorough keyword research to identify the phrases
-                  your customers use. We then optimize your website's content to
-                  target these keywords, ensuring better search rankings.
-                </p>
-              </div>
-            </SwiperSlide>
 
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  Content Creation and
-                  <br /> Optimization
-                </h2>
-                <p>
-                  High-quality content is essential for effective SEO. Our
-                  experts create and optimize engaging content that aligns with
-                  search engine algorithms, including blog posts, product
-                  descriptions, and other valuable resources.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>Link Building</h2>
-                <p>
-                  Acquiring high-quality, authoritative backlinks is vital for
-                  SEO success. We implement ethical link-building strategies to
-                  enhance your site's authority and credibility, driving more
-                  traffic and improving rankings.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="swiper-slide">
-              <div className="core-bx">
-                <h2>
-                  On-Page and
-                  <br />
-                  Off-Page SEO
-                </h2>
-                <p>
-                  We optimize both on-page elements (titles, meta descriptions,
-                  headers) and off-page factors (backlinks, social signals) to
-                  ensure a comprehensive SEO strategy that maximizes your online
-                  visibility.
-                </p>
-              </div>
-            </SwiperSlide>
           </Swiper>
         </div>
       </div>

@@ -1428,7 +1428,6 @@ ul.import-list li {
     width:10%;
     margin-right: 40px;
     position: relative;
-    z-index: 1;
 }
 
 .main-d-flex .step-box{
@@ -1447,6 +1446,8 @@ ul.import-list li {
     justify-content: center;
     background-color: #5138EE;
     border-radius: 50px;
+    z-index: 100;
+    position: relative;
 }
 .main-d-flex{
     align-items: center;
@@ -1917,7 +1918,7 @@ figure.image-2 img {
     padding-bottom: 50px;
 }
 
-
+/* 
 .col-lg-6.mt-5.mt-lg-0::before {
     content: '';
     position: absolute;
@@ -1926,9 +1927,19 @@ figure.image-2 img {
     left: 7%;
     bottom: 0;
     
-    /* width:2px; */
+    
+} */
+.nubmer-lists::before {
+    content:'';
+    position:absolute;
+    /* border:1px solid #ddd; */
+    height: 300px;
+    width: 1px;
+    background: white;
+    top: -100px;
+    left: 50%;
+    z-index: 0!important;
 }
-
 .col-lg-6.mt-5.mt-lg-0{
     position:relative;
 }

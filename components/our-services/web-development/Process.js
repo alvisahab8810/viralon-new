@@ -10,15 +10,27 @@ export default function Process() {
           <div className="row pt-100">
             <div className="col-lg-6">
               <h1 className="process-heading">
-                Our Proven Web 
+                Our Proven Web
                 <br /> Development Process
               </h1>
               <div className="max-500 mt-5">
                 <p>
-                   Viralon’s structured methodology emphasizes strong collaboration, complete transparency, and agile practices. We prioritize delivering projects on time and within scope while aligning with your business objectives to ensure measurable success and sustained growth.
+                  Viralon’s structured methodology emphasizes strong
+                  collaboration, complete transparency, and agile practices. We
+                  prioritize delivering projects on time and within scope while
+                  aligning with your business objectives to ensure measurable
+                  success and sustained growth.
                 </p>
                 <p>
-                   Our agile approach enables us to adapt swiftly to changes, allowing for iterative improvements and timely delivery. By closely aligning the development process with your business objectives and target audience needs, we create tailored solutions that not only meet but exceed expectations. This comprehensive process ensures your website is delivered on schedule and operates efficiently, providing a solid foundation for sustained growth, increased engagement, and measurable success in the digital landscape.
+                  Our agile approach enables us to adapt swiftly to changes,
+                  allowing for iterative improvements and timely delivery. By
+                  closely aligning the development process with your business
+                  objectives and target audience needs, we create tailored
+                  solutions that not only meet but exceed expectations. This
+                  comprehensive process ensures your website is delivered on
+                  schedule and operates efficiently, providing a solid
+                  foundation for sustained growth, increased engagement, and
+                  measurable success in the digital landscape.
                 </p>
               </div>
               <button className="process-btn mt-4">LET’S TALK</button>
@@ -43,7 +55,9 @@ export default function Process() {
                       <h2>Questionnaire & Consultation</h2>
 
                       <p>
-                        This section clearly outlines the importance of understanding the client's vision and goals, which is crucial for a successful project.
+                        This section clearly outlines the importance of
+                        understanding the client's vision and goals, which is
+                        crucial for a successful project.
                       </p>
                     </div>
                   </div>
@@ -69,7 +83,9 @@ export default function Process() {
                       <h2>Audience & Competitor Analysis</h2>
 
                       <p>
-                         We conduct thorough research on your target audience and competitors to craft strategic design and development decisions that set you apart.
+                        We conduct thorough research on your target audience and
+                        competitors to craft strategic design and development
+                        decisions that set you apart.
                       </p>
                     </div>
                   </div>
@@ -95,7 +111,9 @@ export default function Process() {
                       <h2>Design & Prototyping</h2>
 
                       <p>
-                        This emphasizes the importance of client feedback, which is essential for ensuring the final product meets expectations.
+                        This emphasizes the importance of client feedback, which
+                        is essential for ensuring the final product meets
+                        expectations.
                       </p>
                     </div>
                   </div>
@@ -120,7 +138,9 @@ export default function Process() {
                     <div className="width-80">
                       <h2>Development & Testing</h2>
                       <p>
-                        This section reassures clients about the quality and performance of the final product through rigorous testing.
+                        This section reassures clients about the quality and
+                        performance of the final product through rigorous
+                        testing.
                       </p>
                     </div>
                   </div>
@@ -145,7 +165,8 @@ export default function Process() {
                     <div className="width-80">
                       <h2>Launch & Support</h2>
                       <p>
-                        This conveys a commitment to ongoing support, which is vital for client satisfaction and long-term success.
+                        This conveys a commitment to ongoing support, which is
+                        vital for client satisfaction and long-term success.
                       </p>
                     </div>
                   </div>
