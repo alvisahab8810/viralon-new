@@ -2162,8 +2162,8 @@ img.shape.p-absolute {
 .logo-sliders .mySwiper .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 250px;
-  height: 350px;
+  width: 185px;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2179,15 +2179,15 @@ img.shape.p-absolute {
   border-radius: 2rem;
 } */
 .logo-sliders .mySwiper .swiper-slide img {
-    width: 100px;
-    height: 300px;
+    width: 185px;
+    height: 450px;
     object-fit: cover;
     border-radius: 50px;
 }
 
 .logo-sliders .mySwiper .swiper-slide-active img {
-    height: 225px !important;
-    width: auto !important;
+    height: auto !important;
+    width: 100% !important;
     border-radius: 18px !important;
 }
 #logo-design .core-bx {
@@ -2272,3 +2272,5 @@ img.shape.p-absolute {
 .mx-900{
     max-width: 900px;;
 }
+
+

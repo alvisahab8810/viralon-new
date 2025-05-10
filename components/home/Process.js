@@ -29,11 +29,8 @@ export default function Process() {
                     </div>
                     <div className="right-para animate__animated animate__bounce animate__delay-2s">
                       <p className="fris-para">
-                        Ace your brand game with our dedicated client manager.
-                        Our managers are here to support you every step of the
-                        way, whether it's in business strategy or providing
-                        solid support.
-                      </p>
+                         A Dedicated Client Manager is your trusted partner who knows your brand inside out. Expect faster communication, personalised strategies, and smooth execution—saving you time and keeping your goals on track.
+                       </p>
                     </div>
                   </div>
                 </li>
@@ -53,10 +50,7 @@ export default function Process() {
                     </div>
                     <div className="right-para animate__animated animate__bounce animate__delay-2s">
                       <p className="fris-para">
-                        Get the scoop with our monthly reports and analytics for
-                        clear performance metrics and insights on what’s rocking
-                        and what needs a tweak. Our reports are super sleek,
-                        with no jargon just straight-up results!
+                         Receive clear, straightforward monthly reports that keep you fully informed on campaign performance. These insights empower you to see how your investment grows and help optimise every step.
                       </p>
                     </div>
                   </div>
@@ -73,13 +67,11 @@ export default function Process() {
                   <div className="why-us-content-bx">
                     <div className="first-content">
                       <span className="why-numbers">3</span>
-                      <h3>ROI focused Approach</h3>
+                      <h3>ROI-focused Approach</h3>
                     </div>
                     <div className="right-para">
                       <p className="fris-para">
-                        We’re ROI obsessed. From targeting the perfect audience
-                        to running impactful campaigns, every step is
-                        data-driven to achieve measurable success.
+                        We’re all about supercharging your growth—let’s make your budget work harder for you! We ensure you get the most value from your budget by driving real conversions and measurable success that align with your objectives.
                       </p>
                     </div>
                   </div>
@@ -100,10 +92,7 @@ export default function Process() {
                     </div>
                     <div className="right-para">
                       <p className="fris-para">
-                        We're a crew of digital experts, from social media
-                        marketing, branding, paid media marketing, web
-                        development, and more. We're all about bringing fresh,
-                        innovative solutions to level up your brand game.
+                        Think of us as an extension of your team, passionate about turning your vision into reality. Our diverse team crafts innovative, customised strategies tailored to meet your unique challenges and goals.
                       </p>
                     </div>
                   </div>

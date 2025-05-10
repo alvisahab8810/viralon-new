@@ -10,19 +10,25 @@ export default function Process() {
           <div className="row pt-100">
             <div className="col-lg-6">
               <h1 className="process-heading">
-              Data-Powered<br/>
-              SEO Strategies
+                Data-Powered
+                <br />
+                SEO Strategies
               </h1>
               <div className="max-500 mt-5">
                 <p>
-                At Viralon, we believe that effective SEO is built on a foundation of thorough research and strategic planning. Our comprehensive approach ensures that every aspect of your SEO is meticulously crafted to drive results. Here’s how we do it:
+                  At Viralon, we firmly believe that effective SEO is built on a
+                  solid foundation of thorough research and strategic planning.
+                  Our comprehensive approach ensures that every aspect of your
+                  SEO strategy is meticulously crafted to drive meaningful
+                  results. With in-depth keyword research and analysis of your
+                  competitors and industry trends, we develop a strategy that
+                  sets you apart. We optimise your website’s structure, content,
+                  and technical elements to enhance user experience and
+                  visibility. By continuously making data-driven adjustments, we
+                  ensure your growth and long-term success.
                 </p>
 
-                <h1 className="process-heading">
-                Data-Powered<br/>
-                SEO Strategies
-              </h1>
-               
+          
               </div>
               <button className="process-btn mt-5">LET’S TALK</button>
             </div>
@@ -74,9 +80,9 @@ export default function Process() {
                       <h2>Competitor Analysis</h2>
 
                       <p>
-                        We analyze your competitors to uncover their strategies,
-                        helping us create plans that give you a competitive
-                        edge.
+                        We analyse your competitors to uncover their strategies,
+                        helping us create plans that give you a competitive edge
+                        and help you stand out in the crowd.
                       </p>
                     </div>
                   </div>
@@ -103,7 +109,7 @@ export default function Process() {
 
                       <p>
                         Our team develops a tailored SEO strategy that aligns
-                        with your business goals and targets user intent to
+                        with your vision and resonates with your audience to
                         drive relevant traffic.
                       </p>
                     </div>

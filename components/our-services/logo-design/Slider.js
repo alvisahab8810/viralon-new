@@ -38,24 +38,28 @@ const images = [
 
 const ProductCoverflowSlider = () => {
   return (
-    <div className="container logo-sliders w-full max-w-6xl pt-10 mx-auto mx-900">
+    <div className="container logo-sliders w-full max-w-6xl mx-auto ptb-50">
       <Swiper
         effect={'coverflow'}
-        slidesPerView={3}
+        slidesPerView={2.5}
         grabCursor={true}
         centeredSlides={true}
         loop={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 110,
-          modifier: 1,
+          depth: 220,
+          modifier: 2.5,
           slideShadows: false,
         }}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+
+
+
+
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
           320: {
             slidesPerView: 1.8,
@@ -74,8 +78,8 @@ const ProductCoverflowSlider = () => {
             spaceBetween: 20,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 30,
+            slidesPerView: 2.5,
+            spaceBetween: 10,
           },
         }}
         modules={[EffectCoverflow, Autoplay]}
@@ -85,11 +89,13 @@ const ProductCoverflowSlider = () => {
           <SwiperSlide
             key={index}
             className="rounded-3xl overflow-hidden w-[160px] h-[300px] sm:h-[350px] md:h-[400px] lg:w-[250px] lg:h-[500px]"
+       
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
               className="object-cover w-full h-full"
+              
             />
           </SwiperSlide>
         ))}

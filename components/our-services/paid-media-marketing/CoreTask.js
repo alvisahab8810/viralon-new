@@ -12,10 +12,7 @@ export default function CoreTask() {
             <div className="devider"></div>
 
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it{" "}
+               Our focused approach combines strategic planning, precise targeting, creative ad development, and data-driven analysis to deliver impactful campaigns that resonate with your audience and maximise your return on investment.
             </p>
           </div>
           <Swiper
@@ -52,7 +49,7 @@ export default function CoreTask() {
               },
             }}
             modules={[Autoplay, Navigation]}
-            className="swiper mySwiper4 pt-50"
+            className="swiper mySwiper4 "
           >
             <SwiperSlide className="swiper-slide">
               <div className="core-bx">
@@ -63,7 +60,7 @@ export default function CoreTask() {
                 <p>
                   Our experts meticulously plan your paid media campaigns,
                   identifying the most effective platforms, targeting options,
-                  and ad formats to achieve your specific marketing goals.
+                  and ad formats to achieve your Unique goals.
                 </p>
               </div>
             </SwiperSlide>
@@ -72,7 +69,7 @@ export default function CoreTask() {
               <div className="core-bx">
                 <h2>
                   Keyword Research and
-                  <br /> Optimization
+                  <br /> Optimisation
                 </h2>
                 <p>
                   We conduct comprehensive keyword research to ensure your ads

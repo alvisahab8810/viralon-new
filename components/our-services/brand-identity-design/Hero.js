@@ -20,7 +20,7 @@ export default function Hero() {
               brand stand our through our expert logo design solutions.
             </p>
           </div>
-{/* 
+           {/* 
           <div className="image-column col-xl-12 col-lg-12 col-md-12 col-sm-12 pb-100">
             <div className="inner-column">
               <figure className="image-1 overlay-anim animated">

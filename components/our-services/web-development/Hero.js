@@ -16,7 +16,7 @@ export default function Hero() {
             </p> */}
           </div>
 
-          <div className="tech-logos">
+          <div className="tech-logos pb-100">
             <img
               src="/assets/img/our-services/web-development/logos.png"
               alt="Tech Logos"

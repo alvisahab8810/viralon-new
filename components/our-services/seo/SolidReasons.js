@@ -114,8 +114,7 @@ export default function SolidReasons() {
                 <div className="reasons-bxx">
                   <h3 className="reasons-points">Long-Term Results</h3>
                   <p>
-                    We focus on sustainable, long-term SEO success, not
-                    short-lived tactics.
+                    We focus on sustainable, long-term SEO success that thrives for years to come.
                   </p>
                 </div>
               </li>

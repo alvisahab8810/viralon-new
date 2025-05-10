@@ -17,10 +17,11 @@ export default function Hero() {
             </h1>
             <p>
               In today’s competitive digital landscape, having a strong online
-              presence is essential for success. At Viralon, we specialize in
+              presence is essential for success. At Viralon, we specialise in
               comprehensive SEO services that elevate your website’s visibility,
               attract organic traffic, and convert visitors into loyal
-              customers.
+              customers. Let’s transform your online presence together!
+
             </p>
           </div>
 

@@ -40,16 +40,15 @@ export default function Significance() {
           <div className="signifinace-col5">
             <h2>Cost-Effective</h2>
             <p>
-              Compared to paid advertising, SEO offers long-term benefits at a
-              lower cost.
+              Compared to paid advertising, SEO offers long-term benefits at a lower cost, making it a smart investment in your brand’s future.
+
             </p>
           </div>
 
           <div className="signifinace-col5">
             <h2>Better User Experience</h2>
             <p>
-              SEO optimization often leads to improvements in your website's
-              overall user experience.
+             SEO optimisation often leads to improvements in your website's overall user experience, which keeps visitors engaged and satisfied.
             </p>
           </div>
         </div>

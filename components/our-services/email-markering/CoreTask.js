@@ -7,7 +7,7 @@ export default function CoreTask() {
     <>
       <div className="email-core-task core-task-bg ptb-100">
         <div className="container">
-          <div className="core-content">
+          <div className="core-content pb-50">
             <h1>Core Tasks in Viralon's Email Marketing</h1>
             <div className="devider"></div>
             <p>
@@ -48,7 +48,7 @@ export default function CoreTask() {
               },
             }}
             modules={[Autoplay, Navigation]}
-            className="swiper mySwiper4 pt-30"
+            className="swiper mySwiper4 "
           >
             <SwiperSlide className="swiper-slide">
               <div className="core-bx">
