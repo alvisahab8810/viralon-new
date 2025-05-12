@@ -734,7 +734,14 @@ footer .before-bg::before {
 
 @media(max-width:560px){
 
+   #brand-identity .our-work-section .banner-one-item h2 {
+        max-width: 280px;
+    }
 
+    #brand-identity .our-work-primary .banner-one-item img {
+        right: 78px;
+        top: 61%;
+    }
     .accordion-portfolio-lists li::after {
         opacity: 80%!important;
     }

@@ -2206,9 +2206,9 @@ img.shape.p-absolute {
 
 .brand-identity-design .mySwiper .swiper-slide img {
     width: 300px;
-    height: 300px;
+    height: auto;
     object-fit: cover;
-    border-radius: 18px;
+    border-radius: unset;
 }
 
 
@@ -2255,12 +2255,7 @@ img.shape.p-absolute {
   
 } */
 
-.brand-identity-design .mySwiper .swiper-slide img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 18px;
-}
+
 
 #web-development .swiper-coverflow .swiper-slide img{
     border-radius: 18px!important;
@@ -2274,3 +2269,8 @@ img.shape.p-absolute {
 }
 
 
+
+
+.blog-area.full-blog.single .item .info{
+    background-color: transparent;
+}

@@ -114,18 +114,21 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/autoplay';
 
 const brandImages = [
-  '/assets/img/our-services/logo-design/img1.png',
-  '/assets/img/our-services/logo-design/img2.png',
-  '/assets/img/our-services/logo-design/img3.png',
-  '/assets/img/our-services/logo-design/img1.png',
-  '/assets/img/our-services/logo-design/img2.png',
-  '/assets/img/our-services/logo-design/img3.png',
-  '/assets/img/our-services/logo-design/img1.png',
-  '/assets/img/our-services/logo-design/img2.png',
-  '/assets/img/our-services/logo-design/img3.png',
-  '/assets/img/our-services/logo-design/img1.png',
-  '/assets/img/our-services/logo-design/img2.png',
-  '/assets/img/our-services/logo-design/img3.png'
+  '/assets/img/our-services/branding/hero/img1.png',
+  '/assets/img/our-services/branding/hero/img2.png',
+  '/assets/img/our-services/branding/hero/img3.png',
+  '/assets/img/our-services/branding/hero/img4.png',
+  '/assets/img/our-services/branding/hero/img5.png',
+  '/assets/img/our-services/branding/hero/img6.png',
+  '/assets/img/our-services/branding/hero/img7.png',
+  '/assets/img/our-services/branding/hero/img1.png',
+  '/assets/img/our-services/branding/hero/img2.png',
+  '/assets/img/our-services/branding/hero/img3.png',
+  '/assets/img/our-services/branding/hero/img4.png',
+  '/assets/img/our-services/branding/hero/img5.png',
+  '/assets/img/our-services/branding/hero/img6.png',
+  '/assets/img/our-services/branding/hero/img7.png'
+
   // Add more images as needed
 ];
 

@@ -16,6 +16,7 @@ import CoreTask from "../../components/our-services/brand-identity-design/CoreTa
 import Process from "../../components/our-services/brand-identity-design/Process";
 import Significance from "../../components/our-services/brand-identity-design/Significance";
 import SolidReasons from "../../components/our-services/brand-identity-design/SolidReasons";
+import OurWork from "../../components/our-services/brand-identity-design/OurWork";
 
 export default function BrandIdentityDesign() {
   return (
@@ -23,6 +24,7 @@ export default function BrandIdentityDesign() {
       <Topbar />
       <Slider/>
       <Hero/>
+      <OurWork/>
        <CoreTask/>
       <Process/>
       <CTA />

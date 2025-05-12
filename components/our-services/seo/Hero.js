@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="container">
           <div className="seo-hero-content">
             <h1>
-              Grow Your Revenue with Virlon’s <br />
+              Grow Your Revenue with Viralon’s <br />
               <span>
                 <b>Expert SEO Services</b>
               </span>

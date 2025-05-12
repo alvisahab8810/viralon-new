@@ -7,7 +7,7 @@ import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 export default function OurWork() {
   return (
     <div className="our-work-primary">
-      <section className="our-work-section pt-100">
+      <section className="our-work-section pb-100">
         <div className="container">
           <div className="row align-center  m-auto">
             <div className="col-lg-7 banner-one-item">
@@ -27,70 +27,70 @@ export default function OurWork() {
               <div className="our-work-row mobile-none">
                 <div className="our-work-items">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img1.png"
+                    src="/assets/img/our-services/branding/our-work/img1.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img2.png"
+                    src="/assets/img/our-services/branding/our-work/img2.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img3.png"
+                    src="/assets/img/our-services/branding/our-work/img3.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img4.png"
+                    src="/assets/img/our-services/branding/our-work/img4.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img5.png"
+                    src="/assets/img/our-services/branding/our-work/img5.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items mt-15">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img6.png"
+                    src="/assets/img/our-services/branding/our-work/img6.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items mt-15">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img7.png"
+                    src="/assets/img/our-services/branding/our-work/img7.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items mt-15">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img8.png"
+                    src="/assets/img/our-services/branding/our-work/img8.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items mt-15">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img9.png"
+                    src="/assets/img/our-services/branding/our-work/img9.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
 
                 <div className="our-work-items mt-15">
                   <img
-                    src="/assets/img/our-services/smm/our-work/img10.png"
+                    src="/assets/img/our-services/branding/our-work/img10.png"
                     alt="Our Work Image"
                   ></img>
                 </div>
@@ -107,70 +107,70 @@ export default function OurWork() {
                   <div className="scroller__inner">
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img1.png"
+                        src="/assets/img/our-services/branding/our-work/img1.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img2.png"
+                        src="/assets/img/our-services/branding/our-work/img2.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img3.png"
+                        src="/assets/img/our-services/branding/our-work/img3.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img4.png"
+                        src="/assets/img/our-services/branding/our-work/img4.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img5.png"
+                        src="/assets/img/our-services/branding/our-work/img5.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img6.png"
+                        src="/assets/img/our-services/branding/our-work/img6.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img7.png"
+                        src="/assets/img/our-services/branding/our-work/img7.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img8.png"
+                        src="/assets/img/our-services/branding/our-work/img8.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img9.png"
+                        src="/assets/img/our-services/branding/our-work/img9.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
 
                     <div className="our-work-items">
                       <img
-                        src="/assets/img/our-services/smm/our-work/img10.png"
+                        src="/assets/img/our-services/branding/our-work/img10.png"
                         alt="Our Work Image"
                       ></img>
                     </div>
