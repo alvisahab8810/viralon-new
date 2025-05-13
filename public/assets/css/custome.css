@@ -2274,3 +2274,12 @@ img.shape.p-absolute {
 .blog-area.full-blog.single .item .info{
     background-color: transparent;
 }
+
+
+#prouduction .about-section1 .image-column .inner-column {
+    position: relative;
+    padding-right: 0px;
+}
+#prouduction .core-bx {
+    height: 200px;
+}

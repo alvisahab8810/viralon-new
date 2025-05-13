@@ -76,6 +76,7 @@ export default function Hero() {
           <div className="row">
             <ul className="accordion-portfolio-lists text-light" id="accordion">
               <li
+               className="out"
                 style={{
                   backgroundImage: "url('assets/img/portfolio/h1.webp')",
                 }}
@@ -94,7 +95,7 @@ export default function Hero() {
                    >
                      <i className="fas fa-arrow-right"></i>
                    </a>
-                 </div>
+                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Search Engine Optimization</h2>
@@ -128,7 +129,7 @@ export default function Hero() {
                </div>
               </li>
               <li
-                className="out"
+               
                 style={{
                   backgroundImage: "  url('assets/img/portfolio/h2.webp')",
                 }}

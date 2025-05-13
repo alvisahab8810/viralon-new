@@ -8,6 +8,10 @@
 
 
 @media (max-width: 1380px) and (min-width: 1240px) {
+
+    #prouduction .core-bx {
+    height: 230px;
+}
     #web-development .core-bx {
         height: 278px;
     }
@@ -1727,6 +1731,10 @@ ul.import-list li {
 
 
 @media(max-width:540px){
+
+    #prouduction .core-bx {
+    height: 172px;
+}
 
     .col-lg-6.mt-5.mt-lg-0::before {
         left: 10.3%;
