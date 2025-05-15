@@ -17,8 +17,8 @@ export default function Journey() {
         </div>
 
         <div className="container card_section">
-          <div className="row pt-80">
-            <div className="col-md-6">
+          <div className="tabs-row pt-50">
+            <div className="intern-bx">
               <Link href="/jobs?tab=internship">
                 <div className="card">
                   <img
@@ -29,13 +29,13 @@ export default function Journey() {
                   />
                   <div className="card-body card-body2 ">
                     <h5 className="card_title text-center">
-                      Experienced Professional
+                      Internship Program  
                     </h5>
                   </div>
                 </div>
               </Link>
             </div>
-            <div className="col-md-6">
+            <div className="experience-bx">
               <Link href="/jobs?tab=experienced">
                 <div className="card">
                   <img
@@ -47,7 +47,7 @@ export default function Journey() {
                   />
                   <div className="card-body card-body1 ">
                     <h5 className="card_title text-center">
-                      Internship Program
+                      Experienced Professional
                     </h5>
                   </div>
                 </div>

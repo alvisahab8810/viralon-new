@@ -43,7 +43,7 @@ export default function Jobs() {
               aria-controls="pills-home"
               aria-selected={activeTab === "internship"}
             >
-              Experienced professional
+              Internship Program
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -103,13 +103,13 @@ export default function Jobs() {
                         Strong portfolio showcasing diverse writing samples.
                       </li>
                     </ul>
-                    <div className="learn-more">
+                    <Link href="/jobs/content-writer-intern" className="learn-more">
                       <span className="marcellus-regular">LEARN MORE</span>
                       <img
                         src="./assets/img/icon/up-arrow2.png"
                         alt="arrow-img"
                       ></img>
-                    </div>
+                    </Link>
                   </div>
                   <div className="position-img flex-grow-1">
                     <img

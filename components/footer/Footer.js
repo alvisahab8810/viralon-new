@@ -24,23 +24,23 @@ export default function Footer() {
                 <span>We Do.</span>{" "}
               </p>
               <div className="social-icons">
-                <Link href="https://wa.me/918882701800?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Tourwatchout">
+                <Link href="https://wa.me/9193054 51301?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Viralon">
                   {" "}
                   <i className="ri-whatsapp-line"></i>{" "}
                 </Link>
-                <Link href="https://www.instagram.com/tourwatchout/">
+                <Link href="https://www.instagram.com/viralon_digital_services/">
                   {" "}
                   <i className="ri-instagram-line"></i>{" "}
                 </Link>
-                <Link href="https://www.facebook.com/TourWatchout/">
+                <Link href="https://www.facebook.com/people/Viralon-Digital-Services/61551774960535/?mibextid=LQQJ4d">
                   {" "}
                   <i className="ri-facebook-fill"></i>{" "}
                 </Link>
-                <Link href="https://www.instagram.com/tourwatchout/">
+                <Link href="https://www.youtube.com/@ViralonDigtialServices">
                   {" "}
                   <i className="ri-youtube-line"></i>{" "}
                 </Link>
-                <Link href="https://www.facebook.com/TourWatchout/">
+                <Link href="https://www.linkedin.com/company/viralon-digital-services/">
                   {" "}
                   <i className="ri-linkedin-fill"></i>{" "}
                 </Link>
@@ -82,19 +82,21 @@ export default function Footer() {
                   <b>ADDRESS:</b>
                   <br />
                   <Link href="#">
-                    5919 Trussville Crossings Pkwy, Birmingham{" "}
+                    Viralon Digital Services<br/>
+                    12th Floor, B Wing, Summit Building<br/>
+                    Vibhuti Khand, Gomti Nagar, Lucknow-226010<br/>
                   </Link>{" "}
                 </li>
                 <li>
                   {" "}
                   <b>EMAIL:</b>
                   <br />
-                  <Link href="#">info@valldtheme.com </Link>
+                  <Link href="mailto:info@viralon.in">info@viralon.in</Link>
                 </li>
                 <li>
                   <b>PHONE:</b>
                   <br />
-                  <Link href="#"> +123 34598768 </Link>
+                  <Link href="tel:+91 93054 51301"> +91 93054 51301 </Link>
                 </li>
               </ul>
             </div>

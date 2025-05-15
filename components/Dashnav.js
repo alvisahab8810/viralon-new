@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Dashnav() {
   return (
-    <div className="main-nav">
+    <div className="main-nav dash-nav">
       <nav className="navbar">
         <div className="col-12">
           <div className="navbar-header">

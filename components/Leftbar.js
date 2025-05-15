@@ -83,12 +83,24 @@ export default function Leftbar() {
                 <span>New Post</span>{" "}
               </Link>{" "}
             </li>
+
+
             <li>
+              <Link
+                href="#"
+                className="toggled waves-effect waves-block"
+              >
+
+                <i className="zmdi zmdi-email"></i>
+                <span>Careers Response</span>{" "}
+              </Link>{" "}
+            </li>
+            {/* <li>
               <a href="#" className=" waves-effect waves-block">
                 <i className="zmdi zmdi-sort-amount-desc"></i>
                 <span>Blog List</span>{" "}
               </a>{" "}
-            </li>
+            </li> */}
 
             <li className="header">CATEGORIES</li>
             <li>

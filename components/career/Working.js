@@ -5,7 +5,7 @@ export default function Working() {
     <>
       <section className="love-working-section">
         <div className="container pt-80">
-          <h2 className="v-heading marcellus-regular">
+          <h2 className="v-heading marcellus-regular mb-0">
             Why you’ll Love working at viralon
           </h2>
 

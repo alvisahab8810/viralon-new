@@ -1,24 +1,26 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 export default function Employes() {
   return (
     <>
       <div className="employee_section ">
         <div className="container pt-80">
-          <h2 className="text-center marcellus-regular">
+          <h2 className="text-center marcellus-regular mb-0">
             Hear From Our Employees
           </h2>
 
           <Swiper
+
+          
             spaceBetween={20}
-            centeredSlides={true}
+            // centeredSlides={true}
             loop={true}
             slidesPerView={5}
-            // autoplay={{
-            //   delay: 2500,
-            //   disableOnInteraction: false,
-            // }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
             pagination={{
               clickable: true,
             }}
@@ -44,7 +46,7 @@ export default function Employes() {
                 spaceBetween: 20,
               },
             }}
-            modules={[Autoplay, Navigation]}
+            modules={[Autoplay, Navigation, Pagination]}
             className="swiper mySwiper emp-row pt-50"
           >
             <SwiperSlide className="emp-bx">
@@ -64,7 +66,7 @@ export default function Employes() {
                 </p>
 
                 <h5 className="marcellus-regular">Riya Tiwari</h5>
-                <h6 className="emp-desg">Graphic Designer</h6>
+                <h6 className="emp-desg">Creative Manager</h6>
               </div>
 
               <div className="quote-bx">
@@ -177,7 +179,7 @@ export default function Employes() {
                 </p>
 
                 <h5 className="marcellus-regular">Riya Tiwari</h5>
-                <h6 className="emp-desg">Graphic Designer</h6>
+                <h6 className="emp-desg">Crative Manager</h6>
               </div>
 
               <div className="quote-bx">
@@ -273,6 +275,8 @@ export default function Employes() {
                 <img src="./assets/img/icon/quote.png" alt="Quote Icon"></img>
               </div>
             </SwiperSlide>
+
+            <div className="swiper-pagination"></div>
           </Swiper>
         </div>
       </div>

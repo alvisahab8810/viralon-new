@@ -1726,6 +1726,23 @@ ul.import-list li {
     font-size: 13px;
     line-height: 1.5;
 }
+
+      .job_description {
+        padding: 3rem 3rem;
+      }
+      .job_description h1 {
+        font-size: 1.5rem;
+      }
+      .job_description h2 {
+        font-size: 1.25rem;
+      }
+      .job_description .info-text {
+        font-size: 1rem;
+      }
+      .job_description p,
+      .job_description ul {
+        font-size: 1rem;
+      }
 }
 
 
