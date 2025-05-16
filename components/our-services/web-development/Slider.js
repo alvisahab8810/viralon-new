@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 
 const brandImages = [
-  "/assets/img/our-services/logo-design/img1.png",
+  "/assets/img/our-services/web-development/img1.png",
   "/assets/img/our-services/logo-design/img2.png",
   "/assets/img/our-services/logo-design/img3.png",
   "/assets/img/our-services/logo-design/img1.png",

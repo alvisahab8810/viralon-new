@@ -20,7 +20,7 @@ export default function Journey() {
           <div className="tabs-row pt-50">
             <div className="intern-bx">
               <Link href="/jobs?tab=internship">
-                <div className="card">
+                <div className="card overlay-anim">
                   <img
                     alt="Experienced professionals collaborating"
                     className="card-img-top"
@@ -37,7 +37,7 @@ export default function Journey() {
             </div>
             <div className="experience-bx">
               <Link href="/jobs?tab=experienced">
-                <div className="card">
+                <div className="card overlay-anim">
                   <img
                     alt="Group of interns working together"
                     className="card-img-top"
