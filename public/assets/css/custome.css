@@ -1313,11 +1313,11 @@ ul.import-list li {
     height: auto;
 }
 
-.seo-hero-img {
+/* .seo-hero-img {
     position: relative;
-    height: 377px; /* Set height as needed */
+    height: 377px; 
     overflow: hidden;
-}
+} */
 
 .seo-hero-content {
     padding-bottom: 20px;
@@ -1326,14 +1326,14 @@ ul.import-list li {
 .seo-hero.about-section1 {
     padding-bottom: 100px;
 }
-.seo-hero-img img {
+/* .seo-hero-img img {
     position: absolute;
     top: -115%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%; /* Make it square */
+    width: 100%;
     height: auto;
-    border-radius: 50%; /* Make it a circle */
+    border-radius: 50%;
     animation: rotateCircle 200s linear infinite;
 }
   
@@ -1344,7 +1344,7 @@ ul.import-list li {
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
     }
-}
+} */
 
 
 .core-content h1{
@@ -2565,4 +2565,376 @@ img.shape.p-absolute {
 .news-emailbx button:hover i{
     transform: rotate(4deg);
 
+}
+
+.career-response .pagination{
+      display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.career-response .circle-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+        background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    color: white;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+.career-response .circle-btn i{
+    margin:0;
+}
+
+.career-response .circle-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.career-response .circle-btn:hover:not(:disabled) {
+      background-color: #fe7b62;
+
+}
+
+.career-response button.download-btn.btn.btn-sm.btn-primary {
+    font-weight: normal;
+}
+.career-response .btn-delete {
+    background: transparent;
+    color: #5a5a5a;
+    padding: 0;
+    height: 30px;
+    display: flex
+;
+    justify-content: center;
+    width: 30px;
+    align-items: center;
+    background: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 5px;
+    border-radius: 50px;
+    margin: auto;
+}
+
+.career-response .btn-delete i{
+    margin:0;
+}
+
+.career-response .react-confirm-alert-body h1{
+    font-size: 22px;;
+}
+
+.react-confirm-alert-body > h1 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.react-confirm-alert-button-group > button {
+    outline: none;
+    background: #333;
+    border: none;
+    display: inline-block;
+    background: linear-gradient(90deg, rgb(255, 111, 97) 29%, rgb(251, 160, 101) 95%)!important;
+    padding: 6px 18px;
+    color: #eee;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.career-response .filters select{
+    height: 45px;
+}
+
+.career-response .filters input{
+    height: 45px;
+    min-height: 45px;;
+}
+.career-response .filters input::placeholder{
+    color:#111;
+}
+
+.career-response .filters.row.mb-3 {
+    background: white;
+    padding: 15px 0px;
+    border: 1px solid #E3E3E3;
+    margin-left: 0;
+    margin-right: 0;;
+}
+
+.career-response .btn-export {
+    background: green;
+    padding: 10px 15px !important;
+    margin-top: 0;
+}
+
+.log-out-btn button{
+    background:transparent;
+    padding:0;
+}
+
+
+.login-admin .l-cyan {
+    /* background: linear-gradient(45deg, #49cdd0, #00bcd4) !important; */
+    color: #fff !important;
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%)!important;
+    padding: 10px 50px !important;
+    font-weight: 500!important;
+}
+
+
+.query-response .btn-delete {
+    background: transparent;
+    color: #5a5a5a;
+    padding: 0;
+    height: 30px;
+    display: flex
+;
+    justify-content: center;
+    width: 30px;
+    align-items: center;
+    background: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 5px;
+    border-radius: 50px;
+    margin: auto;
+}
+
+.query-response .btn-delete i{
+    margin:0;
+}
+
+
+.input-group-addon i{
+    color:white;
+}
+
+.filters-btns button {
+    border-radius: 50px !important;
+    height: 45px;
+    margin: 0;
+}
+
+.filters-btns button i{
+ font-size: 19px;;
+}
+
+.filters-btns{
+    padding-bottom: 7px;;
+}
+
+.career-response .table td input{
+    border-radius: 4px!important;
+}
+
+.table-responsive-custom {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-responsive-custom table {
+  min-width: 1200px; /* or more based on number of columns */
+  white-space: nowrap; /* Prevents text from wrapping in td */
+}
+
+.table-responsive-custom th,
+.table-responsive-custom td {
+  white-space: nowrap;
+}
+
+
+.table-responsive-custom
+ .table thead th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+
+
+.contact-us-heading {
+    font-size: 270px;
+    color: transparent !important;
+    text-align: center;
+    -webkit-text-stroke: 1px #ffffff99;
+    opacity: 0.6;
+    font-weight: 500;
+}
+
+
+.contact-sub {
+    font-size: 50px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+.our-contact-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    transform: translate(-50%, -50%);
+}
+
+.contact-hero-content{
+    position: relative;
+}
+
+.our-contact-overlay p {
+    margin-bottom: 0;
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Manrope';
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+
+
+
+
+
+ .have-questions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+    .have-questions .left,
+    .have-questions .right {
+      flex: 1 1 400px;
+      min-width: 300px;
+    }
+    .have-questions .subtitle {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      border: none;
+      padding: 0;
+      background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .have-questions h1,
+    .have-questions h2 {
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    .have-questions h1 {
+      font-size: 40px;
+    }
+    .have-questions h2 {
+      font-size: 25px;
+    }
+    .have-questions form input,
+    .have-questions form textarea {
+      background: transparent;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      color: #6C757D;
+      font-size: 13px;
+      padding: 0rem 1rem;
+      min-height: 45px;
+      height: 45px;
+      width: 100%;
+      margin-bottom: 15px;
+      transition: border-color 0.3s ease;
+    }
+    .have-questions form input::placeholder,
+    .have-questions form textarea::placeholder {
+      color: #6c757d;
+    }
+    .have-questions form input:focus,
+    .have-questions form textarea:focus {
+      outline: none;
+      border-color: #ff6f5b;
+      background-color: #fff;
+      color: #000;
+    }
+    .have-questions form textarea {
+      resize: none;
+      min-height: 150px;
+      padding-top: 10px;
+    }
+    .have-questions .form-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .have-questions .form-row > * {
+      flex: 1 1 0;
+      min-width: 150px;
+    }
+    .have-questions button {
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+      color: #fff;
+      font-weight: 500;
+      padding: 10px 40px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+    .have-questions button:hover {
+      filter: brightness(1.1);
+    }
+    .have-questions .right h3 {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      font-size: 18px;
+    }
+    .have-questions .right p {
+      color: #DDDDDD;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      font-size: 14px;
+      white-space: pre-line;
+      font-weight: 300;
+    }
+    .have-questions .right hr {
+      border-color: #444;
+      margin-bottom: 1.5rem;
+      border-width: 1px 0 0 0;
+    }
+    .have-questions .social-icons {
+      display: flex;
+      gap: .5rem;
+      margin-top: 1.5rem;
+    }
+    .have-questions .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #403E44;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.25rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .have-questions .social-icons a:hover {
+      background-color: #666;
+    }
+
+
+    .contact-hero-content {
+    position: relative;
+    margin-top: -50px;
 }

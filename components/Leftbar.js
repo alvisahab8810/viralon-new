@@ -1,6 +1,34 @@
-import React from "react";
+"use client"; // for Next.js App Router
+
 import Link from "next/link";
+import { useState } from "react";
+
+import { useRouter } from "next/navigation";
 export default function Leftbar() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/admin/logout", {
+        method: "GET",
+      });
+
+      if (res.ok) {
+        // Redirect to login page
+        router.push("/dashboard/login");
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("An error occurred during logout:", error);
+    }
+  };
+
+  const [openMenu, setOpenMenu] = useState(null);
+
+  const toggleMenu = (menuName) => {
+    setOpenMenu(openMenu === menuName ? null : menuName);
+  };
   return (
     <>
       <aside id="leftsidebar" className="sidebar">
@@ -10,7 +38,7 @@ export default function Leftbar() {
             <li>
               <div className="user-info">
                 <div className="image">
-                  <a href="profile.html" className=" waves-effect waves-block">
+                  <a href="#" className=" waves-effect waves-block">
                     <img src="/asets/images/profile_av.jpg" alt="User" />
                   </a>
                 </div>
@@ -19,46 +47,43 @@ export default function Leftbar() {
                   <small></small>
                 </div>
                 <a
-                  href="events.html"
+                  href="#"
                   title="Events"
                   className=" waves-effect waves-block"
                 >
                   <i className="zmdi zmdi-calendar"></i>
                 </a>
-                <a
-                  href="mail-inbox.html"
-                  title="Inbox"
-                  className=" waves-effect waves-block"
-                >
+                <a href="#" title="Inbox" className=" waves-effect waves-block">
                   <i className="zmdi zmdi-email"></i>
                 </a>
                 <a
-                  href="contact.html"
+                  href="#"
                   title="Contact List"
                   className=" waves-effect waves-block"
                 >
                   <i className="zmdi zmdi-account-box-phone"></i>
                 </a>
                 <a
-                  href="chat.html"
+                  href="#"
                   title="Chat App"
                   className=" waves-effect waves-block"
                 >
                   <i className="zmdi zmdi-comments"></i>
                 </a>
-                <Link
-                  href="/"
-                  title="Sign out"
+                <a
+                  onClick={handleLogout}
+                  data-close="true"
+                  title="Logout"
                   className="waves-effect waves-block"
                 >
                   <i className="zmdi zmdi-power"></i>
-                </Link>
+                </a>
               </div>
             </li>
             <li className="header">MAIN NAVIGATION</li>
             <li>
               <Link
-                href="/dashboard/dashboard"
+                href="/dashboard/admin"
                 className=" waves-effect waves-block"
               >
                 <i className="zmdi zmdi-home"></i>
@@ -84,15 +109,23 @@ export default function Leftbar() {
               </Link>{" "}
             </li>
 
+            <li>
+              <Link
+                href="/dashboard/career-response"
+                className="toggled waves-effect waves-block"
+              >
+                <i className="zmdi zmdi-email"></i>
+                <span>Careers Response</span>{" "}
+              </Link>{" "}
+            </li>
 
             <li>
               <Link
-                href="#"
+                href="/dashboard/query-response"
                 className="toggled waves-effect waves-block"
               >
-
                 <i className="zmdi zmdi-email"></i>
-                <span>Careers Response</span>{" "}
+                <span>Query Response</span>{" "}
               </Link>{" "}
             </li>
             {/* <li>
@@ -102,31 +135,44 @@ export default function Leftbar() {
               </a>{" "}
             </li> */}
 
-            <li className="header">CATEGORIES</li>
+            <li className="header">Sales</li>
             <li>
-              <a href="#" className="waves-effect waves-block">
-                <i className="zmdi zmdi-label col-green"></i>
-                <span>Web Design</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="menu-toggle waves-effect waves-block">
+              <div
+                onClick={() => toggleMenu("customers")}
+                className="menu-toggle cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100 waves-effect waves-block"
+              >
                 <i className="zmdi zmdi-label col-red"></i>
-                <span>Photography</span>{" "}
-              </a>
-              <ul className="ml-menu">
+                <span>Customers</span>
+              </div>
+
+              <ul
+                className={`ml-menu transition-all duration-300 ease-in-out overflow-hidden ${
+                  openMenu === "customers" ? "max-h-40" : "max-h-0"
+                }`}
+                style={{
+                  transition: "max-height 0.3s ease",
+                  maxHeight: openMenu === "customers" ? "200px" : "0px",
+                }}
+              >
                 <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    Wild
-                  </a>{" "}
+                  <Link
+                    href="/dashboard/sales/customers/new-customer"
+                    className="waves-effect waves-block"
+                  >
+                    Add New Customer
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    Marriage
-                  </a>{" "}
+                  <Link
+                    href="/dashboard/customer-list"
+                    className="waves-effect waves-block"
+                  >
+                    Customer List
+                  </Link>
                 </li>
               </ul>
             </li>
+
             <li>
               <a href="#" className="menu-toggle waves-effect waves-block">
                 <i className="zmdi zmdi-label col-amber"></i>

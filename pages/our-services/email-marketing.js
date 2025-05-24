@@ -23,15 +23,12 @@ export default function EmailMarketing() {
       <CTA />
       <Significance />
       <SolidReasons />
-
       <div className="parallax-container">
         <Testimonials />
         <Form />
       </div>
-
-      <FAQ/>
-
-     <Blogs/>
+      <FAQ />
+      <Blogs />
       <CTA />
       <Offcanvas />
       <Footer />

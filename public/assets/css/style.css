@@ -319,8 +319,8 @@ h6 {
 }
 
 a, .btn, button {
-	-webkit-transition: all 0.35s ease-in-out;
-	transition: all 0.35s ease-in-out;
+	/* -webkit-transition: all 0.35s ease-in-out; */
+	/* transition: all 0.35s ease-in-out; */
 	outline: medium none;
 	text-decoration: none;
 	font-weight: 800;
@@ -3789,7 +3789,7 @@ a.btn-round-animation.dark {
     -webkit-text-stroke: 1px #ffffff99;
     color: transparent;
     opacity: 0.8;
-    font-family: outilne;
+    /* font-family: outilne; */
     font-weight: normal;
 }
 

@@ -11,8 +11,6 @@ export default function Employes() {
           </h2>
 
           <Swiper
-
-          
             spaceBetween={20}
             // centeredSlides={true}
             loop={true}
@@ -30,7 +28,9 @@ export default function Employes() {
             }}
             breakpoints={{
               240: {
-                slidesPerView: 1.5,
+                grabCursor: true,
+                centeredSlides:true,
+                slidesPerView: 1.2,
                 spaceBetween: 10,
               },
               768: {

@@ -1,13 +1,16 @@
 @media(max-width:1920px) and (min-width:1600px){
-    .seo-hero-img {
+    /* .seo-hero-img {
         height: 487px;
-    }
+    } */
 }
 
 
 
 
-@media (max-width: 1380px) and (min-width: 1240px) {
+@media (max-width: 1385px) and (min-width: 1240px) {
+
+    .contact-us-heading {
+    font-size: 215px;}
 
     #prouduction .core-bx {
     height: 230px;
@@ -121,15 +124,24 @@
         font-size: 60px;
     }
 
-    .seo-hero-img {
+    /* .seo-hero-img {
         height: 330px;
-    }
+    } */
 }
 
 
 
 
 @media (max-width: 1240px) and (min-width: 1024px) {
+
+    .contact-us-heading {
+    font-size: 166px;
+}
+
+.contact-sub {
+    font-size: 25px;
+
+}
     .about-section1 .image-column .image-1 img{
         height: auto;
     }
@@ -259,6 +271,25 @@
 
 @media(max-width:1023px){
 
+    .contact-us-heading {
+    font-size: 140px;
+
+}
+.have-questions h1 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.our-contact-overlay p {
+
+    font-size: 16px;
+}
+
+.contact-sub {
+    font-size: 22px;
+
+}
+
     .faq-section .accordion-item{
         background:unset;
         font-weight: 500;
@@ -330,9 +361,9 @@
         padding-top: 0;
     }
 
-    .seo-hero-img {
+    /* .seo-hero-img {
         height: 250px;
-    }
+    } */
 
     .about-section1 .image-column .image-2 {
         position: absolute;
@@ -669,9 +700,9 @@
         max-width: 600px;
     }
 
-    .seo-hero-img {
+    /* .seo-hero-img {
         height: 191px;
-    }
+    } */
     /* Your CSS styles here */
     .banner-one-item h2 {
         font-size: 50px;
@@ -738,12 +769,107 @@ footer .before-bg::before {
 
 @media(max-width:560px){
 
+    .jobs-hero-section {
+    height: 350px;
+}
+
+
+    .employee_card p {
+    font-size: 14px !important;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+    height: 131px;
+    margin-top: 0px;
+}
+
+   .lets-cta-section .choose-us-style-one-thumb a {
+    width: 100%;
+    display: block;
+}
+
+    .card_section .tabs-row > div .card_title {
+    font-size: 14px;
+    margin:0;
+}
+
+.card_section .tabs-row > div {
+    border: 1px solid #ddd;
+    padding: 0px;
+    padding-bottom: 0;
+    width: calc(50% - 5px);
+}
+
+    .have-questions .social-icons a {
+
+    width: 30px;
+    height: 30px;
+
+}
+
+    .iframe-box iframe{
+        border-radius: 7px;
+        height: 200px;;
+    }
+
+    .have-questions form input, .have-questions form textarea {
+    min-height: 40px;
+    height: 40px;
+}
+
+    .have-questions .subtitle {
+    font-size: 16px;
+
+}
+
+    .contact-hero-content {
+    position: relative;
+    margin-top: 0px;
+}
+
+    .contact-us-heading {
+        font-size: 74px;
+    }
+
+    .contact-sub {
+        font-size: 12px;
+            letter-spacing: 3px;
+    }
+
+        .our-contact-overlay p {
+        font-size: 11px;
+    }
+
+     .have-questions button {
+    font-size: 14px;
+    padding: 5px 30px;
+}
+.pb-80 {
+    padding-bottom: 40px!important;
+}
+.have-questions h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+.have-questions .right p{
+    margin-bottom: 10px;;
+}
+         .have-questions h1 {
+        font-size: 25px;
+    }
+      .have-questions .form-row {
+        flex-direction: column;
+        gap: unset;
+      }
+      .have-questions .form-row > * {
+        min-width: 100%;
+    }
+
    #brand-identity .our-work-section .banner-one-item h2 {
         max-width: 280px;
     }
 
     #brand-identity .our-work-primary .banner-one-item img {
-        right: 78px;
+        right: 15px;
         top: 61%;
     }
     .accordion-portfolio-lists li::after {
@@ -769,11 +895,15 @@ footer .before-bg::before {
         height: 200px;
     }
 
+    #prouduction .about-section1 .image-column .inner-column {
+    padding-left: 0;
+}
+
     .logo-sliders .mySwiper .swiper-slide img{
-        height: 273px;
+        height: auto;
     }
     .logo-sliders .mySwiper .swiper-slide{
-        height: 288px;
+        height: 145px;
     }
 
     #logo-design .about-section2 .seo-hero-content {
@@ -981,12 +1111,12 @@ footer .before-bg::before {
         font-size: 25px;
     }
 
-    .seo-hero-img {
+    /* .seo-hero-img {
         height: 150px;
-    }
-    .seo-hero-img img {
+    } */
+    /* .seo-hero-img img {
         top: -50%;
-    }
+    } */
 
     #smm .accrdion-portfolio-area .banner-one-item h4 {
         border: 1px solid #FF6F61!important;
@@ -1287,7 +1417,7 @@ footer .before-bg::before {
         max-width: 275px;
     }
     #smm .our-work-primary .banner-one-item img {
-        right: 77px;
+        right: 15px;
         top: 63%;
         width: 50px;
     }
@@ -1395,7 +1525,7 @@ footer .before-bg::before {
 }
 
 .working-bx-3 > div h2 {
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     margin-bottom: 0;
 }
@@ -1403,11 +1533,29 @@ footer .before-bg::before {
     height: 100px;
     padding: 10px;
 }
-
-.employee_section h2 {
+.career-form-wrap h4{
+    font-size: 15px;
+}
+.applying-form input {
+    min-height: 40px;
+    font-size: 13px;
+}
+.applying-form h2 {
     font-size: 25px !important;
 }
 
+.applying-form.wpcf7 {
+    padding: 20px 20px;
+}
+#cv {
+    line-height: 2.1;
+}
+.employee_section h2 {
+    font-size: 25px !important;
+}
+.job_description ul li {
+    font-size: 14px;
+}
 .card_title {
     font-size: 22px;
 }
@@ -1416,12 +1564,12 @@ footer .before-bg::before {
 }
 
 .job-tab-section .nav .active {
-    font-size: 18px;
+    font-size: 24px;
     margin-right: 0px;
 }
 
 .job-tab-section .nav button {
-    font-size: 18px;
+    font-size: 24px;
     line-height: 1.3;
     margin-right: 0;
 }
@@ -1504,6 +1652,7 @@ section.work-area .py-5 {
     height: 35px;
     width: 35px;
     padding: 10px;
+    top:57%;
 }
 
 #smm .bg-dark .banner-one-item h4 {
@@ -1728,20 +1877,24 @@ ul.import-list li {
 }
 
       .job_description {
-        padding: 3rem 3rem;
+        padding: 0;
       }
-      .job_description h1 {
-        font-size: 1.5rem;
-      }
-      .job_description h2 {
-        font-size: 1.25rem;
-      }
-      .job_description .info-text {
-        font-size: 1rem;
-      }
+
+      .job_description .date {
+    font-size: 18px;
+}
+     .job_description h1 {
+        font-size: 25px;
+    }
+          .job_description h2 {
+        font-size: 18px;
+    }
+     .job_description .info-text {
+        font-size: 14px;
+    }
       .job_description p,
       .job_description ul {
-        font-size: 1rem;
+        font-size: 14px;
       }
 }
 
@@ -1793,6 +1946,13 @@ ul.import-list li {
 }
 }
 @media(max-width:375px){
+        .seo-hero-content h1 {
+        font-size: 23px;
+    }
+
+    .contact-us-heading {
+        font-size: 66px;
+    }
 
     
     .testimonial-card .review-main-img {

@@ -151,6 +151,8 @@ const BrandIdentitySlider = () => {
           modifier: 2.5,
           slideShadows: false,
         }}
+
+        
         breakpoints={{
           320: {
             slidesPerView: 1.2,

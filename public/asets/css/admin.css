@@ -1,0 +1,165 @@
+ .admin {
+      max-width: 100%;
+      font-family: Arial, sans-serif;
+    }
+    .admin label {
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #1e1e1e;
+    }
+    .admin .info-icon {
+      font-size: 12px;
+      color: #9ca3af;
+      cursor: default;
+    }
+    .admin .form-control,
+    .admin select {
+      font-size: 14px;
+      color: #6b7280;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 6px 12px;
+      background-color: white;
+      min-height: 38px;
+    }
+    .admin .form-control:focus,
+    .admin select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 0.25rem rgb(59 130 246 / 0.25);
+      color: #374151;
+      outline: none;
+    }
+    .admin .form-check-label {
+      font-size: 14px;
+      color: #1e1e1e;
+      user-select: none;
+    }
+    .admin .form-check-input:checked {
+      background-color: #2563eb;
+      border-color: #2563eb;
+    }
+    .admin .text-red {
+      color: #dc2626;
+    }
+    .admin .input-icon {
+      position: relative;
+    }
+    .admin .input-icon > i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 14px;
+      pointer-events: none;
+    }
+    .admin .input-icon > input {
+      /* padding-left: 32px; */
+      color: #374151;
+    }
+    .admin .radio-group > label {
+      margin-right: 24px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #1e1e1e;
+      cursor: pointer;
+    }
+    .admin .radio-group input[type="radio"] {
+      accent-color: #2563eb;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+    .admin .checkbox-group input[type="checkbox"] {
+      accent-color: #2563eb;
+      cursor: pointer;
+    }
+
+       .admin .f-select{
+        width:200.73px!important;
+    }
+
+    .admin input::placeholder{
+        color:#6b7280;;
+    }
+
+
+
+
+ .menu-toggle span{
+    margin-left: 15px;;
+  }
+
+
+
+.other-info .nav-tabs>.nav-item>.nav-link.active{
+    /* border: 1px solid #888; */
+    border-radius: 0px !important;
+    color: black !important;
+    border: unset!important;
+    border-bottom: 3px solid #fd8062!important;
+}
+
+
+
+.other-info .nav-tabs>.nav-item>.nav-link {
+    color: black !important;
+}
+
+
+
+
+
+.other-info .nav-tabs {
+    padding: 0!important;
+    /* padding: 15px .7rem; */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.other-info .nav-tabs>.nav-item>.nav-link{
+    border: none;
+}
+
+
+
+
+ 
+   .other-info h2 {
+    font-size: 18px !important;
+    font-weight: 600;
+    margin-bottom: 20px !important;
+    color: #000;
+}
+
+
+/* .other-info .css-19bb58m{
+    height: 38px;
+}
+
+.other-info .css-1cfo1cf{
+    height: 38px;
+    min-height: 38px;
+
+
+
+}
+
+.other-info .css-1lx7dxn{
+    height: 38px;
+} */
+
+/* .other-info .css-7g3fmk input */
+
+
+    @media (max-width: 576px) {
+      .admin .row > [class*="col-"] {
+        margin-bottom: 12px;
+      }
+      .admin .radio-group > label {
+        margin-right: 16px;
+      }
+    }
+
+    

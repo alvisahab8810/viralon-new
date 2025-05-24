@@ -1,14 +1,79 @@
+"use client"; // for Next.js App Router
+
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from "react-toastify"; // assuming you're using toast too
 import React from "react";
 import Link from "next/link";
 
+import { useRouter } from "next/navigation";
+
 export default function Dashnav() {
+const router = useRouter();
+
+  // const handleLogout = async () => {
+  //   try {
+  //     const res = await fetch("/api/admin/logout", {
+  //       method: "GET",
+  //     });
+
+  //     if (res.ok) {
+  //       // Redirect to login page
+  //       router.push("/dashboard/login");
+  //     } else {
+  //       console.error("Logout failed");
+  //     }
+  //   } catch (error) {
+  //     console.error("An error occurred during logout:", error);
+  //   }
+  // };
+
+
+  const handleLogout = () => {
+  confirmAlert({
+    title: "Confirm Logout",
+    message: "Are you sure you want to logout?",
+    buttons: [
+      {
+        label: "Yes",
+        onClick: async () => {
+          try {
+            const res = await fetch("/api/admin/logout", {
+              method: "GET",
+            });
+
+            if (res.ok) {
+              localStorage.removeItem("token"); // Optional: remove token
+              toast.success("Logged out successfully.");
+              window.location.href = "/dashboard/login";
+            } else {
+              toast.error("Logout failed.");
+              console.error("Logout failed");
+            }
+          } catch (error) {
+            toast.error("An error occurred during logout.");
+            console.error("Logout error:", error);
+          }
+        },
+      },
+      {
+        label: "No",
+        onClick: () => {
+          toast.info("Logout cancelled.");
+        },
+      },
+    ],
+  });
+};
+
+
   return (
     <div className="main-nav dash-nav">
       <nav className="navbar">
         <div className="col-12">
           <div className="navbar-header">
             <Link href="#" className="bars"></Link>
-            <Link className="navbar-brand" href="/dashboard/dashboard">
+            <Link className="navbar-brand" href="/dashboard/admin">
               <img src="/asets/images/logo.png" width="100" alt="Viralon" />
               {/* <span className="m-l-10">Compass</span> */}
             </Link>
@@ -64,11 +129,23 @@ export default function Dashnav() {
                 <i className="zmdi zmdi-fullscreen"></i>
               </a>
             </li>
-            <li>
-              <a href="/login" className="mega-menu" data-close="true">
+            {/* <li className="log-out-btn">
+              <button onClick={handleLogout}  className="mega-menu" data-close="true">
                 <i className="zmdi zmdi-power"></i>
-              </a>
-            </li>
+              </button>
+            </li> */}
+
+            <li className="log-out-btn">
+  <button
+    onClick={handleLogout}
+    className="mega-menu"
+    data-close="true"
+    title="Logout"
+  >
+    <i className="zmdi zmdi-power"></i>
+  </button>
+</li>
+
             <li>
               <a href="#" className="js-right-sidebar" data-close="true">
                 <i className="zmdi zmdi-settings zmdi-hc-spin"></i>

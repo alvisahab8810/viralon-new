@@ -5,7 +5,7 @@ export default function Hero() {
     <>
       <div className="seo-hero about-section1">
         <div className="seo-hero-img">
-          <img src="/assets/img/seo/hero-img.png" alt="round-img"></img>
+          <img src="/assets/img/seo/hero-img.gif" alt="round-img"></img>
         </div>
         <div className="container">
           <div className="seo-hero-content">

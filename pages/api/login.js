@@ -1,0 +1,19 @@
+// pages/api/login.js
+import { serialize } from "cookie";
+
+export default function handler(req, res) {
+  const { username, password } = req.body;
+
+  if (username === "admin" && password === "admin123") {
+    const cookie = serialize("admin_auth", "true", {
+      path: "/",
+      httpOnly: true,
+      maxAge: 60 * 60 * 24, // 1 day
+    });
+
+    res.setHeader("Set-Cookie", cookie);
+    res.status(200).json({ success: true });
+  } else {
+    res.status(401).json({ success: false });
+  }
+}
