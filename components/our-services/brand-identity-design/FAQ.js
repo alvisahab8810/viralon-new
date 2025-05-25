@@ -23,7 +23,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    <span className="fs-3 fw-bold me-3">01</span> What kind of websites do you build?
+                    <span className="fs-3 fw-bold me-3">01</span> What is brand identity design, and why is it important?
 
                   </button>
                 </h2>
@@ -34,7 +34,8 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    We develop responsive websites ranging from landing pages and corporate sites to full e-commerce platforms, custom web apps, and content management systems.
+                   Brand identity design involves creating a cohesive visual system for your business, including logos, color schemes, typography, and supporting graphics. It helps establish brand recognition and builds trust with your audience.
+
                   </div>
                 </div>
               </div>
@@ -48,7 +49,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    <span className="fs-3 fw-bold me-3">02</span> Do you offer design and development together?
+                    <span className="fs-3 fw-bold me-3">02</span> What services are included in brand identity design?
+
                   </button>
                 </h2>
                 <div
@@ -58,7 +60,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Yes, we provide both design and development services to ensure a cohesive and streamlined build process from concept to launch.
+                    Our packages typically include logo design, color palette, typography system, brand icons, visual elements, and a brand style guide to ensure consistency across all platforms
                   </div>
                 </div>
               </div>
@@ -72,7 +74,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    <span className="fs-3 fw-bold me-3">03</span> Which platforms do you use for web development?
+                    <span className="fs-3 fw-bold me-3">03</span> Can you help us rebrand an existing identity?
 
                   </button>
                 </h2>
@@ -83,7 +85,8 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                     We work with WordPress, Shopify, and custom HTML/CSS/JS/REACT frameworks depending on your project needs.
+                    Absolutely. We analyze your current brand elements and audience perceptions to guide a thoughtful and impactful rebranding process.
+
                   </div>
                 </div>
               </div>
@@ -97,7 +100,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    <span className="fs-3 fw-bold me-3">04</span> Will my website be mobile-responsive?
+                    <span className="fs-3 fw-bold me-3">04</span> How long does the brand identity process usually take?
+
                   </button>
                 </h2>
                 <div
@@ -107,7 +111,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                   Absolutely. All our websites are designed to work seamlessly across all devices—phones, tablets, and desktops.
+                    The full process typically takes 2–4 weeks, depending on the scope of the project and the number of revisions.
                   </div>
                 </div>
               </div>

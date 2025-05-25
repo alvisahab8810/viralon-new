@@ -2,13 +2,10 @@ import React from "react";
 import Topbar from "../../components/header/Header";
 import Offcanvas from "../../components/header/Offcanvas";
 import Footer from "../../components/footer/Footer";
-
 import CTA from "../../components/home/CTA";
-
-
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from "../../components/our-services/paid-media-marketing/FAQ";
+import FAQ from "../../components/our-services/product-packaging/FAQ";
 import Blogs from "../../components/our-services/seo/Blogs";
 import Hero from "../../components/our-services/product-packaging/Hero";
 import Slider from "../../components/our-services/product-packaging/Slider";

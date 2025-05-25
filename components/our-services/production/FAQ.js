@@ -23,7 +23,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    <span className="fs-3 fw-bold me-3">01</span> What kind of websites do you build?
+                    <span className="fs-3 fw-bold me-3">01</span> What types of videos do you produce?
 
                   </button>
                 </h2>
@@ -34,7 +34,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    We develop responsive websites ranging from landing pages and corporate sites to full e-commerce platforms, custom web apps, and content management systems.
+                     We create brand videos, product explainers, social media reels, animations, testimonials, event coverage, and more based on your marketing goals.
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    <span className="fs-3 fw-bold me-3">02</span> Do you offer design and development together?
+                    <span className="fs-3 fw-bold me-3">02</span> Do you handle scripting and storyboarding?
                   </button>
                 </h2>
                 <div
@@ -58,7 +58,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Yes, we provide both design and development services to ensure a cohesive and streamlined build process from concept to launch.
+                    Yes, we provide full pre-production services including scriptwriting, storyboarding, and creative direction tailored to your brand voice.
                   </div>
                 </div>
               </div>
@@ -72,7 +72,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    <span className="fs-3 fw-bold me-3">03</span> Which platforms do you use for web development?
+                    <span className="fs-3 fw-bold me-3">03</span> Do you offer animation or motion graphics services?
+
 
                   </button>
                 </h2>
@@ -83,7 +84,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                     We work with WordPress, Shopify, and custom HTML/CSS/JS/REACT frameworks depending on your project needs.
+                      Yes, we produce animated explainer videos, motion graphics intros, kinetic typography, and logo animations for digital content.
                   </div>
                 </div>
               </div>
@@ -97,7 +98,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    <span className="fs-3 fw-bold me-3">04</span> Will my website be mobile-responsive?
+                    <span className="fs-3 fw-bold me-3">04</span> Will I be able to request revisions?
                   </button>
                 </h2>
                 <div
@@ -107,7 +108,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                   Absolutely. All our websites are designed to work seamlessly across all devices—phones, tablets, and desktops.
+                     Yes, we include a set number of revisions in each project scope to ensure the final video meets your expectation
                   </div>
                 </div>
               </div>

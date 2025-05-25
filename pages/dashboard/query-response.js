@@ -13,6 +13,9 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 export default function QueryResponse() {
+const [loading, setLoading] = useState(true);
+
+     const [contactData, setContactData] = useState([]);
   // ------------- for custom fields-------
   // const [newColumnName, setNewColumnName] = useState("");
 
@@ -91,20 +94,7 @@ export default function QueryResponse() {
     fetchData();
   }, []);
 
-  // const handleSave = async () => {
-  //   try {
-  //     const res = await fetch("/api/queries/saveCustomFields", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(customFieldData),
-  //     });
 
-  //     const result = await res.json();
-  //     alert(result.message);
-  //   } catch (error) {
-  //     console.error("Error saving custom fields", error);
-  //   }
-  // };
 
   const handleSave = async (updatedRow) => {
     try {
@@ -132,49 +122,143 @@ export default function QueryResponse() {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
-  useEffect(() => {
-    const fetchQueries = async () => {
-      const res = await fetch("/api/queries/query");
-      const data = await res.json();
-      if (data.success) {
-        setQueries(data.data);
-      }
-    };
-    fetchQueries();
-  }, []);
 
+  // ---------- for query --------
+  // useEffect(() => {
+  //   const fetchQueries = async () => {
+  //     const res = await fetch("/api/queries/query");
+  //     const data = await res.json();
+  //     if (data.success) {
+  //       setQueries(data.data);
+  //     }
+  //   };
+  //   fetchQueries();
+  // }, []);
+
+
+  useEffect(() => {
+  const fetchAllResponses = async () => {
+    try {
+      const [queryRes, contactRes] = await Promise.all([
+        fetch("/api/queries/query"),
+        fetch("/api/queries/contact"),
+      ]);
+
+      const queryData = await queryRes.json();
+      const contactData = await contactRes.json();
+
+      const formattedQueries = queryData.success
+        ? queryData.data.map((item) => ({
+            ...item,
+            formType: "Query",
+            businessName: item.businessName || "-", // already present
+          }))
+        : [];
+
+      const formattedContacts = contactData.success
+        ? contactData.data.map((item) => ({
+            _id: item._id,
+            name: item.name,
+            email: item.email,
+            phone: item.phone || "-",
+            businessName: item.businessName, 
+            createdAt: item.createdAt,
+            formType: "Contact", // so your table shows "Contact"
+          }))
+        : [];
+
+      const combined = [...formattedQueries, ...formattedContacts].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      setQueries(combined);
+    } catch (error) {
+      console.error("Error fetching responses", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchAllResponses();
+}, []);
+
+
+ 
   //   ----- for delete response --------------
 
-  const confirmDelete = (id) => {
-    confirmAlert({
-      title: "Confirm Delete",
-      message: "Are you sure you want to delete this query?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: async () => {
-            const res = await fetch(`/api/queries/delete/query?id=${id}`, {
+  // const confirmDelete = (id) => {
+  //   confirmAlert({
+  //     title: "Confirm Delete",
+  //     message: "Are you sure you want to delete this query?",
+  //     buttons: [
+  //       {
+  //         label: "Yes",
+  //         onClick: async () => {
+  //           const res = await fetch(`/api/queries/delete/query?id=${id}`, {
+  //             method: "DELETE",
+  //           });
+  //           const data = await res.json();
+
+  //           if (data.success) {
+  //             toast.success("Query deleted successfully.");
+  //             setQueries((prev) => prev.filter((q) => q._id !== id));
+  //           } else {
+  //             toast.error("Failed to delete query. Please try again.");
+  //           }
+  //         },
+  //       },
+  //       {
+  //         label: "No",
+  //         onClick: () => {
+  //           toast.info("Deletion cancelled.");
+  //         },
+  //       },
+  //     ],
+  //   });
+  // };
+
+
+  const confirmDelete = (id, formType) => {
+  confirmAlert({
+    title: "Confirm Delete",
+    message: `Are you sure you want to delete this ${formType === "Contact" ? "contact" : "query"}?`,
+    buttons: [
+      {
+        label: "Yes",
+        onClick: async () => {
+          const endpoint =
+            formType === "Contact"
+              ? `/api/queries/delete/contact?id=${id}`
+              : `/api/queries/delete/query?id=${id}`;
+
+          try {
+            const res = await fetch(endpoint, {
               method: "DELETE",
             });
             const data = await res.json();
 
             if (data.success) {
-              toast.success("Query deleted successfully.");
+              toast.success(`${formType} deleted successfully.`);
               setQueries((prev) => prev.filter((q) => q._id !== id));
             } else {
-              toast.error("Failed to delete query. Please try again.");
+              toast.error(`Failed to delete ${formType.toLowerCase()}. Please try again.`);
             }
-          },
+          } catch (err) {
+            console.error(`Error deleting ${formType}:`, err);
+            toast.error("Server error during deletion.");
+          }
         },
-        {
-          label: "No",
-          onClick: () => {
-            toast.info("Deletion cancelled.");
-          },
+      },
+      {
+        label: "No",
+        onClick: () => {
+          toast.info("Deletion cancelled.");
         },
-      ],
-    });
-  };
+      },
+    ],
+  });
+};
+
 
   //   ---------- for export excell----------
 
@@ -301,7 +385,7 @@ export default function QueryResponse() {
               </div>
             </div>
             <div className="table-responsive-custom">
-              <table className="table">
+            <table className="table">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -365,7 +449,10 @@ export default function QueryResponse() {
                         <td>
                           <button
                             className="btn-delete"
-                            onClick={() => confirmDelete(q._id)}
+                            // onClick={() => confirmDelete(q._id)}
+
+                            onClick={() => confirmDelete(q._id, q.formType)}
+
                             title="Delete Query"
                           >
                             <i className="zmdi zmdi-delete"></i>
@@ -373,51 +460,10 @@ export default function QueryResponse() {
                         </td>
 
                         {customFields.map((field) => (
-                          // <td key={field}>
-                          //   <input
-                          //     type="text"
-                          //     className="form-control"
-                          //     style={{
-                          //       whiteSpace: "wrap",
-                          //       width: "100%", // increase width based on your typical sentence
-                          //     }}
-                          //     value={customFieldData[q._id]?.[field] || ""}
-                          //     onChange={(e) => {
-                          //       const updated = { ...customFieldData };
-                          //       updated[q._id][field] = e.target.value;
-                          //       setCustomFieldData(updated);
-                          //     }}
-                          //   />
-                          // </td>
+                    
 
                           <td key={field}>
-                            {/* <textarea
-                              className="form-control resize-none overflow-hidden"
-                              style={{
-                                width: "100%",
-                                minHeight: "32px",
-                                lineHeight: "1.5",
-                                padding: "6px 10px",
-                              }}
-                              rows={1}
-                              value={customFieldData[q._id]?.[field] || ""}
-                              onChange={(e) => {
-                                const updated = { ...customFieldData };
-                                updated[q._id][field] = e.target.value;
-                                setCustomFieldData(updated);
-
-                                // Auto expand height
-                                e.target.style.height = "auto";
-                                e.target.style.height =
-                                  e.target.scrollHeight + "px";
-                              }}
-                              onInput={(e) => {
-                                // Also expand when user is typing
-                                e.target.style.height = "auto";
-                                e.target.style.height =
-                                  e.target.scrollHeight + "px";
-                              }}
-                            /> */}
+                           
 
                             <textarea
                               className="form-control resize-none overflow-hidden"
@@ -456,6 +502,10 @@ export default function QueryResponse() {
                     ))}
                 </tbody>
               </table>
+
+
+             
+
             </div>
 
             {/* <button onClick={handleSave} className="btn btn-success">

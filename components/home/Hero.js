@@ -90,40 +90,40 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Social Media Marketing</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/social-media-marketing"
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                   </div>
 
                  <div className="redirect-arrow">
                    <h2>Search Engine Optimization</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/seo"
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Paid Advertisement</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/paid-media-marketing"
                   
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Email Marketing</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/email-marketing"
                      
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>
@@ -168,32 +168,32 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Logo Design</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/logo-design"
                     
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Brand Identity Design</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/brand-identity-design"
                     
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Product Packaging</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/product-packaging"
                     
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>
@@ -215,12 +215,12 @@ export default function Hero() {
                   </h2>
                   <div className="redirect-arrow">
                     <h2>Web Development</h2>
-                    <a
-                      href="#"
+                    <Link
+                      href="/our-services/web-development"
                      
                     >
                       <i className="fas fa-arrow-right"></i>
-                    </a>
+                    </Link>
                   </div>
                  
                 </div>
@@ -264,12 +264,12 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Ad Shoot</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/production"
                      
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>
@@ -298,40 +298,40 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Social Media Marketing</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/social-media-marketing"
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Search Engine Optimization</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/seo"
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Paid Advertisement</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/paid-media-marketing"
                   
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Email Marketing</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/email-marketing"
                      
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>
@@ -353,32 +353,31 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Logo Design</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/logo-design"
                     
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Brand Identity Design</h2>
-                   <a
-                     href="#"
-                    
+                   <Link
+                     href="/our-services/brand-identity-design"
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
 
                  <div className="redirect-arrow">
                    <h2>Product Packaging</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/product-packaging"
                     
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>
@@ -400,12 +399,12 @@ export default function Hero() {
                   </h2>
                   <div className="redirect-arrow">
                     <h2>Web Development</h2>
-                    <a
-                      href="#"
+                    <Link
+                      href="/our-services/web-development"
                      
                     >
                       <i className="fas fa-arrow-right"></i>
-                    </a>
+                    </Link>
                   </div>
                  
                 </div>
@@ -426,12 +425,12 @@ export default function Hero() {
                  </h2>
                  <div className="redirect-arrow">
                    <h2>Ad Shoot</h2>
-                   <a
-                     href="#"
+                   <Link
+                     href="/our-services/production"
                      
                    >
                      <i className="fas fa-arrow-right"></i>
-                   </a>
+                   </Link>
                  </div>
                 
                </div>

@@ -23,7 +23,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    <span className="fs-3 fw-bold me-3">01</span> What kind of websites do you build?
+                    <span className="fs-3 fw-bold me-3">01</span> Do you design packaging for all types of products?
 
                   </button>
                 </h2>
@@ -34,7 +34,8 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    We develop responsive websites ranging from landing pages and corporate sites to full e-commerce platforms, custom web apps, and content management systems.
+                    Yes, we work across industries—food & beverage, cosmetics, wellness, tech, and more—tailoring packaging to fit product specifications and brand identity.
+
                   </div>
                 </div>
               </div>
@@ -48,7 +49,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    <span className="fs-3 fw-bold me-3">02</span> Do you offer design and development together?
+                    <span className="fs-3 fw-bold me-3">02</span> What file formats will I receive for packaging designs?
+
                   </button>
                 </h2>
                 <div
@@ -58,7 +60,8 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                    Yes, we provide both design and development services to ensure a cohesive and streamlined build process from concept to launch.
+                     You will receive print-ready files in formats like AI, PDF, and EPS, along with mockups for presentation.
+
                   </div>
                 </div>
               </div>
@@ -72,7 +75,7 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    <span className="fs-3 fw-bold me-3">03</span> Which platforms do you use for web development?
+                    <span className="fs-3 fw-bold me-3">03</span>  What information do you need to start a packaging project?
 
                   </button>
                 </h2>
@@ -83,7 +86,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                     We work with WordPress, Shopify, and custom HTML/CSS/JS/REACT frameworks depending on your project needs.
+                    We need product dimensions, branding assets, content (like ingredients or warnings), and any printer or manufacturer specifications.
                   </div>
                 </div>
               </div>
@@ -97,7 +100,8 @@ export default function FAQ() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    <span className="fs-3 fw-bold me-3">04</span> Will my website be mobile-responsive?
+                    <span className="fs-3 fw-bold me-3">04</span> Can you help create sustainable or eco-friendly packaging designs?
+
                   </button>
                 </h2>
                 <div
@@ -107,7 +111,7 @@ export default function FAQ() {
                   data-bs-parent="#faqAccordion"
                 >
                   <div className="accordion-body">
-                   Absolutely. All our websites are designed to work seamlessly across all devices—phones, tablets, and desktops.
+                     Definitely. We support environmentally conscious brands and can recommend materials and design approaches that reduce waste and align with sustainability goals.
                   </div>
                 </div>
               </div>

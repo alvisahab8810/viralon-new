@@ -1,13 +1,86 @@
-import React from "react";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    businessName: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Check if all required fields are filled
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.phone ||
+    !formData.businessName
+  ) {
+    toast.error("Please fill in all required fields.");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/queries/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      toast.success("Your request has been sent. We’ll be in touch soon.");
+
+      setFormData({ name: "", email: "", phone: "", businessName: "" }); // reset form
+    } else {
+      toast.error("Failed to send message.");
+    }
+  } catch (error) {
+    toast.error("Something went wrong!");
+  }
+};
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await fetch("/api/queries/contact", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (data.success) {
+  //         toast.success("Your request has been sent. We’ll be in touch soon.");
+        
+  //       setFormData({ name: "", email: "", phone: "", businessName: "" }); // reset form
+  //     } else {
+  //       toast.error("Failed to send message.");
+  //     }
+  //   } catch (error) {
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
+
   return (
     <div className="container ptb-80">
       <div className="have-questions">
         <div className="left">
           <p className="subtitle">Have questions?</p>
           <h1>Send us Link Message</h1>
-          <form>
+          {/* <form>
             <input type="text" placeholder="Name" />
             <div className="form-row">
               <input type="email" placeholder="Email*" />
@@ -15,7 +88,41 @@ export default function Contact() {
             </div>
             <textarea placeholder="Tell Us About Project *"></textarea>
             <button type="submit">Get In Touch</button>
+          </form> */}
+
+          <form onSubmit={handleSubmit}>
+            <input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Name"
+              required
+            />
+            <div className="form-row">
+              <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                required
+              />
+              <input
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+              />
+            </div>
+            <textarea
+              name="businessName"
+              value={formData.businessName}
+              onChange={handleChange}
+              placeholder="Tell Us About Project *"
+              required
+            />
+            <button type="submit">Get In Touch</button>
           </form>
+          
         </div>
         <div className="right">
           <h2>Contact Info.</h2>
@@ -53,6 +160,8 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

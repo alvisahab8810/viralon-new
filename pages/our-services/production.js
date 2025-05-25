@@ -9,7 +9,7 @@ import Significance from '../../components/our-services/production/Significance'
 import SolidReasons from '../../components/our-services/production/SolidReasons'
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from '../../components/our-services/seo/FAQ'
+import FAQ from '../../components/our-services/production/FAQ'
 import Blogs from '../../components/our-services/seo/Blogs'
 import Hero from '../../components/our-services/production/Hero'
 

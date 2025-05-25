@@ -1326,25 +1326,39 @@ ul.import-list li {
 .seo-hero.about-section1 {
     padding-bottom: 100px;
 }
-/* .seo-hero-img img {
-    position: absolute;
-    top: -115%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    animation: rotateCircle 200s linear infinite;
+
+
+.seo-hero-img {
+  width: 100%;
+  aspect-ratio: 5 / 1; /* Adjusted to show ~20% of the image */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
 }
-  
+
+.seo-hero-img img {
+  width: 100vw; /* Or use max-width: 100% if inside a container */
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  animation: rotateCircle 200s linear infinite;
+  position: relative;
+ top: -413% /* Hides top 80% of the image */
+}
+
+
 @keyframes rotateCircle {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-} */
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 
 .core-content h1{

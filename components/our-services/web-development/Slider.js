@@ -7,30 +7,35 @@ import "swiper/css/effect-coverflow";
 
 const brandImages = [
   "/assets/img/our-services/web-development/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
-  "/assets/img/our-services/logo-design/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
-  "/assets/img/our-services/logo-design/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
-  "/assets/img/our-services/logo-design/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
-  "/assets/img/our-services/logo-design/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
-  "/assets/img/our-services/logo-design/img1.png",
-  "/assets/img/our-services/logo-design/img2.png",
-  "/assets/img/our-services/logo-design/img3.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img3.png",
+  "/assets/img/our-services/web-development/img4.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img1.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img3.png",
+  "/assets/img/our-services/web-development/img4.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img1.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img3.png",
+  "/assets/img/our-services/web-development/img4.png",
+  "/assets/img/our-services/web-development/img4.png",
+  "/assets/img/our-services/web-development/img1.png",
+  "/assets/img/our-services/web-development/img5.png",
+  "/assets/img/our-services/web-development/img3.png",
+  "/assets/img/our-services/web-development/img4.png",
+  "/assets/img/our-services/web-development/img5.png",
 ];
 
 const BrandIdentitySlider = () => {
   return (
     <div className="container my-5 ">
-      <div className="brand-identity-design mx-auto position-relative mx-900">
+      <div className="brand-identity-design mx-auto position-relative ">
         <Swiper
+
+
+
           effect="coverflow"
         
           grabCursor={true}
@@ -40,12 +45,12 @@ const BrandIdentitySlider = () => {
             disableOnInteraction: false,
           }}
           loop={true}
-          slidesPerView="4"
+          slidesPerView="3.5"
        
           coverflowEffect={{
-            rotate: 18,
+            rotate: 20,
             stretch: 0,
-            depth: 200,
+            depth: 280,
             modifier: 1.5,
             slideShadows: false,
           }}

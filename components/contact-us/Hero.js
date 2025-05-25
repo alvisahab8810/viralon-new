@@ -5,7 +5,7 @@ export default function Hero() {
     <>
       <div className="contact-main-class">
         <div className="seo-hero-img">
-          <img src="/assets/img/seo/hero-img.gif" alt="round-img"></img>
+          <img src="/assets/img/seo/hero-img.png" alt="round-img"></img>
         </div>
         <div className="container">
           <div className="contact-hero-content">
