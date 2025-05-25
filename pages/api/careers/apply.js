@@ -88,7 +88,7 @@
 import formidable from 'formidable';
 import fs from 'fs';
 import path from 'path';
-import dbConnect from '../../../utils/dbConnect';
+import dbConnect from '../../../utils/dbconnect';
 import Application from '../../../models/Application';
 
 export const config = {

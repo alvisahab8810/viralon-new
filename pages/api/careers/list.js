@@ -1,4 +1,4 @@
-import dbConnect from '../../../utils/dbConnect';
+import dbConnect from '../../../utils/dbconnect';
 import mongoose from 'mongoose';
 
 const ApplicationSchema = new mongoose.Schema({
