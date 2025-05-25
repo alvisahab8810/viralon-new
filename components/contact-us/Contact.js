@@ -129,7 +129,7 @@ export default function Contact() {
           <div>
             <h3>Location</h3>
             <p>
-              1007, Tower B1, Floor 10th, DLF Mypad, Vibhuti Khand, Gomti Nagar
+              1007, Tower B1, Floor 10th, DLF Mypad,<br/> Vibhuti Khand, Gomti Nagar
               Lucknow - 226010
             </p>
             <hr />
