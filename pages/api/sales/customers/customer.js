@@ -1,24 +1,6 @@
-// import dbConnect from "../../../../utils/dbconnect";
-// import Customer from "../../../../models/sales/Customer";
-
-// export default async function handler(req, res) {
-//   await dbConnect();
-
-//   if (req.method === "POST") {
-//     try {
-//       const customer = new Customer(req.body);
-//       await customer.save();
-//       res.status(201).json({ success: true, customer });
-//     } catch (error) {
-//       res.status(400).json({ success: false, error: error.message });
-//     }
-//   } else {
-//     res.status(405).json({ message: "Method not allowed" });
-//   }
-// }
 
 import dbConnect from "../../../../utils/dbconnect";
-import Customer from "../../../../models/sales/Customer";
+import Customer from "../../../../models/sales/customer";
 
 export default async function handler(req, res) {
   await dbConnect();

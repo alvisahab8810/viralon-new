@@ -1,6 +1,6 @@
 import dbConnect from "../../../../utils/dbconnect";
 import Invoice from "../../../../models/sales/invoice";
-import Customer from "../../../../models/sales/customer"; // 👈 THIS IS REQUIRED
+// import Customer from "../../../../models/sales/customer"; // 👈 THIS IS REQUIRED
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
