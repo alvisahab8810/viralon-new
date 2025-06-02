@@ -155,7 +155,6 @@ export default function CareerResponse() {
             <div className="col-lg-7 col-md-6 col-sm-12">
               <h2>Career Response
                  <small className="text-muted">Welcome to Viralon</small>
-
               </h2>
               
             </div>

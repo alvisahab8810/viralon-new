@@ -41,7 +41,7 @@ const ProductCoverflowSlider = () => {
     <div className="container logo-sliders w-full max-w-6xl mx-auto ptb-50">
       <Swiper
         effect={'coverflow'}
-        slidesPerView={2.5}
+        slidesPerView={2.6}
         grabCursor={true}
         centeredSlides={true}
         loop={true}
@@ -49,7 +49,7 @@ const ProductCoverflowSlider = () => {
           rotate: 0,
           stretch: 0,
           depth: 220,
-          modifier: 2.5,
+          modifier: 3,
           slideShadows: false,
         }}
 
@@ -79,7 +79,7 @@ const ProductCoverflowSlider = () => {
           },
           1024: {
             slidesPerView: 2.5,
-            spaceBetween: 10,
+            spaceBetween: 30,
           },
         }}
         modules={[EffectCoverflow, Autoplay]}

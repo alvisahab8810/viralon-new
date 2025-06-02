@@ -769,6 +769,21 @@ footer .before-bg::before {
 
 @media(max-width:560px){
 
+
+    .web-development-coverflow .swiper-slide {
+
+  width: 350px;
+  height: 300px;
+
+}
+
+    .web-development-coverflow .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+}
+
     .seo-hero-img img {
     aspect-ratio: 1 / 1;
     top: -184% /* Hides top 80% of the image */;

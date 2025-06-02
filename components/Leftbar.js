@@ -80,7 +80,7 @@ export default function Leftbar() {
                 </a>
               </div>
             </li>
-            <li className="header">MAIN NAVIGATION</li>
+            {/* <li className="header">MAIN NAVIGATION</li> */}
             <li>
               <Link
                 href="/dashboard/admin"
@@ -135,14 +135,14 @@ export default function Leftbar() {
               </a>{" "}
             </li> */}
 
-            <li className="header">Sales</li>
+            <li className="header"><i className="zmdi zmdi-shopping-cart col-red"></i> Sales</li>
             <li>
               <div
                 onClick={() => toggleMenu("customers")}
                 className="menu-toggle cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100 waves-effect waves-block"
               >
-                <i className="zmdi zmdi-label col-red"></i>
-                <span>Customers</span>
+                <i className="zmdi zmdi-accounts col-purple"></i>
+                <span>Clients</span>
               </div>
 
               <ul
@@ -159,60 +159,96 @@ export default function Leftbar() {
                     href="/dashboard/sales/customers/new-customer"
                     className="waves-effect waves-block"
                   >
-                    Add New Customer
+                    Add New Client
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/dashboard/customer-list"
+                    href="/dashboard/sales/customers/customer-list"
                     className="waves-effect waves-block"
                   >
-                    Customer List
+                    Clients List
                   </Link>
                 </li>
               </ul>
             </li>
 
             <li>
-              <a href="#" className="menu-toggle waves-effect waves-block">
-                <i className="zmdi zmdi-label col-amber"></i>
-                <span>Technology</span>{" "}
-              </a>
-              <ul className="ml-menu">
+              <div
+                onClick={() => toggleMenu("quotes")}
+                className="menu-toggle cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100 waves-effect waves-block"
+              >
+                <i className="zmdi zmdi-file-text col-lime"></i>
+                <span>Quotes</span>
+              </div>
+
+              <ul
+                className={`ml-menu transition-all duration-300 ease-in-out overflow-hidden ${
+                  openMenu === "quotes" ? "max-h-40" : "max-h-0"
+                }`}
+                style={{
+                  transition: "max-height 0.3s ease",
+                  maxHeight: openMenu === "quotes" ? "200px" : "0px",
+                }}
+              >
                 <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    UI UX Design
-                  </a>{" "}
+                  <Link
+                    href="/dashboard/sales/customers/new-quote"
+                    className="waves-effect waves-block"
+                  >
+                    Add New Quote
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    Android
-                  </a>{" "}
-                </li>
-                <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    iOS
-                  </a>{" "}
-                </li>
-                <li>
-                  <a href="#" className=" waves-effect waves-block">
-                    Wordpress
-                  </a>{" "}
+                  <Link
+                    href="/dashboard/sales/customers/quote-list"
+                    className="waves-effect waves-block"
+                  >
+                    Quote List
+                  </Link>
                 </li>
               </ul>
             </li>
+
             <li>
-              <a href="#" className="waves-effect waves-block">
-                <i className="zmdi zmdi-label col-purple"></i>
-                <span>Lifestyle</span>
-              </a>
+              <div
+                onClick={() => toggleMenu("invoices")}
+                className="menu-toggle cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100 waves-effect waves-block"
+              >
+                <i className="zmdi zmdi-receipt col-blue"></i>
+                <span>Invoices</span>
+              </div>
+
+              <ul
+                className={`ml-menu transition-all duration-300 ease-in-out overflow-hidden ${
+                  openMenu === "invoices" ? "max-h-40" : "max-h-0"
+                }`}
+                style={{
+                  transition: "max-height 0.3s ease",
+                  maxHeight: openMenu === "invoices" ? "200px" : "0px",
+                }}
+              >
+                <li>
+                  <Link
+                    href="/dashboard/sales/customers/new-invoice"
+                    className="waves-effect waves-block"
+                  >
+                    Add New Invoice
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/dashboard/sales/customers/invoice-list"
+                    className="waves-effect waves-block"
+                  >
+                    Invoice List
+                  </Link>
+                </li>
+              </ul>
             </li>
-            <li>
-              <a href="#" className="waves-effect waves-block">
-                <i className="zmdi zmdi-label col-lime"></i>
-                <span>Sports</span>
-              </a>
-            </li>
+
+           
+         
           </ul>
         </div>
         {/* <!-- #Menu -->  */}

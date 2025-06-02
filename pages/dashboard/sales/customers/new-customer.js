@@ -3,8 +3,9 @@ import Link from "next/link";
 import Dashnav from "../../../../components/Dashnav";
 import Leftbar from "../../../../components/Leftbar";
 import Head from "next/head";
-
-// for select dropdown-----
+import { toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// for select dropdown -----
 
 import Select from "react-select";
 import { useState } from "react";
@@ -83,6 +84,149 @@ export default function NewCustomers() {
     }),
   };
 
+  // const [files, setFiles] = useState([]);
+
+  // ------- Customer Form -------------
+
+  // const [formData, setFormData] = useState({
+  //   customerType: "business",
+  //   salutation: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   companyName: "",
+  //   displayName: "",
+  //   email: "",
+  //   workPhone: "",
+  //   mobile: "",
+  //   pan: "",
+  //   files: [], // for uploaded files
+
+  //   billingAddress: {
+  //     attention: "",
+  //     country: "", // store country name or code
+  //     address1: "",
+  //     address2: "",
+  //     city: "",
+  //     state: "", // store state name or code
+  //     pincode: "",
+  //     phone: "",
+  //     fax: "",
+  //   },
+  // });
+
+  const initialFormData = {
+    customerType: "business",
+    salutation: "",
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    displayName: "",
+    email: "",
+    workPhone: "",
+    mobile: "",
+    pan: "",
+    files: [],
+    billingAddress: {
+      attention: "",
+      country: "",
+      address1: "",
+      address2: "",
+      city: "",
+      state: "",
+      pincode: "",
+      phone: "",
+      fax: "",
+    },
+  };
+
+  const [formData, setFormData] = useState(initialFormData); // ✅ use initialFormData
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      files: Array.from(e.target.files), // convert FileList to array
+    }));
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await fetch("/api/sales/customers/customer", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (!res.ok) {
+  //       throw new Error(`Server error: ${res.status}`);
+  //     }
+
+  //     const data = await res.json();
+
+  //     if (data.success) {
+  //       alert("Customer saved successfully");
+
+  //       // ✅ Reset form and dropdowns
+  //       setFormData(initialFormData);
+  //       setSelectedCountry(null);
+  //       setSelectedState(null);
+  //     } else {
+  //       alert(data.message || "Error saving customer");
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Error saving customer");
+  //   }
+  // };
+
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/sales/customers/customer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Server error: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    if (data.success) {
+      toast.success("Clients saved successfully");
+
+      // ✅ Reset form and dropdowns
+      setFormData(initialFormData);
+      setSelectedCountry(null);
+      setSelectedState(null);
+    } else {
+      toast.error(data.message || "Error saving Clients");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Error saving Clients");
+  }
+};
+
   return (
     <div className="career-response">
       <Head>
@@ -117,7 +261,7 @@ export default function NewCustomers() {
             </div>
 
             <div className="admin">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="row align-items-center mb-3">
                   <div className="col-12 col-sm-2 d-flex align-items-center">
                     <label htmlFor="customer-type" className="mb-0">
@@ -132,17 +276,20 @@ export default function NewCustomers() {
                     <label>
                       <input
                         type="radio"
-                        name="customer-type"
+                        name="customerType"
                         value="business"
-                        checked
+                        checked={formData.customerType === "business"}
+                        onChange={handleChange}
                       />
                       Business
                     </label>
                     <label>
                       <input
                         type="radio"
-                        name="customer-type"
+                        name="customerType"
                         value="individual"
+                        checked={formData.customerType === "individual"}
+                        onChange={handleChange}
                       />
                       Individual
                     </label>
@@ -164,8 +311,10 @@ export default function NewCustomers() {
                       name="salutation"
                       className="form-select f-select"
                       aria-label="Salutation"
+                      value={formData.salutation}
+                      onChange={handleChange}
                     >
-                      <option selected>Salutation</option>
+                      <option value="">Salutation</option>
                       <option value="Mr.">Mr.</option>
                       <option value="Mrs.">Mrs.</option>
                       <option value="Ms.">Ms.</option>
@@ -174,15 +323,19 @@ export default function NewCustomers() {
                     </select>
                     <input
                       type="text"
-                      name="first-name"
+                      name="firstName"
                       placeholder="First Name"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       className="form-control w-auto"
                     />
                     <input
                       type="text"
-                      name="last-name"
+                      name="lastName"
                       placeholder="Last Name"
+                      value={formData.lastName}
                       className="form-control w-auto"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -197,8 +350,10 @@ export default function NewCustomers() {
                     <input
                       type="text"
                       id="company-name"
-                      name="company-name"
+                      name="companyName"
                       className="form-control"
+                      value={formData.companyName}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -219,11 +374,18 @@ export default function NewCustomers() {
                   <div className="col-12 col-sm-9">
                     <select
                       id="display-name"
-                      name="display-name"
+                      name="displayName"
+                      value={formData.displayName}
                       className="form-select "
                       aria-label="Display Name"
+                      onChange={handleChange}
                     >
-                      <option selected>Select or type to add</option>
+                      <option value="">Select or type to add</option>
+                      <option
+                        value={formData.firstName + " " + formData.lastName}
+                      >
+                        {formData.firstName + " " + formData.lastName}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -246,6 +408,8 @@ export default function NewCustomers() {
                       name="email"
                       className="form-control"
                       aria-label="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -265,10 +429,12 @@ export default function NewCustomers() {
                       {/* <i className="fas fa-phone"></i> */}
                       <input
                         type="text"
-                        name="work-phone"
+                        name="workPhone"
                         placeholder="Work Phone"
                         className="form-control"
                         aria-label="Work Phone"
+                        value={formData.workPhone}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="input-icon w-auto">
@@ -279,6 +445,8 @@ export default function NewCustomers() {
                         placeholder="Mobile"
                         className="form-control"
                         aria-label="Mobile"
+                        value={formData.mobile}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -341,7 +509,7 @@ export default function NewCustomers() {
                       id="other-details"
                       role="tabpanel"
                       aria-labelledby="other-details-tab"
-                      tabindex="0"
+                      tabIndex="0"
                     >
                       <div className="row g-3 align-items-center mb-3">
                         <label
@@ -357,7 +525,8 @@ export default function NewCustomers() {
                             name="pan"
                             className="form-control"
                             aria-describedby="panHelp"
-                            autocomplete="off"
+                            autoComplete="off"
+                            onChange={handleChange}
                           />
                           <span
                             className="info-icon"
@@ -368,9 +537,9 @@ export default function NewCustomers() {
                         </div>
                       </div>
 
-                      <div className="row g-3 align-items-start mb-3">
+                      {/* <div className="row g-3 align-items-start mb-3">
                         <label
-                          htmlFor="documents"
+                          htmlFor="fileUpload"
                           className="col-sm-2 col-form-label fw-normal pt-2"
                         >
                           Documents
@@ -390,12 +559,13 @@ export default function NewCustomers() {
                             className="d-none"
                             multiple
                             accept="*"
+                            onChange={handleFileChange}
                           />
                           <small className="text-muted">
                             You can upload a maximum of 10 files, 10MB each
                           </small>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div
@@ -403,33 +573,43 @@ export default function NewCustomers() {
                       id="address"
                       role="tabpanel"
                       aria-labelledby="address-tab"
-                      tabindex="0"
+                      tabIndex="0"
                     >
-                      <div class="other-info">
+                      <div className="other-info">
                         <h2>Billing Address</h2>
-                        <div class="row g-3 align-items-center">
+
+                        <div className="row g-3 align-items-center">
                           <label
                             htmlFor="attention"
-                            class="col-sm-2 col-form-label"
+                            className="col-sm-2 col-form-label"
                           >
                             Attention
                           </label>
-                          <div class="col-sm-10">
+                          <div className="col-sm-10">
                             <input
                               type="text"
                               id="attention"
-                              class="form-control"
+                              className="form-control"
+                              value={formData.billingAddress.attention}
+                              onChange={(e) =>
+                                setFormData({
+                                  ...formData,
+                                  billingAddress: {
+                                    ...formData.billingAddress,
+                                    attention: e.target.value,
+                                  },
+                                })
+                              }
                             />
                           </div>
 
-                          {/* Country */}
                           <label
                             htmlFor="country"
                             className="col-sm-2 col-form-label"
                           >
                             Country/Region
                           </label>
-                          <div className="col-sm-10">
+                          {/* <div className="col-sm-10">
                             <Select
                               styles={customSelectStyles}
                               id="country"
@@ -441,48 +621,135 @@ export default function NewCustomers() {
                               }}
                               placeholder="Select or search country"
                             />
+                          </div> */}
+
+                          <div className="col-sm-10">
+                            <Select
+                              styles={customSelectStyles}
+                              id="country"
+                              options={countryOptions}
+                              value={
+                                formData.billingAddress.country
+                                  ? {
+                                      label: formData.billingAddress.country,
+                                      value: formData.billingAddress.country,
+                                    }
+                                  : null
+                              }
+                              onChange={(option) => {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    country: option.label, // or option.value if you're using country codes
+                                    state: "", // reset state on country change
+                                  },
+                                }));
+                                setSelectedCountry(option);
+                                setSelectedState(null); // Optional: reset local state if you're using it for UI
+                              }}
+                              placeholder="Select or search country"
+                            />
                           </div>
 
                           <label
                             htmlFor="address1"
-                            class="col-sm-2  col-form-label"
+                            className="col-sm-2  col-form-label"
                           >
                             Address
                           </label>
-                          <div class="col-sm-10 ">
+                          {/* <div className="col-sm-10 ">
                             <textarea
                               id="address1"
                               rows="2"
                               placeholder="Street 1"
-                              class="form-control"
+                              className="form-control"
                             ></textarea>
+                          </div> */}
+
+                          <div className="col-sm-10 ">
+                            <textarea
+                              id="address1"
+                              rows="2"
+                              placeholder="Street 1"
+                              className="form-control"
+                              value={formData.billingAddress.address1 || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    address1: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
                           </div>
 
-                          <label class="col-sm-2"></label>
-                          <div class="col-sm-10 ">
+                          <label className="col-sm-2"></label>
+                          {/* <div className="col-sm-10 ">
                             <textarea
                               id="address2"
                               rows="2"
                               placeholder="Street 2"
-                              class="form-control"
+                              className="form-control"
                             ></textarea>
+                          </div> */}
+
+                          <div className="col-sm-10 ">
+                            <textarea
+                              id="address2"
+                              rows="2"
+                              placeholder="Street 2"
+                              className="form-control"
+                              value={formData.billingAddress.address2 || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    address2: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
                           </div>
 
-                          <label htmlFor="city" class="col-sm-2 col-form-label">
+                          <label
+                            htmlFor="city"
+                            className="col-sm-2 col-form-label"
+                          >
                             City
                           </label>
-                          <div class="col-sm-10">
-                            <input type="text" id="city" class="form-control" />
+                          {/* <div className="col-sm-10">
+                            <input type="text" id="city" className="form-control" />
+                          </div> */}
+
+                          <div className="col-sm-10">
+                            <input
+                              type="text"
+                              id="city"
+                              className="form-control"
+                              value={formData.billingAddress.city || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    city: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
                           </div>
 
-                          {/* State */}
                           <label
                             htmlFor="state"
                             className="col-sm-2 col-form-label"
                           >
                             State
                           </label>
-                          <div className="col-sm-10">
+                          {/* <div className="col-sm-10">
                             <Select
                               styles={customSelectStyles}
                               id="state"
@@ -492,35 +759,136 @@ export default function NewCustomers() {
                               placeholder="Select or search state"
                               isDisabled={!selectedCountry}
                             />
+                          </div> */}
+
+                          <div className="col-sm-10">
+                            <Select
+                              styles={customSelectStyles}
+                              id="state"
+                              options={stateOptions}
+                              value={
+                                formData.billingAddress.state
+                                  ? {
+                                      label: formData.billingAddress.state,
+                                      value: formData.billingAddress.state,
+                                    }
+                                  : null
+                              }
+                              onChange={(option) => {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    state: option.label, // or option.value, depending on your design
+                                  },
+                                }));
+                                setSelectedState(option);
+                              }}
+                              placeholder="Select or search state"
+                              isDisabled={!selectedCountry}
+                            />
                           </div>
 
-                          <label htmlFor="pincode" class="col-sm-2 col-form-label">
+                          {/* 
+                          <label htmlFor="pincode" className="col-sm-2 col-form-label">
                             Pin Code
                           </label>
-                          <div class="col-sm-10">
+                          <div className="col-sm-10">
                             <input
                               type="text"
                               id="pincode"
-                              class="form-control"
+                              className="form-control"
                             />
                           </div>
 
-                          <label htmlFor="phone" class="col-sm-2 col-form-label">
+                          <label htmlFor="phone" className="col-sm-2 col-form-label">
                             Phone
                           </label>
-                          <div class="col-sm-10">
+                          <div className="col-sm-10">
                             <input
                               type="text"
                               id="phone"
-                              class="form-control"
+                              className="form-control"
                             />
                           </div>
 
-                          <label htmlFor="fax" class="col-sm-2 col-form-label">
+                          <label htmlFor="fax" className="col-sm-2 col-form-label">
                             Fax Number
                           </label>
-                          <div class="col-sm-10">
-                            <input type="text" id="fax" class="form-control" />
+                          <div className="col-sm-10">
+                            <input type="text" id="fax" className="form-control" />
+                          </div> */}
+
+                          <label
+                            htmlFor="pincode"
+                            className="col-sm-2 col-form-label"
+                          >
+                            Pin Code
+                          </label>
+                          <div className="col-sm-10">
+                            <input
+                              type="text"
+                              id="pincode"
+                              className="form-control"
+                              value={formData.billingAddress.pincode || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    pincode: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
+                          </div>
+
+                          <label
+                            htmlFor="phone"
+                            className="col-sm-2 col-form-label"
+                          >
+                            Phone
+                          </label>
+                          <div className="col-sm-10">
+                            <input
+                              type="text"
+                              id="phone"
+                              className="form-control"
+                              value={formData.billingAddress.phone || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    phone: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
+                          </div>
+
+                          <label
+                            htmlFor="fax"
+                            className="col-sm-2 col-form-label"
+                          >
+                            Fax Number
+                          </label>
+                          <div className="col-sm-10">
+                            <input
+                              type="text"
+                              id="fax"
+                              className="form-control"
+                              value={formData.billingAddress.fax || ""}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  billingAddress: {
+                                    ...prev.billingAddress,
+                                    fax: e.target.value,
+                                  },
+                                }))
+                              }
+                            />
                           </div>
                         </div>
                       </div>
@@ -553,6 +921,7 @@ export default function NewCustomers() {
           </div>
         </section>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
