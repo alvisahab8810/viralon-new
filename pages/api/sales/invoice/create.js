@@ -1,6 +1,5 @@
 import dbConnect from "../../../../utils/dbconnect";
-// import Invoice from "../../../../../models/sales/invoice";
-import Invoice from "../../../../models/sales/invoice";
+// import Invoice from "../../../../models/sales/invoice";
 
 import puppeteer from "puppeteer";
 
