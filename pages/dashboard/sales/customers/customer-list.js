@@ -120,6 +120,8 @@ export default function CustomerList() {
                   <th>Company Name</th>
                   <th>Email</th>
                   <th>Mobile</th>
+                  <th>GST</th>
+
                   <th>Actions</th> {/* Add a heading for action buttons */}
                 </tr>
               </thead>
@@ -135,6 +137,8 @@ export default function CustomerList() {
                     <td>{customer.companyName}</td>
                     <td>{customer.email}</td>
                     <td>{customer.mobile}</td>
+                    <td>{customer.gst}</td>
+
                     <td className="d-flex">
                       <button
                         onClick={() => openModal(customer)} // ✅ use the correct function

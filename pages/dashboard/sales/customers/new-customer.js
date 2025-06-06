@@ -125,6 +125,8 @@ export default function NewCustomers() {
     workPhone: "",
     mobile: "",
     pan: "",
+    gst: "",
+
     files: [],
     billingAddress: {
       attention: "",
@@ -433,6 +435,9 @@ const handleSubmit = async (e) => {
                         placeholder="Work Phone"
                         className="form-control"
                         aria-label="Work Phone"
+                          maxLength={10} // ✅ limits to 10 characters
+                        pattern="\d{10}" // ✅ optional, for HTML validation (digits only)
+                        inputMode="numeric" // ✅ improves mobile keyboard behavior
                         value={formData.workPhone}
                         onChange={handleChange}
                       />
@@ -445,6 +450,9 @@ const handleSubmit = async (e) => {
                         placeholder="Mobile"
                         className="form-control"
                         aria-label="Mobile"
+                        maxLength={10} // ✅ limits to 10 characters
+                        pattern="\d{10}" // ✅ optional, for HTML validation (digits only)
+                        inputMode="numeric" // ✅ improves mobile keyboard behavior
                         value={formData.mobile}
                         onChange={handleChange}
                       />
@@ -537,6 +545,37 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
 
+
+                      <div className="row g-3 align-items-center mb-3">
+                        <label
+                          htmlFor="pan"
+                          className="col-sm-2 col-form-label fw-normal"
+                        >
+                          GST
+                        </label>
+                        <div className="col-sm-10 d-flex align-items-center">
+                          <input
+                            type="text"
+                            id="gst"
+                            name="gst"
+                            className="form-control"
+                            aria-describedby="gstAdd"
+                            autoComplete="off"
+                            value={formData.gst} // ✅ Add this
+                            onChange={handleChange}
+                          />
+                          <span
+                            className="info-icon"
+                            title="Permanent Account Number"
+                          >
+                            i
+                          </span>
+                        </div>
+                      </div>
+
+
+                      
+
                       {/* <div className="row g-3 align-items-start mb-3">
                         <label
                           htmlFor="fileUpload"
@@ -583,7 +622,7 @@ const handleSubmit = async (e) => {
                             htmlFor="attention"
                             className="col-sm-2 col-form-label"
                           >
-                            Attention
+                            Full Name
                           </label>
                           <div className="col-sm-10">
                             <input
@@ -851,6 +890,9 @@ const handleSubmit = async (e) => {
                           </label>
                           <div className="col-sm-10">
                             <input
+                              maxLength={10} // ✅ limits to 10 characters
+                              pattern="\d{10}" // ✅ optional, for HTML validation (digits only)
+                              inputMode="numeric" // ✅ improves mobile keyboard behavior
                               type="text"
                               id="phone"
                               className="form-control"
@@ -875,6 +917,9 @@ const handleSubmit = async (e) => {
                           </label>
                           <div className="col-sm-10">
                             <input
+                              maxLength={10} // ✅ limits to 10 characters
+                              pattern="\d{10}" // ✅ optional, for HTML validation (digits only)
+                              inputMode="numeric" // ✅ improves mobile keyboard behavior
                               type="text"
                               id="fax"
                               className="form-control"

@@ -19,7 +19,21 @@ const nextConfig = {
 };
 
 
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   output: 'export', // Enable static export
+//   images: {
+//     unoptimized: true, // ✅ Disable built-in image optimization for export
+//   },
+//   env: {
+//     apiUrl: 'http://localhost:3000/',
+//     fileUrl: 'http://localhost:3000/',
+//   },
+// };
 
+module.exports = nextConfig;
+  
 // next.config.js
 module.exports = {
   images: {
@@ -30,4 +44,3 @@ module.exports = {
 module.exports = nextConfig;
 
 
-  

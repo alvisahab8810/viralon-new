@@ -10,6 +10,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function QuoteList() {
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10; // Change to desired rows per page
 
@@ -61,6 +63,33 @@ export default function QuoteList() {
     });
   };
 
+
+   const handleStatusChange = async (newStatus) => {
+  try {
+    const res = await fetch(`/api/sales/quotation/update-status`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        quoteId: quote._id,
+        status: newStatus,
+      }),
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      setQuote((prev) => ({ ...prev, status: newStatus }));
+    } else {
+      console.error("Failed to update status:", data.error);
+      alert("Failed to update status.");
+    }
+  } catch (error) {
+    console.error("Error updating status:", error);
+    alert("An error occurred while updating the status.");
+  }
+};
+
   return (
     <div className="career-response">
       <Head>
@@ -102,7 +131,7 @@ export default function QuoteList() {
                   <th>Date</th>
                   <th>Amount</th>
                   <th>Status</th>
-                  <th>Actions</th>
+                  {/* <th>Actions</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -135,7 +164,20 @@ export default function QuoteList() {
                       </td>
 
                       <td>{quote.total || "0.00"}</td>
-                      <td>{quote.status || "Sent"}</td>
+                      {/* <td>{quote.status || "Sent"}</td> */}
+
+                      <td>
+                        <select
+                          // value={quote.status || "Sent"}
+                          onChange={(e) => handleStatusChange(e.target.value)}
+                          className="form-select"
+                        >
+                          <option value="Sent">Sent</option>
+                          <option value="Approved">Approved</option>
+                          <option value="Rejected">Rejected</option>
+                          <option value="Pending">Pending</option>
+                        </select>
+                      </td>
                       <td>
                         {/* <Link
                           href={`/dashboard/sales/customers/view-quote/${quote._id}`}
@@ -155,13 +197,13 @@ export default function QuoteList() {
                           <FaEye color="rgb(84 110 122)" />
                         </a> */}
 
-                        <button
+                        {/* <button
                           onClick={() => confirmDelete(quote._id)}
                           className="btn-delete ml-2"
                           title="Delete Quote"
                         >
                           <FaTrash color="#FF6F61" />
-                        </button>
+                        </button> */}
                       </td>
                     </tr>
                   ))}

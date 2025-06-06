@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+     "export": "next export"
   },
   "dependencies": {
     "@editorjs/checklist": "^1.6.0",
@@ -90,3 +91,5 @@
   "author": "",
   "license": "ISC"
 }
+
+

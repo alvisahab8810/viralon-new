@@ -34,6 +34,8 @@ const CustomerSchema = new mongoose.Schema({
   workPhone: String,
   mobile: String,
   pan: String,
+  gst: String,
+
   documents: [String], // or [{ name: String, url: String }] if more details needed
 
   // Billing Address fields

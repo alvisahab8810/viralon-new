@@ -30,6 +30,13 @@ const quotationSchema = new mongoose.Schema({
 
   attachedFiles: [String], // store file URLs or paths
 
+   // ✅ New status field
+  status: {
+    type: String,
+    enum: ["Sent", "Approved", "Rejected", "Pending"],
+    default: "Sent",
+  },
+
 
   createdAt: { type: Date, default: Date.now },
 });

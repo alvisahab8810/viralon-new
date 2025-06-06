@@ -1,9 +1,11 @@
 import dbConnect from "../../../../utils/dbconnect";
 // import Invoice from "../../../../../models/sales/invoice";
+import Invoice from "../../../../models/sales/invoice";
+
 import puppeteer from "puppeteer";
 
 // In-memory PDF store (for dev only)
-const pdfStore = global.pdfStore || new Map();
+const pdfStore = global.pdfStore || new Map(  );
 global.pdfStore = pdfStore;
 
 export default async function handler(req, res) {

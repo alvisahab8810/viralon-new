@@ -1,6 +1,6 @@
 
 import dbConnect from "../../../../utils/dbconnect";
-// import Customer from "../../../../models/sales/customer";
+import Customer from "../../../../models/sales/Customer";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -30,6 +30,8 @@ export default async function handler(req, res) {
           mobile: 1,
           billingAddress: 1,
           pan: 1, // ✅ add this
+          gst: 1, // ✅ add this
+
           documents: 1, // ✅ optionally add this if needed later
         }
       );
