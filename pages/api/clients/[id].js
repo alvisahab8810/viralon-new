@@ -1,5 +1,5 @@
-import dbConnect from '../../../utils/dbconnect';
-import Customer from "../../../models/sales/customer"; // ✅ Use Customer, not Client
+import dbConnect from '../../../utils/dbConnect';
+import Customer from "../../../models/sales/Customer"; // ✅ Use Customer, not Client
 
 export default async function handler(req, res) {
   await dbConnect();
