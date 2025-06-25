@@ -202,8 +202,8 @@
 
 
 
-import dbConnect from "../../../utils/dbconnect";
-import Invoice from "../../../models/sales/invoice";
+import dbConnect from "../../../utils/dbConnect";
+import Invoice from "../../../models/sales/Invoice";
 // import Bill from "../../../models/purchase/bill"; // Uncomment when ready
 
 // Build a YYYY-MM key (e.g., "2025-04")

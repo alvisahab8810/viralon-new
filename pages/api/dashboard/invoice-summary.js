@@ -1,4 +1,4 @@
-import dbConnect from "../../../utils/dbconnect";
+import dbConnect from "../../../utils/dbConnect";
 import Invoice from "../../../models/sales/Invoice";
 import { startOfMonth, endOfMonth, subMonths, format } from "date-fns";
 

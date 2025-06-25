@@ -1,7 +1,7 @@
 
 
-import dbConnect from "../../../utils/dbconnect";
-import Query from "../../../models/query";
+import dbConnect from "../../../utils/dbConnect";
+import Query from "../../../models/Query";
 import { startOfMonth, endOfMonth, subMonths, format } from "date-fns";
 
 export default async function handler(req, res) {

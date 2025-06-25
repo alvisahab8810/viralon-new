@@ -2,8 +2,8 @@
 
 
 
-import dbConnect from "../../../utils/dbconnect";
-import Customer from "../../../models/sales/customer"
+import dbConnect from "../../../utils/dbConnect";
+import Customer from "../../../models/sales/Customer"
 import { startOfMonth, endOfMonth, subMonths, format } from "date-fns";
 
 export default async function handler(req, res) {

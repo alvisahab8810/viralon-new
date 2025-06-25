@@ -1,6 +1,6 @@
 // File: /pages/api/dashboard/quotation-summary.js
 
-import dbConnect from "../../../utils/dbconnect";
+import dbConnect from "../../../utils/dbConnect";
 import Quotation from "../../../models/sales/Quotation";
 import { startOfMonth, endOfMonth, subMonths, format } from "date-fns";
 
