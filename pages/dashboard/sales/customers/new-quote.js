@@ -13,24 +13,19 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 import dynamic from "next/dynamic";
-import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.snow.css";
 
 export default function NewQuote() {
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+  const [quillLoaded, setQuillLoaded] = useState(false);
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-const [quillLoaded, setQuillLoaded] = useState(false);
-
-useEffect(() => {
-  setQuillLoaded(true);
-}, []);
-
+  useEffect(() => {
+    setQuillLoaded(true);
+  }, []);
 
   const [showCC, setShowCC] = useState(false);
   const [showBCC, setShowBCC] = useState(false);
-
-
 
   const [pdfId, setPdfId] = useState(null);
   const [sending, setSending] = useState(false);
@@ -43,14 +38,13 @@ useEffect(() => {
   //   message: "",
   // });
 
-
   const [emailData, setEmailData] = useState({
-  to: "",
-  cc: "",
-  bcc: "",
-  subject: "",
-  message: "", // this holds HTML from ReactQuill
-});
+    to: "",
+    cc: "",
+    bcc: "",
+    subject: "",
+    message: "", // this holds HTML from ReactQuill
+  });
   const [selectedCustomerId, setSelectedCustomerId] = useState("");
   const [referenceNumber, setReferenceNumber] = useState("");
   const [quoteDate, setQuoteDate] = useState("");
@@ -385,37 +379,37 @@ useEffect(() => {
   //   setSending(false);
   // };
 
-
   const sendEmail = async () => {
-  setSending(true);
+    setSending(true);
 
-  const previewHtml = document.getElementById("quote-preview-content").innerHTML;
+    const previewHtml = document.getElementById(
+      "quote-preview-content"
+    ).innerHTML;
 
-  const response = await fetch("/api/sales/quotation/email", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      to: emailData.to,
-      cc: emailData.cc,        // ✅ Add this
-      bcc: emailData.bcc,      // ✅ Add this (optional)
-      subject: emailData.subject,
-      htmlBody: emailData.message.replace(/\n/g, "<br>"),
-      pdfId,
-      previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
-    }),
-  });
+    const response = await fetch("/api/sales/quotation/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: emailData.to,
+        cc: emailData.cc, // ✅ Add this
+        bcc: emailData.bcc, // ✅ Add this (optional)
+        subject: emailData.subject,
+        htmlBody: emailData.message.replace(/\n/g, "<br>"),
+        pdfId,
+        previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
+      }),
+    });
 
-  const result = await response.json();
-  if (result.success) {
-    toast.success("Email sent successfully.");
-    setEmailModalOpen(false);
-  } else {
-    toast.error("Failed to send email: " + result.error);
-  }
+    const result = await response.json();
+    if (result.success) {
+      toast.success("Email sent successfully.");
+      setEmailModalOpen(false);
+    } else {
+      toast.error("Failed to send email: " + result.error);
+    }
 
-  setSending(false);
-};
-
+    setSending(false);
+  };
 
   useEffect(() => {
     if (emailModalOpen) {
@@ -447,7 +441,7 @@ useEffect(() => {
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2 className="new-invoice-heading">
-                 <i className="zmdi zmdi-file-text col-blue"></i>
+                  <i className="zmdi zmdi-file-text col-blue"></i>
                   New Quote
                   <small className="text-muted">Welcome to Viralon</small>
                 </h2>
@@ -617,7 +611,7 @@ useEffect(() => {
                       </tr>
                     </thead>
 
-                    <tbody>
+                    {/* <tbody>
                       {rows.map((row) => (
                         <tr key={row._id}>
                           <td>
@@ -677,6 +671,71 @@ useEffect(() => {
                           </td>
                         </tr>
                       ))}
+                    </tbody> */}
+
+                    <tbody>
+                      {rows.map((row) => (
+                        <tr key={row._id}>
+                          <td>
+                            <input
+                              type="text"
+                              name="item"
+                              className="form-control"
+                              value={row.item}
+                              onChange={(e) =>
+                                handleChange(row._id, "item", e.target.value)
+                              }
+                              placeholder="Item name"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              name="quantity"
+                              min="0"
+                              step="any"
+                              className="form-control"
+                              value={row.quantity === 0 ? "" : row.quantity}
+                              onChange={(e) =>
+                                handleChange(
+                                  row._id,
+                                  "quantity",
+                                  parseFloat(e.target.value) || 0
+                                )
+                              }
+                              placeholder="0"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              name="rate"
+                              min="0"
+                              step="any"
+                              className="form-control"
+                              value={row.rate === 0 ? "" : row.rate}
+                              onChange={(e) =>
+                                handleChange(
+                                  row._id,
+                                  "rate",
+                                  parseFloat(e.target.value) || 0
+                                )
+                              }
+                              placeholder="0"
+                            />
+                          </td>
+                          <td>{(row.quantity * row.rate).toFixed(2)}</td>
+                          <td className="remove-btn">
+                            <button
+                              type="button"
+                              className="btn btn-link text-danger"
+                              onClick={() => removeRow(row._id)}
+                            >
+                              &times;
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
 
@@ -710,7 +769,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  {/* <div className="col-md-6">
                     <div className="border p-3 bg-white">
                       <div className="mb-2 d-flex justify-content-between total-price mb-3">
                         <span>Sub Total</span>
@@ -773,6 +832,94 @@ useEffect(() => {
                       <div className="mt-4 d-flex justify-content-between fw-bold total-price">
                         <span>Total (₹)</span>
                         <span>{total}</span>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  <div className="col-md-6">
+                    <div className="border p-3 bg-white">
+                      {/* Subtotal */}
+                      <div className="mb-2 d-flex justify-content-between total-price mb-3">
+                        <span>Sub Total</span>
+                        <span>₹{Number(subtotal || 0).toFixed(2)}</span>
+                      </div>
+
+                      {/* Discount Input + Amount */}
+                      <div className="row mb-3 d-flex align-items-center">
+                        <div className="col-sm-2">
+                          <label className="me-2">Discount</label>
+                        </div>
+                        <div className="col-sm-10 d-flex align-items-center text-dark">
+                          <input
+                            type="number"
+                            className="form-control w-100 me-2"
+                            name="discount"
+                            placeholder="0"
+                            value={discount === 0 ? "" : discount}
+                            onChange={(e) =>
+                              setDiscount(parseFloat(e.target.value) || 0)
+                            }
+                          />
+                          %
+                          <div className="col-3 text-end text-danger fw-semibold small">
+                            - ₹
+                            {Number((subtotal * discount) / 100 || 0).toFixed(
+                              2
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* GST Input + Amount */}
+                      <div className="row mb-3 d-flex align-items-center">
+                        <div className="col-sm-2">
+                          <label className="me-2">GST</label>
+                        </div>
+                        <div className="col-sm-10 d-flex align-items-center text-dark">
+                          <input
+                            type="number"
+                            className="form-control w-100 me-2"
+                            name="gst"
+                            placeholder="0"
+                            value={gst === 0 ? "" : gst}
+                            onChange={(e) =>
+                              setGst(parseFloat(e.target.value) || 0)
+                            }
+                          />
+                          %
+                          <div className="col-3 text-end text-success fw-semibold small">
+                            + ₹
+                            {Number(
+                              ((subtotal - (subtotal * discount) / 100) * gst) /
+                                100 || 0
+                            ).toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Adjustment */}
+                      {/* <div className="row mb-3 d-flex align-items-center">
+                        <div className="col-sm-2">
+                          <label className="me-2">Adjustment</label>
+                        </div>
+                        <div className="col-sm-10">
+                          <input
+                            type="number"
+                            className="form-control w-100"
+                            name="adjustment"
+                            placeholder="0"
+                            value={adjustment === 0 ? "" : adjustment}
+                            onChange={(e) =>
+                              setAdjustment(parseFloat(e.target.value) || 0)
+                            }
+                          />
+                        </div>
+                      </div> */}
+
+                      {/* Total */}
+                      <div className="mt-4 d-flex justify-content-between fw-bold total-price">
+                        <span>Total (₹)</span>
+                        <span>₹{Number(total || 0).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
@@ -930,157 +1077,158 @@ useEffect(() => {
               </>
             )} */}
 
+            {emailModalOpen && (
+              <>
+                {/* Backdrop */}
+                <div
+                  className="modal-backdrop"
+                  onClick={() => !sending && setEmailModalOpen(false)}
+                ></div>
 
- {emailModalOpen && (
-  <>
-    {/* Backdrop */}
-    <div
-      className="modal-backdrop"
-      onClick={() => !sending && setEmailModalOpen(false)}
-    ></div>
+                {/* Modal Panel */}
+                <div
+                  className="email-panel"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="modal-title"
+                >
+                  <h2
+                    id="modal-title"
+                    className="text-2xl font-bold text-gray-800 mb-4"
+                  >
+                    Send Quotation
+                  </h2>
 
-    {/* Modal Panel */}
-    <div
-      className="email-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <h2
-        id="modal-title"
-        className="text-2xl font-bold text-gray-800 mb-4"
-      >
-         Send Quotation
-      </h2>
+                  <div className="space-y-4">
+                    {/* To */}
+                    <div className="mb-3">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        To Email
+                      </label>
+                      <input
+                        type="email"
+                        value={emailData.to}
+                        onChange={(e) =>
+                          setEmailData({ ...emailData, to: e.target.value })
+                        }
+                        className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        autoFocus
+                      />
+                    </div>
 
-      <div className="space-y-4">
-        {/* To */}
-        <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            To Email
-          </label>
-          <input
-            type="email"
-            value={emailData.to}
-            onChange={(e) => setEmailData({ ...emailData, to: e.target.value })}
-            className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            autoFocus
-          />
-        </div>
+                    {/* CC & BCC Toggles */}
+                    <div className="mb-3 cc-toggles flex space-x-4">
+                      <button
+                        type="button"
+                        className="text-blue-600 hover:underline text-sm"
+                        onClick={() => setShowCC(!showCC)}
+                      >
+                        {showCC ? "Hide CC" : "Add CC"}
+                      </button>
+                      <button
+                        type="button"
+                        className="ml-2 text-blue-600 hover:underline text-sm"
+                        onClick={() => setShowBCC(!showBCC)}
+                      >
+                        {showBCC ? "Hide BCC" : "Add BCC"}
+                      </button>
+                    </div>
 
-        {/* CC & BCC Toggles */}
-        <div className="mb-3 cc-toggles flex space-x-4">
-          <button
-            type="button"
-            className="text-blue-600 hover:underline text-sm"
-            onClick={() => setShowCC(!showCC)}
-          >
-            {showCC ? "Hide CC" : "Add CC"}
-          </button>
-          <button
-            type="button"
-            className="ml-2 text-blue-600 hover:underline text-sm"
-            onClick={() => setShowBCC(!showBCC)}
-          >
-            {showBCC ? "Hide BCC" : "Add BCC"}
-          </button>
-        </div>
+                    {/* CC */}
+                    {showCC && (
+                      <div className="mb-3">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          CC
+                        </label>
+                        <input
+                          type="email"
+                          value={emailData.cc || ""}
+                          onChange={(e) =>
+                            setEmailData({ ...emailData, cc: e.target.value })
+                          }
+                          className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        />
+                      </div>
+                    )}
 
-        {/* CC */}
-        {showCC && (
-          <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              CC
-            </label>
-            <input
-              type="email"
-              value={emailData.cc || ""}
-              onChange={(e) =>
-                setEmailData({ ...emailData, cc: e.target.value })
-              }
-              className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
-        )}
+                    {/* BCC */}
+                    {showBCC && (
+                      <div className="mb-3">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          BCC
+                        </label>
+                        <input
+                          type="email"
+                          value={emailData.bcc || ""}
+                          onChange={(e) =>
+                            setEmailData({ ...emailData, bcc: e.target.value })
+                          }
+                          className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        />
+                      </div>
+                    )}
 
-        {/* BCC */}
-        {showBCC && (
-          <div  className="mb-3">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              BCC
-            </label>
-            <input
-              type="email"
-              value={emailData.bcc || ""}
-              onChange={(e) =>
-                setEmailData({ ...emailData, bcc: e.target.value })
-              }
-              className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
-        )}
+                    {/* Subject */}
+                    <div className="mb-3">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        value={emailData.subject}
+                        onChange={(e) =>
+                          setEmailData({
+                            ...emailData,
+                            subject: e.target.value,
+                          })
+                        }
+                        className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      />
+                    </div>
 
-        {/* Subject */}
-        <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Subject
-          </label>
-          <input
-            type="text"
-            value={emailData.subject}
-            onChange={(e) =>
-              setEmailData({ ...emailData, subject: e.target.value })
-            }
-            className="form-control w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-        </div>
+                    {/* Rich Text Editor for Message */}
+                    <div className="mb-3">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Message
+                      </label>
+                      {quillLoaded && (
+                        <ReactQuill
+                          key="email-editor"
+                          theme="snow"
+                          value={emailData.message}
+                          onChange={(value) =>
+                            setEmailData({ ...emailData, message: value })
+                          }
+                          className="bg-white rounded-md border border-gray-300"
+                        />
+                      )}
+                    </div>
+                  </div>
 
-        {/* Rich Text Editor for Message */}
- <div className="mb-3">
-  <label className="block text-sm font-medium text-gray-700 mb-1">
-    Message
-  </label>
-  {quillLoaded && (
-    <ReactQuill
-      key="email-editor"
-      theme="snow"
-      value={emailData.message}
-      onChange={(value) =>
-        setEmailData({ ...emailData, message: value })
-      }
-      className="bg-white rounded-md border border-gray-300"
-    />
-  )}
-</div>
-
-
-       
-
-      </div>
-
-      {/* Actions */}
-      <div className="add-row-btn flex justify-end space-x-3 mt-6">
-        <button
-          onClick={() => setEmailModalOpen(false)}
-          disabled={sending}
-          className="btn btn-outline-secondary px-5 py-2 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400 transition disabled:opacity-50"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={sendEmail}
-          disabled={sending}
-          className={`px-5 btn btn-outline-secondary ml-2 py-2 rounded-md text-white transition ${
-            sending ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
-        >
-          {sending ? "Sending..." : "Send"}
-        </button>
-      </div>
-    </div>
-  </>
-)}
-
+                  {/* Actions */}
+                  <div className="add-row-btn flex justify-end space-x-3 mt-6">
+                    <button
+                      onClick={() => setEmailModalOpen(false)}
+                      disabled={sending}
+                      className="btn btn-outline-secondary px-5 py-2 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400 transition disabled:opacity-50"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={sendEmail}
+                      disabled={sending}
+                      className={`px-5 btn btn-outline-secondary ml-2 py-2 rounded-md text-white transition ${
+                        sending
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-blue-600 hover:bg-blue-700"
+                      }`}
+                    >
+                      {sending ? "Sending..." : "Send"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </section>
       </div>
@@ -1332,10 +1480,10 @@ useEffect(() => {
               marginTop: "30px",
             }}
           >
-            <table style={{ width: "50%", borderCollapse: "collapse" }}>
+            {/* <table style={{ width: "50%", borderCollapse: "collapse" }}>
               <tbody>
                 <tr>
-                  <td style={{ padding: "8px",  border: "1px solid #dee2e6", }}>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>Subtotal</strong>
                   </td>
                   <td
@@ -1343,14 +1491,14 @@ useEffect(() => {
                       padding: "8px",
                       textAlign: "right",
                       fontSize: "12px",
-                       border: "1px solid #dee2e6",
+                      border: "1px solid #dee2e6",
                     }}
                   >
                     ₹ {Number(subtotal).toFixed(2)}
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ padding: "8px", border: "1px solid #dee2e6",}}>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>Discount</strong>
                   </td>
                   <td
@@ -1358,14 +1506,14 @@ useEffect(() => {
                       padding: "8px",
                       textAlign: "right",
                       fontSize: "12px",
-                       border: "1px solid #dee2e6",
+                      border: "1px solid #dee2e6",
                     }}
                   >
                     {Number(discount)}%
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ padding: "8px", border: "1px solid #dee2e6", }}>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>GST</strong>
                   </td>
                   <td
@@ -1373,14 +1521,14 @@ useEffect(() => {
                       padding: "8px",
                       textAlign: "right",
                       fontSize: "12px",
-                       border: "1px solid #dee2e6",
+                      border: "1px solid #dee2e6",
                     }}
                   >
                     {Number(gst)}%
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ padding: "8px" , border: "1px solid #dee2e6"}}>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>Adjustment</strong>
                   </td>
                   <td
@@ -1388,19 +1536,168 @@ useEffect(() => {
                       padding: "8px",
                       textAlign: "right",
                       fontSize: "12px",
-                       border: "1px solid #dee2e6",
+                      border: "1px solid #dee2e6",
                     }}
                   >
                     ₹ {Number(adjustment).toFixed(2)}
                   </td>
                 </tr>
                 <tr style={{ backgroundColor: "#f1f1f1" }}>
-                  <td style={{ padding: "12px",  border: "1px solid #dee2e6", }}>
+                  <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>
                     <h4 style={{ margin: 0, fontSize: "12px" }}>
                       <strong>Total</strong>
                     </h4>
                   </td>
-                  <td style={{ padding: "13px", textAlign: "right",  border: "1px solid #dee2e6", }}>
+                  <td
+                    style={{
+                      padding: "13px",
+                      textAlign: "right",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    <h4 style={{ margin: 0, fontSize: "13px" }}>
+                      ₹ {Number(total).toFixed(2)}
+                    </h4>
+                  </td>
+                </tr>
+              </tbody>
+            </table> */}
+
+            <table style={{ width: "50%", borderCollapse: "collapse" }}>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
+                    <strong style={{ fontSize: "12px" }}>Subtotal</strong>
+                  </td>
+                  <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    ₹ {Number(subtotal).toFixed(2)}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
+                    <strong style={{ fontSize: "12px" }}>Discount</strong>
+                  </td>
+                  {/* <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {Number(discount)}%
+                  </td> */}
+
+                  <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {discount > 0
+                      ? `${discount}% (- ₹${((subtotal * discount) / 100).toFixed(2)})`
+                      : "—"}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
+                    <strong style={{ fontSize: "12px" }}>GST</strong>
+                  </td>
+                  {/* <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {Number(gst)}%
+                  </td> */}
+
+                  {/* <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {gst > 0
+                      ? `${gst}% (+ ₹${(((subtotal - (subtotal * discount) / 100) * gst) / 100).toFixed(2)})`
+                      : "—"}
+                  </td> */}
+
+                  <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {gst > 0 ? (
+                      <>
+                        <div>
+                          CGST: {(gst / 2).toFixed(2)}% (+ ₹
+                          {(
+                            ((subtotal - (subtotal * discount) / 100) *
+                              (gst / 2)) /
+                            100
+                          ).toFixed(2)}
+                          )
+                        </div>
+                        <div>
+                          SGST: {(gst / 2).toFixed(2)}% (+ ₹
+                          {(
+                            ((subtotal - (subtotal * discount) / 100) *
+                              (gst / 2)) /
+                            100
+                          ).toFixed(2)}
+                          )
+                        </div>
+                      </>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                </tr>
+                {/* <tr>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
+                    <strong style={{ fontSize: "12px" }}>Adjustment</strong>
+                  </td>
+                  <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    ₹ {Number(adjustment).toFixed(2)}
+                  </td>
+                </tr> */}
+                <tr style={{ backgroundColor: "#f1f1f1" }}>
+                  <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>
+                    <h4 style={{ margin: 0, fontSize: "12px" }}>
+                      <strong>Total</strong>
+                    </h4>
+                  </td>
+                  <td
+                    style={{
+                      padding: "13px",
+                      textAlign: "right",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
                     <h4 style={{ margin: 0, fontSize: "13px" }}>
                       ₹ {Number(total).toFixed(2)}
                     </h4>

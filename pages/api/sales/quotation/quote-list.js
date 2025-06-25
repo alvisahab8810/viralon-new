@@ -23,7 +23,7 @@
 
 import dbConnect from "../../../../utils/dbconnect";
 import Quotation from "../../../../models/sales/Quotation";
-import Customer from "../../../../models/sales/Customer"; // ✅ import Customer model
+import Customer from "../../../../models/sales/customer"; // ✅ import Customer model
 
 export default async function handler(req, res) {
   await dbConnect();

@@ -108,7 +108,7 @@ export default function BlogDashboard() {
                       <i className="zmdi zmdi-delete"></i>
                     </button>
                   </td>
-{/* 
+                 {/* 
                   <td>
                     <Link href={`/posts/${post._id}`}>
                       <span className="btn btn-primary">

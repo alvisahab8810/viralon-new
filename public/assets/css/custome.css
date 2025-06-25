@@ -2515,7 +2515,7 @@ img.shape.p-absolute {
     line-height: 2;
 }
 
-   .applying-form button {
+   .apply-now-btn{
     font-weight: 600;
     transition: all 0.35s ease-in-out;
     border-radius: 5px;
@@ -3026,3 +3026,21 @@ img.shape.p-absolute {
 
   transform: scale(0.95);
 }
+
+
+.table-responsive-custom select{
+    font-size: 12px;;
+}
+
+.table-responsive-custom td input {
+    height: 31px;
+    min-height: 31px;
+}
+
+.table-responsive-custom textarea.form-control{
+    border: none;
+}
+/* 
+.case-flow-main{
+    padding:15px;
+} */

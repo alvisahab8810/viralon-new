@@ -36,9 +36,15 @@ const quotationSchema = new mongoose.Schema({
     enum: ["Sent", "Approved", "Rejected", "Pending"],
     default: "Sent",
   },
+},
+{
+  timestamps: true // ✅ enables createdAt and updatedAt auto
 
-
-  createdAt: { type: Date, default: Date.now },
+  // createdAt: { type: Date, default: Date.now },
+  
 });
 
-export default mongoose.models.Quotation || mongoose.model('Quotation', quotationSchema);
+// export default mongoose.models.Quotation || mongoose.model('Quotation', quotationSchema);
+
+delete mongoose.models.Quotation; // 💥 Force schema to recompile with timestamps
+export default mongoose.model('Quotation', quotationSchema);

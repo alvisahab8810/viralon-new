@@ -86,6 +86,9 @@
 
 
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function ContentWriterForm() {
   const [formData, setFormData] = useState({
@@ -101,7 +104,8 @@ export default function ContentWriterForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = async (e) => {
+
+  const handleSubmit = async (e) => {
   e.preventDefault();
   const form = new FormData();
   form.append("appliedPosition", formData.appliedPosition);
@@ -109,25 +113,53 @@ const handleSubmit = async (e) => {
   form.append("email", formData.email);
   form.append("mobile", formData.mobile);
   form.append("portfolioLink", formData.portfolioLink);
-  form.append("resume", document.getElementById("cv").files[0]); // ✅
+  form.append("resume", document.getElementById("cv").files[0]);
 
   try {
     const res = await fetch("/api/careers/apply", {
       method: "POST",
-      body: form, // ✅ multipart/form-data
+      body: form,
     });
 
     const result = await res.json();
     if (result.success) {
-      alert("Application submitted!");
+      toast.success("Application submitted!");
     } else {
-      alert("Submission failed!");
+      toast.error("Submission failed!");
     }
   } catch (error) {
     console.error(error);
-    alert("Error submitting form.");
+    toast.error("Error submitting form.");
   }
 };
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   const form = new FormData();
+//   form.append("appliedPosition", formData.appliedPosition);
+//   form.append("name", formData.name);
+//   form.append("email", formData.email);
+//   form.append("mobile", formData.mobile);
+//   form.append("portfolioLink", formData.portfolioLink);
+//   form.append("resume", document.getElementById("cv").files[0]); // ✅
+
+//   try {
+//     const res = await fetch("/api/careers/apply", {
+//       method: "POST",
+//       body: form, // ✅ multipart/form-data
+//     });
+
+//     const result = await res.json();
+//     if (result.success) {
+//       alert("Application submitted!");
+//     } else {
+//       alert("Submission failed!");
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     alert("Error submitting form.");
+//   }
+// };
 
 
   return (
@@ -150,6 +182,8 @@ const handleSubmit = async (e) => {
           </div>
         </div>
       </form>
+
+      <ToastContainer />
     </div>
   );
 }

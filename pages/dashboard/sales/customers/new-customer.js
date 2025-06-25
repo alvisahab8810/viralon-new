@@ -3,7 +3,7 @@ import Link from "next/link";
 import Dashnav from "../../../../components/Dashnav";
 import Leftbar from "../../../../components/Leftbar";
 import Head from "next/head";
-import { toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // for select dropdown -----
 
@@ -192,42 +192,39 @@ export default function NewCustomers() {
   //   }
   // };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    try {
+      const res = await fetch("/api/sales/customers/customer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+      const data = await res.json();
 
-  try {
-    const res = await fetch("/api/sales/customers/customer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+      if (data.success) {
+        toast.success("Clients saved successfully");
 
-    if (!res.ok) {
-      throw new Error(`Server error: ${res.status}`);
+        // ✅ Reset form and dropdowns
+        setFormData(initialFormData);
+        setSelectedCountry(null);
+        setSelectedState(null);
+      } else {
+        toast.error(data.message || "Error saving Clients");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Error saving Clients");
     }
-
-    const data = await res.json();
-
-    if (data.success) {
-      toast.success("Clients saved successfully");
-
-      // ✅ Reset form and dropdowns
-      setFormData(initialFormData);
-      setSelectedCountry(null);
-      setSelectedState(null);
-    } else {
-      toast.error(data.message || "Error saving Clients");
-    }
-  } catch (err) {
-    console.error(err);
-    toast.error("Error saving Clients");
-  }
-};
+  };
 
   return (
     <div className="career-response">
@@ -435,7 +432,7 @@ const handleSubmit = async (e) => {
                         placeholder="Work Phone"
                         className="form-control"
                         aria-label="Work Phone"
-                          maxLength={10} // ✅ limits to 10 characters
+                        maxLength={10} // ✅ limits to 10 characters
                         pattern="\d{10}" // ✅ optional, for HTML validation (digits only)
                         inputMode="numeric" // ✅ improves mobile keyboard behavior
                         value={formData.workPhone}
@@ -545,7 +542,6 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
 
-
                       <div className="row g-3 align-items-center mb-3">
                         <label
                           htmlFor="pan"
@@ -572,39 +568,6 @@ const handleSubmit = async (e) => {
                           </span>
                         </div>
                       </div>
-
-
-                      
-
-                      {/* <div className="row g-3 align-items-start mb-3">
-                        <label
-                          htmlFor="fileUpload"
-                          className="col-sm-2 col-form-label fw-normal pt-2"
-                        >
-                          Documents
-                        </label>
-                        <div className="col-sm-10 d-flex flex-column">
-                          <label
-                            htmlFor="fileUpload"
-                            className="form-control btn btn-outline-secondary btn-upload w-auto mb-1"
-                          >
-                            <i className="fas fa-upload"></i> Upload File{" "}
-                            <i className="fas fa-caret-down"></i>
-                          </label>
-                          <input
-                            type="file"
-                            id="fileUpload"
-                            name="files"
-                            className="d-none"
-                            multiple
-                            accept="*"
-                            onChange={handleFileChange}
-                          />
-                          <small className="text-muted">
-                            You can upload a maximum of 10 files, 10MB each
-                          </small>
-                        </div>
-                      </div> */}
                     </div>
 
                     <div
@@ -648,19 +611,6 @@ const handleSubmit = async (e) => {
                           >
                             Country/Region
                           </label>
-                          {/* <div className="col-sm-10">
-                            <Select
-                              styles={customSelectStyles}
-                              id="country"
-                              options={countryOptions}
-                              value={selectedCountry}
-                              onChange={(option) => {
-                                setSelectedCountry(option);
-                                setSelectedState(null); // Reset state on country change
-                              }}
-                              placeholder="Select or search country"
-                            />
-                          </div> */}
 
                           <div className="col-sm-10">
                             <Select
@@ -697,14 +647,6 @@ const handleSubmit = async (e) => {
                           >
                             Address
                           </label>
-                          {/* <div className="col-sm-10 ">
-                            <textarea
-                              id="address1"
-                              rows="2"
-                              placeholder="Street 1"
-                              className="form-control"
-                            ></textarea>
-                          </div> */}
 
                           <div className="col-sm-10 ">
                             <textarea
@@ -726,14 +668,6 @@ const handleSubmit = async (e) => {
                           </div>
 
                           <label className="col-sm-2"></label>
-                          {/* <div className="col-sm-10 ">
-                            <textarea
-                              id="address2"
-                              rows="2"
-                              placeholder="Street 2"
-                              className="form-control"
-                            ></textarea>
-                          </div> */}
 
                           <div className="col-sm-10 ">
                             <textarea
@@ -760,9 +694,6 @@ const handleSubmit = async (e) => {
                           >
                             City
                           </label>
-                          {/* <div className="col-sm-10">
-                            <input type="text" id="city" className="form-control" />
-                          </div> */}
 
                           <div className="col-sm-10">
                             <input
@@ -788,17 +719,6 @@ const handleSubmit = async (e) => {
                           >
                             State
                           </label>
-                          {/* <div className="col-sm-10">
-                            <Select
-                              styles={customSelectStyles}
-                              id="state"
-                              options={stateOptions}
-                              value={selectedState}
-                              onChange={(option) => setSelectedState(option)}
-                              placeholder="Select or search state"
-                              isDisabled={!selectedCountry}
-                            />
-                          </div> */}
 
                           <div className="col-sm-10">
                             <Select
@@ -827,36 +747,6 @@ const handleSubmit = async (e) => {
                               isDisabled={!selectedCountry}
                             />
                           </div>
-
-                          {/* 
-                          <label htmlFor="pincode" className="col-sm-2 col-form-label">
-                            Pin Code
-                          </label>
-                          <div className="col-sm-10">
-                            <input
-                              type="text"
-                              id="pincode"
-                              className="form-control"
-                            />
-                          </div>
-
-                          <label htmlFor="phone" className="col-sm-2 col-form-label">
-                            Phone
-                          </label>
-                          <div className="col-sm-10">
-                            <input
-                              type="text"
-                              id="phone"
-                              className="form-control"
-                            />
-                          </div>
-
-                          <label htmlFor="fax" className="col-sm-2 col-form-label">
-                            Fax Number
-                          </label>
-                          <div className="col-sm-10">
-                            <input type="text" id="fax" className="form-control" />
-                          </div> */}
 
                           <label
                             htmlFor="pincode"
@@ -938,15 +828,6 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
                     </div>
-
-                    {/* <div
-                      className="tab-pane fade"
-                      id="contact-persons"
-                      role="tabpanel"
-                      aria-labelledby="contact-persons-tab"
-                      tabindex="0"
-                    >
-                    </div> */}
                   </div>
 
                   <div

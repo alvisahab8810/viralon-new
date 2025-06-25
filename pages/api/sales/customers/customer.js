@@ -1,6 +1,6 @@
 
 import dbConnect from "../../../../utils/dbconnect";
-import Customer from "../../../../models/sales/Customer";
+import Customer from "../../../../models/sales/customer";
 
 export default async function handler(req, res) {
   await dbConnect();

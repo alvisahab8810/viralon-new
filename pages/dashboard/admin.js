@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Dashnav from "../../components/Dashnav";
 import Leftbar from "../../components/Leftbar";
 import Head from "next/head";
-
+import DashboardSummary from "../../components/DashboardSummary";
+import Setting from "../../components/Setting";
 export default function admin() {
+
+
+
   return (
     <>
       <Head>
         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
-    
-      <div className="main-nav">
-        <Dashnav/>
-        <Leftbar/>
 
-       
+      
+
+      <div className="main-nav">
+        <Dashnav />
+        <Leftbar />
 
         <section className="content home">
           <div className="block-header">
-            <div className="row">
+          
+            <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
                   Dashboard
@@ -44,13 +49,17 @@ export default function admin() {
                 </ul>
               </div>
             </div>
+            <DashboardSummary />
           </div>
         </section>
+
+        {/* ----------------invoice setting section ----------- */}
+        <Setting/>
+        
       </div>
     </>
   );
 }
-
 
 // ✅ protect this page with server-side login check
 export async function getServerSideProps(context) {

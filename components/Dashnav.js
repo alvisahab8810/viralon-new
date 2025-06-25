@@ -80,7 +80,7 @@ const router = useRouter();
           </div>
           <ul className="nav navbar-nav navbar-left"></ul>
           <ul className="nav navbar-nav navbar-right">
-            <li className="dropdown">
+            {/* <li className="dropdown">
               <a
                 href="#"
                 className="dropdown-toggle"
@@ -110,15 +110,13 @@ const router = useRouter();
                         </div>
                       </a>
                     </li>
-                    {/* Additional notification items... */}
                   </ul>
                 </li>
                 <li className="footer">
                   <a href="#">View All Notifications</a>
                 </li>
               </ul>
-            </li>
-            {/* Additional dropdowns and items... */}
+            </li> */}
             <li>
               <a
                 href="#"
@@ -147,9 +145,13 @@ const router = useRouter();
 </li>
 
             <li>
-              <a href="#" className="js-right-sidebar" data-close="true">
+              <a href="#" className="js-right-sidebar" data-close="true" data-bs-toggle="offcanvas"
+               data-bs-target="#invoiceSettings">
                 <i className="zmdi zmdi-settings zmdi-hc-spin"></i>
               </a>
+
+   
+
             </li>
           </ul>
         </div>

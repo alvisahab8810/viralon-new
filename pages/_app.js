@@ -1,7 +1,9 @@
+import { SessionProvider } from "next-auth/react";
+
+
 import Head from "next/head";
 import Script from "next/script";
 import { Toaster } from "react-hot-toast";
-
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -16,6 +18,8 @@ function MyApp({ Component, pageProps }) {
         <link rel="stylesheet" href="/assets/css/style.css" />
         <link rel="stylesheet" href="/assets/css/custome.css" />
         <link rel="stylesheet" href="/assets/css/validnavs.css" />
+
+
 
         <link rel="stylesheet" href="/assets//css/responsive.css" />
         <link
@@ -75,8 +79,9 @@ function MyApp({ Component, pageProps }) {
 
 
       <Toaster position="top-right" />
-
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+       <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }

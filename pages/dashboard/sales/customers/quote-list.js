@@ -10,8 +10,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function QuoteList() {
-
-
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10; // Change to desired rows per page
 
@@ -63,32 +61,40 @@ export default function QuoteList() {
     });
   };
 
+  const handleStatusChange = async (quoteId, newStatus) => {
+    console.log("Updating status to:", newStatus, "for quote ID:", quoteId);
 
-   const handleStatusChange = async (newStatus) => {
-  try {
-    const res = await fetch(`/api/sales/quotation/update-status`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        quoteId: quote._id,
-        status: newStatus,
-      }),
-    });
+    try {
+      const res = await fetch(`/api/sales/quotation/update-status`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          quoteId: quoteId,
+          status: newStatus,
+        }),
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      setQuote((prev) => ({ ...prev, status: newStatus }));
-    } else {
-      console.error("Failed to update status:", data.error);
-      alert("Failed to update status.");
+      const data = await res.json();
+      console.log("Response from update-status API:", data);
+
+      if (data.success) {
+        // Update your quotes state here, e.g. by mapping through and updating the changed quote's status
+        setQuotes((prevQuotes) =>
+          prevQuotes.map((q) =>
+            q._id === quoteId ? { ...q, status: newStatus } : q
+          )
+        );
+      } else {
+        console.error("Failed to update status:", data.error);
+        alert("Failed to update status.");
+      }
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert("An error occurred while updating the status.");
     }
-  } catch (error) {
-    console.error("Error updating status:", error);
-    alert("An error occurred while updating the status.");
-  }
-};
+  };
 
   return (
     <div className="career-response">
@@ -168,8 +174,10 @@ export default function QuoteList() {
 
                       <td>
                         <select
-                          // value={quote.status || "Sent"}
-                          onChange={(e) => handleStatusChange(e.target.value)}
+                          value={quote.status || "Sent"}
+                          onChange={(e) =>
+                            handleStatusChange(quote._id, e.target.value)
+                          }
                           className="form-select"
                         >
                           <option value="Sent">Sent</option>
@@ -178,6 +186,7 @@ export default function QuoteList() {
                           <option value="Pending">Pending</option>
                         </select>
                       </td>
+
                       <td>
                         {/* <Link
                           href={`/dashboard/sales/customers/view-quote/${quote._id}`}

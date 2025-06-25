@@ -10,6 +10,7 @@ const querySchema = new mongoose.Schema(
   type: String,
   default: "Query Form",
 },
+ salespersonId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 
  customFields: {
     type: Map,

@@ -50,6 +50,8 @@ const CustomerSchema = new mongoose.Schema({
     phone: String,
     fax: String,
   },
+},{
+  timestamps: true // ✅ This adds createdAt and updatedAt fields
 });
 
 export default mongoose.models.Customer ||

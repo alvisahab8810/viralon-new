@@ -19,6 +19,16 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       default: "Contact Us",
     },
+
+        // NEW field ↓
+    salespersonId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    
+ customFields: {
+    type: Map,
+    of: String,
+    default: {},
+  },
+
   },
   { timestamps: true }
 );

@@ -14,8 +14,23 @@ import html2canvas from "html2canvas";
 
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import Setting from "../../../../components/Setting";
+
+import Select from "react-select";
 
 export default function NewInvoice() {
+
+
+
+  const [isSending, setIsSending] = useState(false);
+
+  const [sacCode, setSacCode] = useState("");
+  const [customerNotes, setCustomerNotes] = useState("");
+
+  const [tempCustomerNotes, setTempCustomerNotes] = useState("");
+
+  const [tempTerms, setTempTerms] = useState("");
+
   const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
   const [quillLoaded, setQuillLoaded] = useState(false);
@@ -46,33 +61,11 @@ export default function NewInvoice() {
   const [dueDate, setdueDate] = useState("");
   const [subject, setSubject] = useState("");
 
-  const [customerNotes, setCustomerNotes] = useState(
-    "Looking forward for your business."
-  );
+  // const [customerNotes, setCustomerNotes] = useState(
+  //   "Looking forward for your business."
+  // );
 
-  const [terms, setTerms] = useState(`
-
-1. **Payment Terms**: Payment is due within 7 days from the date of invoice, unless otherwise agreed upon in writing.
-
-2. **Late Payment**: A late fee of 2% per month will be applied to all overdue invoices beyond the due date.
-
-3. **Quotation Validity**: All quotations provided are valid for 15 days unless stated otherwise.
-
-4. **Revisions & Scope**: Any additional work outside the agreed project scope will be quoted and billed separately upon approval.
-
-5. **Delivery Timeline**: Project timelines will commence only after receipt of all necessary content, approvals, and initial payments.
-
-6. **Ownership & Rights**: Final deliverables will be transferred upon full payment. Viralon.in retains the right to showcase work in its portfolio.
-
-7. **Refund Policy**: Payments made are non-refundable once work has commenced.
-
-8. **Confidentiality**: Both parties agree to maintain confidentiality regarding any sensitive information shared during the project.
-
-9. **Dispute Resolution**: In case of disputes, both parties agree to seek resolution amicably. Legal jurisdiction will be Pune, Maharashtra.
-
-10. **Contact**: For any queries, please reach out at info@viralon.in or visit www.viralon.in.
-
-`);
+  const [terms, setTerms] = useState(``);
 
   const [attachments, setAttachments] = useState([]);
 
@@ -90,6 +83,22 @@ export default function NewInvoice() {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
 
   const [invoiceNumber, setInvoiceNumber] = useState("");
+
+  // -----------------for customer note=---------------/
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const res = await fetch("/api/settings");
+      const data = await res.json();
+      if (data) {
+        setTempTerms(data.terms || "");
+        setTempCustomerNotes(data.customerNotes || "");
+        setTerms(data.terms || "");
+        setCustomerNotes(data.customerNotes || "");
+      }
+    };
+    fetchSettings();
+  }, [setTerms, setCustomerNotes]);
 
   // Fetch active customers from your API
 
@@ -243,9 +252,91 @@ export default function NewInvoice() {
   };
 
   // --- Frontend: handleSubmit ---
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
+  //   if (!invoiceDate) {
+  //     toast.error("Invoice date is required.");
+  //     return;
+  //   }
+
+  //   const validItems = rows
+  //     .filter((row) => row.item && row.quantity > 0 && row.rate >= 0)
+  //     .map((row) => ({
+  //       item: row.item,
+  //       quantity: row.quantity,
+  //       rate: row.rate,
+  //       amount: row.quantity * row.rate,
+  //     }));
+
+  //   if (validItems.length === 0) {
+  //     toast.error("At least one valid item is required.");
+  //     return;
+  //   }
+
+  //   const numericTotal = parseFloat(total);
+  //   if (isNaN(numericTotal) || numericTotal <= 0) {
+  //     toast.error("Total must be a positive number.");
+  //     return;
+  //   }
+
+  //   const previewHtml = document.getElementById(
+  //     "quote-preview-content"
+  //   ).innerHTML;
+
+  //   const payload = {
+  //     customerId: selectedCustomer._id,
+  //     invoiceNumber,
+  //     referenceNumber,
+  //     invoiceDate: invoiceDate || "", // ensure it's a string
+  //     dueDate: dueDate || "",
+  //     subject,
+  //     items: rows.map((row) => ({
+  //       item: row.item.trim(),
+  //       quantity: Number(row.quantity),
+  //       rate: Number(row.rate),
+  //       amount: Number(row.quantity * row.rate),
+  //     })),
+  //     subtotal: Number(subtotal),
+  //     discount: Number(discount),
+  //     gst: Number(gst),
+  //     adjustment: Number(adjustment),
+  //     total: Number(total),
+  //     customerNotes,
+  //     terms,
+  //     attachedFiles: [],
+  //     customerEmail: selectedCustomer.email,
+  //     sacCode, // 👈 Include this
+  //     previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
+  //   };
+
+  //   const res = await fetch("/api/sales/invoice/create", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(payload),
+  //   });
+
+  //   const result = await res.json();
+  //   if (result.success) {
+  //     setPdfId(result.pdfId);
+  //     setEmailData({
+  //       to: selectedCustomer.email,
+  //       subject: `Invoice #${invoiceNumber} - Awaiting Your Approval`,
+  //       message: `Dear Customer,\n\nPlease find attached your invoice #${invoiceNumber}.\n\nTotal: ₹${numericTotal}`,
+  //     });
+  //     setEmailModalOpen(true);
+  //     toast.success("Invoice saved. Customize your email.");
+  //   } else {
+  //     toast.error(result.error || "Failed to save Invoice.");
+  //   }
+  // };
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSending(true); // 👉 Start loading
+
+  try {
     if (!invoiceDate) {
       toast.error("Invoice date is required.");
       return;
@@ -271,15 +362,13 @@ export default function NewInvoice() {
       return;
     }
 
-    const previewHtml = document.getElementById(
-      "quote-preview-content"
-    ).innerHTML;
+    const previewHtml = document.getElementById("quote-preview-content").innerHTML;
 
     const payload = {
       customerId: selectedCustomer._id,
       invoiceNumber,
       referenceNumber,
-      invoiceDate: invoiceDate || "", // ensure it's a string
+      invoiceDate: invoiceDate || "",
       dueDate: dueDate || "",
       subject,
       items: rows.map((row) => ({
@@ -297,6 +386,7 @@ export default function NewInvoice() {
       terms,
       attachedFiles: [],
       customerEmail: selectedCustomer.email,
+      sacCode,
       previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
     };
 
@@ -319,41 +409,90 @@ export default function NewInvoice() {
     } else {
       toast.error(result.error || "Failed to save Invoice.");
     }
-  };
+  } catch (err) {
+    console.error("Invoice submit error:", err);
+    toast.error("Something went wrong.");
+  } finally {
+    setIsSending(false); // 👉 Stop loading
+  }
+};
+
+
 
   // --- Frontend: sendEmail ---
 
+  // const sendEmail = async () => {
+  //   setSending(true);
+
+  //   const previewHtml = document.getElementById(
+  //     "quote-preview-content"
+  //   ).innerHTML;
+
+  //   const response = await fetch("/api/sales/invoice/email", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       to: emailData.to,
+  //       cc: emailData.cc, // ✅ Add this
+  //       bcc: emailData.bcc, // ✅ Add this (optional)
+  //       subject: emailData.subject,
+  //       htmlBody: emailData.message.replace(/\n/g, "<br>"),
+  //       pdfId,
+  //       previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
+  //     }),
+  //   });
+
+  //   const result = await response.json();
+  //   if (result.success) {
+  //     toast.success("Email sent successfully.");
+  //     setEmailModalOpen(false);
+  //   } else {
+  //     toast.error("Failed to send email: " + result.error);
+  //   }
+
+  //   setSending(false);
+  // };
+
+
   const sendEmail = async () => {
-    setSending(true);
+  setSending(true);
 
-    const previewHtml = document.getElementById(
-      "quote-preview-content"
-    ).innerHTML;
+  const previewHtml = document.getElementById(
+    "quote-preview-content"
+  ).innerHTML;
 
-    const response = await fetch("/api/sales/invoice/email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        to: emailData.to,
-        cc: emailData.cc, // ✅ Add this
-        bcc: emailData.bcc, // ✅ Add this (optional)
-        subject: emailData.subject,
-        htmlBody: emailData.message.replace(/\n/g, "<br>"),
-        pdfId,
-        previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
-      }),
-    });
+  const response = await fetch("/api/sales/invoice/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      to: emailData.to,
+      cc: emailData.cc,
+      bcc: emailData.bcc,
+      subject: emailData.subject,
+      htmlBody: emailData.message.replace(/\n/g, "<br>"),
+      pdfId,
+      previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
+    }),
+  });
 
-    const result = await response.json();
-    if (result.success) {
-      toast.success("Email sent successfully.");
-      setEmailModalOpen(false);
-    } else {
-      toast.error("Failed to send email: " + result.error);
-    }
+  const result = await response.json();
+  if (result.success) {
+    toast.success("Email sent successfully.");
+    setEmailModalOpen(false);
 
-    setSending(false);
-  };
+    // 👇 Reload the page after short delay
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000); // wait 1 second for toast to show
+  } else {
+    toast.error("Failed to send email: " + result.error);
+  }
+
+  setSending(false);
+};
+
+
+
 
   useEffect(() => {
     if (emailModalOpen) {
@@ -368,6 +507,27 @@ export default function NewInvoice() {
     };
   }, [emailModalOpen]);
 
+  // ------------------ for auto dispalay price-----------
+
+  useEffect(() => {
+    const newSubtotal = rows.reduce(
+      (sum, row) => sum + row.quantity * row.rate,
+      0
+    );
+    const discountAmount = (newSubtotal * discount) / 100;
+    const gstAmount = ((newSubtotal - discountAmount) * gst) / 100;
+    const newTotal = newSubtotal - discountAmount + gstAmount + adjustment;
+
+    setSubtotal(newSubtotal);
+    setTotal(newTotal);
+  }, [rows, discount, gst, adjustment]);
+
+
+
+    const customerOptions = customers.map((cust) => ({
+  value: cust._id,
+  label: `${cust.salutation} ${cust.firstName} ${cust.lastName} (${cust.companyName})`,
+}));
   return (
     <>
       <Head>
@@ -408,7 +568,7 @@ export default function NewInvoice() {
                   <label htmlFor="customerName" className="form-label">
                     Client Name<span className="text-danger">*</span>
                   </label>
-                  <select
+                  {/* <select
                     className="form-control"
                     id="customerName"
                     onChange={handleSelect}
@@ -421,7 +581,64 @@ export default function NewInvoice() {
                         {cust.companyName})
                       </option>
                     ))}
-                  </select>
+                  </select> */}
+
+                  <Select
+                      id="customerName"
+                      options={customerOptions}
+                      onChange={(selectedOption) => {
+                        const selected = customers.find((c) => c._id === selectedOption.value);
+                        setSelectedCustomer(selected);
+                      }}
+                      placeholder="Select or search a client..."
+                      isSearchable
+                      styles={{
+                        control: (base, state) => ({
+                          ...base,
+                          height: "38px",
+                          minHeight: "38px",
+                          borderColor: "#ced4da",
+                          borderRadius: "6px",
+                          boxShadow: state.isFocused ? "0 0 0 1px #2684FF" : "none",
+                        }),
+                        valueContainer: (base) => ({
+                          ...base,
+                          height: "38px",
+                          padding: "0 8px",
+                        }),
+                        placeholder: (base) => ({
+                          ...base,
+                          fontSize: "14px",
+                          lineHeight: "38px",
+                        }),
+                        input: (base) => ({
+                          ...base,
+                          margin: 0,
+                          padding: 0,
+                          height: "38px",
+                           minHeight: "38px",
+                          
+                          lineHeight: "38px",
+                        }),
+                        indicatorsContainer: (base) => ({
+                          ...base,
+                          height: "38px",
+                        }),
+                        singleValue: (base) => ({
+                          ...base,
+                          lineHeight: "38px",
+                        }),
+                        menu: (base) => ({
+                          ...base,
+                          zIndex: 9999, // to make sure dropdown is visible above modals
+                        }),
+                      }}
+
+                    />
+
+
+                
+
 
                   {selectedCustomer?.billingAddress && (
                     <div className="mt-2 p-2 border rounded bg-light">
@@ -485,19 +702,6 @@ export default function NewInvoice() {
                     />
                   </div>
 
-                  {/* <div className="mb-3">
-                    <label htmlFor="referenceNumber" className="form-label">
-                      Reference Number
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="referenceNumber"
-                      value={referenceNumber}
-                      onChange={(e) => setReferenceNumber(e.target.value)}
-                    />
-                  </div> */}
-
                   <div className="col-md-3">
                     <label htmlFor="invoiceDate" className="form-label">
                       Invoice Date
@@ -525,6 +729,18 @@ export default function NewInvoice() {
                       onChange={(e) => setdueDate(e.target.value)}
                     />
                   </div>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">SAC Code</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={sacCode}
+                    onChange={(e) => setSacCode(e.target.value)}
+                    placeholder="e.g., 998314"
+                    required // ❗ remove this if Subject is not mandatory
+                  />
                 </div>
 
                 <div className="mb-3">
@@ -576,7 +792,7 @@ export default function NewInvoice() {
                               min="0"
                               step="any"
                               className="form-control"
-                              value={row.quantity}
+                              value={row.quantity === 0 ? "" : row.quantity}
                               onChange={(e) =>
                                 handleChange(
                                   row._id,
@@ -593,7 +809,7 @@ export default function NewInvoice() {
                               min="0"
                               step="any"
                               className="form-control"
-                              value={row.rate}
+                              value={row.rate === 0 ? "" : row.rate}
                               onChange={(e) =>
                                 handleChange(
                                   row._id,
@@ -638,11 +854,17 @@ export default function NewInvoice() {
                       <label htmlFor="customerNotes" className="form-label">
                         Customer Notes
                       </label>
-                      <textarea
+                      {/* <textarea
                         className="form-control"
                         id="customerNotes"
                         name="customerNotes"
                         rows="3"
+                        value={customerNotes}
+                        onChange={(e) => setCustomerNotes(e.target.value)}
+                      /> */}
+
+                      <textarea
+                        className="form-control"
                         value={customerNotes}
                         onChange={(e) => setCustomerNotes(e.target.value)}
                       />
@@ -650,11 +872,13 @@ export default function NewInvoice() {
                   </div>
                   <div className="col-md-6">
                     <div className="border p-3 bg-white">
+                      {/* Subtotal */}
                       <div className="mb-2 d-flex justify-content-between total-price mb-3">
                         <span>Sub Total</span>
-                        <span>{subtotal}</span>
+                        <span>₹{subtotal.toFixed(2)}</span>
                       </div>
 
+                      {/* Discount Input + Amount */}
                       <div className="row mb-3 d-flex align-items-center">
                         <div className="col-sm-2">
                           <label className="me-2">Discount</label>
@@ -664,15 +888,23 @@ export default function NewInvoice() {
                             type="number"
                             className="form-control w-100 me-2"
                             name="discount"
-                            value={discount}
+                            placeholder="0"
+                            value={discount === 0 ? "" : discount}
                             onChange={(e) =>
                               setDiscount(parseFloat(e.target.value) || 0)
                             }
                           />
                           %
+                          {/* <span className="ms-auto text-muted fw-bold">
+                          - ₹{((subtotal * discount) / 100).toFixed(2)}
+                        </span> */}
+                          <div className="col-3 text-end text-danger fw-semibold small">
+                            - ₹{((subtotal * discount) / 100).toFixed(2)}
+                          </div>
                         </div>
                       </div>
 
+                      {/* GST Input + Amount */}
                       <div className="row mb-3 d-flex align-items-center">
                         <div className="col-sm-2">
                           <label className="me-2">GST</label>
@@ -682,41 +914,36 @@ export default function NewInvoice() {
                             type="number"
                             className="form-control w-100 me-2"
                             name="gst"
-                            value={gst}
+                            placeholder="0"
+                            value={gst === 0 ? "" : gst}
                             onChange={(e) =>
                               setGst(parseFloat(e.target.value) || 0)
                             }
                           />
                           %
+                          {/* <span className="ms-auto text-muted fw-bold">
+                          + ₹{(((subtotal - (subtotal * discount) / 100) * gst) / 100).toFixed(2)}
+                        </span> */}
+                          <div className="col-3 text-end text-success fw-semibold small">
+                            + ₹
+                            {(
+                              ((subtotal - (subtotal * discount) / 100) * gst) /
+                              100
+                            ).toFixed(2)}
+                          </div>
                         </div>
                       </div>
 
-                      <div className="row mb-3 d-flex align-items-center">
-                        <div className="col-sm-2">
-                          <label className="me-2">Adjustment</label>
-                        </div>
-                        <div className="col-sm-10">
-                          <input
-                            type="number"
-                            className="form-control w-100"
-                            name="adjustment"
-                            value={adjustment}
-                            onChange={(e) =>
-                              setAdjustment(parseFloat(e.target.value) || 0)
-                            }
-                          />
-                        </div>
-                      </div>
-
+                      {/* Total */}
                       <div className="mt-4 d-flex justify-content-between fw-bold total-price">
                         <span>Total (₹)</span>
-                        <span>{total}</span>
+                        <span>₹{total.toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <label htmlFor="terms" className="form-label">
                     Terms & Conditions
                   </label>
@@ -728,12 +955,46 @@ export default function NewInvoice() {
                     value={terms}
                     onChange={(e) => setTerms(e.target.value)}
                   />
+                </div> */}
+
+                <div className="mb-3">
+                  <label htmlFor="terms" className="form-label">
+                    Terms & Conditions
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="terms"
+                    rows="4"
+                    value={terms}
+                    readOnly
+                  />
                 </div>
 
                 <div className="d-flex justify-content-end add-row-btn">
-                  <button type="submit" className="btn btn-primary me-2">
+                  {/* <button type="submit" className="btn btn-primary me-2">
                     Save and Send
-                  </button>
+                  </button> */}
+
+
+                  <button
+                  type="submit"
+                  className="btn btn-primary me-2 d-flex align-items-center"
+                  disabled={isSending}
+                >
+                  {isSending && (
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  )}
+                  {isSending ? "Saving..." : "Save and Send"}
+                </button>
+
+
+
+
+
                 </div>
               </form>
               <div className="preview-pdf-section add-row-btn">
@@ -982,6 +1243,12 @@ export default function NewInvoice() {
               <p>
                 <strong>Invoice Date:</strong> {invoiceDate || "—"}
               </p>
+              {sacCode && (
+                <p>
+                  <strong>SAC Code:</strong> {sacCode}
+                </p>
+              )}
+
               <p>
                 <strong>Expiry Date:</strong> {dueDate || "—"}
               </p>
@@ -1173,7 +1440,7 @@ export default function NewInvoice() {
                   <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>Discount</strong>
                   </td>
-                  <td
+                  {/* <td
                     style={{
                       padding: "8px",
                       textAlign: "right",
@@ -1182,12 +1449,8 @@ export default function NewInvoice() {
                     }}
                   >
                     {Number(discount)}%
-                  </td>
-                </tr>
-                <tr>
-                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
-                    <strong style={{ fontSize: "12px" }}>GST</strong>
-                  </td>
+                  </td> */}
+
                   <td
                     style={{
                       padding: "8px",
@@ -1196,10 +1459,59 @@ export default function NewInvoice() {
                       border: "1px solid #dee2e6",
                     }}
                   >
-                    {Number(gst)}%
+                    {discount > 0
+                      ? `${discount}% (- ₹${((subtotal * discount) / 100).toFixed(2)})`
+                      : "—"}
                   </td>
                 </tr>
                 <tr>
+                  <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
+                    <strong style={{ fontSize: "12px" }}>GST</strong>
+                  </td>
+                  {/* <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {Number(gst)}%
+                  </td> */}
+
+                  {/* <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {gst > 0
+                      ? `${gst}% (+ ₹${(((subtotal - (subtotal * discount) / 100) * gst) / 100).toFixed(2)})`
+                      : "—"}
+                  </td> */}
+
+                  <td
+                    style={{
+                      padding: "8px",
+                      textAlign: "right",
+                      fontSize: "12px",
+                      border: "1px solid #dee2e6",
+                    }}
+                  >
+                    {gst > 0 ? (
+                      <>
+                        <div>CGST: {(gst / 2).toFixed(2)}% (+ ₹{(((subtotal - (subtotal * discount) / 100) * (gst / 2)) / 100).toFixed(2)})</div>
+                        <div>SGST: {(gst / 2).toFixed(2)}% (+ ₹{(((subtotal - (subtotal * discount) / 100) * (gst / 2)) / 100).toFixed(2)})</div>
+                      </>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+
+                </tr>
+                {/* <tr>
                   <td style={{ padding: "8px", border: "1px solid #dee2e6" }}>
                     <strong style={{ fontSize: "12px" }}>Adjustment</strong>
                   </td>
@@ -1213,7 +1525,7 @@ export default function NewInvoice() {
                   >
                     ₹ {Number(adjustment).toFixed(2)}
                   </td>
-                </tr>
+                </tr> */}
                 <tr style={{ backgroundColor: "#f1f1f1" }}>
                   <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>
                     <h4 style={{ margin: 0, fontSize: "12px" }}>
@@ -1263,7 +1575,7 @@ export default function NewInvoice() {
           )}
         </div>
       </div>
-
+      <Setting />
       <ToastContainer position="top-right" autoClose={3000} />
     </>
   );

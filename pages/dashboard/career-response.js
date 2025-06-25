@@ -153,10 +153,10 @@ export default function CareerResponse() {
         <div className="block-header">
           <div className="row ptb-50">
             <div className="col-lg-7 col-md-6 col-sm-12">
-              <h2>Career Response
-                 <small className="text-muted">Welcome to Viralon</small>
+              <h2>
+                Career Response
+                <small className="text-muted">Welcome to Viralon</small>
               </h2>
-              
             </div>
             <div className="col-lg-5 col-md-6 col-sm-12 text-end">
               <button
@@ -232,7 +232,7 @@ export default function CareerResponse() {
                   <th>Applied For</th>
                   <th>Resume</th>
                   <th>Applied On</th> {/* ✅ New column */}
-                  <th>Action</th>
+                  {/* <th>Action</th> */}
                 </tr>
               </thead>
               {/* <tbody>
@@ -345,13 +345,13 @@ export default function CareerResponse() {
                         })}
                       </td>
                       <td>
-                        <button
+                        {/* <button
                           className="btn-delete"
                           onClick={() => confirmDelete(app._id)}
                           title="Delete Application"
                         >
                           <i className="zmdi zmdi-delete"></i>
-                        </button>
+                        </button> */}
                       </td>
                     </tr>
                   ))}
@@ -360,7 +360,7 @@ export default function CareerResponse() {
 
             <div className="pagination-controls mt-3 d-flex justify-content-center align-items-center">
               <button
-                className="circle-btn me-3"
+                className="circle-btn me-3circle-btn me-3"
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
               >

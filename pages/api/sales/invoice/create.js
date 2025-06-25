@@ -1,5 +1,5 @@
 import dbConnect from "../../../../utils/dbconnect";
-// import Invoice from "../../../../models/sales/invoice";
+import Invoice from "../../../../models/sales/Invoice";
 
 import puppeteer from "puppeteer";
 
@@ -32,6 +32,7 @@ export default async function handler(req, res) {
       terms,
       attachedFiles,
       customerEmail,
+      sacCode,
       previewHTML,
     } = req.body;
 
@@ -96,6 +97,8 @@ export default async function handler(req, res) {
       terms,
       attachedFiles,
       customerEmail,
+       sacCode, // 👈 Store here
+       previewHTML, // 👈 Save the HTML
     });
 
     await newInvoice.save();
