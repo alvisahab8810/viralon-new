@@ -1,4 +1,4 @@
-import dbConnect from "../../../../utils/dbconnect";
+import dbConnect from "../../../../utils/dbConnect";
 import Counter from "../../../../models/sales/Counter";
 
 

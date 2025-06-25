@@ -1,5 +1,5 @@
 // Inside /api/queries/query.js
-import dbConnect from '../../../../utils/dbconnect';
+import dbConnect from '../../../../utils/dbConnect';
 
 import Query from "../../../../models/Query";
 

@@ -1,4 +1,4 @@
-import dbConnect from '../../../utils/dbconnect';
+import dbConnect from '../../../utils/dbConnect';
 import Settings from '../../../models/settings';
 
 export default async function handler(req, res) {

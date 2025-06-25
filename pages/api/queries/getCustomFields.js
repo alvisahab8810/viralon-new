@@ -22,7 +22,7 @@
 //   }
 // }
 
-import dbConnect from "../../../utils/dbconnect";
+import dbConnect from "../../../utils/dbConnect";
 import Query from "../../../models/Query";
 import Contact from "../../../models/Contact";
 

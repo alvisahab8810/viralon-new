@@ -1,6 +1,6 @@
 // /api/payments/receive.js
 
-import dbConnect from "../../../utils/dbconnect";
+import dbConnect from "../../../utils/dbConnect";
 import Invoice from "../../../models/sales/Invoice";
 
 // export default async function handler(req, res) {

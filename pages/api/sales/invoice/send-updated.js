@@ -1,5 +1,5 @@
-import dbConnect from "../../../../utils/dbconnect";
-import Invoice   from "../../../../models/sales/invoice";
+import dbConnect from "../../../../utils/dbConnect";
+import Invoice   from "../../../../models/sales/Invoice";
 import nodemailer from "nodemailer";
 import puppeteer  from "puppeteer";          // 👈 same as you use in create route
 

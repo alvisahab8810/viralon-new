@@ -1,7 +1,7 @@
 
 
 import nodemailer from "nodemailer";
-import dbConnect from "../../../../utils/dbconnect";
+import dbConnect from "../../../../utils/dbConnect";
 import puppeteer from "puppeteer";
 
 const pdfCache = new Map();

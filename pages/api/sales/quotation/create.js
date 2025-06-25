@@ -181,7 +181,7 @@
 
 
 
-import dbConnect from "../../../../utils/dbconnect";
+import dbConnect from "../../../../utils/dbConnect";
 import Quotation from "../../../../models/sales/Quotation";
 import puppeteer from "puppeteer";
 

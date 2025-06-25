@@ -1,5 +1,5 @@
-import dbConnect from "../../../../utils/dbconnect";
-import Invoice from "../../../../models/sales/invoice";
+import dbConnect from "../../../../utils/dbConnect";
+import Invoice from "../../../../models/sales/Invoice";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).end();
