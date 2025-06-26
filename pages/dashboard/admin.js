@@ -28,7 +28,7 @@ export default function admin() {
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
-                  Dashboard...
+                  Dashboard
                   <small className="text-muted">Welcome to Viralon</small>
                 </h2>
               </div>
