@@ -68,6 +68,8 @@ export default function AdminDashboard({ role }) {
 /*  Server‑side guard                                                 */
 /*  Any logged‑in user may view.  We pass their role to the component. */
 /* ------------------------------------------------------------------ */
+
+
 // export async function getServerSideProps(ctx) {
 //   const session = await getSession(ctx);
 
@@ -82,4 +84,15 @@ export default function AdminDashboard({ role }) {
 // }
 
 
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
 
+  if (!session) {
+    // not logged in → bounce to login page
+    return { redirect: { destination: "/dashboard/admin", permanent: false } };
+  }
+
+  return {
+    props: { role: session.user.role }, // "admin" or "salesperson"
+  };
+}
