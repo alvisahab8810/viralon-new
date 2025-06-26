@@ -73,7 +73,7 @@ export async function getServerSideProps(ctx) {
 
   if (!session) {
     // not logged in → bounce to login page
-    return { redirect: { destination: "/dashboard/login", permanent: false } };
+    return { redirect: { destination: "/dashboard/admin", permanent: false } };
   }
 
   return {
