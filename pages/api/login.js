@@ -47,8 +47,6 @@
 
 
 
-
-// pages/api/login.js
 import { serialize } from "cookie";
 
 export default function handler(req, res) {
@@ -60,13 +58,15 @@ export default function handler(req, res) {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
-      domain: ".viralon.in", // Important: dot prefix allows subdomain access
+      domain: req.headers.host.includes("localhost") ? undefined : "admin.viralon.in",
       maxAge: 60 * 60 * 24,
     });
 
+    console.log("✅ Setting cookie:", cookie);
     res.setHeader("Set-Cookie", cookie);
     return res.status(200).json({ success: true });
   }
 
+  console.log("❌ Invalid login attempt:", { username, password });
   return res.status(401).json({ success: false });
 }

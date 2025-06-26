@@ -58,45 +58,51 @@
 
 
 
-// middleware.js
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
-  const response = NextResponse.next();
+  const cookies = request.cookies;
 
-  // 1. Allow public dashboard pages
-  const publicRoutes = [
+  const adminCookie = cookies.get("admin_auth");
+  const salesCookie = cookies.get("sales_auth");
+
+  console.log("📌 Pathname:", pathname);
+  console.log("🔐 admin_auth cookie:", adminCookie?.value);
+  console.log("🔐 sales_auth cookie:", salesCookie?.value);
+
+  const isAuthenticated = adminCookie || salesCookie;
+
+  // Allow public pages
+  const publicPages = [
     "/dashboard/login",
     "/dashboard/login-sales",
     "/dashboard/register-sales",
   ];
-  if (publicRoutes.includes(pathname)) return response;
 
-  // 2. Read cookies
-  const adminCookie = request.cookies.get("admin_auth");
-  const salesCookie = request.cookies.get("sales_auth");
+  if (publicPages.includes(pathname)) {
+    console.log("✅ Public route allowed");
+    return NextResponse.next();
+  }
 
-  const isAdmin = adminCookie?.value === "true";
-  const isSales = salesCookie?.value === "true";
-
-  const isAuthenticated = isAdmin || isSales;
-
-  // 3. Redirect if not authenticated
+  // Protect dashboard routes
   if (pathname.startsWith("/dashboard") && !isAuthenticated) {
+    console.log("🔒 Not authenticated, redirecting to /dashboard/login");
     return NextResponse.redirect(new URL("/dashboard/login", request.url));
   }
 
-  // 4. Role-based protection
-  if (pathname.startsWith("/dashboard/admin") && isSales) {
+  if (pathname.startsWith("/dashboard/admin") && salesCookie) {
+    console.log("⛔ Salesperson trying to access admin area");
     return NextResponse.redirect(new URL("/dashboard/salesperson", request.url));
   }
 
-  if (pathname.startsWith("/dashboard/salesperson") && isAdmin) {
+  if (pathname.startsWith("/dashboard/salesperson") && adminCookie) {
+    console.log("⛔ Admin trying to access salesperson area");
     return NextResponse.redirect(new URL("/dashboard/admin", request.url));
   }
 
-  return response;
+  console.log("✅ Access allowed to:", pathname);
+  return NextResponse.next();
 }
 
 export const config = {
