@@ -219,7 +219,14 @@ export default async function handler(req, res) {
 
   if (!pdfBuffer && previewHTML) {
     try {
-      const browser = await puppeteer.launch();
+      // const browser = await puppeteer.launch();
+
+      const browser = await puppeteer.launch({
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        headless: true,
+      });
+
+
       const page = await browser.newPage();
       await page.setContent(previewHTML);
       pdfBuffer = await page.pdf({ format: "A4" });
