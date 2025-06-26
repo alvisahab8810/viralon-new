@@ -30,8 +30,9 @@ export default function handler(req, res) {
     const cookie = serialize("admin_auth", "true", {
       path: "/",
       httpOnly: true,
-      secure: true, // ✅ required for HTTPS
+      secure: true,
       sameSite: "lax",
+      domain: "admin.viralon.in", // ✅ this is required for subdomain cookies
       maxAge: 60 * 60 * 24, // 1 day
     });
 
