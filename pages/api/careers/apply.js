@@ -137,7 +137,9 @@ form.parse(req, async (err, fields, files) => {
 
     if (file && file.filepath) {
       //this is update const originalName = file.originalFilename || 'resume.pdf';
-      const originalName = (file.originalFilename || 'resume.pdf').replace(/\s+/g, '_');
+      // const originalName = (file.originalFilename || 'resume.pdf').replace(/\s+/g, '_');
+      const originalName = (file.originalFilename || 'resume.pdf').replace(/\s+/g, '_').replace(/[^\w.-]/g, '');
+
 
       const newFilename = Date.now() + '-' + originalName;
       const newPath = path.join(form.uploadDir, newFilename);

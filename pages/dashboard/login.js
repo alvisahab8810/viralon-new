@@ -229,7 +229,7 @@ export default function LoginPage() {
               <div className="card-plain">
                 <form onSubmit={handleSubmit} className="form">
                   <div className="header">
-                    <h5>Admin Login,,,</h5>
+                    <h5>Admin Login</h5>
                   </div>
 
                   <div className="content">
