@@ -18,7 +18,7 @@ export async function getServerSideProps(ctx) {
   }
 
   /* --------- 3. Not logged in ------------------------------------ */
-  return { redirect: { destination: "/login", permanent: false } };
+  return { redirect: { destination: "/dashboard/login", permanent: false } };
 }
 
 export default function DashboardRedirect() {

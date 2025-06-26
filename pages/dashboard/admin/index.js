@@ -83,15 +83,3 @@ export default function AdminDashboard({ role }) {
 
 
 
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
-
-  if (!session) {
-    // not logged in → bounce to correct login path
-    return { redirect: { destination: "/dashboard/admin", permanent: false } };
-  }
-
-  return {
-    props: { role: session.user.role }, // "admin" or "salesperson"
-  };
-}
