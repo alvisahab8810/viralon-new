@@ -322,7 +322,7 @@ export default function CareerResponse() {
                         )}
                       </td>
                       <td>{app.appliedPosition}</td>
-                      <td>
+                      {/* <td>
                         {app.resumePath ? (
                           <a
                             href={app.resumePath}
@@ -337,7 +337,25 @@ export default function CareerResponse() {
                         ) : (
                           "—"
                         )}
-                      </td>
+                      </td> */}
+
+                      <td>
+                          {app.resumePath ? (
+                            <a
+                              href={encodeURI(app.resumePath)} // ✅ This encodes spaces as %20
+                              download
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <button className="download-btn btn btn-sm btn-primary">
+                                Download <i className="zmdi zmdi-download"></i>
+                              </button>
+                            </a>
+                          ) : (
+                            "—"
+                          )}
+                        </td>
+
                       <td>
                         {new Date(app.createdAt).toLocaleString("en-IN", {
                           dateStyle: "medium",
