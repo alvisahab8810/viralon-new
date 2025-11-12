@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Link from "next/link";
 // import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css/free-mode";
@@ -18,13 +19,13 @@ export default function OurWork() {
             </div>
             <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
               <div className="choose-us-style-one-thumb">
-                <a
+                <Link
                   href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
                   className="popup-youtube video-play-button"
                 >
                   <i className="fas fa-play"></i>
                   <div className="effect"></div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -95,12 +96,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/1.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/champion-tutors"
                           className="brands-link"
                         >
                           Champion Tutors
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -108,12 +109,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/2.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/hitech-industry"
                           className="brands-link"
                         >
                           HItech Industry
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -121,9 +122,9 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="/our-work/episoul" className="brands-link">
+                        <Link href="/our-work/episoul" className="brands-link">
                           Episoul
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -131,12 +132,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -146,12 +147,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
 
@@ -161,12 +162,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/1.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/champion-tutors"
                           className="brands-link"
                         >
                           Champion Tutors
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -175,12 +176,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/2.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/hitech-industry"
                           className="brands-link"
                         >
                           HItech Industry
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -188,9 +189,9 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="/our-work/episoul" className="brands-link">
+                        <Link href="/our-work/episoul" className="brands-link">
                           Episoul
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -198,12 +199,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -213,21 +214,21 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
 
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="our-work/episoul" className="brands-link">
+                        <Link href="our-work/episoul" className="brands-link">
                           Episoul
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -235,12 +236,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
                     {/* <!-- End Single Item --> */}
@@ -250,12 +251,12 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
-                        <a
+                        <Link
                           href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout
-                        </a>
+                        </Link>
                       </div>
                     </SwiperSlide>
 
