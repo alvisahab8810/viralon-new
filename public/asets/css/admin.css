@@ -96,7 +96,7 @@
 
  .admin input::placeholder {
    color: #6b7280;
-   ;
+   font-size: 100px!important;
  }
 
 
@@ -292,3 +292,495 @@
     margin-right: 10px;
 }
 
+
+
+
+.stepper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.step-item {
+  position: relative;
+  flex: 1;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.step-line {
+  height: 2px;
+  flex: 1;
+  background-color: #ced4da;
+  margin: 0 8px;
+  align-self: center;
+}
+
+.step-label {
+  font-size: 14px;
+}
+
+.career-response
+button.btn{
+      padding: 10px 25px !important;
+}
+
+.profile-po img{
+  object-fit:cover;
+}
+.profile-po button {
+    padding: 0 !important;
+    left: 0;
+    background: none;
+    color: rgb(0, 0, 0);
+    border: none !important;
+    bottom: 5px !important;
+}
+.profile-po button:hover {
+  background:none;;
+}
+
+.profile-container .card-body{
+   /* padding:0; */
+   background:white;
+}
+
+.profile-container .card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    background: #d0d0d0c4;
+}
+
+.show-acc-btn{
+  background: none;
+    color: black;
+    padding: 0;
+}
+
+.employees-profile button.btn {
+    padding: 6px 15px !important;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+}
+
+
+
+.employees-profile .nav-tabs>.nav-item>.nav-link {
+    color: #888 !important;
+    border-radius: 0;
+    background: white;
+    margin: 0;
+    margin-right: 5px;
+    /* background-color: rgba(0, 0, 0, 0); */
+    border: 1px solid rgba(0, 0, 0, 0);
+    /* border-radius: 30px; */
+    font-size: 14px;
+    padding: 11px 23px;
+    line-height: 1.5;
+}
+
+.employees-profile .nav-tabs>.nav-item>.nav-link.active {
+    border-radius: 30px;
+    border-bottom: 3px solid red;
+    border-radius: 0;
+    color: black !important;
+    background: white;
+}
+
+.employees-profile .nav-tabs{
+  border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+    padding: 0;
+}
+
+.profile-container input{
+  min-height: 40px;
+  
+}
+
+.profile-container select{
+  height:40px;
+}
+
+
+
+
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.modal-header,
+.modal-footer {
+  padding: 1rem 1.25rem;
+}
+.modal-body {
+  padding: 1rem 1.5rem;
+}
+
+
+
+.modal-content .modal-header{
+  padding-bottom: 10px!important;
+  padding-top: 10px!important;
+}
+
+.modal-content .modal-header button {
+
+    top: 21px!important;
+}
+
+.show-acc-btn{
+  margin-left: 5px;;
+}
+
+.personal-info-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0px;
+}
+
+.profile-btn{
+      padding: 5px 12px;
+    font-size: 13px;
+    font-weight: normal;
+    /* background: linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229)); */
+    background:none;
+    border-bottom: 1px solid #fff;
+    color: #ffffff;
+    border-radius: 0;
+    margin-top: 15px;
+}
+
+.check-in-btn{
+  font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 15px 20px;
+    width:100%;
+        /* background: linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229)); */
+        background-color: black;
+            box-shadow: -1px 1px 8px 0px #ff6f61 !important;
+
+}
+
+
+/* Override default calendar colors */
+.custom-calendar {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.custom-calendar abbr {
+  color: #212529 !important; /* Dark text */
+  font-weight: 500;
+}
+
+.custom-calendar .react-calendar__tile {
+  padding: 0.4rem 0;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  background-color: #dbeafe !important; /* Light blue */
+  color: #1e3a8a !important;
+}
+
+.custom-calendar .react-calendar__tile--active {
+  background-color: #0d6efd !important;
+  color: white !important;
+}
+
+.custom-calendar .react-calendar__tile:hover {
+  background-color: #e2e6ea;
+}
+
+/* Optional: highlight today's date */
+.current-day {
+  border: 2px solid #0d6efd;
+  border-radius: 6px;
+}
+
+
+.calendar-dropdown{
+      right: 0!important;
+    top: 35px;
+}
+.react-calendar__navigation{
+      background: #adadadb5;
+}
+
+.react-calendar__navigation button {
+    min-width: 0px;
+    background: none;
+    padding: 10px 24px;
+}
+
+.react-calendar__navigation button:disabled {
+    background-color: #ec6408!important;
+}
+
+.add-employee button.btn {
+    padding: 6px 12px !important;
+    font-size: 12px!important;
+    font-weight: normal!important;
+}
+
+.filters-name input::placeholder{
+  color: black;
+}
+
+
+.filters-name input{
+  border-radius: 0;
+}
+
+.filters-bx{
+      background: white;
+    padding: 15px 0px;
+    border: 1px solid #E3E3E3;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.filters-bx .circle-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    color: white;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+.filters-bx .circle-btn i{
+  margin-right: 0!important;
+}
+.emp-dashboard
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: black;
+}
+.emp-dashboard .nav>li>a{
+    padding: 6px 10px;
+  width:100%
+
+}
+
+.emp-dashboard .nav>li {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin:5px 0px;
+}
+
+.emp-dashboard button{
+  font-size: 14px;
+    font-weight: normal;
+    padding: 10px 15px !important;
+}
+
+.balance-section > div{
+       box-shadow: -1px 1px 8px 0px #ff6f61 !important;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* css new login page 07-08-2025 ------------------ */
+
+.admin-login-area {
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .admin-login-area .left-side {
+      flex: 1 1 50%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 4rem;
+      min-width: 320px;
+    }
+    .admin-login-area .right-side {
+      flex: 1 1 50%;
+      background: linear-gradient(90deg, #6b3ede 0%, #3f3cae 100%);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 4rem;
+      min-width: 320px;
+    }
+    .admin-login-area .icon-circle {
+      background-color: #6b3ede;
+      margin:auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .admin-login-area h1 {
+      font-weight: bolder;
+      font-size: 30px;
+      margin-bottom: 0.25rem;
+      text-align: center;
+    }
+    .admin-login-area p.subtitle {
+      font-size: 0.875rem;
+      color: #6c757d;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .admin-login-area form .form-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color:black;
+    }
+
+        .admin-login-area form input{
+          height:40px;
+          min-height: 40px;
+          border-radius: 7px;;
+        }
+    .admin-login-area form .form-control::placeholder {
+      font-size: 0.875rem;
+      color: #adb5bd;
+    }
+    .admin-login-area form .btn-purple {
+    background: #6b3ede;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 0;
+    padding: 0.5rem 0;
+    height: 40px;
+    width: 100%;
+}
+    .admin-login-area form .btn-purple:hover,
+    .admin-login-area form .btn-purple:focus {
+      background-color: #5a33cc;
+    }
+    .admin-login-area .info-box {
+      background-color: #f3eaff;
+      color: #6b3ede;
+      border-radius: 0.375rem;
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+    .admin-login-area .info-box .info-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .admin-login-area .info-box .info-title i {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+    .admin-login-area .right-side .content-box {
+      background-color: rgba(255 255 255 / 0.15);
+      border-radius: 0.5rem;
+      padding: 2rem;
+      max-width: 490px;
+    }
+    .admin-login-area .right-side h2 {
+      font-weight: 700;
+      font-size: 25px;;
+      color:white;
+      margin-bottom: 1rem;
+    }
+    .admin-login-area .right-side p {
+      font-size: 15px;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      color:white;
+    }
+    .admin-login-area .right-side .feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+    .admin-login-area .right-side .feature i {
+      margin-right: 0.75rem;
+      font-size: 1.1rem;
+      margin-top: 7px;
+      color: #cbb9ff;
+    }
+    .admin-login-area .right-side .feature .feature-text {
+      flex: 1;
+    }
+    .admin-login-area .right-side .feature .feature-text strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      font-size: 16px;
+    }
+
+    /* Password eye button */
+    .admin-login-area .password-wrapper {
+      position: relative;
+    }
+    .admin-login-area .password-wrapper button {
+    position: absolute;
+    right: 0.30rem;
+    top: 50%;
+    transform: translateY(52%);
+    border: none;
+    background: transparent;
+    color: #adb5bd;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+    .admin-login-area .password-wrapper button:focus {
+      outline: none;
+      color: #6b3ede;
+    }
+
+    @media (max-width: 991.98px) {
+      .admin-login-area .right-side {
+        display: none;
+      }
+      .admin-login-area .left-side {
+        flex: 1 1 100%;
+        padding: 3rem 2rem;
+      }
+    }

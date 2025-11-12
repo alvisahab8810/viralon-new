@@ -2939,7 +2939,7 @@ img.shape.p-absolute {
       cursor: pointer;
       transition: filter 0.3s ease;
     }
-    .have-questions button:hover {
+    .have-questions but ton:hover {
       filter: brightness(1.1);
     }
     .have-questions .right h3 {
@@ -3044,3 +3044,9 @@ img.shape.p-absolute {
 .case-flow-main{
     padding:15px;
 } */
+
+
+.our-work-images img{
+    width:100%;
+    object-fit: cover;
+}

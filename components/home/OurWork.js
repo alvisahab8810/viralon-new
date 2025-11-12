@@ -96,7 +96,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/1.png" alt="Icon" />
                         <a
-                          href="https://championtutors.com.au/"
+                          href="/our-work/champion-tutors"
                           className="brands-link"
                         >
                           Champion Tutors
@@ -109,7 +109,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/2.png" alt="Icon" />
                         <a
-                          href="http://www.hitechindustries.net.in/ass_items.php"
+                          href="/our-work/hitech-industry"
                           className="brands-link"
                         >
                           HItech Industry
@@ -121,7 +121,7 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="https://episoul.com/" className="brands-link">
+                        <a href="/our-work/episoul" className="brands-link">
                           Episoul
                         </a>
                       </div>
@@ -132,7 +132,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
                         <a
-                          href="http://rageemakeup.com/"
+                          href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
@@ -147,7 +147,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
                         <a
-                          href="https://tourwatchout.com/"
+                          href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout
@@ -162,7 +162,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/1.png" alt="Icon" />
                         <a
-                          href="https://championtutors.com.au/"
+                          href="/our-work/champion-tutors"
                           className="brands-link"
                         >
                           Champion Tutors
@@ -176,7 +176,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/2.png" alt="Icon" />
                         <a
-                          href="http://www.hitechindustries.net.in/ass_items.php"
+                          href="/our-work/hitech-industry"
                           className="brands-link"
                         >
                           HItech Industry
@@ -188,7 +188,7 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="https://episoul.com/" className="brands-link">
+                        <a href="/our-work/episoul" className="brands-link">
                           Episoul
                         </a>
                       </div>
@@ -199,7 +199,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
                         <a
-                          href="http://rageemakeup.com/"
+                          href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
@@ -214,7 +214,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
                         <a
-                          href="https://tourwatchout.com/"
+                          href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout
@@ -225,7 +225,7 @@ export default function OurWork() {
                     <SwiperSlide className="swiper-slide">
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/3.png" alt="Icon" />
-                        <a href="https://episoul.com/" className="brands-link">
+                        <a href="our-work/episoul" className="brands-link">
                           Episoul
                         </a>
                       </div>
@@ -236,7 +236,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/4.png" alt="Icon" />
                         <a
-                          href="http://rageemakeup.com/"
+                          href="/our-work/ragee-makeup"
                           className="brands-link"
                         >
                           Ragee Makeup
@@ -251,7 +251,7 @@ export default function OurWork() {
                       <div className="cteative-service-item">
                         <img src="assets/img/home/brands/5.png" alt="Icon" />
                         <a
-                          href="https://tourwatchout.com/"
+                          href="/our-work/tourwatchout"
                           className="brands-link"
                         >
                           Tour Watchout

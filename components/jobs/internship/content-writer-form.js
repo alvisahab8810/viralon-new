@@ -105,7 +105,36 @@ export default function ContentWriterForm() {
   };
 
 
-  const handleSubmit = async (e) => {
+//   const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   const form = new FormData();
+//   form.append("appliedPosition", formData.appliedPosition);
+//   form.append("name", formData.name);
+//   form.append("email", formData.email);
+//   form.append("mobile", formData.mobile);
+//   form.append("portfolioLink", formData.portfolioLink);
+//   form.append("resume", document.getElementById("cv").files[0]);
+
+//   try {
+//     const res = await fetch("/api/careers/apply", {
+//       method: "POST",
+//       body: form,
+//     });
+
+//     const result = await res.json();
+//     if (result.success) {
+//       toast.success("Application submitted!");
+//     } else {
+//       toast.error("Submission failed!");
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     toast.error("Error submitting form.");
+//   }
+// };
+
+
+const handleSubmit = async (e) => {
   e.preventDefault();
   const form = new FormData();
   form.append("appliedPosition", formData.appliedPosition);
@@ -122,44 +151,19 @@ export default function ContentWriterForm() {
     });
 
     const result = await res.json();
-    if (result.success) {
+
+    if (res.ok && result.success) {
       toast.success("Application submitted!");
+      // ✅ Reset form
+      e.target.reset();
     } else {
-      toast.error("Submission failed!");
+      toast.error(result.message || "Submission failed!");
     }
   } catch (error) {
     console.error(error);
     toast.error("Error submitting form.");
   }
 };
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   const form = new FormData();
-//   form.append("appliedPosition", formData.appliedPosition);
-//   form.append("name", formData.name);
-//   form.append("email", formData.email);
-//   form.append("mobile", formData.mobile);
-//   form.append("portfolioLink", formData.portfolioLink);
-//   form.append("resume", document.getElementById("cv").files[0]); // ✅
-
-//   try {
-//     const res = await fetch("/api/careers/apply", {
-//       method: "POST",
-//       body: form, // ✅ multipart/form-data
-//     });
-
-//     const result = await res.json();
-//     if (result.success) {
-//       alert("Application submitted!");
-//     } else {
-//       alert("Submission failed!");
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     alert("Error submitting form.");
-//   }
-// };
 
 
   return (

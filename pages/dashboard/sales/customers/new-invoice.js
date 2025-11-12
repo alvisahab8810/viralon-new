@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import Link from "next/link";
 import Dashnav from "../../../../components/Dashnav";
@@ -251,86 +253,6 @@ export default function NewInvoice() {
     window.open(pdf.output("bloburl"), "_blank");
   };
 
-  // --- Frontend: handleSubmit ---
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!invoiceDate) {
-  //     toast.error("Invoice date is required.");
-  //     return;
-  //   }
-
-  //   const validItems = rows
-  //     .filter((row) => row.item && row.quantity > 0 && row.rate >= 0)
-  //     .map((row) => ({
-  //       item: row.item,
-  //       quantity: row.quantity,
-  //       rate: row.rate,
-  //       amount: row.quantity * row.rate,
-  //     }));
-
-  //   if (validItems.length === 0) {
-  //     toast.error("At least one valid item is required.");
-  //     return;
-  //   }
-
-  //   const numericTotal = parseFloat(total);
-  //   if (isNaN(numericTotal) || numericTotal <= 0) {
-  //     toast.error("Total must be a positive number.");
-  //     return;
-  //   }
-
-  //   const previewHtml = document.getElementById(
-  //     "quote-preview-content"
-  //   ).innerHTML;
-
-  //   const payload = {
-  //     customerId: selectedCustomer._id,
-  //     invoiceNumber,
-  //     referenceNumber,
-  //     invoiceDate: invoiceDate || "", // ensure it's a string
-  //     dueDate: dueDate || "",
-  //     subject,
-  //     items: rows.map((row) => ({
-  //       item: row.item.trim(),
-  //       quantity: Number(row.quantity),
-  //       rate: Number(row.rate),
-  //       amount: Number(row.quantity * row.rate),
-  //     })),
-  //     subtotal: Number(subtotal),
-  //     discount: Number(discount),
-  //     gst: Number(gst),
-  //     adjustment: Number(adjustment),
-  //     total: Number(total),
-  //     customerNotes,
-  //     terms,
-  //     attachedFiles: [],
-  //     customerEmail: selectedCustomer.email,
-  //     sacCode, // 👈 Include this
-  //     previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
-  //   };
-
-  //   const res = await fetch("/api/sales/invoice/create", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(payload),
-  //   });
-
-  //   const result = await res.json();
-  //   if (result.success) {
-  //     setPdfId(result.pdfId);
-  //     setEmailData({
-  //       to: selectedCustomer.email,
-  //       subject: `Invoice #${invoiceNumber} - Awaiting Your Approval`,
-  //       message: `Dear Customer,\n\nPlease find attached your invoice #${invoiceNumber}.\n\nTotal: ₹${numericTotal}`,
-  //     });
-  //     setEmailModalOpen(true);
-  //     toast.success("Invoice saved. Customize your email.");
-  //   } else {
-  //     toast.error(result.error || "Failed to save Invoice.");
-  //   }
-  // };
-
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -419,40 +341,6 @@ const handleSubmit = async (e) => {
 
 
 
-  // --- Frontend: sendEmail ---
-
-  // const sendEmail = async () => {
-  //   setSending(true);
-
-  //   const previewHtml = document.getElementById(
-  //     "quote-preview-content"
-  //   ).innerHTML;
-
-  //   const response = await fetch("/api/sales/invoice/email", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       to: emailData.to,
-  //       cc: emailData.cc, // ✅ Add this
-  //       bcc: emailData.bcc, // ✅ Add this (optional)
-  //       subject: emailData.subject,
-  //       htmlBody: emailData.message.replace(/\n/g, "<br>"),
-  //       pdfId,
-  //       previewHTML: `<!DOCTYPE html><html><body>${previewHtml}</body></html>`,
-  //     }),
-  //   });
-
-  //   const result = await response.json();
-  //   if (result.success) {
-  //     toast.success("Email sent successfully.");
-  //     setEmailModalOpen(false);
-  //   } else {
-  //     toast.error("Failed to send email: " + result.error);
-  //   }
-
-  //   setSending(false);
-  // };
-
 
   const sendEmail = async () => {
   setSending(true);
@@ -528,6 +416,8 @@ const handleSubmit = async (e) => {
   value: cust._id,
   label: `${cust.salutation} ${cust.firstName} ${cust.lastName} (${cust.companyName})`,
 }));
+
+
   return (
     <>
       <Head>
@@ -568,20 +458,7 @@ const handleSubmit = async (e) => {
                   <label htmlFor="customerName" className="form-label">
                     Client Name<span className="text-danger">*</span>
                   </label>
-                  {/* <select
-                    className="form-control"
-                    id="customerName"
-                    onChange={handleSelect}
-                    defaultValue=""
-                  >
-                    <option value="">Select an active Client</option>
-                    {customers.map((cust) => (
-                      <option key={cust._id} value={cust._id}>
-                        {cust.salutation} {cust.firstName} {cust.lastName} (
-                        {cust.companyName})
-                      </option>
-                    ))}
-                  </select> */}
+               
 
                   <Select
                       id="customerName"
@@ -848,20 +725,15 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
+
+
                 <div className="row mb-4">
                   <div className="col-md-6">
                     <div className="mb-3">
                       <label htmlFor="customerNotes" className="form-label">
                         Customer Notes
                       </label>
-                      {/* <textarea
-                        className="form-control"
-                        id="customerNotes"
-                        name="customerNotes"
-                        rows="3"
-                        value={customerNotes}
-                        onChange={(e) => setCustomerNotes(e.target.value)}
-                      /> */}
+                     
 
                       <textarea
                         className="form-control"
@@ -943,19 +815,7 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
-                {/* <div className="mb-3">
-                  <label htmlFor="terms" className="form-label">
-                    Terms & Conditions
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="terms"
-                    name="terms"
-                    rows="3"
-                    value={terms}
-                    onChange={(e) => setTerms(e.target.value)}
-                  />
-                </div> */}
+               
 
                 <div className="mb-3">
                   <label htmlFor="terms" className="form-label">
@@ -971,9 +831,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div className="d-flex justify-content-end add-row-btn">
-                  {/* <button type="submit" className="btn btn-primary me-2">
-                    Save and Send
-                  </button> */}
+               
 
 
                   <button
@@ -997,6 +855,8 @@ const handleSubmit = async (e) => {
 
                 </div>
               </form>
+
+
               <div className="preview-pdf-section add-row-btn">
                 <button
                   type="submit"

@@ -6,26 +6,23 @@ import Link from "next/link";
 export default function EditorPage() {
   return (
     <div className="main-nav">
-
-    <Head>
+      <Head>
         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
-      <Dashnav/>
-      <Leftbar/>
+      <Dashnav />
+      <Leftbar />
 
       <section className="content home">
-
-      <div className="block-header">
-      <div className="row ptb-50">
+        <div className="block-header">
+          <div className="row ptb-50">
             <div className="col-lg-7 col-md-6 col-sm-12">
               <h2>
-               Create Blog Post
+                Create Blog Post
                 <small className="text-muted">Welcome to Viralon</small>
               </h2>
             </div>
             <div className="col-lg-5 col-md-6 col-sm-12">
-             
               <ul className="breadcrumb float-md-right">
                 <li className="breadcrumb-item ">
                   <Link href="/dashboard/dashboard">
@@ -40,10 +37,10 @@ export default function EditorPage() {
               </ul>
             </div>
           </div>
-      {/* <h1 className="blogs-heading text-center my-4">Create a Blog Post</h1> */}
+          {/* <h1 className="blogs-heading text-center my-4">Create a Blog Post</h1> */}
 
-      <Editor />
-      </div>
+          <Editor />
+        </div>
       </section>
     </div>
   );

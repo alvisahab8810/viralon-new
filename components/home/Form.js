@@ -69,40 +69,7 @@ export default function Form() {
               ></img>
               <h1 className="anton-regular">READY TO COLLABORATE?</h1>
               <p>LET'S TALK YOUR NEEDS</p>
-              {/* <form>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email Address"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="IND (+91) Phone Number"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Business Name"
-                  />
-                </div>
-                <button type="submit" className="btn-submit">
-                  SUBMIT
-                </button>
-              </form> */}
+            
 
               <form onSubmit={handleSubmit}>
                 <input type="hidden" name="formType" value="Query Form" />
