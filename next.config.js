@@ -11,12 +11,12 @@
 // module.exports = nextConfig;
 
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true, // Enable strict mode
-  apiUrl: 'http://localhost:3000/', // Update to localhost
-  fileUrl: 'http://localhost:3000/' // Update to localhost
-};
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true, // Enable strict mode
+//   apiUrl: 'http://localhost:3000/', // Update to localhost
+//   fileUrl: 'http://localhost:3000/' // Update to localhost
+// };
 
 
 // /** @type {import('next').NextConfig} */

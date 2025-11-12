@@ -264,14 +264,14 @@ export default function YourBrandsBFf() {
         <div id="contact-cta-section" className="contact-cta-section">
           <div className="wrapper-full">
             <div className="cta-wrapper">
-              <a
+              <Link
                 className="blue-cta-button"
                 href="#"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalCenter"
               >
                 Let's Talk!
-              </a>
+              </Link>
               <div className="clearfix"></div>
             </div>
           </div>
@@ -551,9 +551,9 @@ export default function YourBrandsBFf() {
                   strategic timing to targeted growth hacks, we increase your
                   reach and engagement.{" "}
                   <span>
-                    <a href="https://viralon.in/services/digital/social-media-marketing">
+                    <Link href="https://viralon.in/services/digital/social-media-marketing">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -615,9 +615,9 @@ export default function YourBrandsBFf() {
                   eye-catching design, with us your brand will always be the one
                   everyone’s talking about.{" "}
                   <span>
-                    <a href="https://viralon.in/services/design/product-level-design">
+                    <Link href="https://viralon.in/services/design/product-level-design">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -677,9 +677,9 @@ export default function YourBrandsBFf() {
                   a full range of email marketing services that fit your brand,
                   budget, and target audience.{" "}
                   <span>
-                    <a href="https://viralon.in/services/digital/email-marketing">
+                    <Link href="https://viralon.in/services/digital/email-marketing">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -741,9 +741,9 @@ export default function YourBrandsBFf() {
                   audiences in a way that feels natural and drives real
                   engagement.{" "}
                   <span>
-                    <a href="https://viralon.in/services/digital/influencer-marketing">
+                    <Link href="https://viralon.in/services/digital/influencer-marketing">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -806,9 +806,9 @@ export default function YourBrandsBFf() {
                   old one a glow-up, we use the latest tech to make sure your
                   online game is on point.
                   <span>
-                    <a href="https://viralon.in/services/design/ui-ux">
+                    <Link href="https://viralon.in/services/design/ui-ux">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -870,9 +870,9 @@ export default function YourBrandsBFf() {
                   only grab attention but also drive engagement and set the
                   standard in your industry.
                   <span>
-                    <a href="https://viralon.in/services/digital/paid-media-marketing">
+                    <Link href="https://viralon.in/services/digital/paid-media-marketing">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -933,9 +933,9 @@ export default function YourBrandsBFf() {
                   attention, clicks, and outcomes. Make your website the MVP of
                   search engines with us.
                   <span>
-                    <a href="https://viralon.in/services/digital/search-engine-optimization">
+                    <Link href="https://viralon.in/services/digital/search-engine-optimization">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -998,9 +998,9 @@ export default function YourBrandsBFf() {
                   of your game. Make your digital presence unforgettable with
                   us.{" "}
                   <span>
-                    <a href="https://viralon.in/services/digital/video-marketing">
+                    <Link href="https://viralon.in/services/digital/video-marketing">
                       Read More
-                    </a>
+                    </Link>
                   </span>
                 </p>
                 <ul className="arrow-fill-bx">
@@ -1050,14 +1050,14 @@ export default function YourBrandsBFf() {
           <div id="contact-cta-section" className="contact-cta-section">
             <div className="wrapper-full">
               <div className="cta-wrapper">
-                <a
+                <Link
                   className="blue-cta-button"
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModalCenter"
                 >
                   Let's Talk!
-                </a>
+                </Link>
                 <div className="clearfix"></div>
               </div>
             </div>
@@ -1242,18 +1242,18 @@ export default function YourBrandsBFf() {
               <div className="social-media">
                 <p>Connect with us :</p>
                 <div className="social-icons">
-                  <a href="https://www.facebook.com/people/Viralon-Digital-Services/61551774960535/">
+                  <Link href="https://www.facebook.com/people/Viralon-Digital-Services/61551774960535/">
                     <i className="fab fa-facebook"></i>
-                  </a>
-                  <a href="https://www.youtube.com/@ViralonDigtialServices">
+                  </Link>
+                  <Link href="https://www.youtube.com/@ViralonDigtialServices">
                     <i className="fab fa-youtube"></i>
-                  </a>
-                  <a href="https://www.instagram.com/viralon_digital_services/">
+                  </Link>
+                  <Link href="https://www.instagram.com/viralon_digital_services/">
                     <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="https://www.linkedin.com/company/viralon-digital-services/">
+                  </Link>
+                  <Link href="https://www.linkedin.com/company/viralon-digital-services/">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
