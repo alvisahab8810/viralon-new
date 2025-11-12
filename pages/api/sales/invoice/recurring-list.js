@@ -2,7 +2,7 @@
 
 import dbConnect from "@/utils/dbConnect";
 import RecurringInvoice from "@/models/sales/recurringInvoice";
-import Customer from "@/models/sales/customer";
+// import Customer from "@/models/sales/customer";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
