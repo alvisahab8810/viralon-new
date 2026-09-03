@@ -6,6 +6,7 @@ import CustomHead from "../components/CustomHead";
 import Link from "next/link";
 import Testimonials from "../components/LandingPage/Testimonials";
 import Head from "next/head";
+import Script from "next/script";
 import BrandLogos from "../components/LandingPage/BrandLogos";
 import HeroSection from "../components/LandingPage/HeroSection";
 import PopupModal from "../components/LandingPage/PopupModal";
@@ -107,7 +108,6 @@ export default function YourBrandsBFf() {
         />
 
         {/* <script src="../assetss/js/jquery.js" defer></script> */}
-        <script src="../assetss/js/bootstrap.bundle.min.js" defer></script>
         {/* <script src="../assetss/js/main.js" defer></script> */}
 
         <link
@@ -116,6 +116,7 @@ export default function YourBrandsBFf() {
           href="../assetss/images/favicon-32x32.png"
         />
       </Head>
+      <Script src="../assetss/js/bootstrap.bundle.min.js" strategy="afterInteractive" />
       <CustomHead title="Viralon || Landing Page" keywords="" description="#" />
 
       <section className="header-section">

@@ -5,7 +5,8 @@ import Footer from "../../components/footer/Footer";
 import CTA from "../../components/home/CTA";
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from "../../components/our-services/brand-identity-design/FAQ";
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
 import Blogs from "../../components/our-services/seo/Blogs";
 import Hero from "../../components/our-services/brand-identity-design/Hero";
 import Slider from "../../components/our-services/brand-identity-design/Slider";
@@ -15,7 +16,7 @@ import Significance from "../../components/our-services/brand-identity-design/Si
 import SolidReasons from "../../components/our-services/brand-identity-design/SolidReasons";
 import OurWork from "../../components/our-services/brand-identity-design/OurWork";
 
-export default function BrandIdentityDesign() {
+export default function BrandIdentityDesign({ faq }) {
   return (
     <div className="bg-dark" id="brand-identity">
       <Topbar />
@@ -32,7 +33,7 @@ export default function BrandIdentityDesign() {
         <Testimonials />
         <Form />
       </div>
-      <FAQ/>
+      <PageFaq faq={faq} topClass="pt-100" />
      
 
        <Blogs/>
@@ -41,4 +42,9 @@ export default function BrandIdentityDesign() {
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/brand-identity-design") }, revalidate: 60 };
 }

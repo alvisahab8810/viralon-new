@@ -1,6 +1,5 @@
       import Link from "next/link";
-      import Dashnav from "../../../../components/Dashnav";
-      import Leftbar from "../../../../components/Leftbar";
+      import DashboardLayout from "../../../../components/DashboardLayout";
       import Head from "next/head";
       import React, { useState, useEffect } from "react";
       import CustomerProfileModal from "../../../../components/CustomerProfileModal";
@@ -99,10 +98,6 @@
               <link rel="stylesheet" href="/asets/css/admin.css" />
             </Head>
 
-            <div className="main-nav">
-              <Dashnav />
-              <Leftbar />
-              <section className="content home">
                 <div className="block-header">
                   <div className="row ptb-50">
                     <div className="col-lg-7 col-md-6 col-sm-12">
@@ -117,8 +112,6 @@
                           href="/dashboard/sales/customers/new-customer"
                           type="button"
                           className="btn btn-primary"
-                          data-toggle="tooltip"
-                          data-placement="top"
                           title="Add New Clients"
                         >
                           <i className="zmdi zmdi-plus mr-1"></i> New
@@ -239,9 +232,11 @@
                     </button>
                   </div>
                 )}
-              </section>
-            </div>
             <ToastContainer />
           </div>
         );
       }
+
+      CustomerList.getLayout = function getLayout(page) {
+        return <DashboardLayout role="admin">{page}</DashboardLayout>;
+      };

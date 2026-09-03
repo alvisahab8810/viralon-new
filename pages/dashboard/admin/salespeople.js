@@ -9,8 +9,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-import Dashnav from "@/components/Dashnav";
-import Leftbar from "@/components/Leftbar";
+import DashboardLayout from "@/components/DashboardLayout";
 
 const ROWS_PER_PAGE = 10;
 
@@ -92,11 +91,7 @@ export default function SalespeopleList() {
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
 
-      <div className="main-nav career-response">
-        <Dashnav />
-        <Leftbar role="admin" />
-
-        <section className="content home">
+      <div className="career-response">
           <div className="block-header ptb-50">
             <h2>All Salespeople</h2>
           </div>
@@ -164,8 +159,11 @@ export default function SalespeopleList() {
               </button>
             </div>
           )}
-        </section>
       </div>
     </>
   );
 }
+
+SalespeopleList.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};

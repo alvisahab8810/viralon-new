@@ -1,0 +1,60 @@
+// pages/api/slots/index.js — public slot list for the website booking form.
+// The schedule itself is opened from the payroll admin (Website → Call Slots);
+// here we only expose the upcoming dates and mark the taken times so the form
+// can grey them out.
+import dbConnect from "../../../utils/dbConnect";
+import BookingSlot from "../../../models/BookingSlot";
+
+const MAX_DATES = 12;
+
+// The office runs on IST, so "today" and "already past" are judged in IST no
+// matter which timezone the server sits in.
+function istNow() {
+  const ist = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+  return {
+    date: ist.toISOString().slice(0, 10),
+    time: ist.toISOString().slice(11, 16),
+  };
+}
+
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    return res.status(405).json({ success: false, message: "Method Not Allowed" });
+  }
+
+  try {
+    await dbConnect();
+    const now = istNow();
+
+    // Blocked slots never reach the site at all; booked ones do, greyed out.
+    const slots = await BookingSlot.find({
+      date: { $gte: now.date },
+      status: { $in: ["open", "booked"] },
+    })
+      .sort({ date: 1, time: 1 })
+      .lean();
+
+    const byDate = new Map();
+    for (const slot of slots) {
+      // Don't offer a time that has already gone by today.
+      if (slot.date === now.date && slot.time <= now.time) continue;
+      if (!byDate.has(slot.date)) byDate.set(slot.date, []);
+      byDate.get(slot.date).push({
+        id: String(slot._id),
+        time: slot.time,
+        taken: slot.status === "booked",
+      });
+    }
+
+    // Only offer days that still have something free to book.
+    const data = [...byDate.entries()]
+      .filter(([, list]) => list.some((x) => !x.taken))
+      .slice(0, MAX_DATES)
+      .map(([date, list]) => ({ date, slots: list }));
+
+    return res.status(200).json({ success: true, data });
+  } catch (err) {
+    console.error("slots list failed:", err?.message);
+    return res.status(500).json({ success: false, message: "Could not load slots" });
+  }
+}

@@ -12,9 +12,10 @@ import Process from "../components/home/Process";
 import Partnering from "../components/home/Partnering";
 import CTA from "../components/home/CTA";
 import Blogs from "../components/our-services/seo/Blogs"
-import Faq from "../components/home/Faq";
+import PageFaq from "../components/PageFaq";
+import { getPageFaq } from "../utils/pageFaq";
 
-export default function IndexPage({ data }) {
+export default function IndexPage({ data, faq }) {
   
 
   return (
@@ -30,10 +31,15 @@ export default function IndexPage({ data }) {
       <Form />
       </div>
       <Partnering />
-      <Faq/>
+      <PageFaq faq={faq} topClass="pt-80" />
       <Blogs/>
       <CTA />
       <Footer />
     </section>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("home") }, revalidate: 60 };
 }

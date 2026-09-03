@@ -7,8 +7,10 @@ import Journey from "../components/career/Journey";
 import Working from "../components/career/Working";
 import Employes from "../components/career/Employes";
 import Offcanvas from "../components/header/Offcanvas";
+import PageFaq from "../components/PageFaq";
+import { getPageFaq } from "../utils/pageFaq";
 
-export default function career() {
+export default function career({ faq }) {
   return (
     <div className="bg-dark">
       <Topbar />
@@ -18,7 +20,13 @@ export default function career() {
       <Working />
       <Employes />
       <CTA />
+      <PageFaq faq={faq} topClass="pt-80" />
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("career") }, revalidate: 60 };
 }

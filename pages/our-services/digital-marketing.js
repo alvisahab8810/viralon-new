@@ -8,10 +8,9 @@ import CTA from "../../components/home/CTA";
 import Hero from '../../components/our-services/digital-marketing/Hero'
 import Strap from '../../components/our-services/digital-marketing/Strap'
 import Partnering from "../../components/home/Partnering";
-import FAQ from '../../components/our-services/digital-marketing/FAQ';
-
-
-export default function DigitalMarketing() {
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
+export default function DigitalMarketing({ faq }) {
   return (
     <div className='bg-dark'>
         <Topbar/>
@@ -23,9 +22,14 @@ export default function DigitalMarketing() {
         <Testimonials />
         <Form />
         </div>
-        <FAQ/>
+        <PageFaq faq={faq} topClass="pt-80" />
         <CTA />
         <Footer/>
     </div>
   )
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/digital-marketing") }, revalidate: 60 };
 }

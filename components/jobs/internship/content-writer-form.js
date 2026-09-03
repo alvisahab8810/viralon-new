@@ -90,9 +90,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-export default function ContentWriterForm() {
+export default function ContentWriterForm({ position = "Content Writer Intern" }) {
   const [formData, setFormData] = useState({
-    appliedPosition: "Content Writer Intern",
+    appliedPosition: position,
     name: "",
     email: "",
     mobile: "",
@@ -172,7 +172,7 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit} className="wpcf7-form init">
         <div className="career-form-wrap">
           <div className="career-form d-flex flex-wrap">
-            <input type="hidden" name="appliedPosition" value="Content Writer Intern" />
+            <input type="hidden" name="appliedPosition" value={position} />
             <input name="name" placeholder="Name*" className="form-control mt-3" onChange={handleChange} required />
             <input name="email" type="email" placeholder="Email*" className="form-control mt-3" onChange={handleChange} required />
             <input name="mobile" type="tel" maxLength="10" minLength="10" placeholder="Phone Number*" className="form-control mt-3" onChange={handleChange} required />

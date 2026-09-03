@@ -290,8 +290,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Dashnav from "@/components/Dashnav";
-import Leftbar from "@/components/Leftbar";
+import DashboardLayout from "@/components/DashboardLayout";
 import toast from "react-hot-toast";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
@@ -406,12 +405,7 @@ export default function LeadsAdmin({ role }) {
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar role={role} />
-
-        <section className="content home">
-          <div className="block-header">
+      <div className="block-header">
 
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
@@ -572,8 +566,10 @@ export default function LeadsAdmin({ role }) {
               </div>
             )}
           </div>
-        </section>
-      </div>
     </div>
   );
 }
+
+LeadsAdmin.getLayout = function getLayout(page, pageProps) {
+  return <DashboardLayout role={pageProps?.role}>{page}</DashboardLayout>;
+};

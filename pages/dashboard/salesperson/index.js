@@ -33,8 +33,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession, getSession } from "next-auth/react";
 
-import Dashnav from "../../../components/Dashnav";
-import Leftbar from "../../../components/Leftbar";
+import DashboardLayout from "../../../components/DashboardLayout";
 import DashboardSummary from "../../../components/DashboardSummary";
 import Setting from "../../../components/Setting";
 import SalesReports from "../../../components/SalesDashboard";
@@ -54,55 +53,50 @@ export default function AdminDashboard({ role }) {
         <title>Dashboard – Viralon</title>
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-
-        {/* Sidebar: admins get full menu, salespersons get trimmed menu */}
-        <Leftbar role={role} />
-
-        <section className="content home">
-          <div className="block-header">
-            <div className="row ptb-50">
-              <div className="col-lg-7 col-md-6 col-sm-12">
-                <h2>
-                  My Sales Report&nbsp;
-                  <small className="text-muted">
-                    Welcome to Viralon,{" "}
-                    <b className="text-black">{session.user.name}</b>
-                  </small>
-                </h2>
-              </div>
-
-              <div className="col-lg-5 col-md-6 col-sm-12">
-                <ul className="breadcrumb float-md-right">
-                  <li className="breadcrumb-item"></li>
-                  <li className="breadcrumb-item active">
-                    Overview of your pipeline{" "}
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <SalesReports />
+      <div className="block-header">
+        <div className="row ptb-50">
+          <div className="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+              My Sales Report&nbsp;
+              <small className="text-muted">
+                Welcome to Viralon,{" "}
+                <b className="text-black">{session.user.name}</b>
+              </small>
+            </h2>
           </div>
 
-          {/* Summary always visible; compact mode for salespersons */}
-          {/* <DashboardSummary compact={!isAdmin} /> */}
-        </section>
+          <div className="col-lg-5 col-md-6 col-sm-12">
+            <ul className="breadcrumb float-md-right">
+              <li className="breadcrumb-item"></li>
+              <li className="breadcrumb-item active">
+                Overview of your pipeline{" "}
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        {/* Settings panel only for admins */}
-        {isAdmin && <Setting />}
+        <SalesReports />
       </div>
+
+      {/* Summary always visible; compact mode for salespersons */}
+      {/* <DashboardSummary compact={!isAdmin} /> */}
+
+      {/* Settings panel only for admins */}
+      {isAdmin && <Setting />}
     </>
   );
 }
+
+AdminDashboard.getLayout = function getLayout(page, pageProps) {
+  return <DashboardLayout role={pageProps?.role}>{page}</DashboardLayout>;
+};
 
 /* ------------------- server‑side guard ------------------- */
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
 
   if (!session) {
-    return { redirect: { destination: "/login", permanent: false } };
+    return { redirect: { destination: "/dashboard/login", permanent: false } };
   }
 
   // Redirect salespersons who try to access the admin dashboard

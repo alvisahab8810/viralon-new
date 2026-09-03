@@ -5,7 +5,8 @@ import Footer from "../../components/footer/Footer";
 import CTA from "../../components/home/CTA";
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from "../../components/our-services/product-packaging/FAQ";
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
 import Blogs from "../../components/our-services/seo/Blogs";
 import Hero from "../../components/our-services/product-packaging/Hero";
 import Slider from "../../components/our-services/product-packaging/Slider";
@@ -14,7 +15,7 @@ import Process from "../../components/our-services/product-packaging/Process";
 import Significance from "../../components/our-services/product-packaging/Significance";
 import SolidReasons from "../../components/our-services/product-packaging/SolidReasons";
 
-export default function ProductPackaging() {
+export default function ProductPackaging({ faq }) {
   return (
     <div className="bg-dark" id="product-packaging">
       <Topbar />
@@ -29,7 +30,7 @@ export default function ProductPackaging() {
         <Testimonials />
         <Form />
       </div>
-      <FAQ/>
+      <PageFaq faq={faq} topClass="pt-100" />
      
 
        <Blogs/>
@@ -38,4 +39,9 @@ export default function ProductPackaging() {
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/product-packaging") }, revalidate: 60 };
 }

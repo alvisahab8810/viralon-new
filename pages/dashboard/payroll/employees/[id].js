@@ -8,8 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { FaEdit, FaEye, FaEyeSlash } from "react-icons/fa";
-import Dashnav from "../../../../components/Dashnav";
-import Leftbar from "../../../../components/Leftbar";
+import DashboardLayout from "../../../../components/DashboardLayout";
 import AttendanceCalendar from "../../../../components/AttendanceCalendar";
 import MySalarySlips from "../../../../components/SalarySlip";
 
@@ -140,12 +139,7 @@ export default function EmployeeProfile() {
         <link rel="stylesheet" href="/asets/css/admin.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar />
-
-        <section className="content home">
-          <div className="block-header">
+      <div className="block-header">
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
@@ -694,8 +688,10 @@ export default function EmployeeProfile() {
 
             
           </div>
-        </section>
-      </div>
     </div>
   );
 }
+
+EmployeeProfile.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};

@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Dashnav from "../../../../components/Dashnav";
-import Leftbar from "../../../../components/Leftbar";
+import DashboardLayout from "../../../../components/DashboardLayout";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { FaTrash, FaEye } from "react-icons/fa";
@@ -432,11 +431,6 @@ export default function NewQuote() {
         <link rel="stylesheet" href="/asets/css/admin.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar />
-
-        <section className="content home">
           <div className="block-header">
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
@@ -1230,8 +1224,6 @@ export default function NewQuote() {
               </>
             )}
           </div>
-        </section>
-      </div>
 
       <div
         id="quote-preview-content"
@@ -1739,3 +1731,7 @@ export default function NewQuote() {
     </>
   );
 }
+
+NewQuote.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};

@@ -3,8 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession, getSession } from "next-auth/react";
 
-import Dashnav from "../../../components/Dashnav";
-import Leftbar from "../../../components/Leftbar";
+import DashboardLayout from "../../../components/DashboardLayout";
 import Setting from "../../../components/Setting";
 import Profile from "../../../components/Profile";
 
@@ -23,14 +22,7 @@ export default function AdminDashboard({ role }) {
         <title>Dashboard – Viralon</title>
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-
-        {/* Sidebar: admins get full menu, salespersons get trimmed menu */}
-        <Leftbar role={role} />
-
-        <section className="content home">
-          <div className="block-header">
+      <div className="block-header">
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
@@ -54,23 +46,25 @@ export default function AdminDashboard({ role }) {
             </div>
           </div>
 
-          {/* Summary always visible; compact mode for salespersons */}
-          <Profile/>
-        </section>
+      {/* Summary always visible; compact mode for salespersons */}
+      <Profile/>
 
-        {/* Settings panel only for admins */}
-        {isAdmin && <Setting />}
-      </div>
+      {/* Settings panel only for admins */}
+      {isAdmin && <Setting />}
     </>
   );
 }
+
+AdminDashboard.getLayout = function getLayout(page, pageProps) {
+  return <DashboardLayout role={pageProps?.role}>{page}</DashboardLayout>;
+};
 
 /* ------------------- server‑side guard ------------------- */
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
 
   if (!session) {
-    return { redirect: { destination: "/login", permanent: false } };
+    return { redirect: { destination: "/dashboard/login", permanent: false } };
   }
 
   // Redirect salespersons who try to access the admin dashboard

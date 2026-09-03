@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import {
   PieChart,
@@ -21,21 +19,90 @@ const RANGE_OPTIONS = [
   { label: "Last 12 Months", value: "last12Months" },
 ];
 
-export default function DashboardSummary() {
+// Shared card look, matching the tourwatchout-style bk-* design system already
+// used for the sidebar/backend.css (see components/Leftbar.js).
+const C = {
+  box: {
+    background: "#fff",
+    border: "1px solid #f1f5f9",
+    borderRadius: 14,
+    padding: "20px 22px",
+    boxShadow: "0 1px 6px rgba(0,0,0,0.05)",
+  },
+  title: { fontSize: 15, fontWeight: 700, color: "#111827", marginBottom: 4 },
+  subtitle: { fontSize: 12.5, color: "#6b7280", marginBottom: 16 },
+};
 
-const [invoiceData, setInvoiceData] = useState([]);
+function inr(n) {
+  return `₹${Number(n || 0).toLocaleString("en-IN")}`;
+}
+
+function SCard({ label, value, sub, accent }) {
+  return (
+    <div
+      style={{
+        background: "#fff",
+        border: "1px solid #e4e9f2",
+        borderTop: `3px solid ${accent}`,
+        borderRadius: 12,
+        padding: "16px 18px",
+        boxShadow: "0 1px 4px rgba(0,0,0,.05)",
+      }}
+    >
+      <div
+        style={{
+          fontSize: 11,
+          fontWeight: 800,
+          color: "#6b7a99",
+          textTransform: "uppercase",
+          letterSpacing: ".06em",
+          marginBottom: 8,
+        }}
+      >
+        {label}
+      </div>
+      <div style={{ fontSize: 24, fontWeight: 800, color: accent, lineHeight: 1.2, marginBottom: 4 }}>
+        {value}
+      </div>
+      {sub && <div style={{ fontSize: 12, color: "#94a3b8" }}>{sub}</div>}
+    </div>
+  );
+}
+
+function ReceivableRow({ label, value, color }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "10px 0",
+        borderBottom: "1px solid #f1f5f9",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0 }} />
+        <span style={{ fontSize: 13, color: "#374151" }}>{label}</span>
+      </div>
+      <span style={{ fontSize: 14, fontWeight: 700, color }}>{inr(value)}</span>
+    </div>
+  );
+}
+
+export default function DashboardSummary() {
+  const [invoiceData, setInvoiceData] = useState([]);
 
   useEffect(() => {
-  const fetchInvoiceSummary = async () => {
-    const res = await fetch("/api/dashboard/invoice-summary");
-    const data = await res.json();
-    if (data.success) {
-      setInvoiceData(data.data);
-    }
-  };
+    const fetchInvoiceSummary = async () => {
+      const res = await fetch("/api/dashboard/invoice-summary");
+      const data = await res.json();
+      if (data.success) {
+        setInvoiceData(data.data);
+      }
+    };
 
-  fetchInvoiceSummary();
-}, []);
+    fetchInvoiceSummary();
+  }, []);
 
   const [quotationData, setQuotationData] = useState([]);
 
@@ -87,14 +154,20 @@ const [invoiceData, setInvoiceData] = useState([]);
       .catch((err) => console.error("Dashboard fetch error", err));
   }, [range]);
 
-  if (!summary) return <div>Loading dashboard…</div>;
+  if (!summary) {
+    return (
+      <div style={{ ...C.box, textAlign: "center", padding: "60px 0", color: "#94a3b8", fontSize: 13 }}>
+        Loading dashboard…
+      </div>
+    );
+  }
 
   // ✅ These depend on `summary`, so define them only after the check
   const pieData = [
     { name: "Income", value: summary.incomeExpense.totalIncome },
     { name: "Expense", value: summary.incomeExpense.totalExpense },
   ];
-  const COLORS = ["#4ade80", "#f87171"];
+  const COLORS = ["#22c55e", "#ef4444"];
 
   const cashData = summary.cashFlow.monthly.map((m) => ({
     month: m.month,
@@ -116,172 +189,230 @@ const [invoiceData, setInvoiceData] = useState([]);
     });
   };
 
+  const netProfit = summary.incomeExpense.totalIncome - summary.incomeExpense.totalExpense;
+
   return (
-    <div className=" case-flow-main">
-  {/* ====== Metrics Cards ====== */}
-  <div className="row g-3">
-    {invoiceData.length > 0 && (
-      <div className="col-md-6 col-lg-4">
-        <div className="card p-3 shadow-sm h-100">
-          <h6 className="mb-3">Invoices Generated (Monthly)</h6>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={invoiceData}>
-              <XAxis dataKey="month" />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar dataKey="invoices" fill="#ff6f61" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    )}
-
-    {quotationData.length > 0 && (
-      <div className="col-md-6 col-lg-4">
-        <div className="card p-3 shadow-sm h-100">
-          <h6 className="mb-3">Quotations Created (Monthly)</h6>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={quotationData}>
-              <XAxis dataKey="month" />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#10b981" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    )}
-
-    {clientData.length > 0 && (
-      <div className="col-md-6 col-lg-4">
-        <div className="card p-3 shadow-sm h-100">
-          <h6 className="mb-3">Client Onboarding (Monthly)</h6>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={clientData}>
-              <XAxis dataKey="month" />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#6366f1" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    )}
-  </div>
-
-  {/* ====== Receivables & Pie Chart ====== */}
-  <div className="row g-3 mt-2">
-    <div className="col-md-6">
-      <div className="card shadow-sm h-100">
-        <h6 className="total-reveivables p-3">Total Receivables</h6>
-        <div className="p-3">
-          <p>Unpaid Invoices: ₹{summary.receivables.total.toLocaleString()}</p>
-          <p>Current: ₹{summary.receivables.current.toLocaleString()}</p>
-          <p className="text-danger">Overdue: ₹{summary.receivables.overdue.toLocaleString()}</p>
-        </div>
-      </div>
-    </div>
-
-    <div className="col-md-6">
-      <div className="card p-3 shadow-sm h-100">
-        <h6 className="mb-3">Income vs Expense (Pie Chart)</h6>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Tooltip formatter={(value) => `₹${Number(value).toLocaleString()}`} />
-            <Pie
-              data={pieData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              label={({ name, value }) => `${name}: ₹${Number(value).toLocaleString()}`}
-              isAnimationActive={false}
-            >
-              {pieData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="text-muted small mt-2">
-          <strong>Total:</strong> ₹
-          {pieData.reduce((acc, curr) => acc + curr.value, 0).toLocaleString()}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* ====== Leads ====== */}
-  <div className="card p-3 mt-4 shadow-sm">
-    <h6 className="mb-2">Leads Over Last 6 Months</h6>
-    <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={leadData}>
-        <XAxis dataKey="month" />
-        <YAxis />
-        <Tooltip />
-        <Bar dataKey="Leads" fill="#38bdf8" />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-
-  {/* ====== Cash Flow ====== */}
-  <div className="card p-3 shadow-sm">
-    <div className="d-flex justify-content-between align-items-center mb-2">
-      <h6 className="mb-0">Cash Flow</h6>
-      <select
-        className="form-select form-select-sm w-auto"
-        value={range}
-        onChange={(e) => setRange(e.target.value)}
+    <div className="case-flow-main">
+      {/* ====== KPI Summary Cards ====== */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: 14,
+          marginBottom: 20,
+        }}
       >
-        {RANGE_OPTIONS.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+        <SCard
+          label="Total Receivables"
+          value={inr(summary.receivables.total)}
+          sub={`${inr(summary.receivables.overdue)} overdue`}
+          accent="#dc2626"
+        />
+        <SCard
+          label="Total Income"
+          value={inr(summary.incomeExpense.totalIncome)}
+          sub={`${inr(summary.incomeExpense.totalExpense)} expenses`}
+          accent="#2563eb"
+        />
+        <SCard
+          label="Cash Flow (Closing)"
+          value={inr(summary.cashFlow.closing)}
+          sub={`Opening ${inr(summary.cashFlow.opening)}`}
+          accent="#7c3aed"
+        />
+        <SCard
+          label={netProfit >= 0 ? "Net Profit" : "Net Loss"}
+          value={inr(Math.abs(netProfit))}
+          sub="Income − Expense"
+          accent={netProfit >= 0 ? "#16a34a" : "#dc2626"}
+        />
+      </div>
+
+      {/* ====== Monthly Activity Charts ====== */}
+      {(invoiceData.length > 0 || quotationData.length > 0 || clientData.length > 0) && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: 16,
+            marginBottom: 16,
+          }}
+        >
+          {invoiceData.length > 0 && (
+            <div style={C.box}>
+              <div style={C.title}>Invoices Generated</div>
+              <div style={C.subtitle}>Monthly count</div>
+              <ResponsiveContainer width="100%" height={230}>
+                <BarChart data={invoiceData} margin={{ top: 0, right: 5, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
+                  <Tooltip />
+                  <Bar dataKey="invoices" fill="#ff6f61" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {quotationData.length > 0 && (
+            <div style={C.box}>
+              <div style={C.title}>Quotations Created</div>
+              <div style={C.subtitle}>Monthly count</div>
+              <ResponsiveContainer width="100%" height={230}>
+                <BarChart data={quotationData} margin={{ top: 0, right: 5, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#10b981" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {clientData.length > 0 && (
+            <div style={C.box}>
+              <div style={C.title}>Client Onboarding</div>
+              <div style={C.subtitle}>Monthly count</div>
+              <ResponsiveContainer width="100%" height={230}>
+                <BarChart data={clientData} margin={{ top: 0, right: 5, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ====== Receivables Breakdown + Income vs Expense ====== */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 16,
+          marginBottom: 16,
+        }}
+      >
+        <div style={C.box}>
+          <div style={C.title}>Receivables Breakdown</div>
+          <div style={C.subtitle}>Unpaid invoices</div>
+          <ReceivableRow label="Total Unpaid" value={summary.receivables.total} color="#111827" />
+          <ReceivableRow label="Current" value={summary.receivables.current} color="#16a34a" />
+          <ReceivableRow label="Overdue" value={summary.receivables.overdue} color="#dc2626" />
+        </div>
+
+        <div style={C.box}>
+          <div style={C.title}>Income vs Expense</div>
+          <div style={C.subtitle}>Overall split</div>
+          <ResponsiveContainer width="100%" height={230}>
+            <PieChart>
+              <Tooltip formatter={(value) => inr(value)} />
+              <Legend iconSize={10} wrapperStyle={{ fontSize: 12 }} />
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={95}
+                paddingAngle={3}
+                isAnimationActive={false}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* ====== Leads + Cash Flow ====== */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 16,
+          marginBottom: 16,
+        }}
+      >
+        <div style={C.box}>
+          <div style={C.title}>Leads Over Last 6 Months</div>
+          <div style={C.subtitle}>New leads captured</div>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={leadData} margin={{ top: 0, right: 5, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+              <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+              <Tooltip />
+              <Bar dataKey="Leads" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div style={C.box}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              marginBottom: 4,
+            }}
+          >
+            <div style={C.title}>Cash Flow</div>
+            <select
+              className="bk-period-select"
+              value={range}
+              onChange={(e) => setRange(e.target.value)}
+            >
+              {RANGE_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div style={C.subtitle}>
+            Opening {inr(summary.cashFlow.opening)} · Closing {inr(summary.cashFlow.closing)}
+          </div>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={cashData} margin={{ top: 0, right: 5, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="month" tickFormatter={formatMonthTick} tick={{ fontSize: 11 }} />
+              <YAxis tick={{ fontSize: 11 }} />
+              <Tooltip />
+              <Legend iconSize={10} wrapperStyle={{ fontSize: 12 }} />
+              <Bar dataKey="Incoming" fill="#4ade80" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="Outgoing" fill="#f87171" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* ====== Income vs Expense (Monthly) ====== */}
+      <div style={C.box}>
+        <div style={C.title}>Income vs Expense (Monthly)</div>
+        <div style={C.subtitle}>
+          Total Income {inr(summary.incomeExpense.totalIncome)} · Total Expenses{" "}
+          {inr(summary.incomeExpense.totalExpense)}
+        </div>
+        <ResponsiveContainer width="100%" height={260}>
+          <BarChart data={ieData} margin={{ top: 0, right: 10, left: -10, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+            <XAxis dataKey="month" tickFormatter={formatMonthTick} tick={{ fontSize: 11 }} />
+            <YAxis tick={{ fontSize: 11 }} />
+            <Tooltip />
+            <Legend iconSize={10} wrapperStyle={{ fontSize: 12 }} />
+            <Bar dataKey="Income" fill="#60a5fa" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Expense" fill="#facc15" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
-    <p>
-      Opening: ₹{summary.cashFlow.opening.toLocaleString()} &nbsp;|&nbsp;
-      Incoming: ₹{summary.cashFlow.incoming.toLocaleString()} &nbsp;|&nbsp;
-      Outgoing: ₹{summary.cashFlow.outgoing.toLocaleString()} &nbsp;|&nbsp;
-      Closing: ₹{summary.cashFlow.closing.toLocaleString()}
-    </p>
-    <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={cashData}>
-        <XAxis dataKey="month" tickFormatter={formatMonthTick} />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Incoming" fill="#4ade80" />
-        <Bar dataKey="Outgoing" fill="#f87171" />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-
-  {/* ====== Income vs Expense Chart ====== */}
-  <div className="card p-3  shadow-sm">
-    <h6 className="mb-2">Income vs Expense</h6>
-    <p>
-      Total Income: ₹{summary.incomeExpense.totalIncome.toLocaleString()} &nbsp;|&nbsp;
-      Total Expenses: ₹{summary.incomeExpense.totalExpense.toLocaleString()}
-    </p>
-    <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={ieData}>
-        <XAxis dataKey="month" tickFormatter={formatMonthTick} />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Income" fill="#60a5fa" />
-        <Bar dataKey="Expense" fill="#facc15" />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-
-
-
-  
-</div>
-
   );
 }

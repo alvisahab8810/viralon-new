@@ -10,11 +10,12 @@ import Significance from "../../components/our-services/logo-design/Significance
 import SolidReasons from "../../components/our-services/logo-design/SolidReasons";
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from "../../components/our-services/logo-design/FAQ";
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
 import Blogs from "../../components/our-services/seo/Blogs";
 import Slider from "../../components/our-services/logo-design/Slider";
 
-export default function LogoDesgin() {
+export default function LogoDesgin({ faq }) {
   return (
     <div className="bg-dark" id="logo-design">
       <Topbar />
@@ -29,7 +30,7 @@ export default function LogoDesgin() {
         <Testimonials />
         <Form />
       </div>
-      <FAQ/>
+      <PageFaq faq={faq} topClass="pt-100" />
       <Blogs/>
       <CTA/>
       <Offcanvas />
@@ -38,6 +39,7 @@ export default function LogoDesgin() {
   );
 }
 
-
-
-
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/logo-design") }, revalidate: 60 };
+}

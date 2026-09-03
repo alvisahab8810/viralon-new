@@ -5,8 +5,10 @@ import Footer from "../components/footer/Footer";
 import Work from "../components/our-work/Work";
 import CTA from "../components/home/CTA";
 import Offcanvas from "../components/header/Offcanvas";
+import PageFaq from "../components/PageFaq";
+import { getPageFaq } from "../utils/pageFaq";
 
-export default function ourWork() {
+export default function ourWork({ faq }) {
   return (
     <div className="bg-dark">
       <Topbar />
@@ -14,7 +16,13 @@ export default function ourWork() {
       <Hero />
       <Work />
       <CTA />
+      <PageFaq faq={faq} topClass="pt-80" />
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-work") }, revalidate: 60 };
 }

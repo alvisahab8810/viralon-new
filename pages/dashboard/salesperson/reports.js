@@ -89,8 +89,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import Dashnav from "../../../components/Dashnav";
-import Leftbar from "../../../components/Leftbar";
+import DashboardLayout from "../../../components/DashboardLayout";
 
 import {
   BarChart,
@@ -143,12 +142,7 @@ export default function SalesReports() {
         <title>My Sales Report</title>
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar role="salesperson" />
-
-        <section className="content home">
-          <div className="block-header ptb-50">
+      <div className="block-header ptb-50">
             <h2>
               My Sales Report
               <small className="text-muted">Overview of your pipeline</small>
@@ -219,8 +213,10 @@ export default function SalesReports() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
     </>
   );
 }
+
+SalesReports.getLayout = function getLayout(page) {
+  return <DashboardLayout role="salesperson">{page}</DashboardLayout>;
+};

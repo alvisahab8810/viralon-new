@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
-import Dashnav from "../../../components/Dashnav";
-import Leftbar from "../../../components/Leftbar";
+import DashboardLayout from "../../../components/DashboardLayout";
 import Link from "next/link";
 
 const EditPost = () => {
@@ -64,16 +63,13 @@ const EditPost = () => {
   };
 
   return (
-    <div className="main-nav">
+    <>
       <Head>
         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
-      <Dashnav />
-      <Leftbar />
 
-      <section className="content home">
-        <div className="block-header">
+      <div className="block-header">
           <div className="row ptb-50">
             <div className="col-lg-7 col-md-6 col-sm-12">
               <h2>
@@ -162,9 +158,12 @@ const EditPost = () => {
           </form>
 
         </div>
-      </section>
-    </div>
+    </>
   );
+};
+
+EditPost.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
 };
 
 export default EditPost;

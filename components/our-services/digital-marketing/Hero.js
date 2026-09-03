@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useEffect } from "react";
+import VideoPopupLink from "../../common/VideoPopupLink";
 
 export default function Hero() {
   useEffect(() => {
@@ -65,13 +66,13 @@ export default function Hero() {
             </div>
             <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
               <div className="choose-us-style-one-thumb">
-                <a
+                <VideoPopupLink
                   href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
                   className="popup-youtube video-play-button"
                 >
                   <i className="fas fa-play"></i>
                   <div className="effect"></div>
-                </a>
+                </VideoPopupLink>
               </div>
             </div>
           </div>

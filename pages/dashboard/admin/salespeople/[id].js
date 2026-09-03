@@ -367,8 +367,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Dashnav from "@/components/Dashnav";
-import Leftbar from "@/components/Leftbar";
+import DashboardLayout from "@/components/DashboardLayout";
 
 import {
   BarChart,
@@ -444,12 +443,7 @@ export default function SalespersonReport() {
         <link rel="stylesheet" href="/asets/css/main.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar role="admin" />
-
-        <section className="content home">
-          <div className="ptb-50">
+      <div className="ptb-50">
             <div className="block-header">
               <h2>
                 Salesperson Performance
@@ -541,9 +535,11 @@ export default function SalespersonReport() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
       </div>
     </>
   );
 }
+
+SalespersonReport.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};

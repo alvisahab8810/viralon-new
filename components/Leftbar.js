@@ -1,184 +1,91 @@
-
 "use client"; // if you’re using the App Router
 
+import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 import { useSession } from "next-auth/react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from "react-toastify";
+
+import {
+  MdHome,
+  MdWorkOutline,
+  MdMailOutline,
+  MdPeopleAlt,
+  MdGroup,
+  MdRequestQuote,
+  MdReceiptLong,
+  MdAutorenew,
+  MdSupervisorAccount,
+  MdLogout,
+} from "react-icons/md";
 
 export default function Leftbar({ role = "admin" }) {
   const router = useRouter();
+  const pathname = usePathname();
   const isAdmin = role === "admin";
-
-  /* ------------- handle logout (unchanged) ------------- */
-  const handleLogout = async () => {
-    const res = await fetch("/api/admin/logout", { method: "GET" });
-    if (res.ok) router.push("/dashboard/login");
+  const isActive = (href) => {
+    if (pathname === href) return true;
+    if (href === "/dashboard/admin") return false; // don't swallow /dashboard/admin/leads, /admin/salespeople, etc.
+    return !!pathname?.startsWith(href + "/");
   };
 
-  /* ------------- collapsible menu state ------------- */
-  const [openMenu, setOpenMenu] = useState(null);
-  const toggleMenu = (m) => setOpenMenu(openMenu === m ? null : m);
+  /* ------------- logout (same confirm-dialog flow Dashnav used) ------------- */
+  const handleLogout = () => {
+    confirmAlert({
+      title: "Confirm Logout",
+      message: "Are you sure you want to logout?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            try {
+              const res = await fetch("/api/admin/logout", { method: "GET" });
+              if (res.ok) {
+                localStorage.removeItem("token");
+                toast.success("Logged out successfully.");
+                window.location.href = "/dashboard/login";
+              } else {
+                toast.error("Logout failed.");
+              }
+            } catch (error) {
+              toast.error("An error occurred during logout.");
+              console.error("Logout error:", error);
+            }
+          },
+        },
+        {
+          label: "No",
+          onClick: () => toast.info("Logout cancelled."),
+        },
+      ],
+    });
+  };
 
-  /* ------------- MENU DEFINITION ------------- */
+  /* ------------- MENU DEFINITION (tourwatchout-style: flat links, no nested dropdowns) ------------- */
   //  adminOnly: true  => hide from salespersons
-  const menu = [
-    {
-      type: "link",
-      href: "/dashboard/admin",
-      label: "Home",
-      icon: "zmdi-home",
-      adminOnly: true,
-    },
-    {
-      type: "link",
-      href: "/dashboard/blog-dashboard",
-      label: "Blog Dashboard",
-      icon: "zmdi-blogger",
-      adminOnly: true,
-    },
-    {
-      type: "link",
-      href: "/dashboard/new-post",
-      label: "New Post",
-      icon: "zmdi-plus-circle",
-      adminOnly: true,
-    },
-    {
-      type: "link",
-      href: "/dashboard/career-response",
-      label: "Careers Response",
-      icon: "zmdi-email",
-      adminOnly: true,
-    },
-    {
-      type: "link",
-      href: "/dashboard/query-response",
-      label: "Query Response",
-      icon: "zmdi-email",
-      adminOnly: false,
-    },
-
-    {
-      type: "link",
-      href: "/dashboard/admin/leads",
-      label: "Landing Leads",
-      icon: "zmdi-email",
-      adminOnly: false,
-    },
-
-    {
-      type: "header",
-      label: (
-        <>
-          <i className="zmdi zmdi-shopping-cart col-red" /> Sales
-        </>
-      ),
-    },
-
-    {
-      type: "parent",
-      key: "customers",
-      label: "Clients",
-      icon: "zmdi-accounts col-purple",
-      adminOnly: false,
-      children: [
-        {
-          href: "/dashboard/sales/customers/new-customer",
-          label: "Add New Client",
-          adminOnly: true,
-        },
-        {
-          href: "/dashboard/sales/customers/customer-list",
-          label: "Clients List",
-          adminOnly: true,
-        },
-      ],
-    },
-    {
-      type: "parent",
-      key: "quotes",
-      label: "Quotes",
-      icon: "zmdi-file-text col-lime",
-      adminOnly: false,
-      children: [
-        {
-          href: "/dashboard/sales/customers/new-quote",
-          label: "Add New Quote",
-          adminOnly: true,
-        },
-        {
-          href: "/dashboard/sales/customers/quote-list",
-          label: "Quote List",
-          adminOnly: true,
-        },
-      ],
-    },
-
-    {
-      type: "parent",
-      key: "invoices",
-      label: "Invoices",
-      icon: "zmdi-receipt col-blue",
-      adminOnly: false,
-      children: [
-        {
-          href: "/dashboard/sales/customers/new-invoice",
-          label: "Add New Invoice",
-          adminOnly: true,
-        },
-        {
-          href: "/dashboard/sales/customers/invoice-list",
-          label: "Invoice List",
-          adminOnly: true,
-        },
-
-        {
-          href: "/dashboard/sales/customers/recurring-invoice",
-          label: "Recurring Invoice",
-          adminOnly: true,
-        },
-
-         {
-          href: "/dashboard/sales/customers/recurring-invoice-list",
-          label: "Recurring List",
-          adminOnly: true,
-        },
-      ],
-    },
-
-     {
-    type: "parent",
-    key: "payroll",
-    label: "Payroll",
-    icon: "zmdi-balance-wallet col-deep-orange",
-    adminOnly: true,
-    children: [
-      {
-        href: "/dashboard/payroll/add-new-employee",
-        label: "Add Employee",
-        adminOnly: true,
-      },
-      {
-        href: "/dashboard/payroll/employees",
-        label: "Employee List",
-        adminOnly: true,
-      },
-
-       {
-        href: "/dashboard/payroll/leave-and-attendance",
-        label: "Leave & Attendance",
-        adminOnly: true,
-      },
-
-      
-    ],
-  },
+  const NAV = [
+    { href: "/dashboard/admin", label: "Home", Icon: MdHome, adminOnly: true },
+    { href: "/dashboard/career-response", label: "Careers", Icon: MdWorkOutline, adminOnly: true },
+    { href: "/dashboard/query-response", label: "Leads", Icon: MdMailOutline, adminOnly: false },
+    { href: "/dashboard/admin/leads", label: "Landing Leads", Icon: MdPeopleAlt, adminOnly: false },
   ];
 
-  /* ------------- RENDER ------------- */
+  const SALES = [
+    { href: "/dashboard/sales/customers/customer-list", label: "Clients", Icon: MdGroup, adminOnly: true },
+    { href: "/dashboard/sales/customers/quote-list", label: "Quotes", Icon: MdRequestQuote, adminOnly: true },
+    { href: "/dashboard/sales/customers/invoice-list", label: "Invoices", Icon: MdReceiptLong, adminOnly: true },
+    { href: "/dashboard/sales/customers/recurring-invoice-list", label: "Recurring Invoices", Icon: MdAutorenew, adminOnly: true },
+    { href: "/dashboard/admin/salespeople", label: "Sales Team", Icon: MdSupervisorAccount, adminOnly: true },
+  ];
 
+  const visibleNav   = NAV.filter((i) => !i.adminOnly || isAdmin);
+  const visibleSales = SALES.filter((i) => !i.adminOnly || isAdmin);
+
+  /* ------------- salesperson profile (unchanged) ------------- */
   const { data: session } = useSession();
 
   const [profile, setProfile] = useState({
@@ -204,119 +111,78 @@ export default function Leftbar({ role = "admin" }) {
   }, [role]);
 
   return (
-    <aside id="leftsidebar" className="sidebar">
-      {/* user-info block (unchanged) */}
+    <>
+      {/* Rendered once per mounted page via next/head merging — brings the
+          tourwatchout backend design system to every /dashboard/* page. */}
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+          key="inter-font"
+        />
+        <link rel="stylesheet" href="/assets/css/backend.css" key="backend-css" />
+        <style key="bk-legacy-compat">{`
+          /* Compatibility shim: the old admin theme's ".content" rule assumed a
+             60px-tall fixed topbar + 250px sidebar. Dashnav's topbar is gone now
+             (logo + logout moved into the sidebar, tourwatchout-style), so the
+             new bk-sidebar spans the full viewport height and .content only
+             needs the left offset. */
+          .content.home { margin: 0 0 15px 250px !important; }
+          @media (max-width: 768px) {
+            .content.home { margin-left: 0 !important; }
+          }
+        `}</style>
+      </Head>
 
-      <div className="menu">
-        <ul className="list">
-          <li>
-            <div className="user-info">
-              {role === "salesperson" && (
-                <Link href="/dashboard/salesperson/profile">
-                  <div className="image">
-                    <img
-                      src={profile.avatarUrl || "/asets/images/avatar.png"}
-                      alt="User"
-                      className="rounded-circle"
-                      width={48}
-                      height={48}
-                    />
-                  </div>
-
-                  <div className="detail">
-                    <h4>{profile.name}</h4>
-                  </div>
-                </Link>
-              )}
-            </div>
-          </li>
-
+      <aside className="bk-sidebar" style={{ width: 250 }}>
+        <div className="bk-sidebar-logo">
+          <Link href="/dashboard/admin">
+            <img src="/asets/images/logo.png" alt="Viralon" />
+          </Link>
           {role === "salesperson" && (
-            <li>
-              <Link
-                href="/dashboard/salesperson/"
-                className="waves-effect waves-block"
-              >
-                <i className="zmdi zmdi-home"></i>
-                <span>Home</span>
-              </Link>
-            </li>
+            <Link href="/dashboard/salesperson/profile">
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10 }}>
+                <img
+                  src={profile.avatarUrl || "/asets/images/avatar.png"}
+                  alt="User"
+                  width={32}
+                  height={32}
+                  style={{ borderRadius: "50%", objectFit: "cover" }}
+                />
+                <span style={{ fontSize: 13, fontWeight: 700, color: "#0f172a" }}>{profile.name}</span>
+              </div>
+            </Link>
+          )}
+        </div>
+
+        <nav className="bk-sidebar-nav">
+          {role === "salesperson" && (
+            <Link href="/dashboard/salesperson/" className="bk-nav-item">
+              <MdHome size={18} /> Home
+            </Link>
           )}
 
-          {menu
-            .filter((item) => !item.adminOnly || isAdmin)
-            .map((item) => {
-              if (item.type === "header") {
-                return (
-                  <li key={item.label} className="header">
-                    {item.label}
-                  </li>
-                );
-              }
+          {visibleNav.map(({ href, label, Icon }) => (
+            <Link key={href} href={href} className={`bk-nav-item ${isActive(href) ? "active" : ""}`}>
+              <Icon size={18} /> {label}
+            </Link>
+          ))}
 
-              if (item.type === "link") {
-                return (
-                  <li key={item.href}>
-                    <Link href={item.href} className="waves-effect waves-block">
-                      <i className={`zmdi ${item.icon}`} />
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                );
-              }
+          {visibleSales.length > 0 && <div className="bk-nav-section">Sales</div>}
 
-              if (item.type === "parent") {
-                const expanded = openMenu === item.key;
-                return (
-                  <li key={item.key}>
-                    <div
-                      onClick={() => toggleMenu(item.key)}
-                      className="menu-toggle cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100 waves-effect waves-block"
-                    >
-                      <i className={`zmdi ${item.icon}`} />
-                      <span>{item.label}</span>
-                    </div>
+          {visibleSales.map(({ href, label, Icon }) => (
+            <Link key={href} href={href} className={`bk-nav-item ${isActive(href) ? "active" : ""}`}>
+              <Icon size={18} /> {label}
+            </Link>
+          ))}
+        </nav>
 
-                    <ul
-                      className={`ml-menu overflow-hidden transition-all duration-300 ease-in-out ${
-                        expanded ? "max-h-40" : "max-h-0"
-                      }`}
-                      style={{ maxHeight: expanded ? "200px" : "0px" }}
-                    >
-                      {item.children
-                        .filter((c) => !c.adminOnly || isAdmin)
-                        .map((c) => (
-                          <li key={c.href}>
-                            <Link
-                              href={c.href}
-                              className="waves-effect waves-block"
-                            >
-                              {c.label}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </li>
-                );
-              }
-            })}
-
-          {role === "admin" && (
-            <li>
-              <Link
-                href="/dashboard/admin/salespeople"
-                className="waves-effect waves-block"
-              >
-                <i className="zmdi zmdi-accounts" /> Sales Team
-              </Link>
-            </li>
-          )}
-
-
-
-         
-        </ul>
-      </div>
-    </aside>
+        <div className="bk-sidebar-bottom">
+          <div className="bk-nav-item danger" onClick={handleLogout}>
+            <MdLogout size={18} /> Logout
+          </div>
+        </div>
+      </aside>
+    </>
   );
 }

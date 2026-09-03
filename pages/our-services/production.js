@@ -9,11 +9,12 @@ import Significance from '../../components/our-services/production/Significance'
 import SolidReasons from '../../components/our-services/production/SolidReasons'
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from '../../components/our-services/production/FAQ'
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
 import Blogs from '../../components/our-services/seo/Blogs'
 import Hero from '../../components/our-services/production/Hero'
 
-export default function Production() {
+export default function Production({ faq }) {
   return (
     <div className='bg-dark' id="prouduction">  
          <Topbar/>
@@ -30,7 +31,7 @@ export default function Production() {
           <Testimonials />
           <Form />
           </div>
-          <FAQ/>
+          <PageFaq faq={faq} topClass="pt-100" />
           <Blogs/>
           <CTA/>
          <Offcanvas />
@@ -38,4 +39,9 @@ export default function Production() {
          
     </div>
   )
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/production") }, revalidate: 60 };
 }

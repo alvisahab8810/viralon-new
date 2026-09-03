@@ -10,10 +10,11 @@ import Significance from "../../components/our-services/paid-media-marketing/Sig
 import SolidReasons from "../../components/our-services/paid-media-marketing/SolidReasons";
 import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
-import FAQ from "../../components/our-services/paid-media-marketing/FAQ";
+import PageFaq from "../../components/PageFaq";
+import { getPageFaq } from "../../utils/pageFaq";
 import Blogs from "../../components/our-services/seo/Blogs";
 
-export default function PMM() {
+export default function PMM({ faq }) {
   return (
     <div className="bg-dark">
       <Topbar />
@@ -28,7 +29,7 @@ export default function PMM() {
         <Testimonials />
         <Form />
       </div>
-      <FAQ/>
+      <PageFaq faq={faq} topClass="pt-100" />
      
 
        <Blogs/>
@@ -37,4 +38,9 @@ export default function PMM() {
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("our-services/paid-media-marketing") }, revalidate: 60 };
 }

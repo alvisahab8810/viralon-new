@@ -1,6 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
+import VideoPopupLink from "../common/VideoPopupLink";
 // import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css/free-mode";
@@ -19,13 +20,13 @@ export default function OurWork() {
             </div>
             <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
               <div className="choose-us-style-one-thumb">
-                <Link
+                <VideoPopupLink
                   href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
                   className="popup-youtube video-play-button"
                 >
                   <i className="fas fa-play"></i>
                   <div className="effect"></div>
-                </Link>
+                </VideoPopupLink>
               </div>
             </div>
           </div>

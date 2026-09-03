@@ -1,0 +1,122 @@
+// pages/api/slots/book.js — step 2 of the website booking form.
+// The lead already exists (step 1 saved it into the CRM); this claims one open
+// slot for them. The claim is a single guarded update, so two people hitting
+// "Confirm booking" on the same time can never both win.
+import mongoose from "mongoose";
+import nodemailer from "nodemailer";
+import dbConnect from "../../../utils/dbConnect";
+import BookingSlot from "../../../models/BookingSlot";
+import Query from "../../../models/Query";
+
+const prettyTime = (t) => {
+  const [h, m] = String(t).split(":").map(Number);
+  const ampm = h < 12 ? "AM" : "PM";
+  return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, "0")} ${ampm}`;
+};
+
+const prettyDate = (d) =>
+  new Date(`${d}T00:00:00Z`).toLocaleDateString("en-GB", {
+    weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  });
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, message: "Method Not Allowed" });
+  }
+
+  try {
+    await dbConnect();
+
+    const { slotId, queryId, name, email, phone, businessName } = req.body || {};
+    if (!slotId || !mongoose.Types.ObjectId.isValid(slotId)) {
+      return res.status(400).json({ success: false, message: "Please pick a slot" });
+    }
+
+    // status:"open" in the filter is the lock — if someone booked it a moment
+    // ago the update matches nothing and we tell this visitor to pick again.
+    const slot = await BookingSlot.findOneAndUpdate(
+      { _id: slotId, status: "open" },
+      {
+        $set: {
+          status: "booked",
+          bookedAt: new Date(),
+          booking: {
+            name: name || "",
+            email: email || "",
+            phone: phone || "",
+            businessName: businessName || "",
+            queryId: queryId && mongoose.Types.ObjectId.isValid(queryId) ? queryId : null,
+          },
+        },
+      },
+      { new: true }
+    );
+
+    if (!slot) {
+      return res.status(409).json({
+        success: false,
+        code: "TAKEN",
+        message: "Sorry, that slot was just booked — please pick another one.",
+      });
+    }
+
+    // Show the booked call on the lead's row in the CRM.
+    if (queryId && mongoose.Types.ObjectId.isValid(queryId)) {
+      try {
+        await Query.findByIdAndUpdate(queryId, {
+          $set: { slotDate: slot.date, slotTime: slot.time, slotId: slot._id },
+        });
+      } catch (e) {
+        console.error("Could not attach slot to query:", e?.message);
+      }
+    }
+
+    /* confirmation mail — fired, never awaited, so "Confirm booking" is
+       instant and an SMTP hiccup can never fail a booking */
+    try {
+      const transporter = nodemailer.createTransport({
+        host: "smtp.hostinger.com",
+        port: 465,
+        secure: true,
+        auth: { user: "info@viralon.in", pass: process.env.EMAIL_PASS },
+      });
+
+      const when = `${prettyDate(slot.date)} at ${prettyTime(slot.time)} IST`;
+
+      if (email) {
+        transporter.sendMail({
+          from: '"Viralon" <info@viralon.in>',
+          to: email,
+          subject: "Your call with Viralon is confirmed",
+          html: `<p>Hi ${name || "there"},</p>
+                 <p>Your call is booked for <strong>${when}</strong>.</p>
+                 <p>We'll reach out on ${phone || "your number"} at that time. Talk soon!</p>
+                 <p>Regards,<br/>Team Viralon</p>`,
+        }).catch((e) => console.error("Booking mail failed:", e?.message));
+      }
+
+      transporter.sendMail({
+        from: '"Viralon Website" <info@viralon.in>',
+        to: "info@viralon.in",
+        subject: `New call booked — ${name || "Lead"} · ${when}`,
+        html: `<p><strong>${name || "-"}</strong> booked a call.</p>
+               <ul>
+                 <li>When: ${when}</li>
+                 <li>Business: ${businessName || "-"}</li>
+                 <li>Phone: ${phone || "-"}</li>
+                 <li>Email: ${email || "-"}</li>
+               </ul>`,
+      }).catch((e) => console.error("Booking mail failed:", e?.message));
+    } catch (mailErr) {
+      console.error("Booking mail failed:", mailErr?.message);
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: { date: slot.date, time: slot.time },
+    });
+  } catch (err) {
+    console.error("booking failed:", err?.message);
+    return res.status(500).json({ success: false, message: "Could not book that slot" });
+  }
+}

@@ -4,8 +4,10 @@ import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
 import Hero from "../components/contact-us/Hero";
 import Contact from "../components/contact-us/Contact";
+import PageFaq from "../components/PageFaq";
+import { getPageFaq } from "../utils/pageFaq";
 
-export default function ContactUs() {
+export default function ContactUs({ faq }) {
   return (
     <div className="bg-dark">
       <Topbar />
@@ -22,7 +24,13 @@ export default function ContactUs() {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      <PageFaq faq={faq} topClass="pt-80" />
       <Footer />
     </div>
   );
+}
+
+// FAQ block content comes from the payroll admin (Website → FAQs).
+export async function getStaticProps() {
+  return { props: { faq: await getPageFaq("contact-us") }, revalidate: 60 };
 }

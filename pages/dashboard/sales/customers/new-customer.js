@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Dashnav from "../../../../components/Dashnav";
-import Leftbar from "../../../../components/Leftbar";
+import DashboardLayout from "../../../../components/DashboardLayout";
 import Head from "next/head";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -234,12 +233,7 @@ export default function NewCustomers() {
         <link rel="stylesheet" href="/asets/css/admin.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar />
-
-        <section className="content home">
-          <div className="block-header">
+      <div className="block-header">
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
@@ -845,9 +839,11 @@ export default function NewCustomers() {
               </form>
             </div>
           </div>
-        </section>
-      </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
+
+NewCustomers.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};

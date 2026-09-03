@@ -3,8 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Select from "react-select";
 import { useEffect, useState } from "react";
-import Dashnav from "../../../../../components/Dashnav";
-import Leftbar from "../../../../../components/Leftbar";
+import DashboardLayout from "../../../../../components/DashboardLayout";
 import { countryStateData } from "../../../../../utils/countryStateData"; // adjust the path
 
 export default function NewCustomerForm() {
@@ -171,11 +170,7 @@ export default function NewCustomerForm() {
         <link rel="stylesheet" href="/asets/css/admin.css" />
       </Head>
 
-      <div className="main-nav">
-        <Dashnav />
-        <Leftbar />
-        <section className="content home">
-          <div className="block-header">
+      <div className="block-header">
             <div className="row ptb-50">
               <div className="col-lg-7 col-md-6 col-sm-12">
                 <h2>
@@ -757,8 +752,10 @@ export default function NewCustomerForm() {
               </form>
             </div>
           </div>
-        </section>
-      </div>
     </div>
   );
 }
+
+NewCustomerForm.getLayout = function getLayout(page) {
+  return <DashboardLayout role="admin">{page}</DashboardLayout>;
+};
