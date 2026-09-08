@@ -90,7 +90,7 @@ export default function Leftbar({ role = "admin" }) {
 
   const [profile, setProfile] = useState({
     name: "",
-    avatarUrl: "/asets/images/avatar.png",
+    avatarUrl: "/assets/images/avatar.png",
   });
 
   useEffect(() => {
@@ -100,7 +100,7 @@ export default function Leftbar({ role = "admin" }) {
         const data = await res.json();
         setProfile({
           name: data.name || "Salesperson",
-          avatarUrl: data.avatarUrl || "/asets/images/avatar.png",
+          avatarUrl: data.avatarUrl || "/assets/images/avatar.png",
         });
       }
     };
@@ -137,13 +137,13 @@ export default function Leftbar({ role = "admin" }) {
       <aside className="bk-sidebar" style={{ width: 250 }}>
         <div className="bk-sidebar-logo">
           <Link href="/dashboard/admin">
-            <img src="/asets/images/logo.png" alt="Viralon" />
+            <img src="/assets/images/logo.png" alt="Viralon" />
           </Link>
           {role === "salesperson" && (
             <Link href="/dashboard/salesperson/profile">
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10 }}>
                 <img
-                  src={profile.avatarUrl || "/asets/images/avatar.png"}
+                  src={profile.avatarUrl || "/assets/images/avatar.png"}
                   alt="User"
                   width={32}
                   height={32}

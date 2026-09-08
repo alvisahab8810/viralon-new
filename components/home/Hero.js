@@ -1,608 +1,263 @@
-import React from "react";
-import Link from "next/link";
-import { useEffect } from "react";
-import VideoPopupLink from "../common/VideoPopupLink";
+import React, { useEffect, useState } from "react";
+
+/*
+ * Ring Navigator — geometry transcribed from the Figma component.
+ * Everything (including the centre copy) lives inside the SVG so the whole
+ * thing scales as one unit and the proportions stay px-to-px with the design
+ * no matter how wide the column ends up being.
+ */
+const VIEW = 600;
+const C = VIEW / 2;
+
+const BG_RADIUS = 272.6; // Figma "Ellipse" — 545.29 dia
+const INACTIVE_INNER = 194;
+const INACTIVE_OUTER = 287;
+const ACTIVE_INNER = 167;
+const ACTIVE_OUTER = 296;
+const INACTIVE_SPAN = 25; // half-span in degrees
+const ACTIVE_SPAN = 28;
+const LABEL_RADIUS = 240; // fixed — numbers don't move when a segment grows
+const CORNER = 8;
+
+// Arrow tip sits between the segment's inner edge and its number.
+const ARROW_END = 205;
+// clock-arrow.svg is authored pointing at 30deg with its tip at this point.
+const ARROW_TIP_X = 202.435;
+const ARROW_TIP_Y = 0.891835;
+const ARROW_BASE_ANGLE = 30;
+
+const AUTO_INTERVAL = 2800;
+
+const WHEEL_ITEMS = [
+  {
+    num: "01",
+    title: "Brand",
+    desc: ["Why they pick you over", "the cheaper one."],
+  },
+  {
+    num: "02",
+    title: "Social content",
+    desc: ["Builds demand before", "anyone searches."],
+  },
+  {
+    num: "03",
+    title: "Search",
+    desc: ["Captures intent the moment", "they look for you."],
+  },
+  {
+    num: "04",
+    title: "Paid ads",
+    desc: ["Reaches everyone else, at a", "cost we hold."],
+  },
+  {
+    num: "05",
+    title: "Website",
+    desc: ["Turns the visit into an", "enquiry."],
+  },
+  {
+    num: "06",
+    title: "Tracking",
+    desc: ["Shows exactly what's", "actually working."],
+  },
+];
+
+function polar(cx, cy, r, angleDeg) {
+  const a = ((angleDeg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+}
+
+// Donut wedge with rounded corners, drawn clockwise from a1 to a2.
+function wedgePath(cx, cy, ri, ro, centerAngle, halfSpan, r) {
+  const a1 = centerAngle - halfSpan;
+  const a2 = centerAngle + halfSpan;
+  const dOuter = ((r / ro) * 180) / Math.PI;
+  const dInner = ((r / ri) * 180) / Math.PI;
+
+  const p1 = polar(cx, cy, ro, a1 + dOuter);
+  const p2 = polar(cx, cy, ro, a2 - dOuter);
+  const c2 = polar(cx, cy, ro, a2);
+  const p3 = polar(cx, cy, ro - r, a2);
+  const p4 = polar(cx, cy, ri + r, a2);
+  const c4 = polar(cx, cy, ri, a2);
+  const p5 = polar(cx, cy, ri, a2 - dInner);
+  const p6 = polar(cx, cy, ri, a1 + dInner);
+  const c6 = polar(cx, cy, ri, a1);
+  const p7 = polar(cx, cy, ri + r, a1);
+  const p8 = polar(cx, cy, ro - r, a1);
+  const c8 = polar(cx, cy, ro, a1);
+
+  return [
+    `M ${p1.x} ${p1.y}`,
+    `A ${ro} ${ro} 0 0 1 ${p2.x} ${p2.y}`,
+    `Q ${c2.x} ${c2.y} ${p3.x} ${p3.y}`,
+    `L ${p4.x} ${p4.y}`,
+    `Q ${c4.x} ${c4.y} ${p5.x} ${p5.y}`,
+    `A ${ri} ${ri} 0 0 0 ${p6.x} ${p6.y}`,
+    `Q ${c6.x} ${c6.y} ${p7.x} ${p7.y}`,
+    `L ${p8.x} ${p8.y}`,
+    `Q ${c8.x} ${c8.y} ${p1.x} ${p1.y}`,
+    "Z",
+  ].join(" ");
+}
 
 export default function Hero() {
+  // `step` only ever counts up so the hand always sweeps clockwise and never
+  // winds back the long way when it passes 06 -> 01.
+  const [step, setStep] = useState(0);
+
   useEffect(() => {
-    const handleEvent = (event) => {
-      event.stopPropagation();
-      const element = event.currentTarget;
-
-      if (element.classList.contains("out")) {
-        element.classList.add("out");
-      } else {
-        element.classList.add("out");
-        Array.from(element.parentElement.children).forEach((sibling) => {
-          if (sibling !== element) {
-            sibling.classList.remove("out");
-          }
-        });
-      }
-    };
-
-    const accordions = document.querySelectorAll("#accordion > li");
-    const isWideScreen = window.innerWidth > 767;
-
-    if (isWideScreen) {
-      accordions.forEach((accordion) => {
-        accordion.addEventListener("mouseenter", handleEvent);
-        accordion.addEventListener("click", handleEvent);
-      });
-    } else {
-      accordions.forEach((accordion) => {
-        accordion.addEventListener("touchstart", handleEvent);
-        accordion.addEventListener("touchend", handleEvent);
-      });
-    }
-
-    return () => {
-      accordions.forEach((accordion) => {
-        accordion.removeEventListener("mouseenter", handleEvent);
-        accordion.removeEventListener("click", handleEvent);
-        accordion.removeEventListener("touchstart", handleEvent);
-        accordion.removeEventListener("touchend", handleEvent);
-      });
-    };
+    const id = setInterval(() => setStep((s) => s + 1), AUTO_INTERVAL);
+    return () => clearInterval(id);
   }, []);
 
+  const active = step % WHEEL_ITEMS.length;
+  const item = WHEEL_ITEMS[active];
+
+  // The hand is drawn once in its authored 30deg pose, then pivoted about the
+  // centre of the ring. Its tail runs back through the middle and is covered
+  // by the centre copy, which paints after it.
+  const baseTip = polar(C, C, ARROW_END, ARROW_BASE_ANGLE);
+  const armOffsetX = baseTip.x - ARROW_TIP_X;
+  const armOffsetY = baseTip.y - ARROW_TIP_Y;
+
   return (
-    <>
-    <img src="/assets/img/shape/pattern.png" alt="shape Gradient Image" className="blur-shape"/>
-    <div className="container">
-      <div className="height-auto accrdion-portfolio-area">
-      
-        <div className="row align-center">
-          <div className="col-lg-8 banner-one-item">
-            <h4>Creative digital studio</h4>
-            <h2>
-              Brands made <strong>Iconic!</strong>
-            </h2>
-          </div>
-          <div className="col-lg-3 offset-lg-1 banner-one-item text-center">
-            <div className="choose-us-style-one-thumb">
-              <VideoPopupLink
-                href="https://www.youtube.com/watch?v=ipUuoMCEbDQ"
-                className="popup-youtube video-play-button"
-              >
-                <i className="fas fa-play"></i>
-                <div className="effect"></div>
-              </VideoPopupLink>
+    <section className="hero-section-new">
+      <div className="container">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            {/* 598.07px box, 73.5/71.4/-1.26 -- wraps to the same three lines
+                as Figma without hard breaks. The strike is line.svg, laid over
+                the span rather than a text-decoration rule. */}
+            <h1 className="hero-heading">
+              Qualified <br/>leads come from{" "}
+              <span className="hero-strike">one channel.</span>
+            </h1>
+            <p className="hero-sub">
+              They come from{" "}
+              <strong>
+                brand, social content, search, paid ads, website and tracking
+              </strong>
+              , working as one machine. We build that machine.
+            </p>
+            <div className="hero-stat-badge">
+              Across 15 brands, this machine increased qualified leads by an
+              average of{" "}
+              <img
+                src="/assets/images/icons/state.svg"
+                alt="40%"
+                className="hero-stat-figure"
+              />
             </div>
           </div>
-        </div>
 
-        {/* <!-- ACCORDION ROW --> */}
-        <div className="container-fluid mobile-none">
-          <div className="row">
-            <ul className="accordion-portfolio-lists text-light" id="accordion">
-              <li
-               className="out"
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h1.webp')",
-                }}
-              >
-                <h3>Digital Marketing</h3>
-                <span>01</span>
-                <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Digital Marketing</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Social Media Marketing</h2>
-                   <Link
-                     href="/our-services/social-media-marketing"
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                  </div>
+          <div className="hero-wheel-wrap">
+            <svg
+              viewBox={`0 0 ${VIEW} ${VIEW}`}
+              className="hero-wheel-svg"
+              role="img"
+              aria-label={`${item.title}: ${item.desc.join(" ")}`}
+            >
+              <defs>
+                {/* gradient lifted verbatim from clock-arrow.svg */}
+                <linearGradient
+                  id="heroArrowFade"
+                  gradientUnits="userSpaceOnUse"
+                  x1="201.54"
+                  y1="3.64279"
+                  x2="108.431"
+                  y2="162.241"
+                >
+                  <stop stopColor="#FE4601" />
+                  <stop offset="0.55" stopColor="#160F32" stopOpacity="0" />
+                </linearGradient>
+              </defs>
 
-                 <div className="redirect-arrow">
-                   <h2>Search Engine Optimization</h2>
-                   <Link
-                     href="/our-services/seo"
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
+              <circle cx={C} cy={C} r={BG_RADIUS} className="hero-wheel-bg" />
 
-                 <div className="redirect-arrow">
-                   <h2>Paid Advertisement</h2>
-                   <Link
-                     href="/our-services/paid-media-marketing"
-                  
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Email Marketing</h2>
-                   <Link
-                     href="/our-services/email-marketing"
-                     
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-              </li>
-              <li
-               
-                style={{
-                  backgroundImage: "  url('assets/img/portfolio/h2.webp')",
-                }}
-              >
-                <h3>Branding</h3>
-                <span>02</span>
-                {/* <div className="accordion-overlay">
-                  <span>Branding</span>
-                  <h2>
-                    <a
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#projectSingleModal"
-                    >
-                      Downtown Austin & Studio
-                    </a>
-                  </h2>
-                  <p>
-                    Seeing rather her you not esteem men settle genius excuse.{" "}
-                    <br /> Deal say over you age from. Comparison new hormonic
-                    melancholy.
-                  </p>
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#projectSingleModal"
+              {WHEEL_ITEMS.map((seg, i) => {
+                const centerAngle = i * 60 + 30;
+                const isActive = i === active;
+                const label = polar(C, C, LABEL_RADIUS, centerAngle);
+                return (
+                  <g
+                    key={seg.num}
+                    className={`hero-wedge${isActive ? " is-active" : ""}`}
                   >
-                    <i className="fas fa-arrow-right"></i>
-                  </a>
-                </div> */}
-
-              <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Branding</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Logo Design</h2>
-                   <Link
-                     href="/our-services/logo-design"
-                    
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Brand Identity Design</h2>
-                   <Link
-                     href="/our-services/brand-identity-design"
-                    
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Product Packaging</h2>
-                   <Link
-                     href="/our-services/product-packaging"
-                    
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-
-
-                
-              </li>
-              <li
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h3.webp')",
-                }}
-              >
-                <h3>Web Development</h3>
-                <span>03</span>
-                <div className="accordion-overlay">
-                 
-                  <h2>
-                      <span>Web Development</span>
-                  </h2>
-                  <div className="redirect-arrow">
-                    <h2>Web Development</h2>
-                    <Link
-                      href="/our-services/web-development"
-                     
+                    <path
+                      className="hero-wedge-path"
+                      d={wedgePath(
+                        C,
+                        C,
+                        isActive ? ACTIVE_INNER : INACTIVE_INNER,
+                        isActive ? ACTIVE_OUTER : INACTIVE_OUTER,
+                        centerAngle,
+                        isActive ? ACTIVE_SPAN : INACTIVE_SPAN,
+                        CORNER
+                      )}
+                    />
+                    <text
+                      className="hero-wedge-num"
+                      x={label.x}
+                      y={label.y}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
                     >
-                      <i className="fas fa-arrow-right"></i>
-                    </Link>
-                  </div>
-                 
-                </div>
-              </li>
-              <li
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h4.webp')",
-                }}
+                      {seg.num}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <g
+                className="hero-wheel-arrow"
+                style={{ transform: `rotate(${step * 60}deg)` }}
               >
-                <h3>Production</h3>
-                <span>04</span>
-                {/* <div className="accordion-overlay">
-                  <span>Production</span>
-                  <h2>
-                    <a
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#projectSingleModal"
-                    >
-                      Digital Branding & Marketing
-                    </a>
-                  </h2>
-                  <p>
-                    Seeing rather her you not esteem men settle genius excuse.{" "}
-                    <br /> Deal say over you age from. Comparison new hormonic
-                    melancholy.
-                  </p>
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#projectSingleModal"
-                  >
-                    <i className="fas fa-arrow-right"></i>
-                  </a>
-                </div> */}
+                <g transform={`translate(${armOffsetX} ${armOffsetY})`}>
+                  <path
+                    d="M202.435 0.891835C202.263 0.250155 201.603 -0.130646 200.962 0.0412916L190.505 2.84318C189.863 3.01511 189.482 3.67468 189.654 4.31636C189.826 4.95804 190.486 5.33884 191.128 5.1669L200.422 2.67634L202.913 11.9713C203.085 12.6129 203.744 12.9937 204.386 12.8218C205.028 12.6499 205.409 11.9903 205.237 11.3486L202.435 0.891835ZM1.0415 348.014L2.0832 348.616L202.315 1.80458L201.273 1.20316L200.231 0.601731L-0.000194788 347.413L1.0415 348.014Z"
+                    fill="url(#heroArrowFade)"
+                  />
+                </g>
+              </g>
 
-                  <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Production</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Ad Shoot</h2>
-                   <Link
-                     href="/our-services/production"
-                     
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-
-                
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="container-fluid desktop-none">
-          <div className="row">
-            <ul className="accordion-portfolio-lists text-light" id="accordion">
-              <li
-                className="out"
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h1.webp')",
-                }}
-              >
-                <h3>Digital Marketing</h3>
-                <span>01</span>
-                <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Digital Marketing</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Social Media Marketing</h2>
-                   <Link
-                     href="/our-services/social-media-marketing"
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Search Engine Optimization</h2>
-                   <Link
-                     href="/our-services/seo"
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Paid Advertisement</h2>
-                   <Link
-                     href="/our-services/paid-media-marketing"
-                  
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Email Marketing</h2>
-                   <Link
-                     href="/our-services/email-marketing"
-                     
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-              </li>
-              <li
-                
-                style={{
-                  backgroundImage: "  url('assets/img/portfolio/h2.webp')",
-                }}
-              >
-                <h3>Branding</h3>
-                <span>02</span>
-              
-
-              <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Branding</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Logo Design</h2>
-                   <Link
-                     href="/our-services/logo-design"
-                    
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Brand Identity Design</h2>
-                   <Link
-                     href="/our-services/brand-identity-design"
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-
-                 <div className="redirect-arrow">
-                   <h2>Product Packaging</h2>
-                   <Link
-                     href="/our-services/product-packaging"
-                    
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-
-
-                
-              </li>
-              <li
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h3.webp')",
-                }}
-              >
-                <h3>Web Development</h3>
-                <span>03</span>
-                <div className="accordion-overlay">
-                 
-                  <h2>
-                      <span>Web Development</span>
-                  </h2>
-                  <div className="redirect-arrow">
-                    <h2>Web Development</h2>
-                    <Link
-                      href="/our-services/web-development"
-                     
-                    >
-                      <i className="fas fa-arrow-right"></i>
-                    </Link>
-                  </div>
-                 
-                </div>
-              </li>
-              <li
-                style={{
-                  backgroundImage: "url('assets/img/portfolio/h4.webp')",
-                }}
-              >
-                <h3>Production</h3>
-                <span>04</span>
-               
-
-                  <div className="accordion-overlay">
-                 
-                 <h2>
-                     <span>Production</span>
-                 </h2>
-                 <div className="redirect-arrow">
-                   <h2>Ad Shoot</h2>
-                   <Link
-                     href="/our-services/production"
-                     
-                   >
-                     <i className="fas fa-arrow-right"></i>
-                   </Link>
-                 </div>
-                
-               </div>
-
-                
-              </li>
-            </ul>
+              <g className="hero-wheel-center" key={active}>
+                <text
+                  className="hero-wheel-part"
+                  x={C}
+                  y={246}
+                  textAnchor="middle"
+                >
+                  PART {item.num}
+                </text>
+                <text
+                  className="hero-wheel-title"
+                  x={C}
+                  y={311}
+                  textAnchor="middle"
+                >
+                  {item.title}
+                </text>
+                <text
+                  className="hero-wheel-desc"
+                  x={C}
+                  y={348}
+                  textAnchor="middle"
+                >
+                  {item.desc[0]}
+                </text>
+                <text
+                  className="hero-wheel-desc"
+                  x={C}
+                  y={376}
+                  textAnchor="middle"
+                >
+                  {item.desc[1]}
+                </text>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
-
-      <div
-        className="popup-single-modal modal fade text-light"
-        id="projectSingleModal"
-        tabIndex="-1"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-          <div className="modal-content">
-            <div className="modal-body">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-
-              <div className="project-details-items">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className="project-thumb">
-                      <img src="assets/img/portfolio/14.jpg" alt="Thumb" />
-                    </div>
-                  </div>
-                  <div className="col-xl-10 offset-xl-1">
-                    <div className="project-details mt-40">
-                      <div className="top-info">
-                        <div className="row">
-                          <div className="col-lg-4 order-lg-last">
-                            <ul className="gallery-project-basic-info">
-                              <li>
-                                <div className="info">
-                                  Clients: <span>validthemes</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="info">
-                                  Project Type: <span>Website Growth</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="info">
-                                  Date: <span>25 August, 2024</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="info">
-                                  Address: <span>New York United state</span>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div className="col-lg-8">
-                            <h2>The best digital solutions</h2>
-                            <p>
-                              Netus lorem rutrum arcu dignissim at sit morbi
-                              phasellus nascetur eget urna potenti cum
-                              vestibulum cras. Tempor nonummy metus lobortis.
-                              Sociis velit etiam, dapibus. Lectus vehicula
-                              pellentesque cras posuere tempor facilisi habitant
-                              lectus rutrum pede quisque hendrerit parturient
-                              posuere mauris ad elementum fringilla facilisi
-                              volutpat fusce pharetra felis sapien varius
-                              quisque className convallis praesent est
-                              sollicitudin donec nulla venenatis, cursus
-                              fermentum netus posuere sociis porta risus
-                              habitant malesuada nulla habitasse hymenaeos.
-                              Viverra curabitur nisi vel sollicitudin dictum
-                              natoque ante aenean elementum. Side in so life
-                              past. Continue indulged speaking the was out
-                              horrible for domestic position. Seeing rather her
-                              you not esteem men settle genius excuse. Deal say
-                              over you age from.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row mt-40 mb-40">
-                        <div className="col-lg-5 pr-50 pr-md-15 pr-xs-15">
-                          <div className="check-list">
-                            <div className="single-list">
-                              <h4>Mobile Optimization</h4>
-                              <p>
-                                Tempor nonummy metus lobortis. Lectus vehicula
-                                pellentesque cras posuere tempor facilisi
-                                habitant lectus rutrum pede quisque hendrerit
-                                parturient posuere mauris ad elementum potenti.
-                              </p>
-                            </div>
-                            <div className="single-list">
-                              <h4>Marketing Automation</h4>
-                              <ul className="list-disc">
-                                <li>Social media marketing</li>
-                                <li>Search engine optimization (seo)</li>
-                                <li>Public Relations</li>
-                                <li>Content marketing</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-7">
-                          <div className="thumb-grid">
-                            <img
-                              src="assets/img/portfolio/v1.jpg"
-                              alt="Thumb"
-                            />
-                            <img
-                              src="assets/img/portfolio/v2.jpg"
-                              alt="Thumb"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <p>
-                        Give lady of they such they sure it. Me contained
-                        explained my education. Vulgar as hearts by garret.
-                        Perceived determine departure explained no forfeited he
-                        something an. Contrasted dissimilar get joy you
-                        instrument out reasonably. Again keeps at no meant
-                        stuff. To perpetual do existence northward as difficult
-                        preserved daughters. Continued at up to zealously
-                        necessary breakfast. Surrounded sir motionless she end
-                        literature. Gay direction neglected but supported yet
-                        her. Facilisis inceptos nec, potenti nostra aenean
-                        lacinia varius semper ant nullam nulla primis placerat
-                        facilisis. Netus lorem rutrum arcu dignissim at sit
-                        morbi phasellus nascetur eget urna potenti cum
-                        vestibulum cras. Tempor nonummy metus lobortis. Sociis
-                        velit etiam, dapibus. Lectus vehicula pellentesque cras
-                        posuere tempor facilisi habitant lectus rutrum pede
-                        quisque hendrerit parturient posuere mauris ad elementum
-                        fringilla facilisi volutpat fusce pharetra felis sapien
-                        varius quisque className convallis praesent est
-                        sollicitudin donec nulla venenatis, cursus fermentum
-                        netus posuere sociis porta risus habitant malesuada
-                        nulla habitasse hymenaeos. Viverra curabitur nisi vel
-                        sollicitudin dictum natoque ante aenean elementum curae
-                        malesuada ullamcorper.
-                      </p>
-                      <div className="row mt-50 mt-xs-30">
-                        <div className="col-lg-6 col-md-6">
-                          <img src="assets/img/portfolio/11.jpg" alt="Thumb" />
-                        </div>
-                        <div className="col-lg-6 col-md-6 mt-xs-30">
-                          <img src="assets/img/portfolio/12.jpg" alt="Thumb" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
+    </section>
   );
 }

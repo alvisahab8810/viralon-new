@@ -55,7 +55,7 @@ function fireLead(payload) {
   } catch { }
 }
 
-export default function Form() {
+export default function Form({ variant = "dark" }) {
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -136,17 +136,30 @@ export default function Form() {
 
   return (
     <div className="parallax-section">
-      <section className="form-section ">
+      {/* The section itself is transparent, so it normally shows the page's
+          `.bg-dark` wrapper around the coral panel. `variant="light"` paints
+          a white ground instead -- opt-in, so the ten service pages that sit
+          on dark are untouched. */}
+      <section
+        className={`form-section ${
+          variant === "light" ? "form-section--light" : ""
+        }`}
+      >
         <div className="container bg-linear parallax-section ptb-80">
           <div className="form-container d-flex flex-column flex-md-row">
             <div className="form-image col-md-6 d-none d-md-block">
               <img src="/assets/img/home/cta.webp"></img>
             </div>
             <div className="form-content col-12 col-md-6 d-flex flex-column justify-content-center">
+              {/* Figma's thin sweeping ellipse. It sits behind the copy and
+                  runs out past the left edge of this column, over the coral
+                  and across the collage. */}
               <img
-                src="/assets/img/shape/ellipse.png"
+                src="/assets/images/icons/circle-ellipse.svg"
                 className="shape p-absolute"
-              ></img>
+                alt=""
+                aria-hidden="true"
+              />
               <h1 className="anton-regular vl-h1">READY TO COLLABORATE?</h1>
               <p className="vl-sub">LET'S TALK YOUR NEEDS</p>
 
@@ -227,9 +240,9 @@ export default function Form() {
                       {saving ? "PLEASE WAIT…" : "SUBMIT"}
                     </button>
                   </div>
-                  <p className="vl-foot">
+                  {/* <p className="vl-foot">
                     We'll call you within one working day
-                  </p>
+                  </p> */}
                 </form>
               ) : (
                 <div className="vl-thanks">
@@ -252,8 +265,6 @@ export default function Form() {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <style jsx>{`
-        .vl-h1 { font-size: 54px; margin-bottom: 6px; }
-        .vl-sub { font-size: 15px !important; letter-spacing: 2.5px !important; margin-bottom: 18px; }
 
         /* Honeypot — visually gone, never focusable */
         .vl-hp {

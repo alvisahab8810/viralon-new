@@ -71,7 +71,7 @@ export default function SalesProfilePage() {
       {/* Avatar */}
       <div className="mb-4 text-center">
         <img
-          src={form.avatarUrl || "/asets/images/avatar.png"}
+          src={form.avatarUrl || "/assets/images/avatar.png"}
           alt="avatar"
           width={100}
           height={100}

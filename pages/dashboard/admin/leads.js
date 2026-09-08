@@ -111,8 +111,8 @@
 //     <div className="career-response">
 //       <Head>
 //         <title>Landing Leads</title>
-//         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-//         <link rel="stylesheet" href="/asets/css/main.css" />
+//         <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+//         <link rel="stylesheet" href="/assets/css/main.css" />
 //       </Head>
 
 //       <div className="main-nav">
@@ -401,8 +401,8 @@ export default function LeadsAdmin({ role }) {
     <div className="career-response">
       <Head>
         <title>Landing Leads</title>
-        <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/asets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
       </Head>
 
       <div className="block-header">

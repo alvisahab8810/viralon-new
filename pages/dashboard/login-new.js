@@ -6,7 +6,7 @@ export default function LoginNew() {
   return (
     <div>
           <Head>
-        <link rel="stylesheet" href="/asets/css/admin.css" />
+        <link rel="stylesheet" href="/assets/css/admin.css" />
 
         <title>Admin Login</title>
       </Head>

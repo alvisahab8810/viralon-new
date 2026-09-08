@@ -10,6 +10,13 @@ import Offcanvas from "../components/header/Offcanvas";
 import OurWork from "../components/home/OurWork";
 import Process from "../components/home/Process";
 import Partnering from "../components/home/Partnering";
+import WeKnow from "../components/home/WeKnow";
+import SixParts from "../components/home/SixParts";
+import WorkShowcase from "../components/home/WorkShowcase";
+import BrokenParts from "../components/home/BrokenParts";
+import HowItRuns from "../components/home/HowItRuns";
+import BuildItFor from "../components/home/BuildItFor";
+import SooSocial from "../components/home/SooSocial";
 import CTA from "../components/home/CTA";
 import Blogs from "../components/our-services/seo/Blogs"
 import PageFaq from "../components/PageFaq";
@@ -24,16 +31,28 @@ export default function IndexPage({ data, faq }) {
       <Topbar />
       <Offcanvas />
       <Hero />
-      <OurWork />
-      <div className="parallax-container">
-      <Testimonials />
-      <Process />
-      <Form />
-      </div>
       <Partnering />
-      <PageFaq faq={faq} topClass="pt-80" />
-      <Blogs/>
-      <CTA />
+      <WeKnow />
+      <SixParts />
+      <WorkShowcase />
+      <BrokenParts />
+      <HowItRuns />
+      <BuildItFor />
+      <SooSocial />
+
+      {/* <OurWork /> */}
+      <div className="parallax-container">
+      {/* <Testimonials /> */}
+      {/* <Process /> */}
+      {/* <Form /> */}
+      </div>
+
+
+      <PageFaq faq={faq}  variant="light" />
+
+       <Form variant="light" />
+      {/* <Blogs/> */}
+      {/* <CTA /> */}
       <Footer />
     </section>
   );

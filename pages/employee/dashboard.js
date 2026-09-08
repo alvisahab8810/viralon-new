@@ -216,8 +216,8 @@
 //   return (
 //     <div className="emp-dashboard">
 //       <Head>
-//         {/* <link rel="stylesheet" href="/asets/css/bootstrap.min.css" /> */}
-//         <link rel="stylesheet" href="/asets/css/admin.css" />
+//         {/* <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" /> */}
+//         <link rel="stylesheet" href="/assets/css/admin.css" />
 //         <title>Employee Dashboard</title>
 //       </Head>
 
@@ -1268,8 +1268,8 @@ useEffect(() => {
   return (
     <div className="emp-dashboard">
       <Head>
-        {/* <link rel="stylesheet" href="/asets/css/bootstrap.min.css" /> */}
-        <link rel="stylesheet" href="/asets/css/admin.css" />
+        {/* <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" /> */}
+        <link rel="stylesheet" href="/assets/css/admin.css" />
         <title>Employee Dashboard</title>
       </Head>
 

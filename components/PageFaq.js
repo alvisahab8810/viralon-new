@@ -17,7 +17,10 @@ import React from "react";
 
 const pad2 = (n) => String(n).padStart(2, "0");
 
-export default function PageFaq({ faq, topClass = "pt-80" }) {
+// `variant="light"` is the Figma homepage treatment: white ground, copy
+// aligned left, no 01/02 numerals and a chevron instead of the +/− glyph.
+// Every other page keeps the original dark accordion untouched.
+export default function PageFaq({ faq, topClass = "", variant = "dark" }) {
   const items = (faq?.items || []).filter((it) => it?.question || it?.answer);
   if (!items.length) return null;
 
@@ -27,9 +30,13 @@ export default function PageFaq({ faq, topClass = "pt-80" }) {
 
   return (
     <>
-      <section className={`faq-section ${topClass}`}>
+      <section
+        className={`faq-section ${topClass}${
+          variant === "light" ? " faq-section--light" : ""
+        }`}
+      >
         <div className="container ">
-          <div className="text-center">
+          <div className={variant === "light" ? "" : "text-center"}>
             <p className="text-orange">{faq.kicker || "Still Having Queries ?"}</p>
             <h2 className="display-4 fw-bold mt-2">
               {faq.heading || "Frequently Asked Questions"}

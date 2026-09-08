@@ -63,8 +63,8 @@
 //     <>
 //       <Head>
 //         <title>Salesperson Performance</title>
-//         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-//         <link rel="stylesheet" href="/asets/css/main.css" />
+//         <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+//         <link rel="stylesheet" href="/assets/css/main.css" />
 //       </Head>
 
 //       <div className="main-nav">
@@ -251,8 +251,8 @@
 //     <>
 //       <Head>
 //         <title>Salesperson Performance</title>
-//         <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-//         <link rel="stylesheet" href="/asets/css/main.css" />
+//         <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+//         <link rel="stylesheet" href="/assets/css/main.css" />
 //       </Head>
 
 //       <div className="main-nav">
@@ -439,8 +439,8 @@ export default function SalespersonReport() {
     <>
       <Head>
         <title>Salesperson Performance</title>
-        <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/asets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
       </Head>
 
       <div className="ptb-50">

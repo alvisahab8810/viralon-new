@@ -44,8 +44,8 @@ export default function RegisterSales() {
   return (
     <div className="login-admin">
       <Head>
-        <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/asets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
         <title>Create Sales Account</title>
       </Head>
 

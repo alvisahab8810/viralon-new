@@ -8,6 +8,49 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
 
+/* SF Pro Display, self-hosted from public/assets/fonts/sf-pro-display.
+   Only Regular, Medium and Bold exist as upright faces in that folder — the
+   other files are italic-only — so 600 and 800 fall back to Bold. */
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYSEMIBOLDITALIC.OTF") format("opentype");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYLIGHTITALIC.OTF") format("opentype");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
 /* for Outline */
 
 @font-face {
@@ -46,9 +89,9 @@ body{
     font-style: normal;
   }
 .anton-regular {
-    font-family: "Anton", sans-serif!important;
-    font-weight: 400;
-    font-style: normal;
+    /* font-family: "Anton", sans-serif!important; */
+    /* font-weight: 400; */
+    /* font-style: normal; */
   }
   
   .manrope{
@@ -69,13 +112,61 @@ body{
     display: none;
 }
 
+section.partnering-section {
+    background: #0E0920;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
 .navbar {
-    background-color: #1D1D1D;
-    border-bottom: 1px solid #ffffff99;
+    background-color: #19132F;
+    /* border-bottom: 1px solid #ffffff99; */
+}
+
+.navbar .navbar-collapse {
+    flex-wrap: nowrap !important;
+}
+.navbar .navbar-collapse .navbar-nav {
+    flex-wrap: nowrap;
+}
+
+.btn-lets-talk {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 35px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff !important;
+    background: #19132F;
+    position: relative;
+    z-index: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-left: 40px;
+}
+.btn-lets-talk::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    padding: 1px;
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+}
+.btn-lets-talk:hover {
+    color: #ffffff !important;
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
 }
 .navbar-brand, .nav-link {
     color: white !important;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
 }
 .nav-link:hover {
@@ -210,11 +301,12 @@ header{
     font-size: 12px;
 }
 .bg-linear {
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    /* background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%); */
+        background: #FE4601;
 
     width: 98%;
     margin: auto;
-    border-radius:30px 30px 0px 0px;
+    border-radius:42px;
 }
 
 .bg-dark{
@@ -441,39 +533,42 @@ p.fris-para {
     /* padding-left: 150px; */
 }
 .form-content h1 {
-    font-size: 80px;
-    font-weight: 500;
+    font-weight: bold;
     color: white;
-    line-height: 1;
+    font-size: 70.2px !important;
+    line-height: 100%;
     letter-spacing: 0px;
     text-align: center;
+    margin-bottom: 20px !important;
 }
 .form-content p {
-    font-size: 18px;
     color: white;
-    letter-spacing: 3px;
+    letter-spacing: 7.2px !important;
+    font-size: 21.6px !important;
     font-weight: 500;
+    margin-bottom: 50px !important;
     text-align: center;
+    line-height: 30.6px !important;
 }
 .form-container .form-control {
     border: 1px solid white;
     color: white;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 15px;
     font-size: 14px;
-    background: #FD8362;;
+    background: #FF6D36;
 }
 .form-container .form-control::placeholder {
     color: white;
 }
 .btn-submit {
     background: white;
-    color: #f97316;
-    font-weight: 400;
+    color: #FE4601;
+    font-weight: bold;
     padding: 10px 70px;
     margin: 40px auto;
     height: 47px;
-    font-size: 16px;
+    font-size: 19px;
     border-radius: 10px;
     display: table;
 }
@@ -486,11 +581,13 @@ p.fris-para {
 
 .company-design-area h2 {
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
+      font-family: 'SF Pro Display' !important;
+    line-height: 29px;
     color: #fff;
-    margin-bottom: 40px;
-    letter-spacing: 5px;
+    margin-bottom: 55px;
+    letter-spacing: 12px;
     font-weight: 500;
 }
 
@@ -617,13 +714,11 @@ p.fris-para {
     color: #828282 !important;
     margin-bottom: 40px;
 }
-.footer .logo img{
-    width:120px;
+.footer .logo img {
+    width: 101.89px;
 }
 .footer-para span{
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color:#FE4601;
     display: inline-block;
 }
 
@@ -683,6 +778,7 @@ ul.import-list li {
     width: 40px;
     border-radius: 50px;
     background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: #FE4601;
     padding: 0;
     display: flex
 ;
@@ -2107,24 +2203,55 @@ ul.dropdown-menu  li {
 }
 
 
+/* The ellipse artwork is 702x493 and is anchored so its arc breaks out to
+   the left of the copy column, as in Figma. z-index 0 (not -1) keeps it on
+   the coral panel rather than behind it; the copy above sits on z-index 1. */
 img.shape.p-absolute {
     position: absolute;
-    width: 100%;
-    z-index: -1;
-    left: -55px;
-    top: 4px;
+    width: 776px;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    pointer-events: none;
+}
+
+@media (max-width: 1399px) {
+    img.shape.p-absolute {
+        width: 600px;
+        left: -150px;
+        top: -14px;
+    }
+}
+
+@media (max-width: 991px) {
+    /* No collage beside the copy any more, so keep the arc inside the panel. */
+    img.shape.p-absolute {
+        width: 118%;
+        left: -9%;
+        top: 0;
+    }
+}
+
+.form-content > h1,
+.form-content > p,
+.form-content .vl-form,
+.form-content .vl-done {
+    position: relative;
+    z-index: 1;
 }
   
-  .parallax-container {
-    height: 300vh; /* 3 sections * 100vh */
-  }
+  /* .parallax-container {
+    height: 300vh;
+  } */
   
-  .parallax-section {
+  /* .parallax-section {
     position: sticky;
     top: 0;
     height: 100vh;
     z-index: 10;
-  }
+  } */
   
 
 
@@ -2179,7 +2306,7 @@ img.shape.p-absolute {
     border-bottom: 1px solid #848484;
     border-radius: 18px 0px 0px 0px;
     padding-bottom: 30px;
-    background-color: var(--dark);
+    background-color: #0E0920;
 }
   footer .before-bg::before {
     content: '';
@@ -2188,7 +2315,8 @@ img.shape.p-absolute {
     border-radius: 18px 0px 0px 0px;
     height: 100%;
     top: 0;
-    background-color: #262525;
+    /* background-color: #262525; */
+        background-image: /* 49% वाली dark overlay layer */ linear-gradient(rgba(14, 9, 32, 0.49), rgba(14, 9, 32, 0.49)), /* main linear gradient */ linear-gradient(229deg, #FB5C1F 0%, #0E0920 35%, #0E0920 70%, #FB5D1F 100%);
     z-index: -1;
 }
 
@@ -2203,7 +2331,7 @@ img.shape.p-absolute {
     margin: 0;
 }
 .footer-2nd p span a{
-    color:#f97316;
+ color: #FE4601;
 }
 
 .blog-area h2 {
@@ -3056,3 +3184,1902 @@ img.shape.p-absolute {
     width:100%;
     object-fit: cover;
 }
+/* ============== Hero Section (Figma redesign) ============== */
+
+.hero-section-new {
+    background: #0E0920;
+    padding: 70px 0 40px;
+    overflow: hidden;
+}
+
+/* nowrap above the tablet breakpoint: the wheel shrinks to fit the leftover
+   width instead of dropping under the copy. It only stacks at <=991px. */
+.hero-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: nowrap;
+}
+
+.hero-copy {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    max-width: 598.07px;
+    flex: 0 1 598.07px;
+    min-width: 0;
+}
+
+.hero-heading {
+    font-weight: 700;
+    font-size: 73.5px;
+    line-height: 71.4px;
+    letter-spacing: -1.26px;
+    color: #ffffff;
+    margin: 0 0 26px;
+}
+
+/* line.svg sits over the words instead of a text-decoration rule so the
+   hand-drawn stroke keeps its shape. */
+.hero-strike {
+    color: #FE4601;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-strike::after {
+    content: "";
+    position: absolute;
+    left: -1.5%;
+    width: 103%;
+    top: 54%;
+    height: 19px;
+    transform: translateY(-50%);
+    background: url("/assets/images/icons/line.svg") no-repeat center / 100% 100%;
+    pointer-events: none;
+}
+
+.hero-sub {
+    color: #86868B!important;
+    font-weight: 700;
+    font-size: 22.68px;
+    line-height: 27.4px;
+    letter-spacing: 0.22px;
+    margin: 0 0 34px;
+    max-width: 598px;
+}
+
+.hero-sub strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.hero-stat-badge {
+    display: inline-block;
+    background: #181330;
+    border: 1px solid #2B2545;
+    border-radius: 12px;
+    padding: 28px 27px;
+    max-width: 499px;
+    color: #D0BDFF;
+    font-weight: 700;
+    font-size: 19.5px;
+    line-height: 1.55;
+    letter-spacing: 0.18px;
+}
+
+.hero-stat-figure {
+    height: 34px;
+    width: auto;
+    vertical-align: -9px;
+    margin-left: 2px;
+}
+
+.hero-wheel-wrap {
+    position: relative;
+    flex: 1 1 600px;
+    max-width: 600px;
+    min-width: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.hero-wheel-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.hero-wheel-bg {
+    /* fill: #160F32; */
+    /* stroke: #342E46; */
+    /* stroke-width: 1.12; */
+}
+
+.hero-wedge-path {
+    fill: #241D40;
+    stroke: #3A3355;
+    stroke-width: 1.12;
+    transition: d 0.55s ease, fill 0.55s ease, stroke 0.55s ease;
+}
+
+.hero-wedge.is-active .hero-wedge-path {
+    fill: #3F2E80;
+    stroke: #8B5CF6;
+    stroke-width: 1.6;
+}
+
+.hero-wedge-num {
+    fill: #6E6A85;
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    transition: fill 0.55s ease, font-size 0.55s ease;
+}
+
+.hero-wedge.is-active .hero-wedge-num {
+    fill: #ffffff;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* The hand pivots about the centre of the ring; its faded tail runs back
+   through the middle and is hidden behind the centre copy. */
+.hero-wheel-arrow {
+    transform-box: view-box;
+    transform-origin: 300px 300px;
+    transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.hero-wheel-center {
+    animation: heroFadeIn 0.5s ease;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-wheel-part {
+    fill: #FF5A1F;
+    font-family: "Manrope", sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.hero-wheel-title {
+    fill: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 38px;
+}
+
+.hero-wheel-desc {
+    fill: #C9C5DA;
+    font-family: "Manrope", sans-serif;
+    font-size: 15.5px;
+    font-weight: 400;
+}
+
+@media (max-width: 1199px) {
+    .hero-grid {
+        gap: 26px;
+    }
+    .hero-copy {
+        flex-basis: 500px;
+    }
+    .hero-heading {
+        font-size: 58px;
+        line-height: 56px;
+        letter-spacing: -1px;
+    }
+    .hero-sub {
+        font-size: 19px;
+        line-height: 24px;
+    }
+    .hero-strike::after {
+        height: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-grid {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .hero-wheel-wrap {
+        flex: 0 0 auto;
+        max-width: 460px;
+    }
+    .hero-copy {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+    .hero-heading {
+        font-size: 42px;
+        line-height: 42px;
+        letter-spacing: -0.7px;
+    }
+    .hero-sub {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .hero-strike::after {
+        height: 11px;
+    }
+    .hero-stat-badge {
+        font-size: 15px;
+    }
+    .hero-stat-figure {
+        height: 28px;
+        vertical-align: -7px;
+    }
+}
+
+/* ============== "We Know" Section (Figma redesign) ============== */
+
+.weknow-section {
+    background: #ffffff;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* The photo is the backdrop for the whole block -- it fills the stage while
+   the heading and cards sit on top of it in normal flow, so the content
+   height drives the section height and nothing can overlap wrongly. */
+.weknow-stage {
+    position: relative;
+    isolation: isolate;
+}
+
+.weknow-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+    z-index: 0;
+}
+
+.weknow-stage-inner {
+    position: relative;
+    z-index: 1;
+    padding: 100px  0px;
+}
+
+/* Scoped to the section so it outranks the global `.bg-dark h2 { color: white }`
+   in style.css -- the whole homepage is wrapped in .bg-dark, but this block
+   is a light section. */
+.weknow-section .weknow-heading {
+    color: #0B0B0F;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.8px;
+    margin: 0 0 55px;
+}
+.weknow-section .weknow-heading-accent {
+    color: #FE4601;
+}
+
+.weknow-cards {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+}
+
+/* Folder silhouette: the tab is the top-LEFT ~40%, sitting at full height;
+   the rest of the top edge steps down by 10% via a rounded shoulder.
+   border-radius handles the top-left and both bottom corners; the top-right
+   corner is not a box corner any more, so it is rounded in the polygon
+   itself. clip-path can't draw arcs, so both curves are chorded -- at this
+   size the segments are ~4px and read as smooth. */
+.weknow-card {
+    position: relative;
+    flex: 0 0 310px;
+    max-width: 310px;
+    min-height: 470px;
+    padding: 64px 30px 40px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    clip-path: polygon(
+        0% 0%,
+        38% 0%,
+        41% 0.6%,
+        43.5% 2%,
+        45.5% 4.4%,
+        47.5% 7%,
+        49.5% 8.8%,
+        52% 10%,
+        92.3% 10%,
+        94.29% 10.17%,
+        96.15% 10.68%,
+        97.74% 11.49%,
+        98.97% 12.55%,
+        99.74% 13.78%,
+        100% 15.1%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+.weknow-card p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.1px;
+}
+
+.weknow-card--muted {
+    background: rgba(96, 96, 100, 0.72);
+    backdrop-filter: blur(2px);
+    border-radius:42px;
+}
+
+.weknow-card--muted p {
+    color: #F2F2F4;
+}
+
+.weknow-card--accent {
+    background: radial-gradient(circle, #EB89FD 0%, #C56EF3 50%, #7F3EBB 100%);
+    border-radius:42px;
+
+}
+
+.weknow-card--accent p {
+    color: #ffffff;
+}
+
+@media (max-width: 1199px) {
+    .weknow-section .weknow-heading {
+        font-size: 38px;
+    }
+    .weknow-card {
+        flex-basis: 275px;
+        max-width: 275px;
+        min-height: 420px;
+        padding: 58px 26px 34px;
+    }
+    .weknow-card p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 991px) {
+    .weknow-stage-inner {
+        padding: 54px 0 64px;
+    }
+    .weknow-section .weknow-heading {
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+    /* The photo is framed tighter so the subject stays visible behind the
+       narrower content column. */
+    .weknow-photo {
+        object-position: 72% center;
+    }
+    .weknow-cards {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .weknow-card {
+        flex: 1 1 260px;
+        max-width: 360px;
+        min-height: 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .weknow-section .weknow-heading {
+        font-size: 27px;
+    }
+    .weknow-card {
+        max-width: 100%;
+        padding: 36px 24px 28px;
+    }
+}
+
+/* ==========================================================================
+   "The 6 Parts Of Machine" — Apple-style horizontal scroll-snap gallery.
+   Not autoplay: native overflow-x scroll + scroll-snap, driven by drag or
+   the prev/next buttons next to the heading.
+   ========================================================================== */
+
+.sixparts-section {
+    padding: 100px 0px;
+    background: #EFEFF0;
+    overflow: hidden;
+}
+.sixparts-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.sixparts-section .sixparts-heading {
+    color: #0B0B0F;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.8px;
+    margin: 0;
+}
+
+.sixparts-accent {
+    color: #FE4601;
+}
+
+.slider-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* style.css sets a global `button { padding: 14px 40px; overflow: hidden }`.
+   With box-sizing: border-box a box can never be narrower than its own
+   padding, so the 48px circle was forced out to ~100x50 -- and the 40px
+   side padding pushed the icon outside the box, where `overflow: hidden`
+   clipped it away. Hence: no arrows. Both are reset explicitly here. */
+.slider-nav .slider-nav-btn {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    padding: 0;
+    flex: 0 0 48px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 1.5px solid #d8d8dc;
+    background: #fff;
+    color: #0B0B0F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.28s ease, border-color 0.28s ease,
+        color 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.28s ease, opacity 0.2s ease;
+}
+
+.slider-nav .slider-nav-btn:hover:not(:disabled) {
+    background: #0B0B0F;
+    border-color: #0B0B0F;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(11, 11, 15, 0.22);
+}
+
+.slider-nav .slider-nav-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.94);
+    transition-duration: 0.09s;
+}
+
+.slider-nav .slider-nav-btn:focus-visible {
+    outline: 2px solid #FE4601;
+    outline-offset: 3px;
+}
+
+.slider-nav .slider-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+/* Masked window holding two stacked arrows; on hover both shift by one
+   window-width so the outgoing one leaves and the incoming one takes its
+   place, travelling in the direction the button scrolls. */
+.slider-nav-icon {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.slider-nav-icon svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transition: transform 0.42s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.slider-nav-btn--next .slider-nav-icon svg:nth-child(2) {
+    transform: translateX(-100%);
+}
+
+.slider-nav-btn--next:hover:not(:disabled) .slider-nav-icon svg:nth-child(1) {
+    transform: translateX(100%);
+}
+
+.slider-nav-btn--prev .slider-nav-icon svg:nth-child(2) {
+    transform: translateX(100%);
+}
+
+.slider-nav-btn--prev:hover:not(:disabled) .slider-nav-icon svg:nth-child(1) {
+    transform: translateX(-100%);
+}
+
+.slider-nav-btn:hover:not(:disabled) .slider-nav-icon svg:nth-child(2) {
+    transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slider-nav .slider-nav-btn,
+    .slider-nav-icon svg {
+        transition-duration: 0.01ms;
+    }
+    .slider-nav .slider-nav-btn:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* Full-bleed wrapper: breaks the track out of `.container` so cards run
+   edge-to-edge on both sides (container is 85vw wide, centred, +12px gutter). */
+.sixparts-track-wrap {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+
+/* The leading offset lives INSIDE the scroller, not on the wrapper -- as
+   wrapper padding it became the clip edge, so scrolled cards were sliced off
+   there instead of running out to the viewport edge. As track padding the
+   first card still lines up under the heading at scroll 0, but the track
+   itself spans the full 100vw. scroll-padding keeps snapping on that line. */
+.sixparts-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    padding-left: calc(7.5vw + 12px);
+    padding-right: calc(7.5vw + 12px);
+    scroll-padding-left: calc(7.5vw + 12px);
+}
+
+.sixparts-track::-webkit-scrollbar {
+    display: none;
+}
+
+.sixparts-card {
+    flex: 0 0 300px;
+    max-width: 300px;
+    min-height: 430px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    border-radius: 22px;
+    background: #fff;
+    padding: 26px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px rgba(11, 11, 15, 0.05);
+}
+
+.sixparts-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FE4601;
+    margin-bottom: 10px;
+}
+
+.sixparts-section .sixparts-title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0B0B0F;
+    margin: 0 0 10px;
+}
+
+.sixparts-section .sixparts-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #6b6b70;
+    margin: 0 0 20px;
+}
+
+.sixparts-mockup {
+    margin-top: auto;
+    height: 170px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.sixparts-card--cream .sixparts-mockup { background: #EFEAE3; }
+.sixparts-card--peach .sixparts-mockup { background: linear-gradient(160deg, #FFD9C4 0%, #FFB199 100%); }
+.sixparts-card--grey .sixparts-mockup { background: #E7E7EA; }
+.sixparts-card--blue .sixparts-mockup { background: linear-gradient(160deg, #DCE9FF 0%, #B7D2FF 100%); }
+.sixparts-card--mint .sixparts-mockup { background: linear-gradient(160deg, #DAF3E8 0%, #B3E4CC 100%); }
+.sixparts-card--lilac .sixparts-mockup { background: linear-gradient(160deg, #E9E1FB 0%, #D2C1F5 100%); }
+
+.sixparts-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #1E77F2;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.sixparts-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: #fff !important;
+}
+
+/* ---- mockup graphics ---- */
+
+.sp-mock-phone {
+    width: 92px;
+    height: 150px;
+    border-radius: 18px;
+    background: #0B0B0F;
+    padding: 8px;
+    position: relative;
+}
+
+.sp-mock-phone-notch {
+    width: 34px;
+    height: 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    margin: 0 auto 6px;
+}
+
+.sp-mock-post {
+    height: 84px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #FF9A5A 0%, #FF5E7E 55%, #B25CFF 100%);
+    margin-bottom: 8px;
+}
+
+.sp-mock-post-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sp-mock-heart {
+    color: #FF5E7E;
+    font-size: 12px;
+}
+
+.sp-mock-line {
+    display: block;
+    height: 5px;
+    flex: 1;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.sp-mock-line--wide {
+    width: 80%;
+}
+
+.sp-mock-line--short {
+    width: 45%;
+}
+
+.sp-mock-search {
+    width: 82%;
+    height: 44px;
+    border-radius: 999px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px 0 16px;
+    box-shadow: 0 6px 18px rgba(11, 11, 15, 0.1);
+}
+
+.sp-mock-search span {
+    font-size: 12.5px;
+    color: #94a3b8;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.sp-mock-mic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #1E77F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sp-mock-ads {
+    display: flex;
+    gap: 16px;
+}
+
+.sp-mock-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 22px;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(11, 11, 15, 0.12);
+}
+
+.sp-mock-badge--meta {
+    background: linear-gradient(135deg, #0866FF 0%, #4D9BFF 100%);
+}
+
+.sp-mock-badge--google {
+    background: linear-gradient(135deg, #EA4335 0%, #FBBC05 50%, #34A853 100%);
+}
+
+.sp-mock-browser {
+    width: 84%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(11, 11, 15, 0.1);
+}
+
+.sp-mock-browser-bar {
+    display: flex;
+    gap: 5px;
+    padding: 8px 10px;
+    background: #F1F1F3;
+}
+
+.sp-mock-browser-bar i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d3d3d8;
+}
+
+.sp-mock-browser-body {
+    padding: 14px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sp-mock-browser-body .sp-mock-line {
+    background: #E7E7EA;
+}
+
+@media (max-width: 991px) {
+    .sixparts-section {
+        padding: 64px 0 50px;
+    }
+    .sixparts-heading {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 575px) {
+    .sixparts-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+    .sixparts-heading {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    /* .container goes to max-width:95% below this breakpoint (responsive.css) */
+    .sixparts-track {
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+}
+
+/* Dark variant of the shared slider nav, for sections on #0E0920. */
+.slider-nav--dark .slider-nav-btn {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+}
+
+.slider-nav--dark .slider-nav-btn:hover:not(:disabled) {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #0E0920;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+.slider-nav--dark .slider-nav-btn:disabled {
+    opacity: 0.28;
+}
+
+/* ============== Shared dark card-rail sections ============== */
+
+.workshow-section,
+.broken-section {
+    background: #0E0920;
+    padding: 100px 0px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+.workshow-section .workshow-heading,
+.broken-section .broken-heading {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
+
+.workshow-section .workshow-accent,
+.broken-section .broken-accent {
+    color: #FE4601;
+}
+
+.workshow-head,
+.broken-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+/* Full-bleed rails: the track spans 100vw so cards run out to both viewport
+   edges, while its own padding keeps the first card aligned under the
+   heading. scroll-padding makes snapping land on that same line.
+   (.container is 85vw, centred, +12px gutter.) */
+.workshow-track-wrap,
+.broken-track-wrap {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+
+.workshow-track,
+.broken-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-left: calc(7.5vw + 12px);
+    padding-right: calc(7.5vw + 12px);
+    scroll-padding-left: calc(7.5vw + 12px);
+}
+
+.workshow-track::-webkit-scrollbar,
+.broken-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* ============== Have A Look At / Our Work ============== */
+
+.workshow-track {
+    gap: 24px;
+    padding-bottom: 4px;
+}
+
+.workshow-card {
+    flex: 0 0 338px;
+    max-width: 338px;
+    scroll-snap-align: start;
+}
+
+.workshow-media {
+    display: block;
+    width: 338px;
+    height: 514px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #191233;
+}
+
+.workshow-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workshow-card:hover .workshow-media img {
+    transform: scale(1.05);
+}
+
+.workshow-stats {
+    display: flex;
+    gap: 45px;
+    text-align: center;
+    padding: 34px 4px 0;
+    justify-content: center;
+}
+.workshow-stat strong {
+    display: block;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 35.33px;
+    letter-spacing: -0.44px;
+    line-height: 33.9px;
+}
+
+.workshow-stat span {
+    display: block;
+    color: #FFFFFF;
+    font-weight: 400;
+    line-height: 33.9px;
+    font-size: 19.79px;
+    margin-top: 4px;
+    letter-spacing: -0.44px;
+}
+
+/* ============== Which Part Of Yours Is Broken? ============== */
+
+.broken-head {
+    align-items: flex-start;
+}
+
+.broken-intro {
+    flex: 0 1 343px;
+    color: #86868B !important;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: 'SF Pro Display';
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.broken-track {
+    gap: 26px;
+    padding-bottom: 4px;
+    align-items: flex-start;
+}
+
+.broken-card {
+    flex: 0 0 372px;
+    max-width: 372px;
+    scroll-snap-align: start;
+}
+
+.broken-media {
+    width: 372px;
+    height: 502px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #191233;
+}
+
+.broken-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.broken-card:hover .broken-media img {
+    transform: scale(1.05);
+}
+
+.broken-section .broken-card-title {
+    color: #8668FF;
+    font-weight: 700;
+    font-size: 28px;
+    padding: 0px 24px;
+    line-height: 32px;
+    margin: 30px 0 15px;
+}
+
+.broken-section .broken-card-desc {
+    color: #fff;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    margin: 0;
+    padding: 0px 24px;
+}
+
+.broken-foot {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+@media (max-width: 1199px) {
+    .workshow-section .workshow-heading,
+    .broken-section .broken-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .workshow-card,
+    .workshow-media {
+        flex-basis: 290px;
+        max-width: 290px;
+        width: 290px;
+    }
+    .workshow-media {
+        height: 440px;
+    }
+    .broken-card,
+    .broken-media {
+        flex-basis: 320px;
+        max-width: 320px;
+        width: 320px;
+    }
+    .broken-media {
+        height: 432px;
+    }
+}
+
+@media (max-width: 767px) {
+    .workshow-section,
+    .broken-section {
+        padding: 64px 0 72px;
+    }
+    .workshow-section .workshow-heading,
+    .broken-section .broken-heading {
+        font-size: 32px;
+        line-height: 37px;
+    }
+    .workshow-head,
+    .broken-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+    .broken-intro {
+        text-align: left;
+        flex-basis: auto;
+        font-size: 15px;
+    }
+    .workshow-card,
+    .workshow-media {
+        flex-basis: 232px;
+        max-width: 232px;
+        width: 232px;
+    }
+    .workshow-media {
+        height: 352px;
+    }
+    .broken-card,
+    .broken-media {
+        flex-basis: 258px;
+        max-width: 258px;
+        width: 258px;
+    }
+    .broken-media {
+        height: 348px;
+    }
+}
+
+@media (max-width: 560px) {
+    .workshow-track,
+    .broken-track {
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+}
+
+/* ============== How It Runs ============== */
+
+.howruns-section {
+    background: #ffffff;
+    padding: 96px 0 104px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.howruns-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+.howruns-section .howruns-heading {
+    color: #0B0B0F;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
+
+.howruns-section .howruns-accent {
+    color: #FE4601;
+}
+
+/* Scoped past the page-level `.bg-dark p` rule in style.css, which would
+   otherwise grey this out on a white background. */
+.howruns-section .howruns-intro {
+    flex: 0 1 411px;
+    color: #86868B !important;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: 'SF Pro Display';
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.howruns-list {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* The artwork sets the card's shape: the aspect ratio matches the source
+   image (1800x671) so the copy keeps its position over the photo at any
+   container width. */
+.howruns-card {
+    position: relative;
+    aspect-ratio: 1800 / 671;
+    border-radius: 42px;
+    overflow: hidden;
+    height: 531px;
+    display: flex;
+    align-items: center;
+}
+
+.howruns-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.howruns-card-body {
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    padding-left: 6%;
+    padding-right: 2%;
+}
+
+.howruns-card.is-flipped {
+    justify-content: flex-end;
+}
+
+.howruns-card.is-flipped .howruns-card-body {
+    padding-left: 2%;
+    padding-right: 6%;
+}
+
+.howruns-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 140%;
+    margin-bottom: 14px;
+}
+
+.howruns-eyebrow i {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    flex: 0 0 22px;
+}
+
+.howruns-section .howruns-card-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 130%;
+    margin: 0 0 18px;
+    white-space: pre-line;
+}
+
+.howruns-section .howruns-card-desc {
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 400;
+    font-size: 25.35px;
+    line-height: 37.5px;
+    margin: 0;
+}
+
+/* Ghost stage number, sunk into the artwork behind the copy. */
+.howruns-num {
+    position: absolute;
+    top: 8%;
+    right: 3.5%;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.22);
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -2px;
+    pointer-events: none;
+}
+
+.howruns-card.is-flipped .howruns-num {
+    right: auto;
+    left: 3.5%;
+}
+
+/* Type is specified in fixed px against a ~1224px card, so it steps down
+   with the card rather than overflowing it. */
+@media (max-width: 1199px) {
+    .howruns-section .howruns-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .howruns-eyebrow {
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+    .howruns-section .howruns-card-title {
+        font-size: 28px;
+        margin-bottom: 13px;
+    }
+    .howruns-section .howruns-card-desc {
+        font-size: 19px;
+        line-height: 28px;
+    }
+    .howruns-num {
+        font-size: 70px;
+    }
+}
+
+@media (max-width: 991px) {
+    .howruns-eyebrow {
+        font-size: 17px;
+        gap: 8px;
+    }
+    .howruns-eyebrow i {
+        width: 15px;
+        flex-basis: 15px;
+    }
+    .howruns-section .howruns-card-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .howruns-section .howruns-card-desc {
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .howruns-num {
+        font-size: 52px;
+    }
+}
+
+@media (max-width: 767px) {
+    .howruns-section {
+        padding: 64px 0 72px;
+    }
+    .howruns-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+    .howruns-section .howruns-heading {
+        font-size: 32px;
+        line-height: 37px;
+    }
+    .howruns-section .howruns-intro {
+        text-align: left;
+        flex-basis: auto;
+    }
+    /* Below this the photo half is too narrow to hold readable copy, so the
+       card grows taller and the text takes the full width over a darkened
+       image instead of sharing it. */
+    .howruns-card {
+        aspect-ratio: auto;
+        min-height: 340px;
+        padding: 30px 0;
+    }
+    .howruns-card-bg {
+        filter: brightness(0.62);
+    }
+    .howruns-card-body,
+    .howruns-card.is-flipped .howruns-card-body {
+        width: 100%;
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+    .howruns-eyebrow {
+        font-size: 16px;
+    }
+    .howruns-section .howruns-card-title {
+        font-size: 21px;
+    }
+    .howruns-section .howruns-card-desc {
+        font-size: 15px;
+        line-height: 23px;
+    }
+    .howruns-num {
+        font-size: 44px;
+        top: 4%;
+    }
+}
+
+/* ============== What We Build It For ============== */
+
+.builditfor-section {
+    background: #0E0920;
+    padding: 100px 0px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+.builditfor-grid {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.builditfor-copy {
+    flex: 0 0 40%;
+    padding-right:40px;
+    max-width: 40%;
+}
+
+.builditfor-section .builditfor-heading {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    margin: 0 0 26px;
+}
+
+.builditfor-section .builditfor-accent {
+    color: #FE4601;
+}
+.builditfor-section .builditfor-desc {
+    margin: 0;
+    max-width: 461px;
+    color: #86868B !important;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: 'SF Pro Display';
+    margin-bottom: 0;
+}
+
+.builditfor-stage {
+    position: relative;
+    flex: 0 0 60%;
+    max-width: 60%;
+    min-width: 0;
+}
+
+/* The 3D ring. A short perspective is what curves the deck -- a large one
+   flattens the rotation back into a plain tilted strip.
+   `swiper/css` ships its own `.swiper` / `.swiper-slide` rules and is
+   injected into <head> after this stylesheet, so every rule that fights it
+   (perspective, and above all the slide's width) is scoped through
+   `.builditfor-stage` to outrank it. Without that the slide keeps Swiper's
+   `width: 100%` and the deck collapses to one full-bleed card. */
+/* Kept clipping (Swiper's own default) so the fanned cards stay inside the
+   right-hand half instead of spilling across the copy. */
+.builditfor-stage .builditfor-swiper {
+    overflow: hidden;
+    perspective: 900px;
+    /* padding: 40px 0 46px; */
+}
+
+.builditfor-stage .builditfor-swiper .swiper-wrapper {
+    transform-style: preserve-3d;
+    align-items: center;
+}
+
+.builditfor-stage .builditfor-slide {
+    width: 332px;
+    height: 455px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    overflow: hidden;
+    background: #191233;
+    transition: opacity .45s ease;
+    /* Anything past the immediate neighbours fades out, so the deck reads as
+       a tight stack of a few cards rather than a long fanned-out row. */
+    opacity: .28;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .45);
+}
+
+.builditfor-stage .builditfor-slide.swiper-slide-active {
+    opacity: 1;
+}
+
+.builditfor-stage .builditfor-slide.swiper-slide-prev,
+.builditfor-stage .builditfor-slide.swiper-slide-next {
+    opacity: .78;
+}
+
+.builditfor-stage .builditfor-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Swiper paints its face shading as bare child divs; round them to the slide
+   and deepen them so the turned cards read as surfaces, not flat cutouts. */
+.builditfor-stage .builditfor-slide .swiper-slide-shadow-left,
+.builditfor-stage .builditfor-slide .swiper-slide-shadow-right {
+    border-radius: 17px;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, .62), rgba(0, 0, 0, 0));
+}
+
+.builditfor-stage .builditfor-slide .swiper-slide-shadow-right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .62), rgba(0, 0, 0, 0));
+}
+
+/* Caption layer on every card: its own inset panel behind the copy, as in
+   Figma -- not a gradient bled off the card edge. It lives inside the slide
+   so it turns with the card in 3D. */
+.builditfor-stage .builditfor-layer {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+    padding: 14px 16px 16px;
+    border-radius: 12px;
+    background: rgba(8, 5, 20, .68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.builditfor-stage .builditfor-layer-title {
+    display: block;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+}
+
+.builditfor-section .builditfor-layer-desc {
+    color: #D7D3E4;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 1199px) {
+    .builditfor-section .builditfor-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .builditfor-stage .builditfor-slide {
+        width: 272px;
+        height: 373px;
+    }
+}
+
+@media (max-width: 991px) {
+    .builditfor-grid {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 34px;
+    }
+    .builditfor-copy {
+        flex-basis: auto;
+        max-width: 100%;
+    }
+    .builditfor-stage {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .builditfor-section {
+        padding: 64px 0 72px;
+    }
+    .builditfor-section .builditfor-heading {
+        font-size: 32px;
+        line-height: 37px;
+        margin-bottom: 18px;
+    }
+    .builditfor-stage .builditfor-slide {
+        width: 232px;
+        height: 318px;
+    }
+    .builditfor-stage .builditfor-layer {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 11px 12px 12px;
+    }
+    .builditfor-stage .builditfor-layer-title {
+        font-size: 14px;
+    }
+    .builditfor-section .builditfor-layer-desc {
+        font-size: 11.5px;
+    }
+}
+
+/* ============== We Are Soo Social ============== */
+
+.soosocial-section {
+    background: #0E0920;
+    padding: 96px 0 104px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+.soosocial-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+.soosocial-section .soosocial-heading {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
+
+.soosocial-section .soosocial-accent {
+    color: #FE4601;
+}
+
+/* Nav sits under the rail, right aligned, 50px clear of the videos. */
+.soosocial-foot {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.soosocial-section .soosocial-intro {
+
+    color: #86868B !important;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: 'SF Pro Display';
+    text-align: right;
+    margin-bottom: 0;
+}
+
+/* Full-bleed rail: the leading offset lives on the scroller itself, so the
+   first card runs to the container edge instead of being clipped by a
+   wrapper's padding. */
+.soosocial-track-wrap {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+
+.soosocial-track {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-left: calc(7.5vw + 12px);
+    padding-right: calc(7.5vw + 12px);
+    scroll-padding-left: calc(7.5vw + 12px);
+}
+
+.soosocial-track::-webkit-scrollbar {
+    display: none;
+}
+
+.soosocial-card {
+    position: relative;
+    flex: 0 0 318px;
+    width: 318px;
+    height: 566px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #191233;
+    scroll-snap-align: start;
+}
+
+.soosocial-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.soosocial-section .soosocial-mute {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    /* The global `button` reset sets 14px/40px padding and overflow:hidden,
+       which under border-box would balloon this into an ellipse and clip the
+       icon out of view. */
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background .25s ease, transform .25s ease;
+}
+
+.soosocial-section .soosocial-mute:hover {
+    background: rgba(0, 0, 0, 0.78);
+    transform: scale(1.06);
+}
+
+.soosocial-section .soosocial-mute:focus-visible {
+    outline: 2px solid #FE4601;
+    outline-offset: 2px;
+}
+
+@media (max-width: 1199px) {
+    .soosocial-section .soosocial-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .soosocial-card {
+        flex-basis: 268px;
+        width: 268px;
+        height: 477px;
+    }
+}
+
+@media (max-width: 767px) {
+    .soosocial-section {
+        padding: 64px 0 72px;
+    }
+    .soosocial-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 28px;
+    }
+    .soosocial-foot {
+        margin-top: 34px;
+    }
+    .soosocial-section .soosocial-heading {
+        font-size: 32px;
+        line-height: 37px;
+    }
+    .soosocial-section .soosocial-intro {
+        text-align: left;
+        margin: 0;
+    }
+    .soosocial-card {
+        flex-basis: 220px;
+        width: 220px;
+        height: 391px;
+    }
+}
+
+@media (max-width: 560px) {
+    .soosocial-track {
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+}
+
+/* ============== FAQ — light (Figma homepage) variant ==============
+   Everything is scoped through `.faq-section.faq-section--light` (three
+   classes) rather than one extra class, because responsive.css loads after
+   this file and its own `.faq-section .accordion-*` rules would otherwise
+   win at the mobile breakpoints. */
+
+.faq-section.faq-section--light {
+    background: #ffffff;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+        padding: 100px 0px;
+}
+
+.faq-section.faq-section--light .text-orange {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    color: #FE4601;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.faq-section.faq-section--light .display-4 {
+    color: #0B0B0F;
+    font-size: 54px !important;
+    font-weight: 700 !important;
+    line-height: 100%;
+    letter-spacing: -0.4px;
+    margin-top: 12px !important;
+}
+
+.faq-section.faq-section--light .mt-5 {
+    margin-top: 42px !important;
+}
+
+.faq-section.faq-section--light .accordion-item {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #E4E4E7;
+}
+
+.faq-section.faq-section--light .accordion-item:first-child {
+    border-top: 1px solid #E4E4E7;
+}
+
+.faq-section.faq-section--light .accordion-button {
+    background-color: transparent;
+    color: #0B0B0F;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    padding: 17px 44px 17px 0;
+    box-shadow: none;
+}
+
+.faq-section.faq-section--light .accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: #0B0B0F;
+    padding-bottom: 10px;
+}
+
+/* The numerals are part of the dark design only. */
+.faq-section.faq-section--light .accordion-button > .fs-3 {
+    display: none;
+}
+
+/* Swap the +/− glyph for the Figma chevron. */
+.faq-section.faq-section--light .accordion-button::before {
+    content: "";
+    right: 4px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border: none;
+    border-right: 1.5px solid #111;
+    border-bottom: 1.5px solid #111 ;
+    transform: translateY(-70%) rotate(45deg);
+}
+
+.faq-section.faq-section--light .accordion-button:not(.collapsed)::before {
+    content: "";
+    transform: translateY(-30%) rotate(-135deg);
+}
+
+.faq-section.faq-section--light .accordion-body {
+    background: transparent;
+    color: #6B6B76;
+    font-size: 16.5px;
+    line-height: 1.62;
+    padding: 0 44px 18px 0;
+}
+
+.faq-section.faq-section--light .accordion-body.faq-rich a {
+    color: #FE4601;
+}
+
+.faq-section.faq-section--light .text-end {
+    text-align: left !important;
+    margin-top: 34px !important;
+}
+
+.faq-section.faq-section--light .fs-24 {
+    color: #FE4601;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .faq-section.faq-section--light {
+        padding-bottom: 60px;
+    }
+    .faq-section.faq-section--light .display-4 {
+        font-size: 26px !important;
+    }
+    .faq-section.faq-section--light .mt-5 {
+        margin-top: 28px !important;
+    }
+    .faq-section.faq-section--light .accordion-button {
+        font-size: 14px;
+        padding: 15px 36px 15px 0;
+    }
+    .faq-section.faq-section--light .accordion-body {
+        font-size: 13px;
+        padding-right: 36px;
+    }
+}
+
+
+
+.faq-section.faq-section--light .accordion-body p
+{
+    color:#111!important;
+}
+
+/* ============== Form — light ground variant ==============
+   The coral panel is unchanged; this only replaces the dark page wrapper
+   showing through around it. */
+
+.form-section--light {
+    background: #ffffff;
+    /* 100px of clear white between the coral CTA panel and the footer. */
+    padding-bottom: 100px;
+}
+
+/* ============== Form collage — Figma dimensions ============== */
+
+/* `:not(.desktop-none)` matters: the block ships a second .form-image for
+   mobile that is hidden by `.desktop-none` (one class). A bare
+   `.form-container .form-image` rule is two classes, so it would win and
+   force that mobile collage back on screen -- which is exactly what put a
+   sliver of the photo down the right edge of the panel. */
+.form-container .form-image:not(.desktop-none) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 496.40 x 658.4 with a 42px radius, per Figma. max-width keeps it from
+   overflowing its column on narrower viewports. */
+.form-container .form-image:not(.desktop-none) img {
+    width: 496.4px;
+    max-width: 100%;
+    height: 658.4px;
+    object-fit: cover;
+    border-radius: 42px;
+    display: block;
+}
+
+@media (max-width: 1399px) {
+    .form-container .form-image:not(.desktop-none) img {
+        height: 566px;
+    }
+}
+
+@media (max-width: 991px) {
+    .form-container .form-image:not(.desktop-none) img {
+        height: 480px;
+        border-radius: 32px;
+    }
+}
+
+

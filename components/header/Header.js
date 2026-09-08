@@ -10,7 +10,7 @@ export default function Topbar() {
             <div className="navbar-header">
               <Link className="navbar-brand" href="/">
                 <img
-                  src="/assets/img/logo.png"
+                  src="/assets/images/logo.svg"
                   className="logo logo-scrolled"
                   alt="Logo"
                 />
@@ -137,6 +137,8 @@ export default function Topbar() {
                 </li>
               </ul>
 
+             
+
               <Link
                 className="burger-menu desktop-none"
                 data-bs-toggle="offcanvas"
@@ -145,6 +147,12 @@ export default function Topbar() {
                 href="/#offcanvasExample"
               >
                 <img src="/assets/img/icon/menu.png" alt="Menu Png" />
+              </Link>
+            </div>
+
+            <div>
+               <Link className="btn-lets-talk mobile-none" href="/contact-us">
+                LET'S TALK
               </Link>
             </div>
           </header>

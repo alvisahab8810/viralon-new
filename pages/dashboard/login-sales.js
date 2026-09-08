@@ -33,8 +33,8 @@ export default function SalesLoginPage() {
   return (
     <div className="login-admin">
       <Head>
-        <link rel="stylesheet" href="/asets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/asets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bootstrap-admin.min.css" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
         <title>Salesperson Login</title>
       </Head>
 
