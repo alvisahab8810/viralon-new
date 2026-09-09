@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { openEnquiry } from "../common/EnquiryPopup";
 
 export default function Topbar() {
   return (
@@ -150,18 +151,27 @@ export default function Topbar() {
               </Link>
             </div>
 
+            {/* The pills used to route to /contact-us; they now open the CTA
+                enquiry form in a popup instead (components/common/EnquiryPopup).
+                Still anchors so the pill keeps its exact `.btn-lets-talk` look
+                and stays keyboard-reachable. */}
             <div className="header-cta">
-               <Link className="btn-lets-talk mobile-none" href="/contact-us">
+              <a
+                className="btn-lets-talk mobile-none"
+                href="/contact-us"
+                onClick={(e) => { e.preventDefault(); openEnquiry(); }}
+              >
                 LET'S TALK
-              </Link>
+              </a>
               {/* Figma's mobile bar is burger / logo / CTA, so the pill has to
                   exist below 1024 too -- the desktop one is `.mobile-none`. */}
-              <Link
+              <a
                 className="btn-lets-talk btn-lets-talk--mobile desktop-none"
                 href="/contact-us"
+                onClick={(e) => { e.preventDefault(); openEnquiry(); }}
               >
                 LET&apos;S TALK
-              </Link>
+              </a>
             </div>
           </header>
         </div>

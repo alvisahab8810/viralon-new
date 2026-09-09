@@ -1,7 +1,9 @@
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
 import Script from "next/script";
+import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
+import EnquiryPopup from "../components/common/EnquiryPopup";
 
 // ✅ The legacy jQuery/GSAP/Swiper/Bootstrap asset bundle used to live here as
 // next/script tags, but next/script inserts scripts via document.createElement
@@ -14,8 +16,17 @@ import { Toaster } from "react-hot-toast";
 // server-rendered <script defer> tags, where the browser's native HTML parser
 // enforces execution order per spec. See _document.js for details.
 
+// The enquiry popup belongs to the public marketing site only. The admin
+// dashboard, the post editor and the standalone campaign landing page (which
+// carries its own popup and no site header) are left alone.
+const NO_POPUP = ["/dashboard", "/posts", "/your-brands-bff", "/thank-you", "/test"];
+
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
+  const router = useRouter();
+  const showPopup = !NO_POPUP.some(
+    (p) => router.pathname === p || router.pathname.startsWith(p + "/")
+  );
 
   return (
     <>
@@ -60,6 +71,7 @@ function MyApp({ Component, pageProps }) {
 
       <SessionProvider session={pageProps.session}>
         {getLayout(<Component {...pageProps} />, pageProps)}
+        {showPopup && <EnquiryPopup key={router.asPath} />}
       </SessionProvider>
     </>
   );
