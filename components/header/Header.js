@@ -146,13 +146,21 @@ export default function Topbar() {
                 aria-controls=" offcanvasExample"
                 href="/#offcanvasExample"
               >
-                <img src="/assets/img/icon/menu.png" alt="Menu Png" />
+                <img src="/assets/img/icon/menu.svg" alt="Menu" />
               </Link>
             </div>
 
-            <div>
+            <div className="header-cta">
                <Link className="btn-lets-talk mobile-none" href="/contact-us">
                 LET'S TALK
+              </Link>
+              {/* Figma's mobile bar is burger / logo / CTA, so the pill has to
+                  exist below 1024 too -- the desktop one is `.mobile-none`. */}
+              <Link
+                className="btn-lets-talk btn-lets-talk--mobile desktop-none"
+                href="/contact-us"
+              >
+                LET&apos;S TALK
               </Link>
             </div>
           </header>

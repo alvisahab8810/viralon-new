@@ -304,22 +304,22 @@
     .accordion-portfolio-lists li::after {
       
         /* background: var(--bg-gradient); */
-        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+        background: linear-gradient(to right, #FE4601 0%, #0E0920 60%, #0E0920 100%)!important;
        
     }
      
 .accordion-portfolio-lists li:nth-child(4)::after {
     /* background: #6a850b; */
-    background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+    background: linear-gradient(to right, #FE4601 0%, #0E0920 60%, #0E0920 100%)!important;
 }
 
     .accordion-portfolio-lists li:nth-child(3)::after {
         /* background: #bccd7e; */
-        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+        background: linear-gradient(to right, #FE4601 0%, #0E0920 60%, #0E0920 100%)!important;
     }
 
     .accordion-portfolio-lists li:nth-child(2)::after {
-        background: linear-gradient(to right, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%)!important;
+        background: linear-gradient(to right, #FE4601 0%, #0E0920 60%, #0E0920 100%)!important;
     }
 
 
@@ -329,18 +329,18 @@
 
     .mob-dropdown button::after {
         right: 0!important;
-        filter: brightness(0.1) invert(0)!important;
+        /* the chevron is a dark SVG data-URI; inverted so it reads on the
+           dark sheet like the rest of the type */
+        filter: brightness(0) invert(1)!important;
         left: unset!important;
         background-color: unset!important;
     }
 
     .mob-dropdown .accordion-button {
         padding: 10px 0;
-        font-weight: bold;
-        font-size: 13px;
-        color: #373737!important;
-
-        
+        font-weight: 600;
+        font-size: 14px;
+        color: #ffffff!important;
     }
 
     .mob-dropdown .accordion-button:focus {
@@ -465,14 +465,28 @@
         padding-bottom: 50px;
     }
 
+    /* Site theme: #19132F bar over a #0E0920 body, white type, orange accent.
+       The old blue/green gradient header and white sheet were left over from
+       the previous design. */
     .mob-canvas {
-        width: 70%;
+        width: 78%;
+        background: #0E0920;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
     .mob-canvas .offcanvas-header {
-        background-color: #EE4C49;
-        border-bottom: 1px solid #ddd;
-        background: linear-gradient(90deg, #5A57FB 29%, #02EBAD 95%);
-
+        background: #19132F;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 18px 20px;
+    }
+    /* Bootstrap paints the accordion and its panels white; the sheet is dark
+       now, so every one of those surfaces has to be cleared. */
+    .mob-canvas .accordion,
+    .mob-canvas .accordion-item,
+    .mob-canvas .accordion-button,
+    .mob-canvas .accordion-body,
+    .mob-canvas .accordion-collapse {
+        background: transparent;
+        background-color: transparent;
     }
 
     .desk-logo {
@@ -490,14 +504,43 @@
     }
 
     .mob-menus ul.nav.nav-pills > li {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .mob-menus ul li a {
         padding-left: 0;
-        color: #373737!important;
-        font-weight: bold;
-        font-size: 13px;
+        color: #ffffff!important;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    /* The nested service links read as a second level, so they sit dimmer than
+       the top-level items and pick up the site orange on tap. */
+    .mob-canvas .accordion-body .nav-link {
+        color: rgba(255, 255, 255, 0.66)!important;
+        font-weight: 500!important;
+        font-size: 13px!important;
+    }
+    .mob-canvas .accordion-body .nav-link:hover,
+    .mob-canvas .accordion-body .nav-link:focus {
+        color: #FE4601!important;
+    }
+    .mob-menus ul li a:hover {
+        color: #FE4601!important;
+    }
+    /* .nav-pills gives the active/focused link a filled pill -- a white slab
+       on the dark sheet. Cleared in every state; the orange text is the only
+       active cue needed here. */
+    .mob-canvas .nav-link,
+    .mob-canvas .nav-link:hover,
+    .mob-canvas .nav-link:focus,
+    .mob-canvas .nav-link:active,
+    .mob-canvas .nav-pills .nav-link.active,
+    .mob-canvas .nav-pills .show > .nav-link {
+        background: transparent!important;
+        background-color: transparent!important;
+        border-radius: 0;
+        box-shadow: none!important;
+        outline: none;
     }
 
     .mob-dropdown .accordion-button:not(.collapsed) {
@@ -519,8 +562,11 @@
         padding: 9px;
         transform: scale(.9);
     }
+    /* logo.svg is a two-line lockup, so a width alone made it ~90px tall.
+       Sized by height instead, to match the navbar mark. */
     .mob-canvas .desk-logo img {
-        width: 87px;
+        width: auto;
+        height: 34px;
     }
 
     .faq-section .text-orange {
@@ -768,7 +814,132 @@ footer .before-bg::before {
 
 
 @media(max-width:560px){
+    .sixparts-head {
+        margin-bottom: 15px;
+    }
+        .sixparts-section .sixparts-intro {
+        display: block;
+        font-family: 'SF Pro Display';
+        color: #86868B;
+        line-height: 23px;
+        font-size: 18.4px;
+        font-weight: 700;
+        margin: 7px 0 30px;
+        max-width: 460px;
+    }
 
+        .sixparts-section .sixparts-heading {
+        font-weight: 700;
+        font-size: 43.1px;
+        line-height: 48.01px;
+    }
+
+    .sixparts-section {
+    background: #F5F5F7;
+}
+
+    .sixparts-section {
+        padding: 50px 0 50px;
+    }
+
+
+    .weknowm-section .weknowm-heading {
+           color: #0B0B0F;
+           font-weight: 700;
+           letter-spacing: 0.14px;
+           font-size: 43.1px;
+           line-height: 48.01px;
+           margin: 0 0 15px;
+}
+
+        .weknowm-section .weknowm-body {
+        color: #86868B;
+        /* text-align: justify; */
+        line-height: 23px;
+        font-size: 18.4px;
+        font-weight: 700;
+        letter-spacing: 0.23px;
+        margin: 0 0 20px;
+}
+
+.weknowm-section .weknowm-body--accent {
+    color: #FE4601;
+    margin-bottom: 0;
+    /* font-size: 15px; */
+}
+    .weknowm-section .weknowm-eyebrow {
+    color: #FE4601;
+    font-size: 20.5px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0.23px;
+    margin: 0 0 10px;
+}
+
+    .weknowm-photo {
+    height: 311px;
+}
+
+.weknowm-section {
+    padding: 50px 0 50px;
+}
+        .hero-stat-badge {
+        padding: 23px 25px;
+        font-size: 18.4px;
+        background: linear-gradient(180deg, #181818 0%, #4A3096 100%);
+        backdrop-filter: blur(2.36px);
+        border: none;
+        border-radius: 20px;
+        line-height: 23px;
+    }
+
+        .hero-strike::after {
+        height: 15px;
+              left: -2.5%;
+        top: 63%;
+    }
+
+    .hero-sub {
+        font-size: 16.4px;
+        text-align: center;
+        letter-spacing: 0.23px;
+        line-height: 23px;
+        margin-bottom: 30px;
+    }
+
+    .hero-wheel-desc {
+    font-size: 18px;
+}
+
+.hero-wheel-bg {
+    fill: #0e0920!important;
+}
+
+    .hero-wheel-part{
+        font-size:20px!important;
+    }
+
+    .navbar {
+    background-color: #0e0920;
+}
+.btn-lets-talk::before{
+display: none;
+}
+
+
+    .hero-heading {
+        font-size: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+.btn-lets-talk.btn-lets-talk--mobile{
+            display: inline-flex;
+        padding: 7px 13px;
+        font-size: 10px;
+        background: #0e0920;
+        border: 1px solid #754CDA;
+}
 
     .web-development-coverflow .swiper-slide {
 
@@ -986,8 +1157,12 @@ footer .before-bg::before {
         font-size: 16px;
     }
     .container {
-        max-width: 95%;
+        max-width: 100%;
     }
+
+    .weknowm-photo-frame {
+    margin-bottom: 30px;
+}
     
     footer .before-bg::before {
         display: none;;
@@ -1142,8 +1317,8 @@ footer .before-bg::before {
     } */
 
     #smm .accrdion-portfolio-area .banner-one-item h4 {
-        border: 1px solid #FF6F61!important;
-        color: #FF6F61!important;
+        border: 1px solid #FE4601!important;
+        color: #FE4601!important;
     }
 
     .text-end.mt-5 {
@@ -1177,9 +1352,18 @@ footer .before-bg::before {
     .scroller__inner{
         padding:0;
     }
-    .company-design-area h2{
-        margin-bottom: 25px;;
+      .company-design-area h2 {
+        margin-bottom: 60px;
+        font-size: 12px;
+        line-height: 11px;
+        text-align: center;
+        letter-spacing: 8px;
     }
+
+    section.partnering-section {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
 
     .strap-section {
         height: 40px !important;
@@ -1213,7 +1397,7 @@ footer .before-bg::before {
     }
 
     .navbar-brand>img {
-        max-height: 35px!important;
+        max-height: 40px!important;
     }
     .banner-one-item h4 {
     
@@ -1679,8 +1863,8 @@ section.work-area .py-5 {
 }
 
 #smm .bg-dark .banner-one-item h4 {
-    border: 1px solid #FF6F61;
-    color: #FF6F61;
+    border: 1px solid #FE4601;
+    color: #FE4601;
 }
 
 .smm-hero-section img {
@@ -1754,7 +1938,7 @@ section.work-area .py-5 {
 .blog-area .item .date span {
     display: block;
     font-size: 13px;
-    background: #5138ee;
+    background: #FE4601;
     color: white;
     padding: 0 14px;
     border-radius: 0 0 8px 8px;
@@ -1925,6 +2109,47 @@ ul.import-list li {
 
 @media(max-width:540px){
 
+        .howruns-card {
+        min-height: 585px;
+    }
+
+    .sixparts-section .sixparts-title {
+    font-size: 20.2px;
+    line-height: 25px;
+}
+
+.sixparts-section .sixparts-desc {
+    font-size: 15px;
+    line-height: 13.9px;
+}
+
+        .broken-media {
+        height: 315px;
+    }
+
+    .workshow-head, .broken-head {
+        margin-bottom: 40px;
+    }
+
+    .broken-intro {
+        text-align: left;
+        line-height: 23px;
+        flex-basis: auto;
+        font-size: 18.4px;
+        color: #B8B8B8 !important;
+    }
+.broken-section {
+        padding-top:0px;
+    }
+        .workshow-media {
+        border-radius: 20px;
+    }
+
+        .workshow-section .workshow-heading, .broken-section .broken-heading {
+             font-size: 43.1px;
+        line-height: 48.01px
+    }
+
     #prouduction .core-bx {
     height: 172px;
 }
@@ -1956,6 +2181,122 @@ ul.import-list li {
 
     .seo-core-task .core-bx {
         height: 244px;
+    }
+
+        .howruns-section .howruns-heading {
+        font-size: 43.1px;
+        line-height: 48.01px;
+    }
+
+        .howruns-section .howruns-intro {
+        text-align: left;
+        line-height: 23px;
+        flex-basis: auto;
+        font-size: 18.4px;
+        color: #86868B !important;
+    }
+.builditfor-section .builditfor-desc {
+        text-align: left;
+        line-height: 23px;
+        flex-basis: auto;
+        font-size: 18.4px;
+        color: #86868B !important;
+    }
+    .soosocial-section {
+        padding: 50px 0px;
+        padding-top: 20px !important;
+    }
+    .builditfor-grid {
+        gap: 40px;
+    }
+    .howruns-head {
+       
+        margin-bottom: 40px;
+    }
+
+        .builditfor-section .builditfor-heading {
+        margin-bottom: 15px;
+        font-size: 43.1px;
+        line-height: 48.01px;
+    }
+
+        .soosocial-section .soosocial-heading {
+        font-size: 43.1px;
+        line-height: 48.01px;
+    }
+
+    .soosocial-section .soosocial-intro {
+        margin: 0;
+        text-align: left;
+        line-height: 23px;
+        flex-basis: auto;
+        font-size: 18.4px;
+        color: #86868B !important;
+    }
+
+        .soosocial-head {
+        margin-bottom: 40px;
+    }
+
+    .faq-section.faq-section--light {
+        padding: 50px 0 50px;
+    }
+
+    .faq-section.faq-section--light .text-orange {
+        color: #FE4601;
+        font-size: 20.5px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0.23px;
+    }
+
+          .faq-section.faq-section--light .display-4 {
+        font-size: 43.1px !important;
+        line-height: 48.01px;
+        margin-bottom: 30px !important;
+    }
+
+        .faq-section.faq-section--light .accordion-button {
+        font-size: 18px;
+        padding: 15px 36px 15px 0;
+    }
+
+        .faq-section.faq-section--light .accordion-body {
+        font-size: 15px;
+        padding-right: 0;
+    }
+
+        .footer-para {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 38.25px;
+        margin-top: 0px;
+        margin-bottom: 12px;
+    }
+        .footer .logo img {
+        width: 65px;
+    }
+
+    footer {
+    border-radius: 0;
+    padding-bottom: 50px;
+    background-color: #0E0920;
+}
+.footer-2nd {
+    background-color: #0e0920;
+}
+
+.bg-linear {
+    width: 95%;
+    border-radius: 15px;
+}
+.form-image{
+    display: none!important;
+}
+
+    .parallax-section .ptb-80 {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
     }
 }
 

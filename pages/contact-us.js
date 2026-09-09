@@ -24,7 +24,7 @@ export default function ContactUs({ faq }) {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-      <PageFaq faq={faq} topClass="pt-80" />
+      <PageFaq faq={faq} topClass="pt-80" variant="light" />
       <Footer />
     </div>
   );

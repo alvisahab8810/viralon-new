@@ -2,7 +2,6 @@ import React from 'react'
 import Topbar from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import Offcanvas from "../../components/header/Offcanvas";
-import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import CTA from "../../components/home/CTA";
 import Hero from '../../components/our-services/digital-marketing/Hero'
@@ -18,11 +17,8 @@ export default function DigitalMarketing({ faq }) {
         <Hero/>
         <Strap/>
         <Partnering />
-        <div className='main-class container'>
-        <Testimonials />
-        <Form />
-        </div>
-        <PageFaq faq={faq} topClass="pt-80" />
+      <Form variant="light" />
+        <PageFaq faq={faq} topClass="pt-80" variant="light" />
         <CTA />
         <Footer/>
     </div>

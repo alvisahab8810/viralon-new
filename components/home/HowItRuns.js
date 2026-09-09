@@ -17,6 +17,7 @@ const STEPS = [
     title: "Positioning, brand,\nwebsite, tracking",
     desc: "Positioning settled and the brand built for the customer you actually want. Website built or improved. Tracking wired in before a single rupee is spent. Nothing runs blind.",
     img: "/assets/images/how-runs/first-card.webp",
+    imgMobile: "/assets/images/how-runs/first-card-mobile.webp",
     flip: false,
   },
   {
@@ -25,6 +26,7 @@ const STEPS = [
     title: "Paid ads, social\ncontent, first leads",
     desc: "Ads go live and social content starts running. This is the part that moves fastest — the first qualified enquiries land here, and every rupee is traced back to what caused it.",
     img: "/assets/images/how-runs/second-card.webp",
+    imgMobile: "/assets/images/how-runs/second-card-mobile.webp",
     flip: true,
   },
   {
@@ -33,6 +35,7 @@ const STEPS = [
     title: "Search, content,\nauthority",
     desc: "Search is slow to start and impossible to buy your way out of later. We build it from month one, so the enquiries keep arriving long after the ad budget stops.",
     img: "/assets/images/how-runs/third-card.webp",
+    imgMobile: "/assets/images/how-runs/third-card-mobile.webp",
     flip: false,
   },
   {
@@ -41,6 +44,7 @@ const STEPS = [
     title: "Every part feeding\nthe next one",
     desc: "Brand makes the ads cheaper. Content feeds search. Tracking tells all of them where to push. This is the point where the machine stops needing to be pushed.",
     img: "/assets/images/how-runs/fourth.webp",
+    imgMobile: "/assets/images/how-runs/fourth-card-mobile.webp",
     flip: true,
   },
 ];
@@ -66,8 +70,14 @@ export default function HowItRuns() {
               key={step.num}
             >
               <img
-                className="howruns-card-bg"
+                className="howruns-card-bg howruns-card-bg--desktop"
                 src={step.img}
+                alt=""
+                aria-hidden="true"
+              />
+              <img
+                className="howruns-card-bg howruns-card-bg--mobile"
+                src={step.imgMobile}
                 alt=""
                 aria-hidden="true"
               />

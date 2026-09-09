@@ -88,7 +88,7 @@ export default function BlogList() {
           {tag ? (
             <p className="bl-section-sub">
               Showing posts tagged <span className="bl-brand">#{tag}</span>&nbsp;&nbsp;
-              <button onClick={() => { setTag(""); load("", "", "", 1); router.push("/blogs", undefined, { shallow: true }); }} style={{ background: "none", border: "none", color: "#EE4C49", fontSize: 13, fontWeight: 600, cursor: "pointer", textDecoration: "underline", padding: 0 }}>
+              <button onClick={() => { setTag(""); load("", "", "", 1); router.push("/blogs", undefined, { shallow: true }); }} style={{ background: "none", border: "none", color: "#FE4601", fontSize: 13, fontWeight: 600, cursor: "pointer", textDecoration: "underline", padding: 0 }}>
                 Clear filter
               </button>
             </p>
@@ -119,8 +119,8 @@ export default function BlogList() {
               style={{
                 padding: "6px 16px", borderRadius: 20, border: "1.5px solid",
                 fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all .15s",
-                borderColor: !cat ? "#EE4C49" : "#E4E7EC",
-                background: !cat ? "#EE4C49" : "#fff",
+                borderColor: !cat ? "#FE4601" : "#E4E7EC",
+                background: !cat ? "#FE4601" : "#fff",
                 color: !cat ? "#fff" : "#0C141D",
               }}
             >All</button>
@@ -131,8 +131,8 @@ export default function BlogList() {
                 style={{
                   padding: "6px 16px", borderRadius: 20, border: "1.5px solid",
                   fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all .15s",
-                  borderColor: cat === c ? "#EE4C49" : "#E4E7EC",
-                  background: cat === c ? "#EE4C49" : "#fff",
+                  borderColor: cat === c ? "#FE4601" : "#E4E7EC",
+                  background: cat === c ? "#FE4601" : "#fff",
                   color: cat === c ? "#fff" : "#0C141D",
                 }}
               >{c}</button>

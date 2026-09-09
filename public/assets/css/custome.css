@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
@@ -9,8 +9,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
 
 /* SF Pro Display, self-hosted from public/assets/fonts/sf-pro-display.
-   Only Regular, Medium and Bold exist as upright faces in that folder — the
-   other files are italic-only — so 600 and 800 fall back to Bold. */
+   Only Regular, Medium and Bold exist as upright faces in that folder â€” the
+   other files are italic-only â€” so 600 and 800 fall back to Bold. */
 @font-face {
     font-family: "SF Pro Display";
     src: url("/assets/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
@@ -74,6 +74,42 @@
 
 
 
+
+/* ==============================================================
+   # Site theme tokens
+   ---------------------------------------------------------------
+   style.css still ships the old template palette (indigo #5138ee /
+   mint #02ebad on a charcoal #1d1d1d body, set in Manrope). The home
+   page was rebuilt off those tokens with its own hard-coded values,
+   so every other page was left on the old theme.
+
+   These redefinitions point the same tokens at the home page palette
+   so the rest of the site inherits it. Only colour and type values
+   move -- no spacing, sizing or layout token is touched, so nothing
+   reflows.
+=================================================================== */
+:root {
+    /* Home page sets body copy in SF Pro Display; headings are already
+       forced to it by style.css:290. */
+    --font-default: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Dark surfaces: section body / navbar-and-raised-panel. */
+    --dark: #0E0920;
+    --dark-secondary: #19132F;
+
+    /* Accent orange and the CTA blue that goes with it. */
+    --color-primary: #FE4601;
+    --color-secondary: #1E77F2;
+    --bg-gradient: linear-gradient(45deg, #FE4601 0%, #1E77F2 100%);
+
+    /* Light surfaces and type. */
+    --bg-gray: #EFEFF0;
+    --color-heading: #0B0B0F;
+    --color-paragraph: #6b6b70;
+
+    --box-shadow-secondary: 0 10px 30px 0 rgba(254, 70, 1, 0.28);
+}
 
 body{
     overflow: auto!important;
@@ -184,6 +220,55 @@ header{
         /* padding: 25px 0px; */
         align-items: center;
 }
+/* Mobile bar, per Figma: burger left, logo centred, LET'S TALK right.
+   The markup order is logo -> collapse(burger) -> CTA, and it has to stay that
+   way for desktop, so the three header children are re-ordered here instead.
+   1023 is the site's own switch point -- responsive.css flips .mobile-none /
+   .desktop-none at exactly that width, so the burger and the mobile pill both
+   appear here and nowhere else. */
+@media (max-width: 1023px) {
+    header > .navbar-header {
+        order: 2;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+    }
+    header > .navbar-collapse {
+        order: 1;
+        flex: 0 0 auto;
+        width: auto;
+    }
+    header > .header-cta {
+        order: 3;
+        flex: 0 0 auto;
+    }
+    /* two classes: responsive.css turns `.desktop-none` into display:block at
+       this width and loads after this file, so a single class loses. */
+    .btn-lets-talk.btn-lets-talk--mobile {
+        display: inline-flex;
+        margin-left: 0;
+        padding: 7px 18px;
+        font-size: 11px;
+        letter-spacing: 0.4px;
+    }
+    .burger-menu {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+@media (max-width: 420px) {
+    /* two classes: responsive.css turns `.desktop-none` into display:block at
+       this width and loads after this file, so a single class loses. */
+    .btn-lets-talk.btn-lets-talk--mobile {
+        display: inline-flex;
+        padding: 6px 13px;
+        font-size: 10px;
+    }
+    .navbar-brand > img {
+        max-height: 32px;
+    }
+}
+
 .accrdion-portfolio-area1 {
     padding-top: 35px;
 }
@@ -301,7 +386,7 @@ header{
     font-size: 12px;
 }
 .bg-linear {
-    /* background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%); */
+    /* background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%); */
         background: #FE4601;
 
     width: 98%;
@@ -337,7 +422,7 @@ header{
     padding-bottom: 0px;
 }
 .bg-linear1 {
-    background: linear-gradient(90deg, #5A57FB 29%, #02EBAD 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
 
     width: 98%;
     margin: auto;
@@ -407,7 +492,7 @@ header{
     color: #ff5a05;
     color: transparent;
     opacity: 0.8;
-    -webkit-text-stroke: 1px #02EBAD;
+    -webkit-text-stroke: 1px #FE4601;
 
 }
 
@@ -532,10 +617,14 @@ p.fris-para {
     position: relative;
     /* padding-left: 150px; */
 }
+/* clamp, not a flat 70.2px: the !important here outranks every plain
+   `.form-content h1` size in responsive.css, so a fixed value simply ran
+   "READY TO COLLABORATE?" off the edge of the panel on tablets and phones.
+   The clamp keeps the Figma size on desktop and scales below it. */
 .form-content h1 {
     font-weight: bold;
     color: white;
-    font-size: 70.2px !important;
+    font-size: clamp(26px, 5vw, 70.2px) !important;
     line-height: 100%;
     letter-spacing: 0px;
     text-align: center;
@@ -544,7 +633,7 @@ p.fris-para {
 .form-content p {
     color: white;
     letter-spacing: 7.2px !important;
-    font-size: 21.6px !important;
+    font-size: clamp(14px, 2.2vw, 21.6px) !important;
     font-weight: 500;
     margin-bottom: 50px !important;
     text-align: center;
@@ -672,7 +761,7 @@ p.fris-para {
 .lets-cta-section .banner-one-item h4 {
     border: none;
     padding: 0;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -777,7 +866,7 @@ ul.import-list li {
     height: 40px;
     width: 40px;
     border-radius: 50px;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     background: #FE4601;
     padding: 0;
     display: flex
@@ -809,7 +898,7 @@ ul.import-list li {
     background: transparent;
     padding: 0;
     margin-right: 40px;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -881,8 +970,8 @@ ul.import-list li {
 .view-more{
     padding:10px 20px;
     background-color: none;
-    border:1px solid #FF6F61;
-    color:#FF6F61;
+    border:1px solid #FE4601;
+    color:#FE4601;
     border-radius: 0;
     font-size: 16px;
     font-weight: normal;
@@ -892,7 +981,7 @@ ul.import-list li {
 
 
 .view-more:hover{
-    color:#FF6F61;
+    color:#FE4601;
 
 }
 
@@ -964,7 +1053,7 @@ ul.import-list li {
     width:calc(33.33% - 10px);
     height:380px;
     border: 1px solid;
-    border-image: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    border-image: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     border-image-slice: 1;
     display: flex;
     justify-content: center;
@@ -975,7 +1064,7 @@ ul.import-list li {
 .working-bx-3 > div h2{
     font-size: 40px;
     color:white;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1048,7 +1137,7 @@ ul.import-list li {
     left: -3px;
     height: 50px;
     width: 50px;
-    background: #02EBAD;
+    background: #FE4601;
     border-radius: 50px;
     display: flex;
     align-items: center;
@@ -1079,7 +1168,7 @@ ul.import-list li {
 
 .blog-area.single .item .blog-item-box .meta li i {
 
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -1185,7 +1274,7 @@ ul.import-list li {
 }
 
 .main-nav .navbar{
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%)!important;
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%)!important;
     position: fixed;
     top: 0;
  }
@@ -1263,7 +1352,7 @@ ul.import-list li {
 }
 
 .strap-section {
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     height: 72px!important;
     display: flex;
     justify-content: center;
@@ -1296,7 +1385,7 @@ ul.import-list li {
     /* margin-bottom: 80px; */
 }
 .main-class .bg-linear{
-    background: linear-gradient(90deg, #5A57FB 29%, #02EBAD 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     border-radius: 60px;
 }
 
@@ -1316,7 +1405,7 @@ ul.import-list li {
     transform: translate(-50%, -50%);
 }
 .main-class .form-section .bg-linear {
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
 }
 .main-class .form-content {
     padding: 2rem;
@@ -1349,7 +1438,7 @@ ul.import-list li {
 }
 .faq-section .text-orange {
     padding: 0;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -1405,7 +1494,12 @@ ul.import-list li {
 }
 
 .core-task-bg{
-    background-image: url(../img/seo/core-task.webp);
+    /* The exported artwork is the old indigo #5A57FB. Rather than swap the
+       asset (that would be a design change), it is tinted toward the site's
+       #0E0920 so the band sits in the same palette as everything around it. */
+    background-image:
+        linear-gradient(rgba(14, 9, 32, 0.8), rgba(14, 9, 32, 0.8)),
+        url(../img/seo/core-task.webp);
     width: 100%;
     height: auto;
 }
@@ -1542,17 +1636,17 @@ ul.import-list li {
 /* ================ process csss--------------- */
 
 .step-box-orange {
-    background-color: #FF6F61;
+    background-color: #FE4601;
 }
 
 .step-box {
-    /* background-color: #FF6F61; */
+    /* background-color: #FE4601; */
     border-radius: 10px;
     padding: 15px;
-    border:2px solid #FF6F61;
+    border:2px solid #FE4601;
 }
 .step-box h2 {
-    color: #FF6F61;
+    color: #FE4601;
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 5px;
@@ -1574,7 +1668,7 @@ ul.import-list li {
 }
 
 .process-section .process-heading {
-    color: #FF6F61;
+    color: #FE4601;
     line-height: 1;
     font-size: 40px;
     font-weight: 500;
@@ -1660,7 +1754,7 @@ ul.import-list li {
 
 
 .significance-section{
-background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
 width: 100%;;
 }
 
@@ -1703,7 +1797,7 @@ width: 100%;;
 
 
 .solid-reasons-section .process-heading {
-    color: #FF6F61;
+    color: #FE4601;
     line-height: 1;
     font-size: 40px;
     font-weight: 500;
@@ -1715,7 +1809,7 @@ width: 100%;;
     color: white;
 }
 .reasons-bxx h3 {
-    color: #FF6F61;
+    color: #FE4601;
     font-size: 24px;
     margin-bottom: 5px;
 }
@@ -1903,7 +1997,7 @@ figure.image-2 img {
 
 .blog-area .item .info .meta ul li i {
     margin-right: 5px;
-    color: #5138ee;
+    color: #FE4601;
     font-weight: 3;
     font-size: 17px;
     position: relative;
@@ -1957,7 +2051,7 @@ figure.image-2 img {
 .blog-area .item .date span {
     display: block;
     font-size: 14px;
-    background: #5138ee;
+    background: #FE4601;
     color: white;
     padding: 0 19px;
     border-radius: 0 0 8px 8px;
@@ -1996,7 +2090,7 @@ figure.image-2 img {
 
 
 .devider {
-    background: #02EBAD!important;
+    background: #FE4601!important;
 }
 .devider {
     display: inline-block;
@@ -2297,7 +2391,7 @@ img.shape.p-absolute {
   
   /* When accordion is open, show minus */
   .faq-section .accordion-button:not(.collapsed)::before {
-    content: "−";
+    content: "âˆ’";
   }
   footer {
     position: relative;
@@ -2316,7 +2410,7 @@ img.shape.p-absolute {
     height: 100%;
     top: 0;
     /* background-color: #262525; */
-        background-image: /* 49% वाली dark overlay layer */ linear-gradient(rgba(14, 9, 32, 0.49), rgba(14, 9, 32, 0.49)), /* main linear gradient */ linear-gradient(229deg, #FB5C1F 0%, #0E0920 35%, #0E0920 70%, #FB5D1F 100%);
+        background-image: /* 49% à¤µà¤¾à¤²à¥€ dark overlay layer */ linear-gradient(rgba(14, 9, 32, 0.49), rgba(14, 9, 32, 0.49)), /* main linear gradient */ linear-gradient(229deg, #FB5C1F 0%, #0E0920 35%, #0E0920 70%, #FB5D1F 100%);
     z-index: -1;
 }
 
@@ -2526,7 +2620,7 @@ img.shape.p-absolute {
     position: absolute;
     height: 30px;
     width: 30px;
-    border: 1px solid #02EBAD;
+    border: 1px solid #FE4601;
     border-radius: 50px;
     left: 0;
     top: 50%;
@@ -2545,7 +2639,7 @@ img.shape.p-absolute {
 }
 
 .employee_section .swiper-pagination-bullet-active{
-    background-color:#02EBAD !important;
+    background-color:#FE4601 !important;
 }
 
 .jobs-hero-section {
@@ -2657,7 +2751,7 @@ img.shape.p-absolute {
     padding: 10px 30px;
     position: relative;
     z-index: 1;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     border: none;
     color: white;
     margin-top: 20px;
@@ -2696,7 +2790,7 @@ img.shape.p-absolute {
 
 /* Base gradient text with animated background */
 .working-bx-3 > div h2 {
-    background: linear-gradient(90deg, #FF6F61, #FBA065, #FF6F61);
+    background: linear-gradient(90deg, #FE4601, #FF936B, #FE4601);
     background-size: 300% auto;
     background-position: 0% center;
     background-clip: text;
@@ -2977,7 +3071,7 @@ img.shape.p-absolute {
 
 .our-contact-overlay p {
     margin-bottom: 0;
-    background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+    background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -3008,7 +3102,7 @@ img.shape.p-absolute {
       margin-bottom: 0;
       border: none;
       padding: 0;
-      background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+      background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
@@ -3066,7 +3160,7 @@ img.shape.p-absolute {
     .have-questions button {
       border: none;
       border-radius: 30px;
-      background: linear-gradient(90deg, #FF6F61 29%, #FBA065 95%);
+      background: linear-gradient(90deg, #FE4601 0%, #FF936B 100%);
       color: #fff;
       font-weight: 500;
       padding: 10px 40px;
@@ -3362,7 +3456,11 @@ img.shape.p-absolute {
     font-weight: 400;
 }
 
-@media (max-width: 1199px) {
+/* The site's own responsive.css works on a 1385 / 1240 / 1023 / 768 / 560
+   grid, so every new section steps at the same widths. Stepping at 1199
+   instead left a dead band between 1200 and 1240 where the legacy rules had
+   already changed but these had not. */
+@media (max-width: 1239px) {
     .hero-grid {
         gap: 26px;
     }
@@ -3383,15 +3481,19 @@ img.shape.p-absolute {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
     .hero-grid {
-        flex-direction: column;
+        /* Figma's mobile hero leads with the wheel and puts the copy under it.
+           The DOM stays copy-first for reading/SEO order, so the swap is done
+           with column-reverse rather than by moving the markup. */
+        flex-direction: column-reverse;
         flex-wrap: wrap;
         gap: 30px;
     }
     .hero-wheel-wrap {
         flex: 0 0 auto;
         max-width: 460px;
+        margin: 0 auto;
     }
     .hero-copy {
         flex: 0 0 auto;
@@ -3415,6 +3517,32 @@ img.shape.p-absolute {
     .hero-stat-figure {
         height: 28px;
         vertical-align: -7px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section-new {
+        padding: 40px 0 30px;
+    }
+    .hero-heading {
+        font-size: 34px;
+        line-height: 36px;
+    }
+    .hero-sub {
+        font-size: 15px;
+        line-height: 21px;
+        margin-bottom: 24px;
+    }
+    .hero-strike::after {
+        height: 9px;
+    }
+    .hero-stat-badge {
+        padding: 18px 18px;
+        font-size: 13.5px;
+    }
+    .hero-stat-figure {
+        height: 22px;
+        vertical-align: -5px;
     }
 }
 
@@ -3535,9 +3663,12 @@ img.shape.p-absolute {
     color: #ffffff;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1239px) {
+    /* line-height has to step with the size -- the base 60px is set in px, so
+       on its own it leaves a huge gap between the two heading lines. */
     .weknow-section .weknow-heading {
         font-size: 38px;
+        line-height: 44px;
     }
     .weknow-card {
         flex-basis: 275px;
@@ -3551,12 +3682,13 @@ img.shape.p-absolute {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
     .weknow-stage-inner {
         padding: 54px 0 64px;
     }
     .weknow-section .weknow-heading {
         font-size: 32px;
+        line-height: 38px;
         margin-bottom: 32px;
     }
     /* The photo is framed tighter so the subject stays visible behind the
@@ -3578,15 +3710,88 @@ img.shape.p-absolute {
 @media (max-width: 575px) {
     .weknow-section .weknow-heading {
         font-size: 27px;
+        line-height: 32px;
+        margin-bottom: 24px;
     }
     .weknow-card {
         max-width: 100%;
         padding: 36px 24px 28px;
     }
+    .weknow-card p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   We Know â€” phone layout (<WeKnowMobile />).
+   Figma's mobile design is a different composition, not the desktop one
+   reflowed: the photo becomes a card at the top and the two coloured bubbles
+   become plain stacked paragraphs. So the two components swap at 1023px --
+   the same width responsive.css uses for .mobile-none / .desktop-none.
+   -------------------------------------------------------------------------- */
+
+.weknowm-section {
+    display: none;
+    background: #ffffff;
+    padding: 30px 0 46px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.weknowm-photo-frame {
+    border-radius: 26px;
+    overflow: hidden;
+    margin-bottom: 26px;
+}
+.weknowm-photo {
+    display: block;
+    width: 100%;
+    height: 232px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.weknowm-section .weknowm-eyebrow {
+    color: #FE4601;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0 0 10px;
+}
+
+.weknowm-section .weknowm-heading {
+    color: #0B0B0F;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    margin: 0 0 22px;
+}
+
+.weknowm-section .weknowm-body {
+    color: #8A8A93;
+    font-size: 14px;
+    line-height: 1.62;
+    font-weight: 500;
+    margin: 0 0 20px;
+}
+.weknowm-section .weknowm-body--accent {
+    color: #FE4601;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1023px) {
+    /* Only one of the pair renders at a time. */
+    .weknow-section {
+        display: none;
+    }
+    .weknowm-section {
+        display: block;
+    }
 }
 
 /* ==========================================================================
-   "The 6 Parts Of Machine" — Apple-style horizontal scroll-snap gallery.
+   "The 6 Parts Of Machine" â€” Apple-style horizontal scroll-snap gallery.
    Not autoplay: native overflow-x scroll + scroll-snap, driven by drag or
    the prev/next buttons next to the heading.
    ========================================================================== */
@@ -3610,6 +3815,13 @@ img.shape.p-absolute {
     line-height: 60px;
     letter-spacing: -0.8px;
     margin: 0;
+}
+
+/* Both are phone-only; the desktop composition keeps the arrows in the head
+   and has no lead-in line. Turned on again at <=1023. */
+.sixparts-section .sixparts-intro,
+.sixparts-nav-below {
+    display: none;
 }
 
 .sixparts-accent {
@@ -3752,9 +3964,9 @@ img.shape.p-absolute {
 }
 
 .sixparts-card {
-    flex: 0 0 300px;
-    max-width: 300px;
-    min-height: 430px;
+    flex: 0 0 372px;
+    max-width: 372px;
+    min-height: 537px;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     border-radius: 22px;
@@ -3767,50 +3979,59 @@ img.shape.p-absolute {
 
 .sixparts-tag {
     display: inline-block;
-    font-size: 13px;
+    font-size: 16.9px;
     font-weight: 700;
+    line-height: 21px;
     color: #FE4601;
     margin-bottom: 10px;
+    letter-spacing: -0.37px;
 }
 
 .sixparts-section .sixparts-title {
-    font-size: 19px;
+    font-size: 27.2px;
     font-weight: 700;
-    line-height: 1.35;
-    color: #0B0B0F;
+    line-height: 32px;
+    color: #1D1D1F;
     margin: 0 0 10px;
 }
 
 .sixparts-section .sixparts-desc {
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: #6b6b70;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    color: #1D1D1F;
+    font-family: 'SF Pro Display';
     margin: 0 0 20px;
+    letter-spacing: -0.27px;
 }
 
-.sixparts-mockup {
-    margin-top: auto;
-    height: 170px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 18px;
+/* The artwork runs to the card's own edges, so the media box cancels the
+   card padding on three sides; the card clips it back to the corner radius.
+   No tinted panel behind it any more -- the exported PNGs carry their own
+   background, and the old per-theme gradients showed through as a band. */
+.sixparts-media {
+    position: relative;
+    margin: auto -24px -28px;
     overflow: hidden;
+    border-radius: 0 0 22px 22px;
 }
 
-.sixparts-card--cream .sixparts-mockup { background: #EFEAE3; }
-.sixparts-card--peach .sixparts-mockup { background: linear-gradient(160deg, #FFD9C4 0%, #FFB199 100%); }
-.sixparts-card--grey .sixparts-mockup { background: #E7E7EA; }
-.sixparts-card--blue .sixparts-mockup { background: linear-gradient(160deg, #DCE9FF 0%, #B7D2FF 100%); }
-.sixparts-card--mint .sixparts-mockup { background: linear-gradient(160deg, #DAF3E8 0%, #B3E4CC 100%); }
-.sixparts-card--lilac .sixparts-mockup { background: linear-gradient(160deg, #E9E1FB 0%, #D2C1F5 100%); }
+.sixparts-media img {
+    display: block;
+    width: 100%;
+    /* height: 218px; */
+    object-fit: cover;
+    object-position: center;
+}
 
 .sixparts-cta {
+    /* Overlaid on the artwork, bottom-right, exactly as Figma shows it. */
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    align-self: flex-start;
     padding: 10px 18px;
     border-radius: 999px;
     background: #1E77F2;
@@ -3818,6 +4039,7 @@ img.shape.p-absolute {
     font-size: 13px;
     font-weight: 700;
     text-decoration: none !important;
+    box-shadow: 0 6px 18px rgba(11, 11, 15, 0.18);
     transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
@@ -3827,154 +4049,45 @@ img.shape.p-absolute {
     color: #fff !important;
 }
 
-/* ---- mockup graphics ---- */
 
-.sp-mock-phone {
-    width: 92px;
-    height: 150px;
-    border-radius: 18px;
-    background: #0B0B0F;
-    padding: 8px;
-    position: relative;
+@media (max-width: 1239px) {
+    .sixparts-section .sixparts-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
 }
 
-.sp-mock-phone-notch {
-    width: 34px;
-    height: 6px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.25);
-    margin: 0 auto 6px;
-}
-
-.sp-mock-post {
-    height: 84px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #FF9A5A 0%, #FF5E7E 55%, #B25CFF 100%);
-    margin-bottom: 8px;
-}
-
-.sp-mock-post-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.sp-mock-heart {
-    color: #FF5E7E;
-    font-size: 12px;
-}
-
-.sp-mock-line {
-    display: block;
-    height: 5px;
-    flex: 1;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.sp-mock-line--wide {
-    width: 80%;
-}
-
-.sp-mock-line--short {
-    width: 45%;
-}
-
-.sp-mock-search {
-    width: 82%;
-    height: 44px;
-    border-radius: 999px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 8px 0 16px;
-    box-shadow: 0 6px 18px rgba(11, 11, 15, 0.1);
-}
-
-.sp-mock-search span {
-    font-size: 12.5px;
-    color: #94a3b8;
-    flex: 1;
-    white-space: nowrap;
-}
-
-.sp-mock-mic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #1E77F2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.sp-mock-ads {
-    display: flex;
-    gap: 16px;
-}
-
-.sp-mock-badge {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 22px;
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(11, 11, 15, 0.12);
-}
-
-.sp-mock-badge--meta {
-    background: linear-gradient(135deg, #0866FF 0%, #4D9BFF 100%);
-}
-
-.sp-mock-badge--google {
-    background: linear-gradient(135deg, #EA4335 0%, #FBBC05 50%, #34A853 100%);
-}
-
-.sp-mock-browser {
-    width: 84%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 6px 18px rgba(11, 11, 15, 0.1);
-}
-
-.sp-mock-browser-bar {
-    display: flex;
-    gap: 5px;
-    padding: 8px 10px;
-    background: #F1F1F3;
-}
-
-.sp-mock-browser-bar i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #d3d3d8;
-}
-
-.sp-mock-browser-body {
-    padding: 14px 12px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.sp-mock-browser-body .sp-mock-line {
-    background: #E7E7EA;
-}
-
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
     .sixparts-section {
         padding: 64px 0 50px;
     }
-    .sixparts-heading {
+    .sixparts-section .sixparts-heading {
         font-size: 34px;
+        line-height: 39px;
+    }
+    /* Phone layout: heading, lead-in line, rail, then the arrows at the
+       bottom-right -- so the arrows move out of the head and the head stops
+       being a two-column row. */
+    .sixparts-head {
+        display: block;
+        margin-bottom: 0;
+    }
+    .sixparts-head .slider-nav {
+        display: none;
+    }
+    .sixparts-section .sixparts-intro {
+        display: block;
+        color: #8A8A93;
+        font-size: 15px;
+        line-height: 1.55;
+        font-weight: 500;
+        margin: 16px 0 30px;
+        max-width: 460px;
+    }
+    .sixparts-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
 }
 
@@ -3983,9 +4096,33 @@ img.shape.p-absolute {
         flex-direction: column;
         align-items: flex-start;
         gap: 18px;
+        margin-bottom: 28px;
     }
-    .sixparts-heading {
+    .sixparts-section .sixparts-heading {
         font-size: 28px;
+        line-height: 33px;
+    }
+    /* A 300px card is wider than the 95% container here, so it steps down to
+       leave the next card peeking in as the affordance to scroll. */
+    .sixparts-card {
+        flex-basis: 268px;
+        max-width: 268px;
+        min-height: 0;
+        padding: 22px 20px 24px;
+    }
+    /* the media box cancels the card padding, so its negative margins have to
+       track the smaller padding used at this width */
+    .sixparts-media {
+        margin: auto -20px -24px;
+    }
+    .sixparts-media img {
+        height: 180px;
+    }
+    .sixparts-cta {
+        right: 12px;
+        bottom: 12px;
+        padding: 9px 15px;
+        font-size: 12px;
     }
 }
 
@@ -4039,6 +4176,11 @@ img.shape.p-absolute {
 .workshow-section .workshow-accent,
 .broken-section .broken-accent {
     color: #FE4601;
+}
+
+/* Phone-only; the desktop composition keeps its arrows in the head. */
+.workshow-nav-below {
+    display: none;
 }
 
 .workshow-head,
@@ -4211,11 +4353,15 @@ img.shape.p-absolute {
     margin-top: 40px;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1239px) {
     .workshow-section .workshow-heading,
     .broken-section .broken-heading {
         font-size: 42px;
         line-height: 47px;
+    }
+    .broken-intro {
+        font-size: 19px;
+        line-height: 25px;
     }
     .workshow-card,
     .workshow-media {
@@ -4237,10 +4383,82 @@ img.shape.p-absolute {
     }
 }
 
+@media (max-width: 1023px) {
+    .workshow-section .workshow-heading,
+    .broken-section .broken-heading {
+        font-size: 36px;
+        line-height: 41px;
+    }
+    /* Arrows move under the rail on phones, matching the 6 Parts section. */
+    .workshow-head {
+        display: block;
+        margin-bottom: 30px;
+    }
+    .workshow-head .slider-nav {
+        display: none;
+    }
+    .workshow-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 28px;
+    }
+    .workshow-stat strong {
+        font-size: 28px;
+        line-height: 30px;
+    }
+    .workshow-stat span {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .workshow-stats {
+        gap: 30px;
+        padding-top: 26px;
+    }
+    .broken-section .broken-card-title {
+        font-size: 23px;
+        line-height: 27px;
+        margin: 24px 0 12px;
+        padding: 0 18px;
+    }
+    .broken-section .broken-card-desc {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 0 18px;
+    }
+}
+
 @media (max-width: 767px) {
     .workshow-section,
     .broken-section {
         padding: 64px 0 72px;
+    }
+    /* On a 232px card the stats have to sit tight, or "Revenue growth" wraps
+       and knocks the two figures out of line with each other. */
+    .workshow-stats {
+        gap: 20px;
+        padding-top: 22px;
+    }
+    .workshow-stat strong {
+        font-size: 24px;
+        line-height: 26px;
+    }
+    .workshow-stat span {
+        font-size: 14px;
+        line-height: 19px;
+    }
+    .broken-section .broken-card-title {
+        font-size: 20px;
+        line-height: 24px;
+        margin: 20px 0 10px;
+        padding: 0 4px;
+    }
+    .broken-section .broken-card-desc {
+        font-size: 14px;
+        line-height: 19px;
+        padding: 0 4px;
+    }
+    .broken-foot {
+        margin-top: 28px;
     }
     .workshow-section .workshow-heading,
     .broken-section .broken-heading {
@@ -4358,6 +4576,13 @@ img.shape.p-absolute {
     z-index: 0;
 }
 
+/* Desktop artwork shows by default; the mobile-cropped version (with the
+   stage number already baked into the image) swaps in at the 767px
+   breakpoint below, where the card layout also changes. */
+.howruns-card-bg--mobile {
+    display: none;
+}
+
 .howruns-card-body {
     position: relative;
     z-index: 2;
@@ -4432,10 +4657,19 @@ img.shape.p-absolute {
 
 /* Type is specified in fixed px against a ~1224px card, so it steps down
    with the card rather than overflowing it. */
-@media (max-width: 1199px) {
+@media (max-width: 1239px) {
     .howruns-section .howruns-heading {
         font-size: 42px;
         line-height: 47px;
+    }
+    .howruns-section .howruns-intro {
+        font-size: 19px;
+        line-height: 25px;
+    }
+    /* The card's fixed 531px height is a desktop figure; below it the card
+       tracks the artwork's own ratio again so nothing is over-cropped. */
+    .howruns-card {
+        height: auto;
     }
     .howruns-eyebrow {
         font-size: 21px;
@@ -4454,7 +4688,14 @@ img.shape.p-absolute {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
+    .howruns-section .howruns-heading {
+        font-size: 36px;
+        line-height: 41px;
+    }
+    .howruns-card {
+        border-radius: 30px;
+    }
     .howruns-eyebrow {
         font-size: 17px;
         gap: 8px;
@@ -4499,11 +4740,53 @@ img.shape.p-absolute {
        image instead of sharing it. */
     .howruns-card {
         aspect-ratio: auto;
-        min-height: 340px;
-        padding: 30px 0;
+        height: auto;
+        min-height: 0;
+        border-radius: 26px;
+        padding: 38px 0;
     }
+    /* The actual swap the note above `.howruns-card-bg--mobile` describes --
+       without these two the wide desktop crop was still the one rendering on
+       phones, with the portrait version stacked invisibly behind it. */
+    .howruns-card-bg--desktop {
+        display: none;
+    }
+    .howruns-card-bg--mobile {
+        display: block;
+    }
+    /* The stage number is part of the mobile artwork, so the DOM one would
+       print a second "01" over it. */
+    .howruns-num {
+        display: none;
+    }
+    /* Portrait art: give the card the room the crop expects, otherwise
+       object-fit: cover throws most of the photo away. */
+    /* Portrait art: give the card the room the crop expects, otherwise
+       object-fit: cover throws most of the photo away. The mobile crops keep
+       their empty space at the top and the subject at the bottom, so the copy
+       sits at the top rather than centred over the subject. */
+    .howruns-card {
+        min-height: 470px;
+        align-items: flex-start;
+    }
+    /* The copy sits over the flat top of the artwork, so a light scrim there
+       is enough -- the brightness drop the wide desktop crop needed washed
+       these portrait images out. */
     .howruns-card-bg {
-        filter: brightness(0.62);
+        filter: none;
+    }
+    .howruns-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+            180deg,
+            rgba(10, 6, 26, 0.42) 0%,
+            rgba(10, 6, 26, 0.24) 45%,
+            rgba(10, 6, 26, 0) 72%
+        );
+        pointer-events: none;
     }
     .howruns-card-body,
     .howruns-card.is-flipped .howruns-card-body {
@@ -4604,7 +4887,7 @@ img.shape.p-absolute {
     flex-shrink: 0;
     border-radius: 17px;
     overflow: hidden;
-    background: #191233;
+    background: #f8f8f92b;
     transition: opacity .45s ease;
     /* Anything past the immediate neighbours fades out, so the deck reads as
        a tight stack of a few cards rather than a long fanned-out row. */
@@ -4672,10 +4955,14 @@ img.shape.p-absolute {
     margin: 0;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1239px) {
     .builditfor-section .builditfor-heading {
         font-size: 42px;
         line-height: 47px;
+    }
+    .builditfor-section .builditfor-desc {
+        font-size: 19px;
+        line-height: 25px;
     }
     .builditfor-stage .builditfor-slide {
         width: 272px;
@@ -4683,17 +4970,23 @@ img.shape.p-absolute {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
     .builditfor-grid {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 34px;
     }
     .builditfor-copy {
-        flex-basis: auto;
+        flex: 0 0 auto;
         max-width: 100%;
+        padding-right: 0;
     }
+    /* flex-basis/max-width stay at 60% once the grid is a column, so the deck
+       kept getting laid out into a 60%-wide box and clipped on both sides by
+       the swiper's own overflow:hidden. Both have to be released here. */
     .builditfor-stage {
+        flex: 0 0 auto;
+        max-width: 100%;
         width: 100%;
     }
 }
@@ -4706,6 +4999,10 @@ img.shape.p-absolute {
         font-size: 32px;
         line-height: 37px;
         margin-bottom: 18px;
+    }
+    .builditfor-section .builditfor-desc {
+        font-size: 16px;
+        line-height: 23px;
     }
     .builditfor-stage .builditfor-slide {
         width: 232px;
@@ -4851,15 +5148,31 @@ img.shape.p-absolute {
     outline-offset: 2px;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1239px) {
     .soosocial-section .soosocial-heading {
         font-size: 42px;
         line-height: 47px;
+    }
+    .soosocial-section .soosocial-intro {
+        font-size: 19px;
+        line-height: 25px;
     }
     .soosocial-card {
         flex-basis: 268px;
         width: 268px;
         height: 477px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .soosocial-section .soosocial-heading {
+        font-size: 36px;
+        line-height: 41px;
+    }
+    .soosocial-card {
+        flex-basis: 244px;
+        width: 244px;
+        height: 434px;
     }
 }
 
@@ -4882,7 +5195,16 @@ img.shape.p-absolute {
     }
     .soosocial-section .soosocial-intro {
         text-align: left;
+        font-size: 16px;
+        line-height: 23px;
         margin: 0;
+    }
+    .soosocial-section .soosocial-mute {
+        top: 10px;
+        right: 10px;
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
     }
     .soosocial-card {
         flex-basis: 220px;
@@ -4899,7 +5221,7 @@ img.shape.p-absolute {
     }
 }
 
-/* ============== FAQ — light (Figma homepage) variant ==============
+/* ============== FAQ â€” light (Figma homepage) variant ==============
    Everything is scoped through `.faq-section.faq-section--light` (three
    classes) rather than one extra class, because responsive.css loads after
    this file and its own `.faq-section .accordion-*` rules would otherwise
@@ -4967,7 +5289,7 @@ img.shape.p-absolute {
     display: none;
 }
 
-/* Swap the +/− glyph for the Figma chevron. */
+/* Swap the +/âˆ’ glyph for the Figma chevron. */
 .faq-section.faq-section--light .accordion-button::before {
     content: "";
     right: 4px;
@@ -5008,9 +5330,43 @@ img.shape.p-absolute {
     font-weight: 700;
 }
 
+@media (max-width: 1239px) {
+    .faq-section.faq-section--light .display-4 {
+        font-size: 42px !important;
+    }
+    .faq-section.faq-section--light .accordion-button {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .faq-section.faq-section--light .accordion-body {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .faq-section.faq-section--light {
+        padding: 64px 0;
+    }
+    .faq-section.faq-section--light .text-orange {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .faq-section.faq-section--light .display-4 {
+        font-size: 34px !important;
+    }
+    .faq-section.faq-section--light .accordion-button {
+        font-size: 17px;
+        line-height: 25px;
+    }
+}
+
 @media (max-width: 767px) {
     .faq-section.faq-section--light {
-        padding-bottom: 60px;
+        padding: 56px 0 60px;
+    }
+    .faq-section.faq-section--light .text-orange {
+        font-size: 18px;
+        line-height: 22px;
     }
     .faq-section.faq-section--light .display-4 {
         font-size: 26px !important;
@@ -5035,7 +5391,7 @@ img.shape.p-absolute {
     color:#111!important;
 }
 
-/* ============== Form — light ground variant ==============
+/* ============== Form â€” light ground variant ==============
    The coral panel is unchanged; this only replaces the dark page wrapper
    showing through around it. */
 
@@ -5045,7 +5401,7 @@ img.shape.p-absolute {
     padding-bottom: 100px;
 }
 
-/* ============== Form collage — Figma dimensions ============== */
+/* ============== Form collage â€” Figma dimensions ============== */
 
 /* `:not(.desktop-none)` matters: the block ships a second .form-image for
    mobile that is hidden by `.desktop-none` (one class). A bare
@@ -5079,6 +5435,38 @@ img.shape.p-absolute {
     .form-container .form-image:not(.desktop-none) img {
         height: 480px;
         border-radius: 32px;
+    }
+}
+
+/* responsive.css turns `.desktop-none` back on at <=1023px, but the desktop
+   collage is `d-none d-md-block` and so stays on from 768px up -- between
+   768 and 1023 both were rendering, and the mobile one was squeezed into a
+   sliver at the right edge of the panel. Two classes here outrank its one. */
+@media (min-width: 768px) {
+    .form-container .form-image.desktop-none {
+        display: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    /* The sweeping arc is placed against the desktop two-column panel; once
+       the collage moves below the copy there is nothing for it to run across,
+       and it reads as a stray diagonal line. */
+    .form-content img.shape.p-absolute {
+        display: none;
+    }
+    .form-content {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .form-section--light {
+        padding-bottom: 60px;
+    }
+    .form-content p {
+        letter-spacing: 4px !important;
+        margin-bottom: 28px !important;
     }
 }
 

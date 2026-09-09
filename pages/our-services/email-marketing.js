@@ -8,11 +8,10 @@ import Process from "../../components/our-services/email-markering/Process";
 import CTA from "../../components/home/CTA";
 import Significance from "../../components/our-services/email-markering/Significance";
 import SolidReasons from "../../components/our-services/email-markering/SolidReasons";
-import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import PageFaq from "../../components/PageFaq";
 import { getPageFaq } from "../../utils/pageFaq";
-import Blogs from "../../components/our-services/seo/Blogs";
+import LatestBlogs from "../../components/common/LatestBlogs";
 
 export default function EmailMarketing({ faq }) {
   return (
@@ -21,16 +20,13 @@ export default function EmailMarketing({ faq }) {
       <Hero />
       <CoreTask />
       <Process />
-      <CTA />
+      {/* <CTA /> */}
       <Significance />
       <SolidReasons />
-      <div className="parallax-container">
-        <Testimonials />
-        <Form />
-      </div>
-      <PageFaq faq={faq} topClass="pt-80" />
-      <Blogs />
-      <CTA />
+      {/* <Form variant="light" /> */}
+      <PageFaq faq={faq} topClass="pt-80" variant="light" />
+      <LatestBlogs />
+      {/* <CTA /> */}
       <Offcanvas />
       <Footer />
     </div>

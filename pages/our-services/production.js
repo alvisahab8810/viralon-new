@@ -7,11 +7,10 @@ import Process from '../../components/our-services/production/Process'
 import CTA from '../../components/home/CTA'
 import Significance from '../../components/our-services/production/Significance'
 import SolidReasons from '../../components/our-services/production/SolidReasons'
-import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import PageFaq from "../../components/PageFaq";
 import { getPageFaq } from "../../utils/pageFaq";
-import Blogs from '../../components/our-services/seo/Blogs'
+import LatestBlogs from "../../components/common/LatestBlogs";
 import Hero from '../../components/our-services/production/Hero'
 
 export default function Production({ faq }) {
@@ -23,17 +22,14 @@ export default function Production({ faq }) {
          <CoreTask/>
          <Process/>
          
-         <CTA/>
+         {/* <CTA/> */}
          <Significance/>
          <SolidReasons/>
 
-         <div className="parallax-container">
-          <Testimonials />
-          <Form />
-          </div>
-          <PageFaq faq={faq} topClass="pt-100" />
-          <Blogs/>
-          <CTA/>
+      {/* <Form variant="light" /> */}
+          <PageFaq faq={faq} topClass="pt-100" variant="light" />
+          <LatestBlogs />
+          {/* <CTA/> */}
          <Offcanvas />
          <Footer/>
          

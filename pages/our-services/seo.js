@@ -7,11 +7,10 @@ import Process from '../../components/our-services/seo/Process'
 import CTA from '../../components/home/CTA'
 import Significance from '../../components/our-services/seo/Significance'
 import SolidReasons from '../../components/our-services/seo/SolidReasons'
-import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import PageFaq from "../../components/PageFaq";
 import { getPageFaq } from "../../utils/pageFaq";
-import Blogs from '../../components/our-services/seo/Blogs'
+import LatestBlogs from "../../components/common/LatestBlogs";
 import Hero from '../../components/our-services/seo/Hero'
 
 export default function Seo({ faq }) {
@@ -23,17 +22,14 @@ export default function Seo({ faq }) {
          <CoreTask/>
          <Process/>
          
-         <CTA/>
+         {/* <CTA/> */}
          <Significance/>
          <SolidReasons/>
 
-         <div className="parallax-container">
-          <Testimonials />
-          <Form />
-          </div>
-          <PageFaq faq={faq} topClass="pt-80" />
-          <Blogs/>
-          <CTA/>
+      {/* <Form variant="light" /> */}
+          <PageFaq faq={faq} topClass="pt-80" variant="light" />
+          <LatestBlogs />
+          {/* <CTA/> */}
          <Offcanvas />
          <Footer/>
          

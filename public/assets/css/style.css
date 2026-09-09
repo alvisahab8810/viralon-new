@@ -3757,7 +3757,7 @@ a.btn-round-animation.dark {
 }
 
 .bg-dark .banner-one-item h4 {
-	border: 1px solid #02EBAD;
+	border: 1px solid #FE4601;
 }
 
 .banner-one-item h2 {
@@ -6890,7 +6890,7 @@ footer .f-item.link li a:hover {
 	height: 100%;
 	width: 100%;
 	/* background: var(--bg-gradient); */
-	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+	background: linear-gradient(to top, #FE4601 0%, #0E0920 60%, #0E0920 100%);
 	z-index: -1;
 	opacity: 0.75;
 	transition: all 0.35s ease-in-out;
@@ -6898,19 +6898,19 @@ footer .f-item.link li a:hover {
 
 .accordion-portfolio-lists li:nth-child(2)::after {
 	/* background: #fba065; */
-	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+	background: linear-gradient(to top, #FE4601 0%, #0E0920 60%, #0E0920 100%);
 }
 
 .accordion-portfolio-lists li:nth-child(3)::after {
 	/* background: #bccd7e; */
-	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+	background: linear-gradient(to top, #FE4601 0%, #0E0920 60%, #0E0920 100%);
 
 	
 }
 
 .accordion-portfolio-lists li:nth-child(4)::after {
 	/* background: #6a850b; */
-	background: linear-gradient(to top, #02EBAD 0%, #5A57FB 50%, #5A57FB 100%);
+	background: linear-gradient(to top, #FE4601 0%, #0E0920 60%, #0E0920 100%);
 
 }
 

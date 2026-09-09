@@ -24,7 +24,7 @@ export default function BlogsPage({ faq }) {
         />
       </div>
       <BlogList />
-      <PageFaq faq={faq} topClass="pt-80" />
+      <PageFaq faq={faq} topClass="pt-80" variant="light" />
       <Footer />
     </>
   );

@@ -19,38 +19,33 @@ const INDUSTRIES = [
   {
     name: "Real estate",
     blurb:
-      "Site visits, not enquiries. We build the machine that gets a serious buyer to the property.",
-    img: "/assets/img/portfolio/h1.webp",
+      "A hundred enquiries make one booking. We build toward the eight that matter.",
+    img: "/assets/images/what-build/1.webp",
   },
   {
-    name: "Education",
+    name: "Travel",
     blurb:
-      "Admissions run on a season. We build for the intake window, then keep the pipeline warm.",
-    img: "/assets/img/portfolio/h2.webp",
+      "Weeks of research, booked in a day. Miss the weeks and you compete on price.",
+    img: "/assets/images/what-build/2.webp",
   },
+  {
+    name: "Automotive",
+    blurb:
+      "A wash and a full paint cost the same to buy. One is worth twenty times more.",
+    img: "/assets/images/what-build/3.webp",
+  },
+  {
+    name: "IT and software",
+    blurb:
+      "Ten firms wrote the same sentences. We make yours legible first.",
+    img: "/assets/images/what-build/4.webp",
+  },
+
   {
     name: "Healthcare",
     blurb:
-      "Trust decides the appointment. We build the presence that earns it before the first call.",
-    img: "/assets/img/portfolio/h3.webp",
-  },
-  {
-    name: "Hospitality",
-    blurb:
-      "Direct bookings beat commission. We build the channel that sends guests to you first.",
-    img: "/assets/img/portfolio/h4.webp",
-  },
-  {
-    name: "Manufacturing",
-    blurb:
-      "Long cycles, few buyers. We build for the handful of people who actually place the order.",
-    img: "/assets/img/portfolio/16.jpg",
-  },
-  {
-    name: "Retail",
-    blurb:
-      "Footfall and cart both count. We build the machine that feeds the store and the site.",
-    img: "/assets/img/portfolio/17.jpg",
+      "Most patients never fill a form. They read, they watch, then they call.",
+    img: "/assets/images/what-build/5.webp",
   },
 ];
 

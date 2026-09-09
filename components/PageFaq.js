@@ -94,8 +94,8 @@ export default function PageFaq({ faq, topClass = "", variant = "dark" }) {
         .faq-section .accordion-body.faq-rich > :last-child { margin-bottom: 0; }
         .faq-section .accordion-body.faq-rich ul,
         .faq-section .accordion-body.faq-rich ol { padding-left: 1.2rem; margin-bottom: 0.5rem; }
-        .faq-section .accordion-body.faq-rich a { color: #ff6f61; text-decoration: underline; }
-        .faq-section .accordion-body.faq-rich a:hover { color: #fba065; }
+        .faq-section .accordion-body.faq-rich a { color: #FE4601; text-decoration: underline; }
+        .faq-section .accordion-body.faq-rich a:hover { color: #FF936B; }
       `}</style>
     </>
   );

@@ -10,126 +10,52 @@ import SliderNav, { useSliderTrack } from "./SliderNav";
  * into view while the previous one slides out to the left.
  */
 
+/* Copy and card order are taken verbatim from the Figma prototype, and the
+   artwork is the exported set in /assets/images/part-machine (1..6). */
 const CARDS = [
   {
     tag: "Brand",
     title: "People do not buy the cheapest option in a category they take seriously.",
-    desc: "The way you look and sound decides who trusts you enough to call. We build the brand that earns that trust.",
+    desc: "Choose the easy way to finance with convenient monthly payment options.",
     href: "/our-services/brand-identity-design",
-    theme: "cream",
-    mockup: "brand",
+    img: "/assets/images/part-machine/1.png",
   },
   {
     tag: "Social content",
     title: "Your buyer checks your LinkedIn & Instagram before they call.",
     desc: "What they find decides whether they call. We make content that gives them a reason to.",
     href: "/our-services/social-media-marketing",
-    theme: "peach",
-    mockup: "social",
+    img: "/assets/images/part-machine/2.png",
+  },
+  {
+    tag: "Paid ads",
+    title: "Meta and Google, held to a cost per qualified lead.",
+    desc: "We test the angle first, then the format, then the wording. In that order.",
+    href: "/our-services/paid-media-marketing",
+    img: "/assets/images/part-machine/4.png",
+  },
+  {
+    tag: "Website / CRO",
+    title: "Same traffic. Same budget. 3× more enquiries.",
+    desc: "We build websites that convert the traffic you already pay for, then keep improving them.",
+    href: "/our-services/web-development",
+    img: "/assets/images/part-machine/5.png",
   },
   {
     tag: "Search",
     title: "Ads stop the day you stop paying. Search keeps working.",
     desc: "Slow to start, and the only channel where work you did last year is still bringing enquiries today.",
     href: "/our-services/seo",
-    theme: "grey",
-    mockup: "search",
-  },
-  {
-    tag: "Paid ads",
-    title: "Meta and Google send you traffic. We turn it into a cost you can live with.",
-    desc: "We test the ad, then the audience, then the offer — until the number works.",
-    href: "/our-services/paid-media-marketing",
-    theme: "blue",
-    mockup: "ads",
-  },
-  {
-    tag: "Website",
-    title: "Your website is a 24/7 salesperson, if it actually sells.",
-    desc: "Every visit either turns into an enquiry or it doesn't. We build for the first one.",
-    href: "/our-services/web-development",
-    theme: "mint",
-    mockup: "website",
+    img: "/assets/images/part-machine/3.png",
   },
   {
     tag: "Tracking",
-    title: "If you can't see which channel brought the customer, you can't double down on it.",
-    desc: "We wire up tracking so every enquiry is traced back to the exact thing that worked.",
+    title: "Know which ad, keyword or post brings the good leads.",
+    desc: "We rebuild tracking across paid, search and social on your server, so every real enquiry is properly attributed.",
     href: "/our-services/digital-marketing",
-    theme: "lilac",
-    mockup: "tracking",
+    img: "/assets/images/part-machine/6.png",
   },
 ];
-
-function Mockup({ type }) {
-  switch (type) {
-    case "brand":
-      return (
-        <svg viewBox="0 0 64 64" width="56" height="56" fill="none">
-          <path d="M16 24h32l4 30a4 4 0 01-4 4.4H16a4 4 0 01-4-4.4l4-30z" stroke="#0B0B0F" strokeWidth="2.4" strokeLinejoin="round" />
-          <path d="M22 24v-4a10 10 0 0120 0v4" stroke="#0B0B0F" strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
-      );
-    case "social":
-      return (
-        <div className="sp-mock-phone">
-          <div className="sp-mock-phone-notch" />
-          <div className="sp-mock-post" />
-          <div className="sp-mock-post-row">
-            <span className="sp-mock-heart">♥</span>
-            <span className="sp-mock-line" />
-          </div>
-        </div>
-      );
-    case "search":
-      return (
-        <div className="sp-mock-search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="7" stroke="#94a3b8" strokeWidth="2" />
-            <path d="M21 21l-4.3-4.3" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          <span>Search something...</span>
-          <span className="sp-mock-mic">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <rect x="9" y="3" width="6" height="11" rx="3" fill="#fff" />
-              <path d="M6 11a6 6 0 0012 0M12 19v2" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </span>
-        </div>
-      );
-    case "ads":
-      return (
-        <div className="sp-mock-ads">
-          <span className="sp-mock-badge sp-mock-badge--meta">M</span>
-          <span className="sp-mock-badge sp-mock-badge--google">G</span>
-        </div>
-      );
-    case "website":
-      return (
-        <div className="sp-mock-browser">
-          <div className="sp-mock-browser-bar">
-            <i /><i /><i />
-          </div>
-          <div className="sp-mock-browser-body">
-            <span className="sp-mock-line sp-mock-line--wide" />
-            <span className="sp-mock-line" />
-            <span className="sp-mock-line sp-mock-line--short" />
-          </div>
-        </div>
-      );
-    case "tracking":
-      return (
-        <svg viewBox="0 0 64 44" width="72" height="48" fill="none">
-          <path d="M2 40h60" stroke="#0B0B0F" strokeWidth="2" strokeLinecap="round" opacity="0.25" />
-          <rect x="8" y="24" width="9" height="16" rx="2" fill="#0B0B0F" opacity="0.55" />
-          <rect x="24" y="14" width="9" height="26" rx="2" fill="#0B0B0F" opacity="0.75" />
-          <rect x="40" y="4" width="9" height="36" rx="2" fill="#FE4601" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
 
 export default function SixParts() {
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
@@ -148,29 +74,45 @@ export default function SixParts() {
           <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
         </div>
 
+        {/* Figma's phone layout carries a lead-in line under the heading that
+            the desktop composition does not, so it only renders below 1024. */}
+        <p className="sixparts-intro">
+          One of these five is your business right now. Pick it, and we will
+          tell you where to start and what it costs.
+        </p>
       </div>
 
       <div className="sixparts-track-wrap">
         <div className="sixparts-track" ref={trackRef} onScroll={updateEdges}>
           {CARDS.map((card) => (
-            <article className={`sixparts-card sixparts-card--${card.theme}`} key={card.tag}>
+            <article className="sixparts-card" key={card.tag}>
               <span className="sixparts-tag">{card.tag}</span>
               <h3 className="sixparts-title">{card.title}</h3>
               <p className="sixparts-desc">{card.desc}</p>
 
-              <div className="sixparts-mockup">
-                <Mockup type={card.mockup} />
-              </div>
+              {/* Figma sits the CTA *on* the artwork, bottom-right, so it lives
+                  inside the media box rather than after it in the flow. */}
+              <div className="sixparts-media">
+                <img src={card.img} alt="" loading="lazy" />
 
-              <Link href={card.href} className="sixparts-cta">
-                Have a look
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+                <Link href={card.href} className="sixparts-cta">
+                  Have a look
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </article>
           ))}
         </div>
+      </div>
+
+      {/* Same arrows again, under the rail and right-aligned -- that is where
+          Figma puts them on a phone. Only one copy is visible at a time
+          (`.sixparts-nav-below` is display:none above 1023), and both drive the
+          one shared `scrollByCard`. */}
+      <div className="container sixparts-nav-below">
+        <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
       </div>
     </section>
   );

@@ -8,13 +8,12 @@ import Strap from '../../components/our-services/digital-marketing/Strap'
 import Instagram from '../../components/home/Instagram'
 import Videos from '../../components/our-services/social-media-marketing/Videos'
 import Partnering from '../../components/home/Partnering'
-import Testimonials from '../../components/home/Testimonials'
 import Form from '../../components/home/Form'
 
 import CTA from '../../components/home/CTA'
 import PageFaq from "../../components/PageFaq";
 import { getPageFaq } from "../../utils/pageFaq";
-import Blogs from '../../components/our-services/seo/Blogs'
+import LatestBlogs from "../../components/common/LatestBlogs";
 
 
 export default function SocialMediaMarketing({ faq }) {
@@ -26,14 +25,11 @@ export default function SocialMediaMarketing({ faq }) {
        <Strap/>
         <Videos/>
       
-        <div className="parallax-container">
-          <Testimonials/>
-          <Form/>
-        </div>
-        <Partnering/>
-        <PageFaq faq={faq} topClass="pt-100" />
-        <Blogs/>
-        <CTA/>  
+      {/* <Form variant="light" /> */}
+        {/* <Partnering/> */}
+        <PageFaq faq={faq} topClass="pt-100" variant="light" />
+        <LatestBlogs />
+        {/* <CTA/>   */}
        <Offcanvas/>
        <Footer/>
     </div>

@@ -1,9 +1,9 @@
 /* ── Blogs – global ────────────────────────────────────────────────────── */
 :root {
-  --bl-primary: #EE4C49;
-  --bl-dark:    #0C141D;
-  --bl-grey:    #667085;
-  --bl-light:   #F7F8FA;
+  --bl-primary: #FE4601;
+  --bl-dark:    #0B0B0F;
+  --bl-grey:    #6b6b70;
+  --bl-light:   #EFEFF0;
   --bl-border:  #E4E7EC;
   --bl-radius:  14px;
   --bl-shadow:  0 2px 16px rgba(0,0,0,0.08);
@@ -11,7 +11,7 @@
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .blogs-hero {
-  background: linear-gradient(135deg, #0C141D 0%, #1a2d3d 60%, #EE4C49 100%);
+  background: linear-gradient(135deg, #0C141D 0%, #1a2d3d 60%, #FE4601 100%);
   min-height: 420px;
   padding: 120px 0 70px;
 }
@@ -58,7 +58,7 @@
   border-radius: 0 50px 50px 0;
   transition: background 0.2s;
 }
-.blogs-searchbx button:hover { background: #d43d3a; }
+.blogs-searchbx button:hover { background: #e03e00; }
 .blogs-searchbx button img { width: 17px; height: 17px; }
 
 /* ── About / featured strip ────────────────────────────────────────────── */
@@ -178,7 +178,7 @@
   border-radius: 0 50px 50px 0;
   transition: background 0.2s;
 }
-.bl-hero-search button:hover { background: #d43d3a; }
+.bl-hero-search button:hover { background: #e03e00; }
 
 /* Card grid */
 .bl-grid {
@@ -767,7 +767,7 @@
   letter-spacing: 0.2px;
   transition: background 0.2s, transform 0.1s;
 }
-.bdd-submit-btn:hover { background: #d43d3a; transform: translateY(-1px); }
+.bdd-submit-btn:hover { background: #e03e00; transform: translateY(-1px); }
 
 /* Success message */
 .bdd-success-msg {
@@ -899,7 +899,7 @@
   margin-top: 4px;
   transition: background 0.2s, transform 0.1s;
 }
-.bdd-query-submit:hover { background: #d43d3a; transform: translateY(-1px); }
+.bdd-query-submit:hover { background: #e03e00; transform: translateY(-1px); }
 
 /* ── FAQ Accordion ── */
 .bdd-accordion {
@@ -1105,7 +1105,7 @@
   margin-top: 2px;
   transition: background 0.2s, transform 0.1s;
 }
-.bdd-reach-btn:hover:not(:disabled) { background: #d43d3a; transform: translateY(-1px); }
+.bdd-reach-btn:hover:not(:disabled) { background: #e03e00; transform: translateY(-1px); }
 .bdd-reach-btn:disabled { opacity: 0.7; cursor: default; }
 
 /* ── Clickable tags ── */
@@ -1255,7 +1255,7 @@
 
 
 .bdd-meta-item svg{
-  color:#ee4c49;
+  color:#FE4601;
 }
 
 .blg-top-row {
@@ -1267,3 +1267,70 @@
     border-radius: 5px;
     margin-bottom: 21px;
 }
+/* ── "Latest Blogs" strip (components/common/LatestBlogs.js) ────────────── */
+/* Reuses the .bl-* card design from the /blogs listing; only the section
+   chrome around it differs -- no search bar, no pagination, three cards and
+   a link through to the full listing. */
+.latest-blogs-section { padding: 80px 0 90px; }
+
+.latest-blogs-skeleton {
+  min-height: 340px;
+  background: var(--bl-light);
+  box-shadow: none;
+  cursor: default;
+  animation: latest-blogs-pulse 1.4s ease-in-out infinite;
+}
+@keyframes latest-blogs-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
+.latest-blogs-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+.latest-blogs-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 30px;
+  border-radius: 999px;
+  background: var(--bl-primary);
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-decoration: none !important;
+  transition: background 0.2s, transform 0.2s;
+}
+.latest-blogs-all:hover {
+  background: #e03e00;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1023px) {
+  .latest-blogs-section { padding: 56px 0 64px; }
+  .latest-blogs-more { margin-top: 32px; }
+}
+
+/* The service pages wrap everything in `.bg-dark`, and style.css paints every
+   heading inside it white (`.bg-dark h1..h6`) and every paragraph #cccccc.
+   This strip is a white band, so those inherited colours make the type
+   invisible. Two classes beat `.bg-dark h2`, so the section is re-anchored
+   here rather than by loosening the global rule. */
+.blogs-list-section .bl-section-title,
+.blogs-list-section .bl-card-title,
+.blogs-list-section .bl-card-title a { color: var(--bl-dark) !important; }
+
+.blogs-list-section .bl-section-sub,
+.blogs-list-section .bl-card-summary,
+.blogs-list-section .bl-card-meta,
+.blogs-list-section .bl-card-author,
+.blogs-list-section .bl-card-date { color: var(--bl-grey) !important; }
+
+.blogs-list-section .bl-brand,
+.blogs-list-section .bl-read-more { color: var(--bl-primary) !important; }
+
+.blogs-list-section .bl-badge,
+.blogs-list-section .latest-blogs-all { color: #fff !important; }

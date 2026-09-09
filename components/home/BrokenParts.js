@@ -4,34 +4,36 @@ import SliderNav, { useSliderTrack } from "./SliderNav";
 /*
  * "Which Part Of Yours Is Broken?" — a dark rail of five diagnostic cards.
  * Media is 372x502 with a 30px radius; the nav sits under the rail, right
- * aligned. Images are placeholders meant to be swapped for the Figma exports.
+ * aligned.
  */
 
+/* Copy is verbatim from the Figma prototype; artwork is the exported set in
+   /assets/images/broken (1..5), in the same order. */
 const PARTS = [
   {
     title: "People visit the site and leave without enquiring.",
     desc: "Start with web development. Your traffic is fine. Your website is losing it.",
-    img: "/assets/img/portfolio/11.jpg",
+    img: "/assets/images/broken/1.webp",
   },
   {
     title: "Leads come in, but nobody can say where they came from.",
     desc: "Start with measurement. You are optimising against numbers that are wrong.",
-    img: "/assets/img/portfolio/12.jpg",
+    img: "/assets/images/broken/2.webp",
   },
   {
     title: "The moment we pause ads, everything goes quiet.",
     desc: "Start with SEO. You are renting your customers.",
-    img: "/assets/img/portfolio/13.jpg",
+    img: "/assets/images/broken/3.webp",
   },
   {
-    title: "We get enquiries, but they are the wrong people asking for a lower price.",
-    desc: "Start with brand. You are pulling in the wrong audience.",
-    img: "/assets/img/portfolio/14.jpg",
+    title: "We get enquiries, but they are the wrong people asking about price.",
+    desc: "Start with branding. Your message is pulling the wrong buyer.",
+    img: "/assets/images/broken/4.webp",
   },
   {
-    title: "We post every day and it goes nowhere.",
-    desc: "Start with social content. Volume is not the same as demand.",
-    img: "/assets/img/portfolio/15.jpg",
+    title: "Everything runs, and we still cannot decide what to do next.",
+    desc: "Start with advisory. You do not have a marketing problem. You have a decision problem.",
+    img: "/assets/images/broken/5.webp",
   },
 ];
 
@@ -43,9 +45,15 @@ export default function BrokenParts() {
     <section className="broken-section">
       <div className="container">
         <div className="broken-head">
-          <h2 className="broken-heading">
+          <h2 className="broken-heading mobile-none" >
             Which Part Of Yours
             <br />
+            Is <span className="broken-accent">Broken?</span>
+          </h2>
+
+          <h2 className="broken-heading desktop-none" >
+            
+            Which Part Of <br /> Yours
             Is <span className="broken-accent">Broken?</span>
           </h2>
 

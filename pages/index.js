@@ -11,6 +11,7 @@ import OurWork from "../components/home/OurWork";
 import Process from "../components/home/Process";
 import Partnering from "../components/home/Partnering";
 import WeKnow from "../components/home/WeKnow";
+import WeKnowMobile from "../components/home/WeKnowMobile";
 import SixParts from "../components/home/SixParts";
 import WorkShowcase from "../components/home/WorkShowcase";
 import BrokenParts from "../components/home/BrokenParts";
@@ -32,7 +33,9 @@ export default function IndexPage({ data, faq }) {
       <Offcanvas />
       <Hero />
       <Partnering />
+      {/* Two layouts, one visible at a time -- swapped at 1023px in custome.css. */}
       <WeKnow />
+      <WeKnowMobile />
       <SixParts />
       <WorkShowcase />
       <BrokenParts />

@@ -16,7 +16,7 @@ export default function ourWork({ faq }) {
       <Hero />
       <Work />
       <CTA />
-      <PageFaq faq={faq} topClass="pt-80" />
+      <PageFaq faq={faq} topClass="pt-80" variant="light" />
       <Footer />
     </div>
   );

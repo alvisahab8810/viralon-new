@@ -12,7 +12,7 @@ import SliderNav, { useSliderTrack } from "./SliderNav";
 const WORK = [
   {
     name: "Tourwatchout",
-    img: "/assets/img/our-work/tourwatchout.webp",
+    img: "/assets/images/our-work/1.webp",
     href: "/our-work/tourwatchout",
     stats: [
       { value: "+245%", label: "Engagement" },
@@ -21,7 +21,7 @@ const WORK = [
   },
   {
     name: "Ragee Makeup",
-    img: "/assets/img/our-work/ragee-makeup.webp",
+    img: "/assets/images/our-work/2.webp",
     href: "/our-work/ragee-makeup",
     stats: [
       { value: "+245%", label: "Engagement" },
@@ -30,7 +30,7 @@ const WORK = [
   },
   {
     name: "Colomoto",
-    img: "/assets/img/our-work/colomoto.webp",
+    img: "/assets/images/our-work/3.webp",
     href: "/our-work/colomoto",
     stats: [
       { value: "+245%", label: "Engagement" },
@@ -39,7 +39,7 @@ const WORK = [
   },
   {
     name: "Sapphire Auditorium",
-    img: "/assets/img/our-work/sapphire-auditorium.webp",
+    img: "/assets/images/our-work/4.webp",
     href: "/our-work/sapphire-auditorium",
     stats: [
       { value: "+245%", label: "Engagement" },
@@ -117,6 +117,18 @@ export default function WorkShowcase() {
             </article>
           ))}
         </div>
+      </div>
+
+      {/* Phone layout puts the arrows under the rail, right-aligned; the copy
+          in the head is hidden below 1024 and this one above it. Both drive the
+          same shared scroll state. */}
+      <div className="container workshow-nav-below">
+        <SliderNav
+          atStart={atStart}
+          atEnd={atEnd}
+          onScroll={scrollByCard}
+          theme="dark"
+        />
       </div>
     </section>
   );

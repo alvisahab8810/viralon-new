@@ -3,11 +3,10 @@ import Topbar from "../../components/header/Header";
 import Offcanvas from "../../components/header/Offcanvas";
 import Footer from "../../components/footer/Footer";
 import CTA from "../../components/home/CTA";
-import Testimonials from "../../components/home/Testimonials";
 import Form from "../../components/home/Form";
 import PageFaq from "../../components/PageFaq";
 import { getPageFaq } from "../../utils/pageFaq";
-import Blogs from "../../components/our-services/seo/Blogs";
+import LatestBlogs from "../../components/common/LatestBlogs";
 import Hero from "../../components/our-services/brand-identity-design/Hero";
 import Slider from "../../components/our-services/brand-identity-design/Slider";
 import CoreTask from "../../components/our-services/brand-identity-design/CoreTask";
@@ -25,19 +24,16 @@ export default function BrandIdentityDesign({ faq }) {
       <OurWork/>
        <CoreTask/>
       <Process/>
-      <CTA />
+      {/* <CTA /> */}
       <Significance/>
       <SolidReasons/>
 
-      <div className="parallax-container">
-        <Testimonials />
-        <Form />
-      </div>
-      <PageFaq faq={faq} topClass="pt-100" />
+      {/* <Form variant="light" /> */}
+      <PageFaq faq={faq} topClass="pt-100" variant="light" />
      
 
-       <Blogs/>
-      <CTA/>
+       <LatestBlogs />
+      {/* <CTA/> */}
       <Offcanvas />
       <Footer />
     </div>
