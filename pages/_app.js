@@ -31,13 +31,26 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+        {/* Favicon set from public/favicon. The .ico is the legacy fallback,
+            the .svg is what modern browsers actually use, and the 96px PNG
+            covers the few that take neither. */}
+        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon/favicon-96x96.png"
+        />
+        <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <meta name="theme-color" content="#19132F" />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
 
-        <title>Viralon</title>
+        <title>Viralon | Best Digital Marketing Agency For Revenue Growth</title>
       </Head>
 
       {/* Google Tag Manager */}

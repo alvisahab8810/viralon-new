@@ -15,13 +15,18 @@ export default function ContactUs({ faq }) {
       <Hero />
       <Contact />
       <div className="container pb-80 iframe-box">
+        {/* Embed code taken straight from Google Maps for the Parsvnath Planet
+            office. Width is 100% instead of the pasted 600 so it fills the
+            container the way the previous map did. */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d113894.14584368252!2d80.92405032638395!3d26.865638513195115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x399be3591f162b99%3A0xec0c1d5692729281!2sUnit%20no-%201007%2C%20Dlf%20Mypad%2C%2010th%20Floor%2C%20Tower%20B1%2C%20Vibhuti%20Khand%2C%20Gomti%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh%20226010!3m2!1d26.865662399999998!2d81.0064518!5e0!3m2!1sen!2sin!4v1747994718774!5m2!1sen!2sin"
+          title="Viralon Digital Services, Parsvnath Planet, Gomti Nagar, Lucknow"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.226274011782!2d81.00753817489334!3d26.864551162159575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be3bc04249ba1%3A0x6b2d36aafc96188!2sParsvnath%20Planet!5e0!3m2!1sen!2sin!4v1789022202988!5m2!1sen!2sin"
           width="100%"
           height="450"
-          allowfullscreen=""
+          style={{ border: 0 }}
+          allowFullScreen=""
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
       <PageFaq faq={faq} topClass="pt-80" variant="light" />

@@ -110,11 +110,10 @@ export default function YourBrandsBFf() {
         {/* <script src="../assetss/js/jquery.js" defer></script> */}
         {/* <script src="../assetss/js/main.js" defer></script> */}
 
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="../assetss/images/favicon-32x32.png"
-        />
+        {/* Favicon comes from _app.js, which applies to every page. The link
+            that used to sit here used a relative "../assetss/..." path, which
+            a browser resolves against the page URL, not the site root, so it
+            never loaded. */}
       </Head>
       <Script src="../assetss/js/bootstrap.bundle.min.js" strategy="afterInteractive" />
       <CustomHead title="Viralon || Landing Page" keywords="" description="#" />

@@ -814,6 +814,11 @@ footer .before-bg::before {
 
 
 @media(max-width:560px){
+
+        .vlp-close {
+   
+        right: 27px!important;
+    }
     .sixparts-head {
         margin-bottom: 15px;
     }
@@ -937,6 +942,10 @@ display: none;
             display: inline-flex;
         padding: 7px 13px;
         font-size: 10px;
+        /* The inherited 1.8 line-height rounded the caps 1px below the centre
+           of the pill. 17px lands the glyphs dead centre; the flex box already
+           centres them horizontally. */
+        line-height: 17px;
         background: #0e0920;
         border: 1px solid #754CDA;
 }

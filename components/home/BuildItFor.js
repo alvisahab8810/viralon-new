@@ -47,6 +47,37 @@ const INDUSTRIES = [
       "Most patients never fill a form. They read, they watch, then they call.",
     img: "/assets/images/what-build/5.webp",
   },
+
+    {
+    name: "Education",
+    blurb:
+      "Parents search six months before the session. April is already too late.",
+    img: "/assets/images/what-build/6.webp",
+  },
+
+
+  
+    {
+    name: "B2B and manufacturing",
+    blurb:
+      "Twelve enquiries can make the year. Every volume metric will call it a bad one.",
+    img: "/assets/images/what-build/9.webp",
+  },
+
+
+     {
+    name: "Finance",
+    blurb:
+      "The platforms restrict half of what you want to say. We build trust elsewhere.",
+    img: "/assets/images/what-build/7.webp",
+  },
+
+    {
+    name: "Interior design & architecture",
+    blurb:
+      "Nobody picks an architect from an ad. They pick what they saw months ago.",
+    img: "/assets/images/what-build/8.webp",
+  },
 ];
 
 export default function BuildItFor() {

@@ -19,7 +19,7 @@ import HowItRuns from "../components/home/HowItRuns";
 import BuildItFor from "../components/home/BuildItFor";
 import SooSocial from "../components/home/SooSocial";
 import CTA from "../components/home/CTA";
-import Blogs from "../components/our-services/seo/Blogs"
+import LatestBlogs from "../components/common/LatestBlogs";
 import PageFaq from "../components/PageFaq";
 import { getPageFaq } from "../utils/pageFaq";
 
@@ -28,7 +28,13 @@ export default function IndexPage({ data, faq }) {
 
   return (
     <section id="home" className="bg-dark">
-      <CustomHead title="Viralon" keywords="" description="#" />
+      {/* This overrides the title in _app.js, so it carries the full one --
+          "Viralon" alone was what the browser tab and Google both showed. */}
+      <CustomHead
+        title="Viralon | Best Digital Marketing Agency For Revenue Growth"
+        keywords=""
+        description="#"
+      />
       <Topbar />
       <Offcanvas />
       <Hero />
@@ -37,10 +43,11 @@ export default function IndexPage({ data, faq }) {
       <WeKnow />
       <WeKnowMobile />
       <SixParts />
+      <BuildItFor />
+
       <WorkShowcase />
       <BrokenParts />
       <HowItRuns />
-      <BuildItFor />
       <SooSocial />
 
       {/* <OurWork /> */}
@@ -54,7 +61,7 @@ export default function IndexPage({ data, faq }) {
       <PageFaq faq={faq}  variant="light" />
 
        <Form variant="light" />
-      {/* <Blogs/> */}
+      <LatestBlogs />
       {/* <CTA /> */}
       <Footer />
     </section>

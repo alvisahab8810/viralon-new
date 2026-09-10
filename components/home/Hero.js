@@ -137,7 +137,7 @@ export default function Hero() {
               <strong>
                 brand, social content, search, paid ads, website and tracking
               </strong>
-              , working as one machine. We build that machine.
+              , working as one machine. <br/><span className="orange-col">We build that machine.</span>
             </p>
             <div className="hero-stat-badge">
               Across 15 brands, this machine increased qualified leads by an

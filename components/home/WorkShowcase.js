@@ -46,33 +46,12 @@ const WORK = [
       { value: "20%", label: "Revenue growth" },
     ],
   },
-  {
-    name: "Episoul",
-    img: "/assets/img/our-work/episoul.webp",
-    href: "/our-work/episoul",
-    stats: [
-      { value: "+245%", label: "Engagement" },
-      { value: "20%", label: "Revenue growth" },
-    ],
-  },
-  {
-    name: "Hitech Industry",
-    img: "/assets/img/our-work/hitech.webp",
-    href: "/our-work/hitech-industry",
-    stats: [
-      { value: "+245%", label: "Engagement" },
-      { value: "20%", label: "Revenue growth" },
-    ],
-  },
-  {
-    name: "Champion Tutors",
-    img: "/assets/img/our-work/champion-tutors.webp",
-    href: "/our-work/champion-tutors",
-    stats: [
-      { value: "+245%", label: "Engagement" },
-      { value: "20%", label: "Revenue growth" },
-    ],
-  },
+
+
+  
+
+ 
+  
 ];
 
 export default function WorkShowcase() {

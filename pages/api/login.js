@@ -58,7 +58,10 @@ export default function handler(req, res) {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
-      domain: req.headers.host.includes("localhost") ? undefined : "admin.viralon.in",
+      // No `domain` on purpose: the cookie stays host-only, so it works on
+      // localhost, admin.viralon.in and viralon.in alike. Pinning it to
+      // admin.viralon.in made the dashboard login silently fail on any other
+      // host.
       maxAge: 60 * 60 * 24,
     });
 

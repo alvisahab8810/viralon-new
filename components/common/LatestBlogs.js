@@ -1,27 +1,29 @@
 // components/common/LatestBlogs.js — the "Latest Blogs" strip that closes the
 // service pages.
 //
-// It replaces components/our-services/seo/Blogs.js, which was three hard-coded
-// lorem-ipsum cards pointing at /assets/img/seo/blogs/*.jpg. This one reads the
-// real posts from /api/blogs (same endpoint the /blogs listing uses) and reuses
-// that page's card markup and stylesheet, so a post looks the same wherever it
-// is shown.
+// The markup is the site's original blog-area card (the one that used to live in
+// components/our-services/seo/Blogs.js), so it picks up the .blog-area styles
+// already in custome.css / responsive.css and matches the rest of the site.
+// The three lorem-ipsum cards it used to hard-code are gone: the posts come from
+// /api/blogs, the same endpoint the /blogs listing uses.
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
-import { MdArrowForward } from "react-icons/md";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import "swiper/css";
 
 const LIMIT = 3;
+const FALLBACK_THUMB = "/assets/img/seo/blogs/1.jpg";
 
-function formatDate(d) {
-  if (!d) return "";
+// The badge over the thumb wants the day and the month separately.
+function splitDate(d) {
+  if (!d) return null;
   const dt = new Date(d);
-  if (isNaN(dt)) return d;
-  return dt.toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
+  if (isNaN(dt)) return null;
+  return {
+    day: String(dt.getDate()).padStart(2, "0"),
+    month: dt.toLocaleDateString("en-IN", { month: "short" }),
+  };
 }
 
 export default function LatestBlogs({
@@ -49,79 +51,125 @@ export default function LatestBlogs({
   }, []);
 
   // Nothing published yet: drop the section rather than leave an empty band.
-  if (!loading && blogs.length === 0) return null;
+  if (loading || blogs.length === 0) return null;
 
   return (
-    <section className="blogs-list-section latest-blogs-section">
-      {/* blogs.css is page-scoped (pages/blogs.js loads it the same way) --
-          it carries the .bl-* card styles this section reuses. */}
-      <Head>
-        <link rel="stylesheet" href="/assets/css/blogs.css" />
-      </Head>
-
-      <div className="container">
-        <div className="bl-section-header">
-          <h2 className="bl-section-title">{title}</h2>
-          <p className="bl-section-sub">{subtitle}</p>
+    <section className="blog-lists-section">
+      <div id="blog" className="blog-area pt-100 bottom-less">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 offset-lg-2">
+              <div className="site-heading text-center">
+                <h2>{title}</h2>
+                <div className="devider"></div>
+                <p>{subtitle}</p>
+              </div>
+            </div>
+          </div>
         </div>
+        <div className="container">
+          <Swiper
+            spaceBetween={24}
+            // Looping needs more slides than are on screen at once, otherwise
+            // Swiper duplicates the few there are and the rail stutters.
+            loop={blogs.length > 3}
+            slidesPerView={3}
+            navigation={{
+              nextEl: ".swiper-button-next-1",
+              prevEl: ".swiper-button-prev-1",
+            }}
+            breakpoints={{
+              240: { centeredSlides: blogs.length > 1, slidesPerView: 1.15, spaceBetween: 14 },
+              768: { slidesPerView: 2.2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
+            }}
+            modules={[Autoplay, Navigation]}
+            className="swiper mySwiperBlogs"
+          >
+            {blogs.map((blog) => {
+              const href = `/blogs/${blog.slug}`;
+              const img = blog.cardImage?.src || blog.coverImage?.src;
+              const alt = blog.cardImage?.alt || blog.title;
+              const date = splitDate(blog.publishDate || blog.createdAt);
+              const category = blog.categories?.[0];
 
-        <div className="bl-grid">
-          {loading
-            ? Array.from({ length: LIMIT }).map((_, i) => (
-                <div className="bl-card latest-blogs-skeleton" key={i} />
-              ))
-            : blogs.map((blog) => {
-                const img = blog.cardImage?.src || blog.coverImage?.src;
-                const badge = blog.categories?.[0];
-                const date = formatDate(blog.publishDate || blog.createdAt);
-
-                return (
-                  <Link
-                    href={`/blogs/${blog.slug}`}
-                    key={blog.id || blog.slug}
-                    style={{ textDecoration: "none", display: "block" }}
-                  >
-                    <div className="bl-card">
-                      <div className="bl-card-img">
-                        {img ? (
-                          <img
-                            src={img}
-                            alt={blog.cardImage?.alt || blog.title}
-                          />
-                        ) : (
-                          <div className="bl-card-img-placeholder">📰</div>
-                        )}
-                        {badge && <span className="bl-badge">{badge}</span>}
-                      </div>
-                      <div className="bl-card-body">
-                        <h3 className="bl-card-title">{blog.title}</h3>
-                        {blog.summary && (
-                          <p className="bl-card-summary">{blog.summary}</p>
-                        )}
-                        <div className="bl-card-footer">
-                          <div className="bl-card-meta">
-                            {blog.authorName && (
-                              <span className="bl-card-author">
-                                {blog.authorName}
-                              </span>
-                            )}
-                            <span className="bl-card-date">{date}</span>
-                          </div>
-                          <span className="bl-read-more">
-                            Read more <MdArrowForward size={15} />
-                          </span>
+              return (
+                <SwiperSlide
+                  className="swiper-slide single-item"
+                  key={blog.id || blog.slug}
+                >
+                  <div className="item">
+                    <div className="thumb">
+                      <Link href={href}>
+                        {/* Falls back on two counts: a post saved without a
+                            cover, and a cover whose URL does not load -- some
+                            older posts stored an absolute http://localhost:3002
+                            path. Either way the thumb shows an image instead of
+                            a broken-image icon. */}
+                        <img
+                          src={img || FALLBACK_THUMB}
+                          alt={alt}
+                          onError={(e) => {
+                            if (e.currentTarget.src.endsWith(FALLBACK_THUMB)) return;
+                            e.currentTarget.src = FALLBACK_THUMB;
+                          }}
+                        />
+                      </Link>
+                      {date && (
+                        <div className="date">
+                          <strong>{date.day}</strong> <span>{date.month}</span>
                         </div>
-                      </div>
+                      )}
                     </div>
-                  </Link>
-                );
-              })}
-        </div>
+                    <div className="info">
+                      <div className="meta">
+                        <ul>
+                          <li>
+                            <Link href={href}>
+                              <i className="fas fa-user-circle"></i>{" "}
+                              {blog.authorName || "Viralon"}
+                            </Link>
+                          </li>
+                          {category && (
+                            <li>
+                              <Link href={href}>
+                                <i className="fas fa-folder-open"></i>{" "}
+                                {category}
+                              </Link>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <h4>
+                        <Link href={href}>{blog.title}</Link>
+                      </h4>
+                      {blog.summary && <p>{blog.summary}</p>}
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
 
-        <div className="latest-blogs-more">
-          <Link href="/blogs" className="latest-blogs-all">
-            View all blogs <MdArrowForward size={16} />
-          </Link>
+          {/* Swiper sizes each slide to its own content, so a post with a
+              shorter standfirst left a visibly stubby card next to a taller
+              one. Stretching the slide and letting .item fill it makes every
+              card in the rail the same height. Scoped to this rail so the
+              site's other Swipers keep their own sizing. */}
+          <style jsx global>{`
+            .mySwiperBlogs .swiper-slide {
+              height: auto;
+              display: flex;
+            }
+            .mySwiperBlogs .swiper-slide > .item {
+              flex: 1 1 auto;
+              display: flex;
+              flex-direction: column;
+            }
+            .mySwiperBlogs .swiper-slide > .item .info {
+              flex: 1 1 auto;
+            }
+          `}</style>
         </div>
       </div>
     </section>

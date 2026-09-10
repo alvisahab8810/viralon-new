@@ -264,11 +264,9 @@ export default function ThankYou() {
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
           crossOrigin="anonymous"
         />
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="/assets/images/favicon-32x32.png"
-        />
+        {/* Favicon comes from _app.js, which applies to every page. The link
+            that used to sit here pointed at /assets/images/favicon-32x32.png,
+            a file that does not exist. */}
       </Head>
 
       <section className="thank-you-wrapper">

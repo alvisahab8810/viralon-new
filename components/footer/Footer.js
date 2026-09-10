@@ -51,39 +51,39 @@ export default function Footer() {
               <ul className="import-list">
                 <li>
                   {" "}
-                  <Link href="#"> Digital Marketing </Link>{" "}
+                  <Link href="/our-services/digital-marketing"> Digital Marketing </Link>{" "}
                 </li>
                 <li>
                   {" "}
-                  <Link href="#"> Branding </Link>{" "}
+                  <Link href="/our-services/brand-identity-design"> Branding </Link>{" "}
                 </li>
                 <li>
                   {" "}
-                  <Link href="#"> Web development </Link>{" "}
+                  <Link href="/our-services/web-development"> Web development </Link>{" "}
                 </li>
                 <li>
                   {" "}
-                  <Link href="#"> Production </Link>{" "}
+                  <Link href="/our-services/production"> Production </Link>{" "}
                 </li>
                 <li>
                   {" "}
-                  <Link href="#"> Our Work </Link>{" "}
+                  <Link href="/our-work"> Our Work </Link>{" "}
                 </li>
                 <li>
                   {" "}
-                  <Link href="#"> Contact Us </Link>{" "}
+                  <Link href="/contact-us"> Contact Us </Link>{" "}
                 </li>
               </ul>
             </div>
-            <div className="col-md-3 pl-50">
+            <div className="col-md-3 pl-20">
               <h5> Contact Info</h5>
               <ul className="import-list">
                 <li>
                   <b>ADDRESS:</b>
                   <br />
-                  <Link href="#">
+                  <Link href="https://maps.app.goo.gl/3fLpM8c9H5dz5Ruy5">
                     Viralon Digital Services<br/>
-                    12th Floor, B Wing, Summit Building<br/>
+                    Cu-01, Tower 2, Parsvnath Planet<br/>
                     Vibhuti Khand, Gomti Nagar, Lucknow-226010<br/>
                   </Link>{" "}
                 </li>

@@ -189,17 +189,19 @@ export default function Form({ variant = "dark" }) {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="form-group">
+
+                   <div className="form-group">
                     <input
-                      type="text"
-                      name="businessName"
+                      type="email"
+                      name="email"
                       className="form-control"
-                      placeholder="Business Name"
-                      value={formData.businessName}
+                      placeholder="Email Address"
+                      value={formData.email}
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="form-group">
+
+                   <div className="form-group">
                     <input
                       type="tel"
                       name="phone"
@@ -213,14 +215,16 @@ export default function Form({ variant = "dark" }) {
                   </div>
                   <div className="form-group">
                     <input
-                      type="email"
-                      name="email"
+                      type="text"
+                      name="businessName"
                       className="form-control"
-                      placeholder="Email Address"
-                      value={formData.email}
+                      placeholder="Business Name"
+                      value={formData.businessName}
                       onChange={handleChange}
                     />
                   </div>
+                 
+                 
                   <div className="form-group">
                     <select
                       name="budget"
