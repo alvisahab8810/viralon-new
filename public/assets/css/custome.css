@@ -3388,7 +3388,7 @@ img.shape.p-absolute {
 }
 
 .hero-wheel-bg {
-    /* fill: #160F32; */
+    fill:transparent;
     /* stroke: #342E46; */
     /* stroke-width: 1.12; */
 }
@@ -5484,4 +5484,2007 @@ img.shape.p-absolute {
 
 .blog-lists-section{
     padding-bottom: 100px;
+}
+
+/* ==========================================================================
+   Brand page hero (/brand) -- components/brand/Hero.js
+   Every selector is prefixed with .brand-hero on purpose: style.css sets
+   `.bg-dark h1..h6 { color: var(--white) }` (0,1,1), so a bare `.bh-title`
+   would lose the cascade and the heading would render white instead of
+   orange. The descendant pair scores (0,2,0) and holds.
+   Responsive steps for this block live at the end of responsive.css.
+   ========================================================================== */
+.brand-hero {
+    background: #0E0920;
+    padding: 50px 0 100px;
+}
+
+.brand-hero .bh-title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 128.8px;
+    line-height: 118%;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+.brand-hero .bh-quote {
+    margin: 34px auto 0;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.brand-hero .bh-quote blockquote {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
+.brand-hero .bh-attrib {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 25.6px;
+    letter-spacing: 0.2px;
+    color: #FE4601;
+}
+
+.brand-hero .bh-note {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 14px;
+    color: #fff;
+    font-family: 'SF Pro Display';
+    letter-spacing: -0.22px;
+}
+
+/* The two hairlines are the Figma gradient stroke, not a flat border: 996.8
+   wide, 0.8 tall, and the stops run 0E0920 -> FE4601 at 36% and 71% -> 0E0920,
+   so each line fades into the band at both ends and stays orange across the
+   middle. One rule sits under the title, one above the stats row. */
+.brand-hero .bh-rule {
+    margin: 50px auto 0;
+    max-width: 996.8px;
+    width: 100%;
+    /* Figma says 0.8 weight, but at that height Chrome rounded the lower line
+       top and bottom edges onto the same device pixel and dropped it entirely.
+       1px is the nearest hairline that always paints, and at 1x it is what a
+       0.8 stroke renders as anyway. */
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        #0E0920 0%,
+        #FE4601 36%,
+        #FE4601 71%,
+        #0E0920 100%
+    );
+}
+
+/* Only the lower line needs breathing room off the note above it. */
+.brand-hero .bh-note + .bh-rule {
+    margin-top: 46px;
+}
+
+.brand-hero .bh-stats {
+    display: flex;
+    margin: 44px auto 0;
+    padding: 0;
+    max-width: 900px;
+    list-style: none;
+}
+
+.brand-hero .bh-stat {
+    position: relative;
+    flex: 1 1 0;
+    padding: 0 40px;
+    text-align: center;
+}
+
+/* The column dividers are the same gradient stroke as the horizontal rules,
+   turned vertical: 2 wide, 214 tall, 0E0920 -> FE4601 at 35% and 70% ->
+   0E0920, so each one fades out at top and bottom. A pseudo-element rather
+   than a border because a border cannot carry a gradient, and because 214 is
+   taller than the column itself -- the line is meant to overhang the text at
+   both ends, centred on the row. Drawn only between columns, never on the
+   outer edges. */
+.brand-hero .bh-stat + .bh-stat::before {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 214px;
+    background: linear-gradient(
+        180deg,
+        #0E0920 0%,
+        #FE4601 35%,
+        #FE4601 70%,
+        #0E0920 100%
+    );
+}
+
+.brand-hero .bh-figure {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 68px;
+    color: #FE4601;
+}
+.brand-hero .bh-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'SF Pro Display';
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Brand page -- "Why it matters" (components/brand/WhyItMatters.js)
+   Type follows the home page scale: 55/60 heading in #0B0B0F with an #FE4601
+   accent. Every selector is prefixed .brand-why because /brand wraps the page
+   in .bg-dark, whose `h1..h6 { color: var(--white) }` and `p { ... }` rules in
+   style.css would otherwise wash this light band out.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.brand-why {
+    background: #EFEFF0;
+    padding: 100px 0 100px;
+}
+
+.brand-why .bw-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+      font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.brand-why .bw-heading {
+    margin: 0 0 50px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.brand-why .bw-accent {
+    color: #FE4601;
+}
+
+.brand-why .bw-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Flex column so the artwork can take whatever height is left after the copy:
+   cards with a shorter paragraph give their image more room rather than
+   ending up shorter than the card beside them. */
+.brand-why .bw-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px 0;
+    min-height: 537px;
+    border-radius: 18px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.brand-why .bw-card-title {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #0B0B0F;
+}
+
+.brand-why .bw-card-body {
+    margin: 0;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    color: #1D1D1F;
+    font-family: 'SF Pro Display';
+}
+
+/* Negative side margins pull the artwork out to the card edges while the copy
+   above keeps its padding. */
+.brand-why .bw-card-art {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 22px -28px 0;
+    min-height: 0;
+}
+
+/* The exports are transparent cut-outs on no background, so they are
+   contained and sat on the floor of the card rather than cropped to fill. */
+.brand-why .bw-card-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Capped, or a card that goes full width (the third one on tablet) scales
+       its art up with the column and towers over the two above it. */
+    /* max-height: 300px; */
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+.brand-why .bw-card-cta {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    /* transform: translateX(-50%); */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 35px;
+    border-radius: 999px;
+    background: #1E77F2;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    white-space: nowrap;
+    color: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.brand-why .bw-card-cta:hover,
+.brand-why .bw-card-cta:focus {
+    background: #1462CE;
+    color: #ffffff;
+}
+
+.brand-why .bw-card-arrow {
+    font-size: 13px;
+    line-height: 1;
+}
+
+
+/* ==========================================================================
+   Brand page -- "Brands We Have Built" (components/brand/BrandsBuilt.js)
+   Three full-bleed marquee rows. The heading keeps the container; the rows
+   run edge to edge, so they are siblings of it rather than children.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.brand-marquee {
+    background: #0E0920;
+    padding: 100px 0 100px;
+    font-family: var(--font-heading);
+    overflow: hidden;
+}
+
+.brand-marquee .bm-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.brand-marquee .bm-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.brand-marquee .bm-accent {
+    color: #FE4601;
+}
+
+.brand-marquee .bm-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.brand-marquee .bm-row {
+    overflow: hidden;
+}
+
+/* `width: max-content` stops the flex line from wrapping or shrinking: the
+   track has to be its full natural length for -50% to equal exactly one copy.
+   `will-change` keeps the whole strip on its own compositor layer, which is
+   what makes a track this wide move without tearing. */
+.brand-marquee .bm-track {
+    display: flex;
+    width: max-content;
+    animation-name: bm-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* Reversing the same keyframes rather than writing a second set, so both
+   directions stay locked to one definition of "one copy". */
+.brand-marquee .bm-track-rev {
+    animation-direction: reverse;
+}
+
+/* Paused rather than slowed, so a tile someone is looking at stays put. */
+.brand-marquee .bm-row:hover .bm-track {
+    animation-play-state: paused;
+}
+
+/* The trailing margin is the row's spacing -- see the note in the component
+   about why this cannot be a flex `gap`. */
+.brand-marquee .bm-item {
+    flex: 0 0 auto;
+    margin-right: 18px;
+}
+
+.brand-marquee .bm-row-media .bm-item {
+    height: 300px;
+}
+
+/* Height-driven: each tile keeps its own ratio and takes the width it needs,
+   so portrait and landscape sit in one strip without being cropped. */
+.brand-marquee .bm-row-media .bm-item img {
+    display: block;
+    width: auto;
+    height: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.brand-marquee .bm-row-logos .bm-item {
+    height: 120px;
+}
+
+.brand-marquee .bm-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 100%;
+    padding: 0 26px;
+    border-radius: 14px;
+}
+
+.brand-marquee .bm-logo img {
+    display: block;
+    max-width: 100%;
+    max-height: 46px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+@keyframes bm-scroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* A continuously moving strip is exactly what this setting is for. The rows
+   still read, they just stop travelling. */
+@media (prefers-reduced-motion: reduce) {
+    .brand-marquee .bm-track {
+        animation: none;
+    }
+    .brand-marquee .bm-row {
+        overflow-x: auto;
+    }
+}
+
+
+/* ==========================================================================
+   "What We Build It For" -- cube variant (components/home/BuildItForCube.js)
+   Namespaced .bifc-* and kept entirely separate from the .builditfor-* rules
+   above, so the coverflow version is untouched and either can be dropped.
+   ========================================================================== */
+.bifc-section {
+    background: #0E0920;
+    padding: 100px 0;
+    font-family: var(--font-heading);
+    overflow: hidden;
+}
+
+.bifc-grid {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.bifc-copy {
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding-right: 40px;
+}
+
+.bifc-section .bifc-heading {
+    margin: 0 0 26px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+}
+
+.bifc-section .bifc-accent {
+    color: #FE4601;
+}
+
+.bifc-section .bifc-desc {
+    margin: 0;
+    max-width: 461px;
+    color: #86868B !important;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+/* Nobody grabs something they have not been told is grabbable, and the cursor
+   change alone only reaches people who are already hovering it. */
+.bifc-section .bifc-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 26px 0 0;
+    color: #86868B !important;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+}
+
+.bifc-hint-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FE4601;
+    box-shadow: 0 0 0 0 rgba(254, 70, 1, 0.55);
+    animation: bifc-pulse 2.4s ease-out infinite;
+}
+
+@keyframes bifc-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(254, 70, 1, 0.55); }
+    70%  { box-shadow: 0 0 0 11px rgba(254, 70, 1, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(254, 70, 1, 0); }
+}
+
+.bifc-stage {
+    flex: 0 0 60%;
+    max-width: 60%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Room for the card shadows, which are drawn outside the scene box. */
+    padding: 30px 0 10px;
+}
+
+/* The scene owns the camera. Perspective has to live on an ancestor of the
+   thing being rotated -- an element cannot create a perspective and be rotated
+   inside it -- so scene and ring are two elements.
+
+   --bifc-r is the radius of the circle the cards stand on, and it is set from
+   the card width rather than picked: at 1.55x the width the neighbours clear
+   the card at the front, so the active card is never partly covered. Drop it
+   and the ring tightens until the cards overlap; raise it and the circle
+   flattens out into a row.
+
+   --bifc-step must match STEP in the component (360 / number of cards). The
+   stylesheet places the cards; the component only knows how far round each one
+   is when it works out which is at the front.
+
+   `overflow: visible` because the ring is much wider than the card box it is
+   measured from -- the far cards have to be allowed outside it. */
+.bifc-scene {
+    --bifc-cw: 250px;
+    --bifc-ch: 345px;
+    --bifc-r: calc(var(--bifc-cw) * 1.55);
+    /* The ring is pushed back down the camera axis by exactly its own radius,
+       so the card at the front sits at z = 0 instead of a radius nearer the
+       lens. Without this the front card is projected far larger than its own
+       box -- it burst out of the section and covered the dots -- and the depth
+       cue turns into plain magnification. */
+    --bifc-pull: calc(var(--bifc-r) * -1);
+    --bifc-step: 40deg;
+    position: relative;
+    width: var(--bifc-cw);
+    height: var(--bifc-ch);
+    /* A long lens. Shorter and the front card balloons while the side cards
+       shear; this keeps the circle believable. */
+    perspective: 1500px;
+    perspective-origin: 50% 50%;
+    overflow: visible;
+    cursor: grab;
+    /* The ring only wants the horizontal axis. Handing the vertical one back to
+       the browser is what stops a thumb swipe over the cards from trapping the
+       page scroll on a phone. */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.bifc-scene.is-grabbing {
+    cursor: grabbing;
+}
+
+/* No keyframe here on purpose. The turn is written to this element's transform
+   every frame by the component, because a CSS animation cannot be grabbed and
+   thrown, and because the per-card scale, fade and caption all need the exact
+   angle. */
+.bifc-ring {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: translateZ(var(--bifc-pull));
+    will-change: transform;
+}
+
+/* This is the whole trick: every card is turned to its own place on the circle
+   and then pushed straight out from the centre by the radius. Nine cards at
+   40deg apart end up standing in a ring, each facing outward, so the one at
+   the front faces the camera square on.
+
+   The scale and the fade are separate from this transform -- they are written
+   to the custom properties from the frame loop, and this rule just reads them,
+   so a card's place on the circle and its emphasis never fight each other. */
+.bifc-card {
+    position: absolute;
+    inset: 0;
+    transform:
+        rotateY(calc(var(--i) * var(--bifc-step)))
+        translateZ(var(--bifc-r))
+        scale(var(--bifc-scale, 1));
+    /* Nothing here may create a stacking context or clip: no overflow, no
+       opacity, no filter. Any one of them flattens the two plates below into a
+       single plane and the card stops being double-sided. The look -- radius,
+       background, shadow, fade -- therefore lives on the plates. */
+    transform-style: preserve-3d;
+}
+
+/* The two sides of one card. Each hides its own backface, so at any moment
+   exactly one of them is drawn: the front while the card is on the near half
+   of the circle, the back while it is round the far side. That is what keeps
+   the whole ring populated instead of leaving the back empty. */
+.bifc-plate {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #19132F;
+    box-shadow: 0 26px 54px rgba(0, 0, 0, 0.5);
+    opacity: var(--bifc-fade, 1);
+    backface-visibility: hidden;
+}
+
+/* Turned to face the other way. The image inside is turned with it, so a card
+   seen from behind shows the picture the right way round rather than mirrored. */
+.bifc-plate-back {
+    transform: rotateY(180deg);
+}
+
+.bifc-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* A dragged image is a ghost thumbnail following the cursor, and it kills
+       the grab. */
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+/* Shading pass. One fixed light at the front of the scene: the component sets
+   --bifc-shade per card from how far that card has turned away from it, so a
+   card going round the side sinks and comes back out. This is what gives the
+   ring depth rather than leaving it a flat fan of cards. */
+.bifc-shade {
+    position: absolute;
+    inset: 0;
+    background: #05030F;
+    opacity: var(--bifc-shade, 0);
+    pointer-events: none;
+}
+
+/* --bifc-copy is set every frame: a card more than about 35deg off square has
+   its caption faded out, because at that angle the text is a skew rather than
+   a sentence. No transition -- the frame loop is the easing. */
+.bifc-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 22px 24px 24px;
+    opacity: var(--bifc-copy, 1);
+    /* Sat straight on the card rather than on a blurred panel -- a backdrop
+       filter on a rotating 3D element is what makes these flicker in Safari. */
+    background: linear-gradient(
+        180deg,
+        rgba(14, 9, 32, 0) 0%,
+        rgba(14, 9, 32, 0.82) 42%,
+        rgba(14, 9, 32, 0.94) 100%
+    );
+}
+
+.bifc-layer-title {
+    display: block;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.bifc-section .bifc-layer-desc {
+    margin: 0;
+    color: #C9C9CE !important;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+/* Position round the ring, and a way to reach a card without turning to it.
+   Outside the scene, so the perspective never touches them. */
+.bifc-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 46px;
+}
+
+.bifc-dots .bifc-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+    transition: background 0.25s ease, width 0.25s ease;
+}
+
+.bifc-dots .bifc-dot.is-on {
+    /* Widened rather than only recoloured, so the position is readable at a
+       glance and not only to someone who can pick the orange out. */
+    width: 26px;
+    border-radius: 4px;
+    background: #FE4601;
+}
+
+/* Motion off: the component skips its frame loop, so the ring holds its
+   starting angle. The cards keep their places on the circle, and it stays
+   draggable -- that is a deliberate action, not motion imposed on the reader. */
+@media (prefers-reduced-motion: reduce) {
+    .bifc-hint-dot {
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Brand page -- first marquee row ("the work"). It runs taller than the two
+   rows below it and carries two kinds of slide, so it gets its own modifier
+   rather than sharing .bm-row-media: rows two and three keep their 300px rule
+   untouched.
+
+   Two variables drive the whole row. --bm-work-h is the row height, and
+   --bm-work-w is the width of a stacked column, which cannot be derived from
+   the height the way the tall tiles' width is: the halves are exported at two
+   different widths (324 and 287 against the same 353 height), so letting them
+   size themselves would leave one column narrower than the rest and put a
+   notch in the strip. Fixing the width and cropping to fill is what keeps the
+   row's rhythm even. Both step down together in responsive.css.
+   -------------------------------------------------------------------------- */
+.brand-marquee .bm-row-work {
+    --bm-work-h: 480px;
+    --bm-work-w: 216px;
+    --bm-work-gap: 10px;
+}
+
+.brand-marquee .bm-row-work .bm-item {
+    height: var(--bm-work-h);
+}
+
+/* Height-driven, like the rows below: the tile keeps its 413x720 ratio and
+   takes whatever width that needs. The ratio is declared rather than left to
+   the file, because `width: auto` on an image that has not arrived yet is
+   zero: the tall tiles would start the row collapsed and shove the strip
+   sideways as each one decoded. */
+.brand-marquee .bm-row-work .bm-tall {
+    display: block;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 413 / 720;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+/* `min-height: 0` on the halves because a flex item defaults to min-content:
+   without it each image would refuse to go below its own natural height and
+   the column would push past the row. */
+.brand-marquee .bm-row-work .bm-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bm-work-gap);
+    width: var(--bm-work-w);
+    height: 100%;
+}
+
+.brand-marquee .bm-row-work .bm-stack img {
+    display: block;
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Brand page -- third marquee row, the brand tiles. Its own modifier rather
+   than the older .bm-row-logos, because those rules size a coloured wrapper
+   around a bare logo and these files are finished tiles.
+
+   The box is fixed at 210x189 from the design. The artwork is 315x284, the
+   same ratio, so `cover` has nothing to crop -- it is there to hold the shape
+   if a later export comes in slightly off.
+   -------------------------------------------------------------------------- */
+.brand-marquee .bm-row-brands {
+    --bm-brand-w: 210px;
+    --bm-brand-h: 189px;
+}
+
+.brand-marquee .bm-row-brands .bm-item {
+    height: var(--bm-brand-h);
+}
+
+.brand-marquee .bm-row-brands .bm-brand {
+    display: block;
+    width: var(--bm-brand-w);
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   Brand page -- "Two Halves. Fourteen Decisions." Two horizontal accordions.
+
+   The open panel is grown with `flex-grow`, not with a width: flex-grow is an
+   animatable number, so the open panel takes exactly the space the closed
+   spines leave over at any container width, and still animates. A width would
+   have to be guessed per breakpoint and would never land flush.
+
+   The label strip is laid out horizontally at all times and rotated -90deg
+   while closed, because `writing-mode` cannot be transitioned -- swapping it
+   would snap the label to upright the instant the panel opened. The icon
+   counter-rotates +90deg so it reads upright in both states.
+
+   The section runs light on a dark page, so every rule carries .bsee-section:
+   style.css scores `.bg-dark h1..h6 { color: var(--white) }` at (0,1,1) and a
+   bare heading rule would lose to it and render white on white.
+   ========================================================================== */
+.bsee-section {
+    /* Fixed, and identical open or shut: the row never changes height, so the
+       two columns stay level with each other and nothing below them moves
+       when a panel opens. */
+    --bsee-h: 234px;
+    --bsee-spine: 46px;
+    --bsee-gap: 8px;
+    /* Inset at the top of every panel. The label strip is pushed down by it
+       and shortened by the same amount, so it still ends flush with the
+       bottom of the panel. */
+    --bsee-pad: 18px;
+    /* One duration and one curve for the width, the label turn and the icon,
+       so the three read as a single movement. The curve decelerates hard at
+       the end, which is what stops the panel looking like it snaps shut. */
+    --bsee-dur: 0.72s;
+    --bsee-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    background: #fff;
+    padding: 100px 0;
+}
+
+.bsee-section .bsee-eyebrow {
+    margin: 0 0 15px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+    text-align: center;
+}
+
+.bsee-section .bsee-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0E0920;
+    text-align: center;
+}
+
+.bsee-section .bsee-accent {
+    color: #FE4601;
+}
+
+.bsee-section .bsee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.bsee-section .bsee-col {
+    background: #3d3d3d14;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.bsee-section .bsee-col-title {
+    margin: 10px 0 25px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #1D1D1F;
+    text-align: center;
+}
+
+.bsee-section .bsee-panels {
+    display: flex;
+    gap: var(--bsee-gap);
+    height: var(--bsee-h);
+}
+
+/* `flex-basis` is the closed spine and `flex-grow` does the opening. The
+   overflow is what crops the rotated label strip to the spine, so it has to
+   stay on the panel itself. */
+.bsee-section .bsee-panel {
+    position: relative;
+    flex: 0 0 var(--bsee-spine);
+    min-width: 54px;
+    padding: 0;
+    border: none;
+    border-radius: 9px;
+    box-shadow: 1.8px 3.6px 10.8px 0px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: flex-grow var(--bsee-dur) var(--bsee-ease),
+                box-shadow var(--bsee-dur) var(--bsee-ease);
+}
+
+.bsee-section .bsee-panel.is-open {
+    flex-grow: 1;
+    box-shadow: 0 10px 30px rgba(14, 9, 32, 0.08);
+    cursor: default;
+}
+
+.bsee-section .bsee-panel:focus-visible {
+    outline: 2px solid #FE4601;
+    outline-offset: 2px;
+}
+
+/* Sized to the panel's own height, because rotated it has to span top to
+   bottom. `translateX(-100%)` runs in the rotated frame, which is what drops
+   the strip back down over the panel after the turn. */
+.bsee-section .bsee-face {
+    position: absolute;
+    left: 0;
+    top: var(--bsee-pad);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: calc(var(--bsee-h) - var(--bsee-pad));
+    height: var(--bsee-spine);
+    padding: 0 16px;
+    transform-origin: 0 0;
+    transform: rotate(-90deg) translateX(-100%);
+    transition: transform var(--bsee-dur) var(--bsee-ease);
+}
+
+.bsee-section .bsee-panel.is-open .bsee-face {
+    transform: rotate(0deg) translateX(0);
+}
+
+.bsee-section .bsee-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    transform: rotate(90deg);
+    transition: transform var(--bsee-dur) var(--bsee-ease);
+}
+
+.bsee-section .bsee-panel.is-open .bsee-icon {
+    transform: rotate(0deg);
+}
+
+/* Contained rather than stretched: the set is not all one aspect ratio, and
+   the rotation means any difference shows up as a wobble between panels. */
+.bsee-section .bsee-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bsee-section .bsee-label {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'SF Pro Display';
+    line-height: 25px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #1D1D1F;
+    white-space: nowrap;
+}
+/* Held in the DOM and hidden with opacity rather than display: a panel that
+   re-wraps its text on every click cannot animate its width smoothly. It is
+   free to take the panel's width -- it must not be given a min-width, or in
+   the narrower two-column band it lays out wider than the panel and the
+   `overflow: hidden` silently cuts the ends off every line. The fade is
+   delayed instead, so the copy appears once the box is near its full size. */
+.bsee-section .bsee-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--bsee-pad) + var(--bsee-spine));
+    padding: 0 20px 20px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #1D1D1F;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Held back until the panel is most of the way open, so the copy arrives into
+   a box already close to its final width instead of re-wrapping as it fades. */
+.bsee-section .bsee-panel.is-open .bsee-text {
+    opacity: 1;
+    transition: opacity 0.42s ease 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bsee-section .bsee-panel,
+    .bsee-section .bsee-face,
+    .bsee-section .bsee-icon,
+    .bsee-section .bsee-text {
+        transition: none;
+    }
+}
+
+
+    .bsee-section .bsee-text {
+        padding: 0px 16px 16px;
+        font-size: 16px;
+        line-height: 23px;
+    }
+/* --------------------------------------------------------------------------
+   Brand page -- dark quote band.
+
+   letter-spacing is given as -3% in the design. CSS has no percentage here, so
+   it is resolved against the font size: 3% of 50px = 1.5px. Every step below
+   re-resolves it against its own size rather than carrying 1.5px down, or the
+   tracking would tighten as the type shrinks.
+   -------------------------------------------------------------------------- */
+.bquote-band {
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+.bquote-band .bquote-text {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 69.1px;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.bquote-band .bquote-accent {
+    color: #FE4601;
+}
+
+/* ==========================================================================
+   Search page hero (components/search/Hero.js)
+   Colours, type scale and the stat row are lifted wholesale from .brand-hero
+   so the two heroes read as a pair -- 128.8px/118% orange title, 60/68 stat
+   figures, 18/22 labels, the same gradient column strokes. Only the query pill
+   and the struck-out claim are new.
+   Every selector is prefixed .search-hero: the page is wrapped in .bg-dark,
+   whose `h1..h6 { color: var(--white) }` in style.css scores (0,1,1) and would
+   beat a bare .sh-title, turning the orange heading white.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.search-hero {
+    background: #0E0920;
+    padding: 50px 0 100px;
+}
+
+.search-hero .sh-title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 128.8px;
+    line-height: 118%;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+/* The pill. Fully rounded, so the radius is half the height rather than a
+   fixed number -- it stays a capsule at every responsive step without being
+   retuned. */
+.search-hero .sh-query {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 35px auto 0;
+    max-width: 746px;
+    width: 100%;
+    min-height: 66px;
+    padding: 12px 26px 12px 30px;
+    border: 1px solid #2E2842;
+    border-radius: 999px;
+    background: #1C1730;
+}
+
+.search-hero .sh-query-text {
+    flex: 1 1 auto;
+    font-family: 'SF Pro Display';
+    font-size: 20px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.search-hero .sh-query-icon {
+    flex: 0 0 auto;
+    font-size: 22px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.search-hero .sh-dead {
+    margin: 64px 0 0;
+    text-align: center;
+    font-family: 'SF Pro Display';
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 28px;
+    letter-spacing: -1.26px;
+    color: #FE4601;
+}
+
+/* inline-block so the rule can be measured against the words, not the full
+   centred line box. */
+.search-hero .sh-dead span {
+    position: relative;
+    display: inline-block;
+}
+
+/* arrow.svg is the struck-through stroke -- 283x15 natively, and it is drawn
+   to the width of the words rather than a fixed size, so it keeps covering the
+   line at every responsive step. `100% 100%` rather than `contain`: the art is
+   a single horizontal stroke, so stretching it along its own axis is what it
+   is for, and letting it letterbox would leave the ends short of the text. */
+.search-hero .sh-dead span::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    right: -10px;
+    top: 50%;
+    height: 15px;
+    transform: translateY(-50%);
+    background: url("../others/icons/arrow.svg") center center / 100% 100% no-repeat;
+}
+
+.search-hero .sh-line {
+    margin: 20px 0 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    color: #ffffff;
+}
+.search-hero .sh-stats {
+    display: flex;
+    margin: 88px auto 0;
+    padding: 0;
+    max-width: 820px;
+    list-style: none;
+}
+
+.search-hero .sh-stat {
+    position: relative;
+    flex: 1 1 0;
+    padding: 0 25px;
+    text-align: center;
+}
+
+/* Same gradient stroke as the brand hero: 1 wide, 214 tall, fading to the band
+   colour at both ends so it overhangs the text rather than boxing it. A
+   pseudo-element because a border cannot carry a gradient. Between columns
+   only, never on the outer edges. */
+.search-hero .sh-stat + .sh-stat::before {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 214px;
+    background: linear-gradient(
+        180deg,
+        #0E0920 0%,
+        #FE4601 35%,
+        #FE4601 70%,
+        #0E0920 100%
+    );
+}
+
+.search-hero .sh-figure {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 68px;
+    color: #FE4601;
+}
+
+.search-hero .sh-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'SF Pro Display';
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Search page -- "Not Just Numbers" (components/search/Results.js)
+   The brand page's "Why it matters" band with a large orange figure in place
+   of each card title. Values are kept in step with .brand-why deliberately --
+   the two read as a pair -- but the selectors are separate so either page can
+   be retuned without moving the other.
+   Every selector is prefixed .search-results because /search wraps the page in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` and `p { ... }` rules in
+   style.css would otherwise wash this light band out.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.search-results {
+    background: #EFEFF0;
+    padding: 100px 0 100px;
+}
+
+.search-results .sr-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-results .sr-heading {
+    margin: 0 0 50px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.search-results .sr-accent {
+    color: #FE4601;
+}
+
+.search-results .sr-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Flex column so the artwork can take whatever height is left after the copy:
+   cards with a shorter paragraph give their image more room rather than
+   ending up shorter than the card beside them. */
+.search-results .sr-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px 0;
+    min-height: 537px;
+    border-radius: 18px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+/* line-height 1 and no top margin: at this size the default half-leading
+   would push the figure a visible step down from the card padding, and the
+   copy is meant to sit directly under it. */
+.search-results .sr-figure {
+    margin: 0 0 14px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 93px;
+    line-height: 80px;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+.search-results .sr-card-body {
+    margin: 0;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    color: #1D1D1F;
+    font-family: 'SF Pro Display';
+}
+
+/* Negative side margins pull the artwork out to the card edges while the copy
+   above keeps its padding. */
+.search-results .sr-card-art {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 22px -28px 0;
+    min-height: 0;
+}
+
+/* The exports are transparent cut-outs on no background, so they are
+   contained and sat on the floor of the card rather than cropped to fill. */
+.search-results .sr-card-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+.search-results .sr-card-cta {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 35px;
+    border-radius: 999px;
+    background: #1E77F2;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    white-space: nowrap;
+    color: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.search-results .sr-card-cta:hover,
+.search-results .sr-card-cta:focus {
+    background: #1462CE;
+    color: #ffffff;
+}
+
+.search-results .sr-card-arrow {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Search page -- "Why search" (components/search/WhySearch.js)
+   Heading full width, then copy left / photograph right. The purple is local
+   to this section and lives in one place at the top of the block, since it is
+   the only violet on the site -- everything else runs on #FE4601.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.search-why {
+    --swy-purple: #754CDA;
+    background: #ffffff;
+    padding: 100px 0 100px;
+}
+
+.search-why .swy-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-why .swy-heading {
+    margin: 0 0 44px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.search-why .swy-accent {
+    color: #FE4601;
+}
+
+.search-why .swy-grid {
+    display: grid;
+    grid-template-columns: 1fr 537px;
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* space-between rather than a margin: the button stays at the top of the
+   column and the copy blocks drop to the floor, so they finish level with the
+   bottom of the photograph however tall it ends up. */
+.search-why .swy-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.search-why .swy-cta,
+.search-ways .swy-cta {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 9px 9px 9px 36px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 21.6px;
+    line-height: 38.9px;
+    background: #8668FF;
+    white-space: nowrap;
+    letter-spacing: -0.48px;
+    color: #ffffff;
+    transition: filter 0.2s ease;
+}
+
+.search-why .swy-cta:hover,
+.search-why .swy-cta:focus,
+.search-ways .swy-cta:hover,
+.search-ways .swy-cta:focus {
+    filter: brightness(0.93);
+    color: #ffffff;
+}
+
+/* The disc is a fixed square so it stays a circle whatever the label does --
+   flex would otherwise squeeze it to an oval when the row runs short of room. */
+.search-why .swy-cta-icon,
+.search-ways .swy-cta-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--swy-purple);
+}
+
+/* 246 is the Figma width of the first block; the second takes what is left.
+   min-height rather than the flat 249 of the frame -- the copy is editable and
+   one line more would otherwise spill out of a fixed box. stretch keeps the
+   pair the same height whichever one runs longer. */
+.search-why .swy-cards {
+    display: grid;
+    grid-template-columns: 246px 1fr;
+    gap: 10px;
+    align-items: stretch;
+    min-height: 249px;
+}
+
+.search-why .swy-card {
+    margin: 0;
+    padding: 30px 23px;
+    border-radius: 20px;
+    background: #F4F4F4;
+    font-family: 'SF Pro Display';
+    font-size: 18px;
+    line-height: 150%;
+    color: #555555;
+}
+
+/* Same weight as the surrounding copy: the colour is doing the emphasis, and
+   bolding it as well makes the blocks read as two competing voices. */
+.search-why .swy-hl {
+    font-weight: inherit;
+    color: var(--swy-purple);
+}
+
+/* The export is 806x681 -- the same 1.183 ratio as 537x454 -- so `cover` fills
+   the box without cropping anything out of frame. */
+.search-why .swy-art {
+    width: 537px;
+    height: 454px;
+    border-radius: 26px;
+    overflow: hidden;
+}
+
+.search-why .swy-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ── /search — "The shift that matters" ─────────────────────────────────── */
+/* Same dark ground as the hero so the two dark bands on the page read as one
+   material, with the light Results/Why bands between them. */
+.search-shift {
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+.search-shift .ssh-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-shift .ssh-heading {
+    margin: 0 0 26px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.search-shift .ssh-accent {
+    color: #FE4601;
+}
+
+.search-shift .ssh-intro {
+    margin: 0 0 46px;
+    max-width: 980px;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* A <dl> is a block container, so the keyword/question pairs are wrapped in a
+   div each -- that wrapper is the grid cell, and dt/dd stack inside it. */
+.search-shift .ssh-pairs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 0;
+}
+
+.search-shift .ssh-pair {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-shift .ssh-keyword {
+    margin: 0 0 14px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 150%;
+    color: #fff;
+    text-decoration: line-through;
+    text-decoration-color: #FE4601;
+}
+
+
+/* flex:1 rather than a fixed height: the three questions are different lengths
+   and the cards still finish level whichever one runs to an extra line. */
+.search-shift .ssh-question {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 25px 25px;
+    border-radius: 15px;
+    background: #8668FF;
+    font-size: 18px;
+    line-height: 150%;
+    color: #ffffff;
+}
+/* ── /search — "What you get" (SEO / AEO / GEO) ──────────────────────────── */
+.search-layers {
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+/* Heading column on the left, the intro set against it on the right and
+   centred on the heading block, as in the mock. */
+.search-layers .sly-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 39%;
+    gap: 40px;
+    align-items: center;
+    margin: 0 0 90px;
+}
+
+.search-layers .sly-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+/* max-width holds the three-line setting from the mock -- "Run Together."
+   finishes line one -- instead of letting the heading run the full column. */
+.search-layers .sly-heading {
+    margin: 0;
+    max-width: 560px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.search-layers .sly-accent {
+    color: #FE4601;
+}
+
+.search-layers .sly-intro {
+    margin: 0;
+    font-size: 18px;
+    line-height: 150%;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* One grid per row with the same column template, so the goals start on one
+   line down the list at the mock's 36% whatever the name widths are. */
+.search-layers .sly-row {
+    display: grid;
+    grid-template-columns: 36% minmax(0, 1fr);
+    align-items: center;
+    padding: 44px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.search-layers .sly-row-head {
+    padding: 0 0 22px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 12%;
+    text-transform: uppercase;
+    color: #A29ABF;
+}
+
+.search-layers .sly-name {
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 110%;
+    color: var(--sly-tone, #ffffff);
+}
+
+.search-layers .sly-goal {
+    font-size: 24px;
+    line-height: 37%;
+    color: #FFFFFF;
+}
+/* ── /search — "How we work" (four steps) ──────────────────────────────────
+   Type and card values are the homepage .sixparts- card's, so the two read as
+   the same component; only the layout differs (a fixed grid, not a rail). */
+.search-steps {
+    background: #EFEFF0;
+    padding: 100px 0;
+}
+
+.search-steps .sst-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-steps .sst-heading {
+    margin: 0 0 40px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.8px;
+    color: #0B0B0F;
+}
+
+.search-steps .sst-accent {
+    color: #FE4601;
+}
+
+/* stretch keeps the four cards one height; the artwork is pushed to the floor
+   of each with margin-top:auto, so the images line up along the bottom even
+   though the copy above them runs to different lengths. */
+.search-steps .sst-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-steps .sst-card {
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px 0;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(11, 11, 15, 0.05);
+    overflow: hidden;
+}
+
+.search-steps .sst-title {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 27.2px;
+    line-height: 32px;
+    color: #1D1D1F;
+}
+
+.search-steps .sst-desc {
+    margin: 0 0 20px;
+    font-family: 'SF Pro Display';
+    font-size: 16.68px;
+    line-height: 21.6px;
+    letter-spacing: -0.27px;
+    color: #1D1D1F;
+}
+
+/* Bled to the card's side and bottom edges; the card's overflow clips it to
+   the corner radius. */
+.search-steps .sst-media {
+    margin: auto -24px 0;
+}
+
+.search-steps .sst-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ── /search — "What we measure" (hover-open cards) ────────────────────────── */
+.search-measure {
+    --smm-h: 470px;          /* closed card height */
+    --smm-h-open: 600px;     /* open card height */
+    --smm-grow: 1.45;        /* open card width relative to a closed one */
+    --smm-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    background: #F7F7F5;
+    padding: 100px 0;
+}
+
+.search-measure .smm-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-measure .smm-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.8px;
+    color: #0B0B0F;
+}
+
+.search-measure .smm-accent {
+    color: #FE4601;
+}
+
+/* The row is as tall as an open card and the cards are centred in it, so the
+   open one grows out above and below its neighbours and nothing under the
+   section jumps when a card opens. */
+.search-measure .smm-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: var(--smm-h-open);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-measure .smm-card {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    height: var(--smm-h);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(11, 11, 15, 0.04);
+    overflow: hidden;
+    outline: none;
+    transition: flex-grow 0.5s var(--smm-ease), height 0.5s var(--smm-ease),
+        box-shadow 0.5s var(--smm-ease);
+}
+
+/* The first card starts open; any card under the pointer or keyboard opens. */
+.search-measure .smm-card:first-child,
+.search-measure .smm-card:hover,
+.search-measure .smm-card:focus-within {
+    flex-grow: var(--smm-grow);
+    height: var(--smm-h-open);
+    box-shadow: 0 24px 60px rgba(11, 11, 15, 0.1);
+}
+
+.search-measure .smm-card:focus-visible {
+    box-shadow: 0 0 0 3px rgba(254, 70, 1, 0.45), 0 24px 60px rgba(11, 11, 15, 0.1);
+}
+
+/* Both states fill the card and cross-fade. The closed layer leaves at once;
+   the open layer waits until the card has most of its new size, so the copy
+   is never seen squeezed mid-transition. */
+.search-measure .smm-closed,
+.search-measure .smm-open {
+    position: absolute;
+    inset: 0;
+}
+
+.search-measure .smm-closed {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 28px 30px;
+    transition: opacity 0.2s ease;
+}
+
+.search-measure .smm-num {
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #E5E7EB;
+}
+
+.search-measure .smm-label {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #1D1D1F;
+}
+
+.search-measure .smm-open {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.search-measure .smm-card:first-child .smm-closed,
+.search-measure .smm-card:hover .smm-closed,
+.search-measure .smm-card:focus-within .smm-closed {
+    opacity: 0;
+}
+
+.search-measure .smm-card:first-child .smm-open,
+.search-measure .smm-card:hover .smm-open,
+.search-measure .smm-card:focus-within .smm-open {
+    opacity: 1;
+    transition: opacity 0.35s ease 0.2s;
+}
+
+/* The artwork takes whatever the copy does not, so the card never carries a
+   band of empty white under a short title; it settles from a slight zoom as
+   the card opens. */
+.search-measure .smm-media {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.search-measure .smm-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.08);
+    transition: transform 0.7s var(--smm-ease);
+}
+
+.search-measure .smm-card:first-child .smm-media img,
+.search-measure .smm-card:hover .smm-media img,
+.search-measure .smm-card:focus-within .smm-media img {
+    transform: scale(1);
+}
+
+.search-measure .smm-body {
+    flex: 0 0 auto;
+    padding: 26px 30px 30px;
+}
+
+.search-measure .smm-title {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 41px;
+    color: #111827;
+}
+
+.search-measure .smm-desc {
+     margin: 0;
+    font-size: 18px;
+    line-height: 150%;
+    color: #6B7280;
+}
+
+/* ...and closes again the moment another card is hovered or focused, so only
+   one is ever open. Desktop-with-hover only: below 1024 and on touch every
+   card renders open (responsive.css) and must not be closed by this. */
+@media (min-width: 1024px) and (hover: hover) {
+    .search-measure .smm-row:has(.smm-card:not(:first-child):hover, .smm-card:not(:first-child):focus-within) .smm-card:first-child:not(:hover):not(:focus-within) {
+        flex-grow: 1;
+        height: var(--smm-h);
+        box-shadow: 0 1px 2px rgba(11, 11, 15, 0.04);
+    }
+    .search-measure .smm-row:has(.smm-card:not(:first-child):hover, .smm-card:not(:first-child):focus-within) .smm-card:first-child:not(:hover):not(:focus-within) .smm-closed {
+        opacity: 1;
+        transition: opacity 0.35s ease 0.2s;
+    }
+    .search-measure .smm-row:has(.smm-card:not(:first-child):hover, .smm-card:not(:first-child):focus-within) .smm-card:first-child:not(:hover):not(:focus-within) .smm-open {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+    .search-measure .smm-row:has(.smm-card:not(:first-child):hover, .smm-card:not(:first-child):focus-within) .smm-card:first-child:not(:hover):not(:focus-within) .smm-media img {
+        transform: scale(1.08);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-measure .smm-card,
+    .search-measure .smm-closed,
+    .search-measure .smm-open,
+    .search-measure .smm-media img {
+        transition: none !important;
+    }
+}
+
+/* ── /search — "Three ways we work" ────────────────────────────────────────── */
+/* --swy-purple is set here too because the shared "Let's talk" button's arrow
+   disc reads it, and outside .search-why it would otherwise be undefined. */
+.search-ways {
+    --swy-purple: #754CDA;
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+.search-ways .swa-eyebrow {
+    margin: 0 0 18px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.search-ways .swa-heading {
+    margin: 0 0 56px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.search-ways .swa-accent {
+    color: #FE4601;
+}
+
+.search-ways .swa-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Deep violet running darker toward the foot, with a hairline edge so the
+   card still separates from the band where the two colours meet. */
+.search-ways .swa-card {
+    padding: 36px 32px 40px;
+    border: 1px solid rgba(134, 104, 255, 0.22);
+    border-radius: 16px;
+        background: #2A1755;
+}
+
+.search-ways .swa-name {
+    margin: 0 0 10  px;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #FF6D36;
+}
+
+.search-ways .swa-promise {
+    margin: 0 0 0px;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    padding-bottom: 15px;
+}
+
+
+.search-ways .swa-for {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 25px;
+    padding-top: 26px;
+    color: rgba(255, 255, 255, 0.72);
+}
+/* The hairline under the promise-of-outcome splits the pitch from the list. */
+.search-ways .swa-outcome {
+    margin: 0 0 26px;
+    padding: 0 0 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 30px;
+    color: #ffffff;
+}
+
+.search-ways .swa-items {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-ways .swa-item {
+    position: relative;
+    padding-left: 22px;
+    font-size: 17.43px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.search-ways .swa-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #8668FF;
+}
+
+.search-ways .swa-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
 }

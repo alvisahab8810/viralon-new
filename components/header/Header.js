@@ -114,6 +114,16 @@ export default function Topbar() {
                         Seo
                       </Link>{" "}
                     </li>
+                    <li>
+                      <Link className="nav-link" href="/brand">
+                        Brand
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="nav-link" href="/search">
+                        Search
+                      </Link>
+                    </li>
                   </ul>
                 </li>
                 <li className="nav-item">

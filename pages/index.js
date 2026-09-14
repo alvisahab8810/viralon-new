@@ -17,6 +17,9 @@ import WorkShowcase from "../components/home/WorkShowcase";
 import BrokenParts from "../components/home/BrokenParts";
 import HowItRuns from "../components/home/HowItRuns";
 import BuildItFor from "../components/home/BuildItFor";
+// Cube-effect variant of the section above, rendered alongside it so the two
+// can be compared. Drop one of the two lines below once you have picked.
+import BuildItForCube from "../components/home/BuildItForCube";
 import SooSocial from "../components/home/SooSocial";
 import CTA from "../components/home/CTA";
 import LatestBlogs from "../components/common/LatestBlogs";
@@ -44,6 +47,7 @@ export default function IndexPage({ data, faq }) {
       <WeKnowMobile />
       <SixParts />
       <BuildItFor />
+      {/* <BuildItForCube /> */}
 
       <WorkShowcase />
       <BrokenParts />

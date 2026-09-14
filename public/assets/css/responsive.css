@@ -2340,3 +2340,1180 @@ ul.import-list li {
 
 
 }
+
+/* ==========================================================================
+   Brand page hero (/brand) -- base rules are at the end of custome.css.
+   Plain max-width blocks rather than the banded 1240/1024 query above, so the
+   steps stack downwards the way the rest of the hero expects.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .brand-hero .bh-title {
+        font-size: 96px;
+    }
+    .brand-hero .bh-quote blockquote {
+        font-size: 32px;
+    }
+    .brand-hero .bh-stat {
+        padding: 0 26px;
+    }
+    .brand-hero .bh-figure {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .brand-hero {
+        padding: 64px 0 72px;
+    }
+    .brand-hero .bh-title {
+        font-size: 68px;
+    }
+    .brand-hero .bh-quote {
+        margin-top: 24px;
+    }
+    .brand-hero .bh-rule {
+        margin-top: 22px;
+    }
+    .brand-hero .bh-note + .bh-rule {
+        margin-top: 36px;
+    }
+    .brand-hero .bh-quote blockquote {
+        font-size: 26px;
+    }
+    .brand-hero .bh-figure {
+        font-size: 40px;
+        line-height: 46px;
+    }
+}
+
+@media (max-width: 560px) {
+    .brand-hero {
+        padding: 48px 0 56px;
+    }
+    .brand-hero .bh-title {
+        font-size: 46px;
+    }
+    .brand-hero .bh-quote blockquote {
+        font-size: 20px;
+    }
+    /* Three columns at this width leave the labels three words wide, so the
+       row stacks and the hairlines move between the rows. */
+    .brand-hero .bh-stats {
+        display: block;
+    }
+    .brand-hero .bh-stat {
+        padding: 22px 0;
+    }
+    /* Stacked, so the same stroke lies flat between the rows instead. */
+    .brand-hero .bh-stat + .bh-stat::before {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 214px;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
+    }
+    .brand-hero .bh-figure {
+        font-size: 38px;
+        line-height: 44px;
+    }
+}
+
+
+/* ==========================================================================
+   Brand page -- "Why it matters". Base rules are at the end of custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .brand-why .bw-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .brand-why .bw-cards {
+        gap: 20px;
+    }
+    .brand-why .bw-card {
+        padding: 24px 20px 0;
+        min-height: 400px;
+    }
+    .brand-why .bw-card-art {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .brand-why {
+        padding: 64px 0 72px;
+    }
+    .brand-why .bw-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 38px;
+    }
+    /* Three across leaves the paragraphs two or three words wide here, so the
+       row drops to two columns and the last card spans both. */
+    .brand-why .bw-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .brand-why .bw-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .brand-why {
+        padding: 48px 0 56px;
+    }
+    .brand-why .bw-eyebrow {
+        font-size: 16px;
+    }
+    .brand-why .bw-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .brand-why .bw-cards {
+        grid-template-columns: 1fr;
+    }
+    .brand-why .bw-card:last-child {
+        grid-column: auto;
+    }
+    .brand-why .bw-card {
+        min-height: 360px;
+    }
+}
+
+
+/* ==========================================================================
+   Brand page -- "Brands We Have Built". Base rules are at the end of
+   custome.css. Only the type and the row heights step down; the animation is
+   width-independent because it travels in percentages of its own track.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .brand-marquee .bm-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .brand-marquee .bm-row-media .bm-item {
+        height: 250px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .brand-marquee {
+        padding: 64px 0 72px;
+    }
+    .brand-marquee .bm-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 32px;
+    }
+    .brand-marquee .bm-row-media .bm-item {
+        height: 200px;
+    }
+    .brand-marquee .bm-row-logos .bm-item {
+        height: 100px;
+    }
+    .brand-marquee .bm-logo {
+        width: 160px;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .brand-marquee {
+        padding: 48px 0 56px;
+    }
+    .brand-marquee .bm-eyebrow {
+        font-size: 16px;
+    }
+    .brand-marquee .bm-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .brand-marquee .bm-rows {
+        gap: 12px;
+    }
+    .brand-marquee .bm-item {
+        margin-right: 12px;
+    }
+    .brand-marquee .bm-row-media .bm-item {
+        height: 150px;
+    }
+    .brand-marquee .bm-row-logos .bm-item {
+        height: 78px;
+    }
+    .brand-marquee .bm-logo {
+        width: 128px;
+        padding: 0 16px;
+        border-radius: 10px;
+    }
+    .brand-marquee .bm-logo img {
+        max-height: 32px;
+    }
+    .brand-marquee .bm-row-media .bm-item img {
+        border-radius: 10px;
+    }
+}
+
+
+/* ==========================================================================
+   "What We Build It For" -- cube variant. Base rules at the end of
+   custome.css. The cube keeps its 3/4 face at every width; only the box it
+   is measured from shrinks.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .bifc-section .bifc-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .bifc-section .bifc-desc {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    /* The radius follows the card width, so shrinking the card tightens the
+       whole circle with it. */
+    .bifc-scene {
+        --bifc-cw: 215px;
+        --bifc-ch: 297px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .bifc-section {
+        padding: 64px 0 72px;
+    }
+    /* Side by side leaves the cube too small to read at this width, so the
+       copy sits above it and the cube gets the full column. */
+    .bifc-grid {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .bifc-copy,
+    .bifc-stage {
+        flex: 0 0 auto;
+        max-width: 100%;
+        padding-right: 0;
+    }
+    .bifc-copy {
+        margin-bottom: 40px;
+    }
+    .bifc-scene {
+        --bifc-cw: 250px;
+        --bifc-ch: 345px;
+    }
+    .bifc-section .bifc-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .bifc-section .bifc-desc {
+        max-width: none;
+    }
+    /* Centred under the stacked copy, same as the cube. */
+    .bifc-section .bifc-hint {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .bifc-section {
+        padding: 48px 0 56px;
+    }
+    .bifc-section .bifc-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .bifc-section .bifc-desc {
+        font-size: 17px;
+        line-height: 24px;
+    }
+    .bifc-stage {
+        padding-top: 8px;
+    }
+    /* Narrow enough that the two neighbouring cards still read at the edges
+       of a phone instead of being cut in half by the viewport. */
+    .bifc-scene {
+        --bifc-cw: 190px;
+        --bifc-ch: 262px;
+        /* Tighter circle than the desktop 1.55: at phone width the neighbours
+           would otherwise sit half off the screen. Pulled in they tuck behind
+           the front card instead, which reads more like a circle, not less. */
+        --bifc-r: calc(var(--bifc-cw) * 1.4);
+    }
+    .bifc-dots {
+        margin-top: 34px;
+    }
+    .bifc-layer-title {
+        font-size: 19px;
+        line-height: 24px;
+    }
+    .bifc-section .bifc-layer-desc {
+        font-size: 13px;
+        line-height: 18px;
+    }
+    .bifc-layer {
+        padding: 14px 15px 15px;
+    }
+}
+
+/* ==========================================================================
+   Brand page -- first marquee row. Base rules at the end of custome.css.
+   Only the two variables move: the row height, and the stacked column's
+   width, which is recomputed from that height against the halves' 324x353
+   ratio so the column stays the same shape as it shrinks.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .brand-marquee .bm-row-work {
+        --bm-work-h: 380px;
+        --bm-work-w: 170px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .brand-marquee .bm-row-work {
+        --bm-work-h: 300px;
+        --bm-work-w: 134px;
+        --bm-work-gap: 8px;
+    }
+}
+
+@media (max-width: 560px) {
+    .brand-marquee .bm-row-work {
+        --bm-work-h: 220px;
+        --bm-work-w: 97px;
+        --bm-work-gap: 8px;
+    }
+    .brand-marquee .bm-row-work .bm-tall,
+    .brand-marquee .bm-row-work .bm-stack img {
+        border-radius: 10px;
+    }
+}
+
+/* ==========================================================================
+   Brand page -- third marquee row. Base rules at the end of custome.css.
+   Width and height step down together so the tiles keep their 210:189 shape.
+   ========================================================================== */
+@media (max-width: 1023px) {
+    .brand-marquee .bm-row-brands {
+        --bm-brand-w: 170px;
+        --bm-brand-h: 153px;
+    }
+}
+
+@media (max-width: 560px) {
+    .brand-marquee .bm-row-brands {
+        --bm-brand-w: 130px;
+        --bm-brand-h: 117px;
+    }
+    .brand-marquee .bm-row-brands .bm-brand {
+        border-radius: 14px;
+    }
+}
+
+/* ==========================================================================
+   Brand page -- "Two Halves. Fourteen Decisions." Base rules at the end of
+   custome.css.
+
+   Below 767px the accordion turns vertical. Seven spines plus an open panel
+   cannot share a phone's width -- the open one would be left about 90px, far
+   too narrow for its copy -- so the row becomes a column. The mechanism is
+   unchanged: flex-direction is the only thing that flips, and flex-grow then
+   distributes height instead of width. The label simply stops being rotated.
+   ========================================================================== */
+/* Two columns below a ~1600px container leave the open panel about 170px --
+   narrower than its own copy. The spines and the type come down together so
+   the panel that is open always has room to be read, rather than the row
+   staying full size and the text being clipped by the panel's overflow. */
+@media (max-width: 1599px) {
+    .bsee-section {
+        --bsee-spine: 46px;
+        --bsee-gap: 6px;
+    }
+    .bsee-section .bsee-panel {
+        min-width: var(--bsee-spine);
+    }
+    .bsee-section .bsee-label {
+        font-size: 16px;
+    }
+    .bsee-section .bsee-text {
+        padding: 0 16px 16px;
+        font-size: 15px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 1240px) {
+    .bsee-section .bsee-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .bsee-section {
+        padding: 64px 0 72px;
+    }
+    .bsee-section .bsee-eyebrow {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .bsee-section .bsee-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 32px;
+    }
+}
+
+/* Two columns stop working before the container does: at 1280 the open panel
+   is down to about 158px, and by 1024 it would be 67px -- narrower than the
+   closed spines beside it. One column from here down, so the open panel always
+   has the full container to grow into. */
+@media (max-width: 1385px) {
+    .bsee-section {
+        --bsee-spine: 54px;
+        --bsee-gap: 8px;
+    }
+    .bsee-section .bsee-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .bsee-section .bsee-label {
+        font-size: 18px;
+    }
+    .bsee-section .bsee-text {
+        padding: 0 20px 20px;
+        font-size: 18px;
+        line-height: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .bsee-section {
+        --bsee-h: 470px;
+        --bsee-spine: 48px;
+        --bsee-gap: 6px;
+        --bsee-pad: 0px;
+    }
+    .bsee-section .bsee-panels {
+        flex-direction: column;
+    }
+    /* Level, full width, and no longer cropped to a spine. */
+    .bsee-section .bsee-face {
+        width: 100%;
+        transform: none;
+    }
+    .bsee-section .bsee-panel.is-open .bsee-face {
+        transform: none;
+    }
+    .bsee-section .bsee-icon {
+        transform: none;
+    }
+    .bsee-section .bsee-text {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .bsee-section {
+        padding: 48px 0 56px;
+    }
+    .bsee-section .bsee-eyebrow {
+        font-size: 16px;
+    }
+    .bsee-section .bsee-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .bsee-section .bsee-col {
+        padding: 16px;
+        border-radius: 18px;
+    }
+    .bsee-section .bsee-text {
+        padding: 0 16px 16px;
+        font-size: 13px;
+        line-height: 21px;
+    }
+}
+
+/* ==========================================================================
+   Brand page -- dark quote band. Base rules at the end of custome.css.
+   Size, leading and tracking step together: the leading keeps the design's
+   1.382 ratio and the tracking stays at -3% of whatever the size now is.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .bquote-band .bquote-text {
+        font-size: 40px;
+        line-height: 55px;
+        letter-spacing: -1.2px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .bquote-band {
+        padding: 72px 0;
+    }
+    .bquote-band .bquote-text {
+        font-size: 32px;
+        line-height: 44px;
+        letter-spacing: -0.96px;
+    }
+}
+
+@media (max-width: 560px) {
+    .bquote-band {
+        padding: 56px 0;
+    }
+    .bquote-band .bquote-text {
+        font-size: 22px;
+        line-height: 30px;
+        letter-spacing: -0.66px;
+    }
+    /* Below here the authored breaks would leave very short lines, so the
+       text is allowed to find its own. */
+    .bquote-band .bquote-text br {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Search page hero (/search) -- base rules are at the end of custome.css.
+   Steps mirror the brand hero's, so the pair shrinks together.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .search-hero .sh-title {
+        font-size: 96px;
+    }
+    .search-hero .sh-line {
+        font-size: 32px;
+    }
+    .search-hero .sh-dead {
+        font-size: 40px;
+        line-height: 24px;
+        letter-spacing: -1.05px;
+    }
+    .search-hero .sh-dead span::after {
+        height: 13px;
+    }
+    .search-hero .sh-stat {
+        padding: 0 26px;
+    }
+    .search-hero .sh-figure {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-hero {
+        padding: 64px 0 72px;
+    }
+    .search-hero .sh-title {
+        font-size: 68px;
+    }
+    .search-hero .sh-query {
+        margin-top: 26px;
+        min-height: 58px;
+        padding: 10px 20px 10px 24px;
+    }
+    .search-hero .sh-dead {
+        margin-top: 44px;
+        font-size: 34px;
+        line-height: 22px;
+        letter-spacing: -0.89px;
+    }
+    .search-hero .sh-dead span::after {
+        height: 11px;
+    }
+    .search-hero .sh-line {
+        font-size: 26px;
+    }
+    .search-hero .sh-stats {
+        margin-top: 56px;
+    }
+    .search-hero .sh-figure {
+        font-size: 40px;
+        line-height: 46px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-hero {
+        padding: 48px 0 56px;
+    }
+    .search-hero .sh-title {
+        font-size: 46px;
+    }
+    /* The query is a long single sentence; at this width it has to wrap, so the
+       pill stops being a capsule and becomes a rounded box that grows with it. */
+    .search-hero .sh-query {
+        align-items: flex-start;
+        gap: 12px;
+        min-height: 0;
+        padding: 14px 18px;
+        border-radius: 20px;
+    }
+    .search-hero .sh-query-text {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .search-hero .sh-query-icon {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .search-hero .sh-dead {
+        font-size: 26px;
+        line-height: 20px;
+        letter-spacing: -0.68px;
+    }
+    .search-hero .sh-dead span::after {
+        height: 9px;
+    }
+    .search-hero .sh-line {
+        font-size: 20px;
+    }
+    /* Three columns leave the labels three words wide, so the row stacks and
+       the strokes turn flat between the rows. */
+    .search-hero .sh-stats {
+        display: block;
+    }
+    .search-hero .sh-stat {
+        padding: 22px 0;
+    }
+    .search-hero .sh-stat + .sh-stat::before {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 214px;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
+    }
+    .search-hero .sh-figure {
+        font-size: 38px;
+        line-height: 44px;
+    }
+}
+
+/* ==========================================================================
+   Search page -- "Not Just Numbers". Base rules are at the end of custome.css.
+   Steps mirror .brand-why's, with the figure coming down alongside the cards.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .search-results .sr-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .search-results .sr-cards {
+        gap: 20px;
+    }
+    .search-results .sr-card {
+        padding: 24px 20px 0;
+        min-height: 400px;
+    }
+    .search-results .sr-figure {
+        font-size: 76px;
+    }
+    .search-results .sr-card-art {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-results {
+        padding: 64px 0 72px;
+    }
+    .search-results .sr-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 38px;
+    }
+    /* Three across leaves the paragraphs two or three words wide here, so the
+       row drops to two columns and the last card spans both. */
+    .search-results .sr-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-results .sr-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-results {
+        padding: 48px 0 56px;
+    }
+    .search-results .sr-eyebrow {
+        font-size: 16px;
+    }
+    .search-results .sr-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .search-results .sr-cards {
+        grid-template-columns: 1fr;
+    }
+    .search-results .sr-card:last-child {
+        grid-column: auto;
+    }
+    .search-results .sr-card {
+        min-height: 360px;
+    }
+    .search-results .sr-figure {
+        font-size: 64px;
+    }
+}
+
+/* ==========================================================================
+   Search page -- "Why search". Base rules are at the end of custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .search-why .swy-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .search-why .swy-grid {
+        grid-template-columns: 1fr 42%;
+        gap: 22px;
+    }
+    .search-why .swy-art {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 537 / 454;
+    }
+    .search-why .swy-cards {
+        grid-template-columns: 0.62fr 1fr;
+        gap: 10px;
+    }
+    .search-why .swy-card {
+        padding: 22px 18px;
+        font-size: 16px;
+        line-height: 150%;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-why {
+        padding: 64px 0 72px;
+    }
+    .search-why .swy-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 34px;
+    }
+    /* Side by side the photograph has to shrink to a letterbox before the copy
+       fits, so below this the image drops under the text at full width. */
+    .search-why .swy-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .search-why .swy-col {
+        gap: 28px;
+    }
+    .search-why .swy-cards {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-why {
+        padding: 48px 0 56px;
+    }
+    .search-why .swy-eyebrow {
+        font-size: 16px;
+    }
+    .search-why .swy-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    /* Two blocks across leave four or five words a line here. */
+    .search-why .swy-cards {
+        grid-template-columns: 1fr;
+    }
+    .search-why .swy-card {
+        padding: 20px;
+    }
+}
+
+/* ── /search — "The shift that matters" ─────────────────────────────────── */
+@media (max-width: 1240px) {
+    .search-shift .ssh-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .search-shift .ssh-pairs {
+        gap: 20px;
+    }
+    .search-shift .ssh-question {
+        padding: 22px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-shift {
+        padding: 64px 0 72px;
+    }
+    .search-shift .ssh-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .search-shift .ssh-intro {
+        margin-bottom: 34px;
+    }
+    /* Three columns leave three words a line at this width, so the last pair
+       takes the full row underneath rather than shrinking them all. */
+    .search-shift .ssh-pairs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-shift .ssh-pair:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-shift {
+        padding: 48px 0 56px;
+    }
+    .search-shift .ssh-eyebrow {
+        font-size: 16px;
+    }
+    .search-shift .ssh-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .search-shift .ssh-pairs {
+        grid-template-columns: 1fr;
+    }
+    .search-shift .ssh-pair:last-child {
+        grid-column: auto;
+    }
+    .search-shift .ssh-keyword {
+        font-size: 16px;
+    }
+    .search-shift .ssh-question {
+        padding: 20px;
+    }
+}
+
+/* ── /search — "What you get" (SEO / AEO / GEO) ──────────────────────────── */
+@media (max-width: 1240px) {
+    .search-layers .sly-heading {
+        max-width: 460px;
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .search-layers .sly-intro {
+        font-size: 16px;
+    }
+    .search-layers .sly-head {
+        margin-bottom: 70px;
+    }
+    .search-layers .sly-name {
+        font-size: 36px;
+    }
+    .search-layers .sly-row {
+        padding: 36px 0;
+    }
+    .search-layers .sly-row-head {
+        padding: 0 0 22px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-layers {
+        padding: 64px 0 72px;
+    }
+    /* The intro drops under the heading -- side by side it would be three
+       words a line. */
+    .search-layers .sly-head {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        margin-bottom: 48px;
+    }
+    .search-layers .sly-heading {
+        max-width: none;
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .search-layers .sly-intro {
+        max-width: 640px;
+    }
+    .search-layers .sly-row {
+        grid-template-columns: 28% minmax(0, 1fr);
+        padding: 28px 0;
+    }
+    .search-layers .sly-row-head {
+        padding: 0 0 18px;
+    }
+    .search-layers .sly-name {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-layers {
+        padding: 48px 0 56px;
+    }
+    .search-layers .sly-eyebrow {
+        font-size: 16px;
+    }
+    .search-layers .sly-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .search-layers .sly-row {
+        grid-template-columns: 30% minmax(0, 1fr);
+        column-gap: 12px;
+        padding: 22px 0;
+    }
+    .search-layers .sly-row-head {
+        padding: 0 0 14px;
+        font-size: 12px;
+    }
+    .search-layers .sly-name {
+        font-size: 26px;
+    }
+    .search-layers .sly-goal {
+        font-size: 15px;
+    }
+}
+
+/* ── /search — "How we work" (four steps) ────────────────────────────────── */
+@media (max-width: 1240px) {
+    .search-steps .sst-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    /* Four across at 27px leaves two words a line; two rows of two instead. */
+    .search-steps .sst-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-steps {
+        padding: 64px 0 72px;
+    }
+    .search-steps .sst-heading {
+        font-size: 34px;
+        line-height: 39px;
+        margin-bottom: 30px;
+    }
+    .search-steps .sst-title {
+        font-size: 22px;
+        line-height: 27px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-steps {
+        padding: 48px 0 56px;
+    }
+    .search-steps .sst-eyebrow {
+        font-size: 16px;
+    }
+    .search-steps .sst-heading {
+        font-size: 28px;
+        line-height: 33px;
+    }
+    .search-steps .sst-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .search-steps .sst-card {
+        padding: 22px 20px 0;
+    }
+    .search-steps .sst-media {
+        margin: auto -20px 0;
+    }
+    .search-steps .sst-title {
+        font-size: 20.2px;
+        line-height: 25px;
+    }
+    .search-steps .sst-desc {
+        font-size: 15px;
+        line-height: 20px;
+    }
+}
+
+/* ── /search — "What we measure" (hover-open cards) ────────────────────────── */
+@media (max-width: 1240px) {
+    .search-measure {
+        --smm-h: 400px;
+        --smm-h-open: 510px;
+    }
+    .search-measure .smm-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .search-measure .smm-num {
+        font-size: 44px;
+    }
+    .search-measure .smm-label {
+        font-size: 17px;
+        line-height: 23px;
+    }
+    .search-measure .smm-closed {
+        padding: 22px 20px 24px;
+    }
+    .search-measure .smm-body {
+        padding: 20px 22px 22px;
+    }
+    .search-measure .smm-title {
+        font-size: 24px;
+        line-height: 29px;
+    }
+    .search-measure .smm-desc {
+        font-size: 15px;
+    }
+}
+
+/* No hover to open a card with, or no room to open one inside the row: all
+   four render open, as a plain grid. One block so the two cases cannot drift
+   apart. */
+@media (max-width: 1023px), (hover: none) {
+    .search-measure .smm-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        height: auto;
+    }
+    .search-measure .smm-card,
+    .search-measure .smm-card:first-child,
+    .search-measure .smm-card:hover,
+    .search-measure .smm-card:focus-within {
+        height: auto;
+        box-shadow: 0 1px 2px rgba(11, 11, 15, 0.04);
+    }
+    .search-measure .smm-closed {
+        display: none;
+    }
+    .search-measure .smm-open {
+        position: static;
+        height: 100%;
+        opacity: 1;
+    }
+    .search-measure .smm-media {
+        flex: 0 0 auto;
+        aspect-ratio: 570 / 606;
+        max-height: 360px;
+    }
+    .search-measure .smm-media img {
+        transform: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-measure {
+        padding: 64px 0 72px;
+    }
+    .search-measure .smm-heading {
+        font-size: 34px;
+        line-height: 39px;
+        margin-bottom: 34px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-measure {
+        padding: 48px 0 56px;
+    }
+    .search-measure .smm-eyebrow {
+        font-size: 16px;
+    }
+    .search-measure .smm-heading {
+        font-size: 26px;
+        line-height: 31px;
+    }
+    .search-measure .smm-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .search-measure .smm-media {
+        max-height: 300px;
+    }
+    .search-measure .smm-title {
+        font-size: 20.2px;
+        line-height: 25px;
+    }
+}
+
+/* ── /search — "Three ways we work" ────────────────────────────────────────── */
+@media (max-width: 1240px) {
+    .search-ways .swa-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .search-ways .swa-cards {
+        gap: 18px;
+    }
+    .search-ways .swa-card {
+        padding: 28px 22px 32px;
+    }
+    .search-ways .swa-name {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .search-ways .swa-outcome {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .search-ways {
+        padding: 64px 0 72px;
+    }
+    .search-ways .swa-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 36px;
+    }
+    /* Three columns leave four words a line here; one column reads better
+       than two plus an orphan. */
+    .search-ways .swa-cards {
+        grid-template-columns: 1fr;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+    .search-ways .swa-foot {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-ways {
+        padding: 48px 0 56px;
+    }
+    .search-ways .swa-eyebrow {
+        font-size: 16px;
+    }
+    .search-ways .swa-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .search-ways .swa-card {
+        padding: 24px 20px 28px;
+    }
+    .search-ways .swa-name {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .search-ways .swa-outcome {
+        font-size: 19px;
+        line-height: 25px;
+    }
+}
