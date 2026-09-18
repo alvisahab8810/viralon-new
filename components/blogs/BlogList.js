@@ -2,6 +2,10 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MdSearch, MdArrowForward, MdChevronLeft, MdChevronRight } from "react-icons/md";
+import blogImage from "../../utils/blogImage";
+
+// Shown when a card has no cover, or when its cover URL does not load.
+const FALLBACK_THUMB = "/assets/img/seo/blogs/1.jpg";
 
 const LIMIT = 9;
 
@@ -152,7 +156,7 @@ export default function BlogList() {
               <p style={{ margin: 0 }}>No blogs published yet. Check back soon!</p>
             </div>
           ) : blogs.map(blog => {
-            const img   = blog.cardImage?.src || blog.coverImage?.src;
+            const img   = blogImage(blog.cardImage?.src || blog.coverImage?.src);
             const badge = blog.categories?.[0];
             const date  = formatDate(blog.publishDate || blog.createdAt);
 
@@ -162,7 +166,17 @@ export default function BlogList() {
                   <div className="bl-card">
                     <div className="bl-card-img">
                       {img ? (
-                        <img src={img} alt={blog.cardImage?.alt || blog.title} />
+                        /* A cover whose file is gone (an upload that never
+                           reached this server) falls back to the placeholder
+                           thumb instead of a broken-image icon. */
+                        <img
+                          src={img}
+                          alt={blog.cardImage?.alt || blog.title}
+                          onError={(e) => {
+                            if (e.currentTarget.src.endsWith(FALLBACK_THUMB)) return;
+                            e.currentTarget.src = FALLBACK_THUMB;
+                          }}
+                        />
                       ) : (
                         <div className="bl-card-img-placeholder">📰</div>
                       )}

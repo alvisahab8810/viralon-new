@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
+import blogImage from "../../utils/blogImage";
 import "swiper/css";
 
 const LIMIT = 3;
@@ -88,7 +89,7 @@ export default function LatestBlogs({
           >
             {blogs.map((blog) => {
               const href = `/blogs/${blog.slug}`;
-              const img = blog.cardImage?.src || blog.coverImage?.src;
+              const img = blogImage(blog.cardImage?.src || blog.coverImage?.src);
               const alt = blog.cardImage?.alt || blog.title;
               const date = splitDate(blog.publishDate || blog.createdAt);
               const category = blog.categories?.[0];

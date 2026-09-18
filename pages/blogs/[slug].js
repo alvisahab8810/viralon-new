@@ -11,6 +11,7 @@ import {
 } from "react-icons/md";
 import dbConnect from "@/utils/dbConnect";
 import Blog from "@/models/Blog";
+import blogImage from "@/utils/blogImage";
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
@@ -135,7 +136,8 @@ export default function BlogDetail({ blog, related }) {
 
   const date    = formatDate(blog.publishDate || blog.createdAt);
   const rt      = readTime(blog.content);
-  const hasHero = !!(blog.coverImage?.src);
+  const hero    = blogImage(blog.coverImage?.src);
+  const hasHero = !!hero;
 
   async function handleQuerySubmit(e) {
     e.preventDefault();
@@ -190,7 +192,7 @@ export default function BlogDetail({ blog, related }) {
         {/* ── Hero: clean image only ── */}
         {hasHero ? (
           <div className="bdd-hero">
-            <img src={blog.coverImage.src} alt={blog.coverImage.alt || blog.title} />
+            <img src={hero} alt={blog.coverImage.alt || blog.title} />
           </div>
         ) : (
           <div className="bdd-hero-placeholder" />
@@ -423,7 +425,7 @@ export default function BlogDetail({ blog, related }) {
               <h2 className="blog-related-title">You might also like</h2>
               <div className="bdd-carousel">
                 {related.map(b => {
-                  const img   = b.cardImage?.src || b.coverImage?.src;
+                  const img   = blogImage(b.cardImage?.src || b.coverImage?.src);
                   const badge = b.categories?.[0];
                   return (
                     <Link href={`/blogs/${b.slug}`} key={b._id} legacyBehavior>
