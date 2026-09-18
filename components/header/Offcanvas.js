@@ -150,6 +150,11 @@ export default function Offcanvas() {
                               - Search
                             </Link>
                           </li>
+                          <li>
+                            <Link className="nav-link" href="/social-content">
+                              - Social Content
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                     </div>

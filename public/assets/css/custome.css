@@ -5029,7 +5029,7 @@ img.shape.p-absolute {
 
 .soosocial-section {
     background: #0E0920;
-    padding: 96px 0 104px;
+    padding: 100px 0 100px;
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: hidden;
 }
@@ -6848,7 +6848,8 @@ img.shape.p-absolute {
 }
 
 .search-why .swy-cta,
-.search-ways .swy-cta {
+.search-ways .swy-cta,
+.social-wrong .swy-cta {
     align-self: flex-start;
     display: inline-flex;
     align-items: center;
@@ -6876,7 +6877,8 @@ img.shape.p-absolute {
 /* The disc is a fixed square so it stays a circle whatever the label does --
    flex would otherwise squeeze it to an oval when the row runs short of room. */
 .search-why .swy-cta-icon,
-.search-ways .swy-cta-icon {
+.search-ways .swy-cta-icon,
+.social-wrong .swy-cta-icon {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -7388,7 +7390,7 @@ img.shape.p-absolute {
 }
 
 .search-ways .swa-heading {
-    margin: 0 0 56px;
+    margin: 0 0 50px;
     text-align: center;
     font-weight: 700;
     font-size: 55px;
@@ -7487,4 +7489,931 @@ img.shape.p-absolute {
     display: flex;
     justify-content: center;
     margin-top: 56px;
+}
+
+/* ==========================================================================
+   Social content page -- hero (components/social-content/Hero.js)
+   Values are kept in step with .search-hero on purpose: the two pages are a
+   matched pair and that type scale is the one already signed off. The
+   selectors stay separate so either page can be retuned without moving the
+   other.
+   Every selector is prefixed .social-hero because the page is wrapped in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css would
+   otherwise turn the orange title white.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.social-hero {
+    background: #0E0920;
+    padding: 50px 0 0;
+}
+
+.social-hero .sch-title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 128.8px;
+    line-height: 118%;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+/* The hairline above the quote is the rule the mock draws between the title
+   and the sentence; a border on the blockquote rather than a separate element
+   so it cannot drift out of step with the spacing. */
+/* The two hairlines are the brand hero's gradient stroke, reused rule for rule:
+   996.8 wide, 1 tall, stops 0E0920 -> FE4601 at 36% and 71% -> 0E0920, so each
+   fades into the band at both ends. One under the title, one above the stats. */
+.social-hero .sch-rule {
+    margin: 50px auto 0;
+    max-width: 996.8px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        #0E0920 0%,
+        #FE4601 36%,
+        #FE4601 71%,
+        #0E0920 100%
+    );
+}
+
+/* Only the lower line needs breathing room off the note above it. */
+.social-hero .sch-note + .sch-rule {
+    margin-top: 46px;
+}
+
+.social-hero .sch-quote {
+    margin: 34px auto 0;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.social-hero .sch-quote blockquote {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
+.social-hero .sch-attrib {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 25.6px;
+    letter-spacing: 0.2px;
+    color: #FE4601;
+}
+
+.social-hero .sch-note {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 14px;
+    color: #fff;
+    font-family: 'SF Pro Display';
+    letter-spacing: -0.22px;
+}
+
+.social-hero .sch-stats {
+    display: flex;
+    margin: 44px auto 0;
+    padding: 0;
+    max-width: 1136px;
+    list-style: none;
+}
+
+.social-hero .sch-stat {
+    position: relative;
+    flex: 1 1 0;
+    padding: 0 30px;
+    text-align: center;
+}
+
+/* Same gradient stroke as the search and brand heroes: 1 wide, 214 tall,
+   fading to the band colour at both ends so it overhangs the text rather than
+   boxing it. A pseudo-element because a border cannot carry a gradient.
+   Between columns only, never on the outer edges. */
+.social-hero .sch-stat + .sch-stat::before {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 214px;
+    background: linear-gradient(
+        180deg,
+        #0E0920 0%,
+        #FE4601 35%,
+        #FE4601 70%,
+        #0E0920 100%
+    );
+}
+
+.social-hero .sch-figure {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 68px;
+    color: #FE4601;
+}
+
+.social-hero .sch-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'SF Pro Display';
+    color: #ffffff;
+}
+
+/* ── The platform strip ─────────────────────────────────────────────────────
+   Full-bleed and rules off top and bottom, so it reads as the band's floor. */
+.social-hero .sch-strip {
+    margin-top: 130px;
+    /* border-bottom: 1px solid #2E2842; */
+    background: #1D1340;
+    overflow: hidden;
+}
+
+/* `width: max-content` stops the flex line from wrapping or shrinking: the
+   track has to be its full natural length for -50% to equal exactly one copy
+   of the list, which is what makes the seam invisible. */
+.social-hero .sch-track {
+    display: flex;
+    width: max-content;
+    /* Slower than the shorter strip needed: one copy of the track is now four
+       passes of the list, so the old duration would have made it race. */
+    animation: sch-scroll 90s linear infinite;
+    will-change: transform;
+}
+
+.social-hero .sch-strip:hover .sch-track {
+    animation-play-state: paused;
+}
+
+@keyframes sch-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* The divider is a pseudo-element on the chip rather than a border, so the
+   two copies of the list join without doubling a rule at the seam. */
+.social-hero .sch-chip {
+       position: relative;
+    display: block;
+    flex: 0 0 auto;
+    padding: 18px 46px;
+    font-family: 'SF Pro Display';
+    font-size: 23px;
+    line-height: 118%;
+    color: rgba(255, 255, 255, 0.86);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+/* The chips are links to the footer's accounts now, so they need a hover. */
+.social-hero .sch-chip:hover,
+.social-hero .sch-chip:focus-visible {
+    color: #FE4601;
+}
+
+.social-hero .sch-chip::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 37%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    transform: rotate(16deg);
+    background: #FE4601;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .social-hero .sch-track {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "The work" (components/social-content/TheWork.js)
+   The section renders the brand marquee's own classes, so the track, the tile
+   sizing and the loop come from the .brand-marquee rules above. Only what this
+   page shows differently is set here: a light band with a dark heading in
+   place of the dark one.
+   ========================================================================== */
+.brand-marquee.social-work {
+    background: #ffffff;
+}
+
+.brand-marquee.social-work .bm-heading {
+    color: #1D1D1F;
+}
+
+/* ==========================================================================
+   Social content page -- "Where most get it wrong"
+   (components/social-content/WrongPlatform.js)
+   One dark panel on the page's white band. The dark is pattern.webp itself,
+   so no background colour is declared here -- the artwork is the background.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+/* The artwork runs edge to edge, not inside the container: the background
+   sits on the section itself and only the copy is held to the container width.
+   `cover` on a 2160x980 export means the band is always wider than it is tall,
+   so the crop only ever takes a little off the top and bottom of the waves and
+   the pattern never tiles or letterboxes. Centred so the lighter sweep through
+   the middle of the art stays behind the heading at every width. */
+.social-wrong {
+    padding: 100px 0 100px;
+    background: url("../others/the-work/social-content/pattern.webp") center center / cover no-repeat;
+}
+
+.social-wrong .swr-panel {
+    text-align: center;
+}
+
+.social-wrong .swr-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.social-wrong .swr-heading {
+    max-width: 860px;
+    margin: 0 auto 24px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.social-wrong .swr-accent {
+    color: #FE4601;
+}
+
+.social-wrong .swr-body {
+    max-width: 700px;
+    margin: 0 auto 44px;
+    font-family: 'SF Pro Display';
+    font-size: 16px;
+    line-height: 150%;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Size, padding and radius all come from the shared .swy-cta rule above; the
+   frame only changes the colours -- white pill, dark label, purple disc. The
+   base rule also left-aligns the button inside a column, which this centred
+   panel has to undo. */
+.social-wrong .swy-cta {
+    align-self: center;
+    background: #ffffff;
+    color: #0B0B0F;
+}
+
+.social-wrong .swy-cta:hover,
+.social-wrong .swy-cta:focus {
+    color: #0B0B0F;
+}
+
+.social-wrong .swy-cta-icon {
+    background: #8668FF;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Social content page -- "Platforms we run"
+   (components/social-content/Platforms.js)
+   Six equal columns on the page's white band. Type is the scale the other
+   sections on this page already use (27 eyebrow, 55/60 heading).
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.social-platforms {
+    background: #ffffff;
+    padding: 100px 0;
+}
+
+.social-platforms .spl-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.social-platforms .spl-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+}
+
+.social-platforms .spl-accent {
+    color: #FE4601;
+}
+
+.social-platforms .spl-cards {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* `flex: 1 1 0` with `min-width: 0` so all six share the row evenly and the
+   longest paragraph cannot push a card wider than its neighbours. The height
+   and radius are the frame's own values. */
+.social-platforms .spl-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 456.12px;
+    padding: 26.4px 20px;
+    border-radius: 17.6px;
+    overflow: hidden;
+}
+
+/* The three tones repeat down the row: dark, light, purple, dark, light,
+   purple. Only the colours change between them -- everything else about a
+   card is set above, so a tone is never a second copy of the layout. */
+.social-platforms .spl-dark {
+    background: linear-gradient(180deg, #171717 0%, #4D4D4E 100%);
+    color: #ffffff;
+}
+
+.social-platforms .spl-light {
+    background: #E7E6EB;
+    color: #1D1D1F;
+}
+
+.social-platforms .spl-purple {
+    background: #9471FF;
+    color: #ffffff;
+}
+
+/* Prefixed with the tone as well as the section: .bg-dark's
+   `h1..h6 { color: var(--white) }` in style.css outranks a bare .spl-name and
+   would take the dark type off the light cards. */
+.social-platforms .spl-card .spl-name {
+    margin: 0 0 14px;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 150%;
+    letter-spacing: -0.2px;
+    color: inherit;
+}
+
+.social-platforms .spl-kicker {
+    margin: 0 0 18px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+}
+
+.social-platforms .spl-body {
+    margin: 0 0 18px;
+    font-size: 15px;
+    line-height: 150%;
+}
+
+.social-platforms .spl-tags {
+    margin: 0;
+    font-size: 12px;
+    line-height: 139%;
+}
+
+/* Colour is restated per tone rather than inherited from the card: style.css
+   sets `.bg-dark p { color: ... }`, which outranks a bare .spl-body and would
+   otherwise wash the copy out on the light cards. The kicker and the tag line
+   are the same ink at 72%, which is how the frame dims them. */
+.social-platforms .spl-dark .spl-name,
+.social-platforms .spl-dark .spl-body,
+.social-platforms .spl-purple .spl-name,
+.social-platforms .spl-purple .spl-body {
+    color: #ffffff;
+}
+
+.social-platforms .spl-dark .spl-kicker,
+.social-platforms .spl-dark .spl-tags,
+.social-platforms .spl-purple .spl-kicker,
+.social-platforms .spl-purple .spl-tags {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.social-platforms .spl-light .spl-name,
+.social-platforms .spl-light .spl-body {
+    color: #1D1D1F;
+}
+
+.social-platforms .spl-light .spl-kicker,
+.social-platforms .spl-light .spl-tags {
+    color: rgba(29, 29, 31, 0.72);
+}
+
+/* `margin-top: auto` pins the icon to the floor of every card, so the six line
+   up across the row however long the copy above them runs. */
+.social-platforms .spl-icon {
+    display: block;
+    width: 139px;
+    height: auto;
+    margin: auto auto 0;
+}
+
+/* ==========================================================================
+   Social content page -- "How we work" (components/social-content/HowWeWork.js)
+   The pinned five-step section. .sst-scroll is five viewports tall and
+   .sst-stage sticks to the top of the screen inside it, so the stage holds
+   still while those five viewports of scrolling go past -- that scrolling is
+   what changes the step. The pin is dropped below 1024 in responsive.css.
+   ========================================================================== */
+.social-steps {
+    background: #ffffff;
+    padding: 0 0 0;
+}
+
+.social-steps .sst-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+    text-align: center;
+}
+
+.social-steps .sst-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+    text-align: center;
+}
+
+.social-steps .sst-accent {
+    color: #FE4601;
+}
+
+/* Five screens of scrolling: one per step. Change this multiplier and the
+   section simply takes longer or less long to read through -- the component
+   divides whatever height this is into STEPS.length equal bands. */
+.social-steps .sst-scroll {
+    position: relative;
+    height: 500vh;
+}
+
+.social-steps .sst-stage {
+    position: sticky;
+    top: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #0A0A0B;
+}
+
+.social-steps .sst-visual {
+    flex: 0 0 38%;
+    overflow: hidden;
+}
+
+.social-steps .sst-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Flat, and it alternates between the two darks step by step -- the component
+   puts .is-alt on the panel for every odd step. The transition is the same
+   length as the copy's, so the tone and the text turn together. */
+.social-steps .sst-panel {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 80px 0 150px;
+    background: #111111;
+    transition: background-color 0.45s ease;
+}
+
+.social-steps .sst-panel.is-alt {
+    background: #1C1C1C;
+}
+
+/* Every step occupies the same box, stacked: the first one is in the flow so
+   the panel keeps its height, the rest are laid over it. Only .is-active is
+   visible, and the rise on the way in is what reads as a step "turning". */
+.social-steps .sst-step {
+    max-width: 660px;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+}
+
+.social-steps .sst-step + .sst-step {
+    position: absolute;
+    top: 50%;
+    left: 150px;
+    right: 80px;
+    transform: translateY(calc(-50% + 18px));
+}
+
+.social-steps .sst-step.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.social-steps .sst-step + .sst-step.is-active {
+    transform: translateY(-50%);
+}
+
+.social-steps .sst-num {
+    margin: 0 0 26px;
+    font-weight: 700;
+    font-size: 91px;
+    line-height: 80px;
+    letter-spacing: -0.02em;
+    color: #754CDA;
+}
+
+.social-steps .sst-step .sst-title {
+    margin: 0 0 20px;
+    font-weight: 700;
+    font-size: 37.03px;
+    line-height: 36px;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+}
+
+.social-steps .sst-body {
+    margin: 0;
+    font-size: 20px;
+    line-height: 150%;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* With motion turned down the copy still swaps, it just does not travel. */
+@media (prefers-reduced-motion: reduce) {
+    .social-steps .sst-step {
+        transition: opacity 0.2s ease;
+        transform: none;
+    }
+    .social-steps .sst-step + .sst-step,
+    .social-steps .sst-step + .sst-step.is-active {
+        transform: translateY(-50%);
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "What we make"
+   (components/social-content/WhatWeMake.js)
+   Five phones in a staggered row. Everything about a phone is driven by one
+   number, --wmk-w: the frame's 234 x 473.4 body, and the PNG's own 350 x 708
+   body inside an 870-tall canvas, give the two ratios below. Set --wmk-w at a
+   breakpoint and the row rescales whole.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.social-make {
+    --wmk-w: 234px;
+    --wmk-gap: 34px;
+    background: #ffffff;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.social-make .wmk-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+    text-align: center;
+}
+
+.social-make .wmk-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+    text-align: center;
+}
+
+.social-make .wmk-accent {
+    color: #FE4601;
+}
+
+/* `align-items: flex-start` so each phone's own top offset is what places it;
+   the row's height is set by the tallest stack, not by the first phone. */
+.social-make .wmk-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--wmk-gap);
+    margin: 0;
+    padding: 0 0 0px;
+    list-style: none;
+}
+
+/* The box is the phone body exactly -- the image overhangs it with the
+   shadow, which is why the gap between two phones can be read straight off
+   this box rather than guessed around transparent padding. */
+.social-make .wmk-phone {
+    position: relative;
+    flex: 0 0 auto;
+    width: var(--wmk-w);
+    height: calc(var(--wmk-w) * 2.0231);
+}
+
+.social-make .wmk-device {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    max-width: none;
+    height: calc(var(--wmk-w) * 2.4859);
+}
+
+/* The staggered heights of the frame. Each phone has its own class so one can
+   be moved without disturbing its neighbours. */
+.social-make .wmk-phone-1 { margin-top: 0; }
+.social-make .wmk-phone-2 { margin-top: 145px; }
+.social-make .wmk-phone-3 { margin-top: 66px; }
+.social-make .wmk-phone-4 { margin-top: 217px; }
+.social-make .wmk-phone-5 { margin-top: 0; }
+
+/* Held inside the body box with its own padding, so the copy can never sit on
+   the bezel or out over the shadow however long a format name runs. */
+.social-make .wmk-screen {
+    position: absolute;
+    inset: 8% 9% 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Two animations, kept on separate elements because both move on the Y axis
+   and one transform would overwrite the other: the slide carries the slow bob
+   that never stops, the three lines inside it carry the turn. */
+.social-make .wmk-slide {
+    width: 100%;
+    animation: wmk-bob 3.4s ease-in-out infinite;
+}
+
+/* Heading, rule and sub text each come in on their own beat, a tenth of a
+   second apart, so the screen reads top to bottom rather than all at once.
+   The overshoot past the resting line and back is the shake. */
+.social-make .wmk-slide > * {
+    animation: wmk-turn 0.62s cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+.social-make .wmk-slide > *:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.social-make .wmk-slide > *:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes wmk-turn {
+    0%   { opacity: 0; transform: translateY(16px); }
+    55%  { opacity: 1; transform: translateY(-7px); }
+    75%  { transform: translateY(4px); }
+    90%  { transform: translateY(-2px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wmk-bob {
+    0%, 100% { transform: translateY(-3px); }
+    50%      { transform: translateY(3px); }
+}
+
+.social-make .wmk-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    overflow-wrap: break-word;
+}
+
+.social-make .wmk-rule {
+    display: block;
+    width: 34px;
+    height: 2px;
+    margin: 16px auto;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.social-make .wmk-label {
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    overflow-wrap: break-word;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .social-make .wmk-slide,
+    .social-make .wmk-slide > * {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "Three ways we work"
+   (components/social-content/ThreeWays.js)
+   The /search section's own band and cards, so only this version's own parts
+   are here: the standfirst, the grouped lists, and the ticks that replace the
+   dots. Everything not listed below is inherited from .search-ways above.
+   ========================================================================== */
+.social-ways .swa-outcome {
+    margin: 0 0 16px;
+    padding: 0;
+    border-bottom: 0;
+}
+
+.social-ways .swa-intro {
+    margin: 0 0 24px;
+    padding: 0 0 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 16px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.social-ways .swa-group + .swa-group {
+    margin-top: 26px;
+}
+
+.social-ways .swa-group-title {
+    margin: 0 0 16px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+}
+
+/* The tick takes the dot's place, so the base rule's bullet is dropped here
+   and the row becomes a flex line instead: the mark keeps its own column and
+   a wrapping item stays hanging-indented under its first word. */
+.social-ways .swa-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 0;
+    font-size: 15.5px;
+    line-height: 23px;
+}
+
+.social-ways .swa-item::before {
+    content: none;
+}
+
+.social-ways .swa-tick {
+    flex: 0 0 auto;
+    /* Nudged to sit on the first line's cap height rather than its box. */
+    margin-top: 3px;
+       color: #ffffff;
+}
+
+.social-ways .swa-tick svg {
+    display: block;
+}
+
+.social-ways .swa-items {
+    gap: 13px;
+}
+
+
+.swa-group {
+    padding: 0 0 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+/* ==========================================================================
+   Social content page -- "Followers are not a business outcome"
+   (components/social-content/Metrics.js)
+   Six cards overlapping in one row. The stack order is set by z-index in
+   source order; hover only lifts, it never reorders.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.social-metrics {
+    --smt-overlap: 34px;
+    background: #ffffff;
+    padding: 100px 0;
+}
+
+.social-metrics .smt-heading {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+    text-align: center;
+}
+
+.social-metrics .smt-accent {
+    color: #FE4601;
+}
+
+.social-metrics .smt-note {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(29, 29, 31, 0.68);
+    text-align: center;
+}
+
+/* The row is padded at the top by exactly the lift distance, so a raised card
+   has somewhere to go and the section does not grow when one is hovered. */
+.social-metrics .smt-row {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    /* padding: 30px 0; */
+    list-style: none;
+}
+
+.social-metrics .smt-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 350px;
+    padding: 34px calc(26px + var(--smt-overlap) / 2);
+    border-radius: 23.76px;
+    color: #ffffff;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Each card laps over the one before it. The z-index climbs with the row, so
+   the later card is always the one on top -- the same order the eye reads. */
+.social-metrics .smt-card + .smt-card {
+    margin-left: calc(var(--smt-overlap) * -1);
+}
+
+.social-metrics .smt-card-1 { z-index: 1; background: linear-gradient(90deg, #7B4DF2 0%, #9664EB 100%); }
+.social-metrics .smt-card-2 { z-index: 2; background: linear-gradient(90deg, #F86472 0%, #ED383E 100%); }
+.social-metrics .smt-card-3 { z-index: 3; background: linear-gradient(90deg, #17C7F0 0%, #4660F0 100%); }
+.social-metrics .smt-card-4 { z-index: 4; background: linear-gradient(90deg, #28DDB0 0%, #2ECDF4 100%); }
+.social-metrics .smt-card-5 { z-index: 5; background: linear-gradient(90deg, #3A4BF4 0%, #506DEA 100%); }
+.social-metrics .smt-card-6 { z-index: 6; background: #FE4601; }
+
+
+/* The hovered card comes out of the stack: raised above every z-index in the
+   row so neither neighbour clips it, and grown from its own centre so it spills
+   past its neighbours top and bottom -- the row reserves that growth as its own
+   vertical padding, so the section never changes height. The growth also
+   uncovers the copy that the next card was lapping over.
+   :focus-within is here too, so the same thing happens on a keyboard. */
+.social-metrics .smt-card:hover,
+.social-metrics .smt-card:focus-within {
+    z-index: 10;
+    transform: scale(1.14);
+    box-shadow: 0 22px 50px rgba(17, 17, 17, 0.26);
+}
+
+.social-metrics .smt-card .smt-title {
+    margin: 0 0 14px;
+    font-weight: 700;
+    font-size: 24.2px;
+    line-height: 27.5px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+}
+
+.social-metrics .smt-body {
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .social-metrics .smt-card {
+        transition: none;
+    }
 }

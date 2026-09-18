@@ -3517,3 +3517,495 @@ ul.import-list li {
         line-height: 25px;
     }
 }
+
+/* ==========================================================================
+   Social content page hero (/social-content) -- base rules are at the end of
+   custome.css. Steps mirror the search hero's, so the pair shrinks together.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-hero .sch-title {
+        font-size: 96px;
+    }
+    .social-hero .sch-quote blockquote {
+        font-size: 32px;
+    }
+    .social-hero .sch-stat {
+        padding: 0 20px;
+    }
+    .social-hero .sch-figure {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-hero {
+        padding: 64px 0 0;
+    }
+    .social-hero .sch-title {
+        font-size: 68px;
+    }
+    .social-hero .sch-quote {
+        margin-top: 24px;
+    }
+    .social-hero .sch-rule {
+        margin-top: 22px;
+    }
+    .social-hero .sch-note + .sch-rule {
+        margin-top: 36px;
+    }
+    .social-hero .sch-quote blockquote {
+        font-size: 26px;
+    }
+    /* Four columns leave the labels two words wide here, so the row folds to
+       two and the stroke only runs between the pairs. */
+    .social-hero .sch-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 34px;
+        margin-top: 56px;
+    }
+    .social-hero .sch-stat + .sch-stat::before {
+        height: 120px;
+    }
+    .social-hero .sch-stat:nth-child(odd)::before {
+        display: none;
+    }
+    .social-hero .sch-figure {
+        font-size: 40px;
+        line-height: 46px;
+    }
+    .social-hero .sch-strip {
+        margin-top: 64px;
+    }
+    .social-hero .sch-chip {
+        padding: 16px 30px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 560px) {
+    .social-hero {
+        padding: 48px 0 0;
+    }
+    .social-hero .sch-title {
+        font-size: 46px;
+    }
+    .social-hero .sch-quote blockquote {
+        font-size: 20px;
+    }
+    /* One column, so the strokes turn flat and run between the rows. */
+    .social-hero .sch-stats {
+        display: block;
+    }
+    .social-hero .sch-stat {
+        padding: 22px 0;
+    }
+    .social-hero .sch-stat + .sch-stat::before,
+    .social-hero .sch-stat:nth-child(odd)::before {
+        display: block;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 214px;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
+    }
+    .social-hero .sch-figure {
+        font-size: 38px;
+        line-height: 44px;
+    }
+    .social-hero .sch-chip {
+        padding: 14px 22px;
+        font-size: 15px;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "Where most get it wrong". Base rules are at the end
+   of custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-wrong .swr-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .social-wrong {
+        padding: 80px 0 88px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-wrong {
+        padding: 60px 0 66px;
+    }
+    .social-wrong .swr-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .social-wrong .swr-body {
+        margin-bottom: 34px;
+    }
+}
+
+@media (max-width: 560px) {
+    .social-wrong {
+        padding: 44px 0 48px;
+    }
+    .social-wrong .swr-eyebrow {
+        font-size: 16px;
+    }
+    .social-wrong .swr-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .social-wrong .swr-body {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "Platforms we run". Base rules are at the end of
+   custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-platforms .spl-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .social-platforms .spl-cards {
+        gap: 12px;
+    }
+    .social-platforms .spl-card {
+        height: 470px;
+        padding: 22px 16px;
+    }
+    .social-platforms .spl-icon {
+        width: 88px;
+    }
+}
+
+/* Six columns are too narrow to read below this, so the row folds to three and
+   then two -- the tone cycle keeps working because it is set per card, not per
+   column position. */
+@media (max-width: 1199px) {
+    .social-platforms .spl-cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .social-platforms .spl-card {
+        height: auto;
+        min-height: 430px;
+        padding: 26px 22px;
+    }
+    .social-platforms .spl-icon {
+        width: 96px;
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-platforms {
+        padding: 72px 0;
+    }
+    .social-platforms .spl-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .social-platforms .spl-cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .social-platforms .spl-card {
+        height: auto;
+        min-height: 430px;
+        padding: 26px 22px;
+    }
+    .social-platforms .spl-icon {
+        width: 96px;
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    .social-platforms .spl-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .social-platforms {
+        padding: 56px 0;
+    }
+    .social-platforms .spl-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .social-platforms .spl-eyebrow {
+        font-size: 16px;
+    }
+    .social-platforms .spl-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .social-platforms .spl-card {
+        min-height: 0;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "How we work". Base rules are at the end of
+   custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-steps .sst-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .social-steps .sst-panel {
+        padding: 0 56px 0 90px;
+    }
+    .social-steps .sst-step + .sst-step {
+        left: 90px;
+        right: 56px;
+    }
+    .social-steps .sst-num {
+        font-size: 76px;
+        line-height: 78px;
+    }
+    .social-steps .sst-step .sst-title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .social-steps .sst-body {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+/* Below this the pin is dropped: the wrapper stops being five viewports tall,
+   the stage stops sticking, and the five steps stack and scroll like ordinary
+   content. A pinned section on a phone costs five screens of scrolling to read
+   five short paragraphs, and it fights the address bar resizing the viewport. */
+@media (max-width: 1023px) {
+    .social-steps .sst-scroll {
+        height: auto;
+    }
+    .social-steps .sst-stage {
+        position: static;
+        display: block;
+        height: auto;
+    }
+    .social-steps .sst-visual {
+        height: 320px;
+    }
+    .social-steps .sst-panel {
+        display: block;
+        padding: 56px 24px 64px;
+    }
+    .social-steps .sst-step,
+    .social-steps .sst-step + .sst-step {
+        position: static;
+        max-width: none;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+    .social-steps .sst-step + .sst-step {
+        margin-top: 56px;
+    }
+    .social-steps .sst-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .social-steps .sst-num {
+        margin-bottom: 16px;
+        font-size: 60px;
+        line-height: 62px;
+    }
+    .social-steps .sst-step .sst-title {
+        font-size: 27px;
+        line-height: 34px;
+    }
+}
+
+@media (max-width: 560px) {
+    .social-steps .sst-eyebrow {
+        font-size: 16px;
+    }
+    .social-steps .sst-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .social-steps .sst-visual {
+        height: 240px;
+    }
+    .social-steps .sst-body {
+        font-size: 16px;
+        line-height: 25px;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "What we make". Base rules are at the end of
+   custome.css. Each step sets --wmk-w and the phones rescale whole; the
+   stagger is flattened as soon as the row stops being a single line.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-make {
+        --wmk-w: 196px;
+        --wmk-gap: 24px;
+    }
+    .social-make .wmk-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .social-make .wmk-phone-2 { margin-top: 120px; }
+    .social-make .wmk-phone-3 { margin-top: 55px; }
+    .social-make .wmk-phone-4 { margin-top: 180px; }
+    .social-make .wmk-title {
+        font-size: 25px;
+        line-height: 29px;
+    }
+    .social-make .wmk-label {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .social-make {
+        --wmk-w: 200px;
+        --wmk-gap: 28px;
+    }
+    /* The row wraps, so the stagger is dropped: offsets that read as a wave on
+       one line only look like misalignment once the phones sit on two. */
+    .social-make .wmk-row {
+        flex-wrap: wrap;
+        row-gap: 40px;
+    }
+    .social-make .wmk-phone-1,
+    .social-make .wmk-phone-2,
+    .social-make .wmk-phone-3,
+    .social-make .wmk-phone-4,
+    .social-make .wmk-phone-5 {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-make {
+        padding: 72px 0;
+    }
+    .social-make .wmk-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+}
+
+@media (max-width: 560px) {
+    .social-make {
+        --wmk-w: 200px;
+        padding: 56px 0;
+    }
+    .social-make .wmk-eyebrow {
+        font-size: 16px;
+    }
+    .social-make .wmk-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+}
+
+/* ==========================================================================
+   Social content page -- "Followers are not a business outcome". Base rules
+   are at the end of custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .social-metrics {
+        --smt-overlap: 26px;
+    }
+    .social-metrics .smt-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .social-metrics .smt-card {
+        padding: 28px calc(20px + var(--smt-overlap) / 2);
+    }
+    .social-metrics .smt-card .smt-title {
+        font-size: 21px;
+        line-height: 25px;
+    }
+    .social-metrics .smt-body {
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+/* Six overlapping cards stop being readable here, so the row becomes a plain
+   grid: no overlap, no stacking order to keep, and the hover lift is all that
+   carries over. */
+@media (max-width: 1199px) {
+    .social-metrics .smt-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+    .social-metrics .smt-card {
+        height: 300px;
+        padding: 30px 24px;
+    }
+    .social-metrics .smt-card + .smt-card {
+        margin-left: 0;
+    }
+    .social-metrics .smt-card .smt-title {
+        font-size: 24.2px;
+        line-height: 27.5px;
+    }
+    .social-metrics .smt-body {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-metrics {
+        padding: 72px 0;
+    }
+    .social-metrics .smt-break {
+        display: none;
+    }
+    .social-metrics .smt-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .social-metrics .smt-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .social-metrics {
+        padding: 56px 0;
+    }
+    .social-metrics .smt-heading {
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .social-metrics .smt-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .social-metrics .smt-card {
+        height: 240px;
+    }
+}

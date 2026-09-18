@@ -124,6 +124,11 @@ export default function Topbar() {
                         Search
                       </Link>
                     </li>
+                    <li>
+                      <Link className="nav-link" href="/social-content">
+                        Social Content
+                      </Link>
+                    </li>
                   </ul>
                 </li>
                 <li className="nav-item">
