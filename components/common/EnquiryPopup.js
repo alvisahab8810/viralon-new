@@ -30,19 +30,10 @@ export function openEnquiry() {
 
 export default function EnquiryPopup({ autoOpenDelay = 1200 }) {
   const [open, setOpen] = useState(false);
-  // react-toastify v10 sends a toast to every container that has no
-  // containerId, so the Form's own ToastContainer would double up with the one
-  // already on the page. Checked before this popup mounts its copy.
-  const [pageHasToaster, setPageHasToaster] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
 
-  const show = useCallback(() => {
-    if (typeof document !== "undefined") {
-      setPageHasToaster(!!document.querySelector(".Toastify"));
-    }
-    setOpen(true);
-  }, []);
+  const show = useCallback(() => setOpen(true), []);
 
   // Manual triggers: the custom event, and any [data-enquiry-popup] element.
   useEffect(() => {
@@ -86,8 +77,13 @@ export default function EnquiryPopup({ autoOpenDelay = 1200 }) {
     const prev = document.body.style.getPropertyValue("overflow");
     const prevPriority = document.body.style.getPropertyPriority("overflow");
     document.body.style.setProperty("overflow", "hidden", "important");
+    // The page and this popup each mount a toast container; the class tells
+    // custome.css to show the popup's one — the one react-toastify actually
+    // delivers to — and to keep it above the overlay.
+    document.body.classList.add("vlp-enquiry-open");
     return () => {
       document.removeEventListener("keydown", onKey);
+      document.body.classList.remove("vlp-enquiry-open");
       if (prev) document.body.style.setProperty("overflow", prev, prevPriority);
       else document.body.style.removeProperty("overflow");
     };
@@ -121,7 +117,7 @@ export default function EnquiryPopup({ autoOpenDelay = 1200 }) {
         if (e.target === e.currentTarget) close();
       }}
     >
-      <div className={`vlp-panel${pageHasToaster ? " vlp-mute-toast" : ""}`}>
+      <div className="vlp-panel">
         <button type="button" className="vlp-close" onClick={close} aria-label="Close">
           <svg width="11" height="11" viewBox="0 0 18 18" aria-hidden="true">
             <path
@@ -257,9 +253,10 @@ export default function EnquiryPopup({ autoOpenDelay = 1200 }) {
         }
         .vlp-panel .vl-select { font-size: 12.5px !important; }
 
-        /* Page already renders a toast container; hide this instance's copy so
-           validation messages don't appear twice. */
-        .vlp-panel.vlp-mute-toast .Toastify { display: none !important; }
+        /* Which of the two toast containers is allowed to show is decided in
+           custome.css, off the body class set while this popup is open —
+           react-toastify delivers to the one this popup mounts, so that is the
+           one that must stay visible. */
 
         .vlp-close {
           position: absolute;

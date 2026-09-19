@@ -7,29 +7,129 @@ import { getToken } from "next-auth/jwt";
 import mongoose from "mongoose";
 import dbConnect from "../../../utils/dbConnect";
 import Query from "../../../models/Query";
-import nodemailer from "nodemailer";
+import { mailTransport, mailConfigured, MAIL_FROM } from "../../../utils/mailer";
 
 const secret = process.env.NEXTAUTH_SECRET;
 
 const escapeRe = (v) => String(v).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-/* Thank-you mail — fired but never awaited, so the visitor sees the thank-you
-   instantly instead of waiting on the SMTP handshake. */
-function sendThankYou(name, email) {
-  if (!email) return;
+/* The visitor's copy of what they just sent.
+   Fired but never awaited, so the thank-you shows instantly instead of waiting
+   on the SMTP handshake. It reads back every answer the form took, so the
+   person has a record of it and can correct anything by replying -- the reply
+   lands on info@viralon.in, where the team already works.
+   Plain text goes with the HTML for clients that refuse it. */
+// Mail can only load an image over a public URL, and Gmail and Outlook both
+// refuse SVG -- so the header uses the wordmark PNG that is already live on
+// the site, the same file hq.viralon.in puts on its lead mails.
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://viralon.in";
+const LOGO = `${SITE}/assets/images/logo.png`;
+
+const esc = (v) =>
+  String(v == null ? "" : v)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+function sendThankYou(lead) {
+  const { name, email, phone, businessName, runningAds, formType } = lead || {};
+  if (!email || !mailConfigured) return;
+
+  const first = String(name || "").trim().split(/\s+/)[0] || "there";
+
+  // Only the answers that exist, in the order the form asks them.
+  const rows = [
+    ["Name", name],
+    ["Business name", businessName],
+    ["Email", email],
+    ["Phone", phone ? `+91 ${phone}` : ""],
+    ["Running ads at the moment", runningAds],
+    ["Enquired from", formType],
+  ].filter(([, v]) => String(v || "").trim());
+
+  const rowsHtml = rows
+    .map(
+      ([k, v]) => `
+        <tr>
+          <td style="padding:9px 0;color:#6B6B76;font-size:13px;width:190px;vertical-align:top;">${esc(k)}</td>
+          <td style="padding:9px 0;color:#14121F;font-size:14px;font-weight:600;">${esc(v)}</td>
+        </tr>`
+    )
+    .join("");
+
+  const html = `
+<div style="background:#F4F4F6;padding:28px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
+    <tr>
+      <td style="background:#5138EE;background-image:linear-gradient(90deg,#5138EE,#7C5CFF);padding:26px 32px;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td style="background:#ffffff;border-radius:10px;padding:11px 16px;">
+            <img src="${LOGO}" width="118" alt="Viralon" style="display:block;border:0;outline:none;width:118px;max-width:118px;height:auto;" />
+          </td>
+        </tr></table>
+        <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:18px;">We have your enquiry</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:28px 32px 6px;">
+        <p style="margin:0 0 14px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
+        <p style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          Thank you for getting in touch with Viralon. Your enquiry has reached our team
+          and someone will call you on the number below within one working day to
+          understand what you need and tell you honestly where we would start.
+        </p>
+        <p style="margin:0 0 22px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          Here is what you sent us, so you have it on record:
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:0 32px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#FAFAFB;border:1px solid #EDEDF1;border-radius:10px;padding:6px 18px;">
+          ${rowsHtml}
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:22px 32px 4px;">
+        <p style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          If anything above is wrong, simply reply to this email and we will correct it.
+          Anything you would like us to look at before the call &mdash; your website, your ad
+          account, a deck &mdash; is welcome in the same reply.
+        </p>
+        <p style="margin:0 0 4px;color:#14121F;font-size:15px;line-height:24px;">Regards,</p>
+        <p style="margin:0 0 24px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
+      </td>
+    </tr>
+  </table>
+</div>`;
+
+  const text = [
+    `Hi ${first},`,
+    "",
+    "Thank you for getting in touch with Viralon. Your enquiry has reached our team",
+    "and someone will call you within one working day.",
+    "",
+    "What you sent us:",
+    ...rows.map(([k, v]) => `  ${k}: ${v}`),
+    "",
+    "If anything above is wrong, simply reply to this email and we will correct it.",
+    "",
+    "Regards,",
+    "Team Viralon",
+  ].join("\n");
+
   try {
-    nodemailer
-      .createTransport({
-        host: "smtp.hostinger.com",
-        port: 465,
-        secure: true,
-        auth: { user: "info@viralon.in", pass: process.env.EMAIL_PASS },
-      })
+    mailTransport()
       .sendMail({
-        from: '"Viralon" <info@viralon.in>',
+        from: MAIL_FROM,
         to: email,
-        subject: "Thank you for your query!",
-        html: `<p>Hi ${name},</p><p>Thanks for reaching out. We’ll contact you soon.</p><p>Regards,<br/>Team Viralon</p>`,
+        replyTo: "info@viralon.in",
+        subject: `We have your enquiry, ${first} — Viralon`,
+        text,
+        html,
       })
       .catch((e) => console.error("Query mail failed:", e?.message));
   } catch (e) {
@@ -68,17 +168,39 @@ export default async function handler(req, res) {
 
   /* ───────────────────────── POST: save query + email ───────────────────── */
   if (req.method === "POST") {
-    const { name, email, phone, businessName, formType, budget, source } = req.body || {};
+    const { name, email, phone, businessName, formType, runningAds, source } = req.body || {};
 
     /* ── bot guards ──────────────────────────────────────────────────────
        1. honeypot: a field hidden from people, so only scripts fill it in
        2. speed: nobody types five fields in under 2.5 seconds
        3. throttle: same IP, more than 10 leads saved in an hour             */
-    if (req.body?.website) {
+    /* Chrome autofill and password managers used to drop the visitor's own
+       email into the honeypot, and a real lead was answered with a 400. The
+       field is hidden properly now (see .vl-hp in custome.css), and a value
+       that merely repeats something the visitor typed here is treated as that
+       same autofill, not as a bot. Anything else — a link, a pitch — is a
+       script filling in a field no person can see. */
+    const trap = String(req.body?.website || "").trim();
+    const typedHere = [name, email, phone, businessName]
+      .map((v) => String(v || "").trim().toLowerCase())
+      .filter(Boolean);
+    if (trap && !typedHere.includes(trap.toLowerCase())) {
+      console.warn("[query] rejected: honeypot filled =", JSON.stringify(trap));
       return res.status(400).json({ success: false, message: "Something went wrong. Please try again." });
     }
-    if (Number(req.body?.elapsed) < 2500) {
-      return res.status(400).json({ success: false, message: "Something went wrong. Please try again." });
+    /* The clock starts when the form mounts. Under a second and a half nobody
+       typed five fields. Above that it goes through, because a remount — dev
+       Fast Refresh, a re-opened popup, a back/forward restore — restarts the
+       clock on somebody who was already typing, and that was costing real
+       leads. The wording is its own so a person knows what to do, and so the
+       terminal says which guard fired. */
+    const elapsed = Number(req.body?.elapsed);
+    if (elapsed < 1500) {
+      console.warn("[query] rejected: too fast, elapsed =", req.body?.elapsed);
+      return res.status(400).json({
+        success: false,
+        message: "That went through a little too quickly. Please send it once more.",
+      });
     }
     const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || "unknown";
     if (!isLocal(ip) && recentCount(ip) >= MAX_PER_HOUR) {
@@ -126,7 +248,7 @@ export default async function handler(req, res) {
         email: cleanEmail,
         phone: cleanPhone,
         businessName,
-        budget: budget || "",
+        runningAds: runningAds || "",
         formType: formType || "Query Form",
         source: {
           gclid:       source?.gclid       || "",
@@ -142,7 +264,14 @@ export default async function handler(req, res) {
       });
 
       recordHit(ip);
-      sendThankYou(name, cleanEmail);
+      sendThankYou({
+        name,
+        email: cleanEmail,
+        phone: cleanPhone,
+        businessName,
+        runningAds: runningAds || "",
+        formType: formType || "Query Form",
+      });
 
       return res
         .status(201)

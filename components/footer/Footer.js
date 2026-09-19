@@ -1,6 +1,61 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
+
+// The footer newsletter box. It posts to /api/newsletter/subscribe, which saves
+// the address into the shared "newsletters" collection — the same one HQ shows
+// at Website → Newsletter — and mails the person a welcome note. The reply is
+// shown under the field; there is no toast in the footer.
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState(null);       // { ok: boolean, text: string }
+  const [sending, setSending] = useState(false);
+  const [hp, setHp] = useState("");        // honeypot field, always empty
+  // How long the box has been on screen: a form filled faster than anyone can
+  // type is a script, and the API turns those away.
+  const openedAt = useRef(Date.now());
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+    if (sending) return;
+
+    const clean = email.trim();
+    if (!/^\S+@\S+\.\S+$/.test(clean)) {
+      setMsg({ ok: false, text: "Please enter a valid email address." });
+      return;
+    }
+
+    setSending(true);
+    setMsg(null);
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: clean,
+          website: hp,                       // honeypot — people never see it
+          elapsed: Date.now() - openedAt.current,
+          source: {
+            page: window.location.pathname,
+            referrer: document.referrer || "",
+            utmSource: new URLSearchParams(window.location.search).get("utm_source") || "",
+            utmMedium: new URLSearchParams(window.location.search).get("utm_medium") || "",
+            utmCampaign: new URLSearchParams(window.location.search).get("utm_campaign") || "",
+          },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEmail("");
+        setMsg({ ok: true, text: data.message || "You're subscribed. Thank you!" });
+      } else {
+        setMsg({ ok: false, text: data.message || "Something went wrong. Please try again." });
+      }
+    } catch {
+      setMsg({ ok: false, text: "Something went wrong. Please try again." });
+    }
+    setSending(false);
+  };
+
   return (
     <>
       <footer className="footer-area pt-100">
@@ -51,6 +106,24 @@ export default function Footer() {
               <ul className="import-list">
                 <li>
                   {" "}
+                  <Link href="/brand"> Brand </Link>{" "}
+                </li>
+                <li>
+                  {" "}
+                  <Link href="/search"> Search </Link>{" "}
+                </li>
+                <li>
+                  {" "}
+                  <Link href="/social-content"> Social Content </Link>{" "}
+                </li>
+                <li>
+                  {" "}
+                  <Link href="/paid-ads"> Paid Ads </Link>{" "}
+                </li>
+                {/* Parked for now — this column carries the four live
+                    service pages. The pages themselves still exist.
+                <li>
+                  {" "}
                   <Link href="/our-services/digital-marketing"> Digital Marketing </Link>{" "}
                 </li>
                 <li>
@@ -69,6 +142,8 @@ export default function Footer() {
                   {" "}
                   <Link href="/our-work"> Our Work </Link>{" "}
                 </li>
+                */}
+
                 <li>
                   {" "}
                   <Link href="/contact-us"> Contact Us </Link>{" "}
@@ -106,12 +181,36 @@ export default function Footer() {
                 Join our subscribers list to get the instant latest news and
                 special offers.
               </p>
-              <div className="news-emailbx">
-                <input type="email" placeholder="Your Email" />
-                <button>
-                  <i className="fas fa-arrow-right"></i>
+              <form className="news-emailbx" onSubmit={subscribe} noValidate>
+                {/* Hidden from people; only a bot fills it in. */}
+                <input
+                  type="text"
+                  name="website"
+                  value={hp}
+                  onChange={(e) => setHp(e.target.value)}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="news-hp"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  aria-label="Your email address"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button type="submit" disabled={sending} aria-label="Subscribe">
+                  <i className={sending ? "fas fa-spinner fa-spin" : "fas fa-arrow-right"}></i>
                 </button>
-              </div>
+              </form>
+              {msg && (
+                <p className={`news-msg ${msg.ok ? "is-ok" : "is-err"}`} role="status">
+                  {msg.text}
+                </p>
+              )}
             </div>
           </div>
         </div>

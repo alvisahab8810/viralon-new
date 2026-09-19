@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
@@ -12,6 +12,9 @@ import {
 import dbConnect from "@/utils/dbConnect";
 import Blog from "@/models/Blog";
 import blogImage from "@/utils/blogImage";
+// The sidebar enquiry asks exactly what the popup form asks and is tracked the
+// same way — same running-ads list, same UTM capture, same conversion event.
+import { readSource, fireLead, RUNNING_ADS, RUNNING_ADS_LABEL } from "@/utils/leadTracking";
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
@@ -95,15 +98,22 @@ function timeAgo(d) {
 export default function BlogDetail({ blog, related }) {
   const [openFaq,     setOpenFaq]     = useState(null);
   const [activeId,    setActiveId]    = useState("");
-  const [queryForm,   setQueryForm]   = useState({ name: "", businessName: "", phone: "", email: "" });
+  const [queryForm,   setQueryForm]   = useState({ name: "", businessName: "", phone: "", email: "", runningAds: "" });
   const [querySent,   setQuerySent]   = useState(false);
   const [queryLoading,setQueryLoading]= useState(false);
+  const [queryErr,    setQueryErr]    = useState("");
+  const [website,     setWebsite]     = useState("");   // honeypot — people never see it
+  const queryOpenedAt = useRef(Date.now());
+  const querySource   = useRef({});
   const [commentForm, setCommentForm] = useState({ name: "", email: "", body: "" });
   const [commentSent, setCommentSent] = useState(false);
   const [comments,    setComments]    = useState([]);
 
   const toc  = useMemo(() => extractToc(blog?.content || ""), [blog?.content]);
   const html = useMemo(() => mdToHtml(blog?.content),         [blog?.content]);
+
+  // Where this visitor came from, remembered for the session.
+  useEffect(() => { querySource.current = readSource(); }, []);
 
   // Load approved comments
   useEffect(() => {
@@ -141,15 +151,51 @@ export default function BlogDetail({ blog, related }) {
 
   async function handleQuerySubmit(e) {
     e.preventDefault();
+    setQueryErr("");
+
+    const email = queryForm.email.trim();
+    if (!queryForm.name.trim() || !queryForm.businessName.trim() || !queryForm.phone || !email) {
+      setQueryErr("Please fill in all required fields."); return;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setQueryErr("Please enter a valid email address."); return;
+    }
+    if (queryForm.phone.length !== 10) {
+      setQueryErr("Phone number must be exactly 10 digits."); return;
+    }
+    // The CRM qualifies off this, so it can't be left blank.
+    if (!queryForm.runningAds) {
+      setQueryErr("Please tell us if you are running ads at the moment."); return;
+    }
+
     setQueryLoading(true);
     try {
-      await fetch("/api/queries/query", {
+      const res = await fetch("/api/queries/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...queryForm, formType: `Blog: ${blog.title}` }),
+        body: JSON.stringify({
+          ...queryForm,
+          email,
+          // "Blog Form" up front, so searching the CRM for it pulls every blog
+          // enquiry together whatever the post was called.
+          formType: `Blog Form — ${blog.title}`,
+          website,
+          elapsed: Date.now() - queryOpenedAt.current,
+          source: querySource.current,
+        }),
       });
-    } catch (_) {}
-    setQuerySent(true);
+      const data = await res.json();
+      if (data.success) {
+        fireLead({ lead_id: data.queryId || "", running_ads: queryForm.runningAds || "", ...querySource.current });
+        setQuerySent(true);
+      } else {
+        // A duplicate email or phone comes back with its own wording, which is
+        // friendlier than a generic failure — show whatever the API said.
+        setQueryErr(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setQueryErr("Something went wrong. Please try again.");
+    }
     setQueryLoading(false);
   }
 
@@ -371,7 +417,7 @@ export default function BlogDetail({ blog, related }) {
                         placeholder="0000 0000 00"
                         required
                         value={queryForm.phone}
-                        onChange={e => setQueryForm(p => ({ ...p, phone: e.target.value }))}
+                        onChange={e => setQueryForm(p => ({ ...p, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
                         className="bdd-phone-input"
                       />
                     </div>
@@ -382,6 +428,22 @@ export default function BlogDetail({ blog, related }) {
                       value={queryForm.email}
                       onChange={e => setQueryForm(p => ({ ...p, email: e.target.value }))}
                     />
+                    {/* Same question, same wording and same order as the popup form. */}
+                    <select
+                      className="bdd-reach-select"
+                      required
+                      value={queryForm.runningAds}
+                      onChange={e => setQueryForm(p => ({ ...p, runningAds: e.target.value }))}
+                    >
+                      <option value="">{RUNNING_ADS_LABEL}</option>
+                      {RUNNING_ADS.map(o => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                    {/* Hidden from people — only a script fills this in. */}
+                    <input
+                      type="text" tabIndex={-1} autoComplete="off" className="bdd-reach-hp"
+                      value={website} onChange={e => setWebsite(e.target.value)}
+                    />
+                    {queryErr ? <p className="bdd-reach-err">{queryErr}</p> : null}
                     <button type="submit" className="bdd-reach-btn" disabled={queryLoading}>
                       {queryLoading ? "Sending…" : "Request Callback"}
                     </button>

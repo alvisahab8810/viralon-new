@@ -215,7 +215,7 @@ export default function QueryResponse({ role }) {
       Email: q.email,
       Phone: q.phone,
       Business: q.businessName || "—",
-      Budget: q.budget || "—",
+      "Running ads": q.runningAds || "—",
       Meeting: meetingLabel(q) || "—",
       "Form Type": q.formType || "Query Form",
       "Submitted On": new Date(q.createdAt).toLocaleString("en-IN", {
@@ -455,7 +455,7 @@ export default function QueryResponse({ role }) {
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Business</th>
-                  <th>Budget</th>
+                  <th>Running ads</th>
                   <th>Meeting</th>
                   <th>Date</th>
                   <th>Form Type</th>
@@ -498,7 +498,7 @@ export default function QueryResponse({ role }) {
                       <td className="qr-muted-cell">{q.email}</td>
                       <td className="qr-muted-cell">{q.phone}</td>
                       <td className="qr-muted-cell">{q.businessName}</td>
-                      <td className="qr-muted-cell">{q.budget || "—"}</td>
+                      <td className="qr-muted-cell">{q.runningAds || "—"}</td>
                       <td className="qr-muted-cell">
                         {meetingLabel(q) ? (
                           <span className="qr-badge">{meetingLabel(q)}</span>

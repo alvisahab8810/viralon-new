@@ -7,11 +7,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const BUDGETS = [
-  "Under ₹25,000",
-  "₹25,000 to ₹75,000",
-  "₹75,000 to ₹2,00,000",
-  "Above ₹2,00,000",
+// The one qualifying question all three lead forms ask. Kept identical to
+// utils/leadTracking.js, which the contact page and the blog sidebar read.
+const RUNNING_ADS_LABEL = "Are you running ads at the moment?";
+
+const RUNNING_ADS = [
+  "Yes, ourselves",
+  "Yes, through an agency",
+  "Not yet",
 ];
 
 /* Ad click ids + UTM tags from the landing URL, remembered for the session so
@@ -64,7 +67,7 @@ export default function Form({ variant = "dark" }) {
     businessName: "",
     phone: "",
     email: "",
-    budget: "",
+    runningAds: "",
     formType: "Query Form",
   });
 
@@ -98,9 +101,9 @@ export default function Form({ variant = "dark" }) {
       toast.error("Phone number must be exactly 10 digits.");
       return;
     }
-    // The CRM sizes the pipeline off this, so it can't be left blank.
-    if (!formData.budget) {
-      toast.error("Please pick your monthly marketing budget.");
+    // The CRM qualifies off this, so it can't be left blank.
+    if (!formData.runningAds) {
+      toast.error("Please tell us if you are running ads at the moment.");
       return;
     }
 
@@ -121,7 +124,7 @@ export default function Form({ variant = "dark" }) {
       if (data.success) {
         fireLead({
           lead_id: data.queryId || "",
-          budget: formData.budget || "",
+          running_ads: formData.runningAds || "",
           ...source.current,
         });
         setDone(true);
@@ -227,14 +230,14 @@ export default function Form({ variant = "dark" }) {
                  
                   <div className="form-group">
                     <select
-                      name="budget"
+                      name="runningAds"
                       className="form-control vl-select"
-                      value={formData.budget}
+                      value={formData.runningAds}
                       onChange={handleChange}
                     >
-                      <option value="">Monthly Marketing Budget — Select a range</option>
-                      {BUDGETS.map((b) => (
-                        <option key={b} value={b}>{b}</option>
+                      <option value="">{RUNNING_ADS_LABEL}</option>
+                      {RUNNING_ADS.map((o) => (
+                        <option key={o} value={o}>{o}</option>
                       ))}
                     </select>
                   </div>

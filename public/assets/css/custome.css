@@ -887,6 +887,36 @@ ul.import-list li {
     font-weight: normal;
 }
 
+/* Newsletter signup — the honeypot is hidden from people (a bot filling it in
+   is how the API spots a script), and the reply line sits under the field. */
+.news-emailbx .news-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.news-emailbx button:disabled {
+    opacity: .75;
+    cursor: default;
+}
+
+.news-msg {
+    margin: 10px 0 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.news-msg.is-ok {
+    color: #7BE3A6;
+}
+
+.news-msg.is-err {
+    color: #FF9A85;
+}
+
 .job-tab-section .nav {
     border-top: 1px solid #ffffff3d;
     border-bottom: 1px solid #ffffff3d;
@@ -3155,6 +3185,72 @@ img.shape.p-absolute {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+    }
+
+    /* The budget select. Styled off the inputs rather than left native, so the
+       dark panel does not get a white system control in the middle of it.
+       The chevron is a background image because `appearance: none` takes the
+       browser's own arrow away with the rest of the styling. */
+    .have-questions form .cnt-select {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      color: #6C757D;
+      font-size: 13px;
+      padding: 0 2.4rem 0 1rem;
+      min-height: 45px;
+      height: 45px;
+      width: 100%;
+      margin-bottom: 15px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236C757D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      transition: border-color 0.3s ease;
+    }
+    .have-questions form .cnt-select:focus {
+      outline: none;
+      border-color: #ff6f5b;
+    }
+    /* The list itself is drawn by the OS, which ignores the dark panel -- give
+       it light paper and dark ink so it is legible either way. */
+    .have-questions form .cnt-select option {
+      color: #1d1d1d;
+      background: #ffffff;
+    }
+
+    /* Hidden from people, reachable by scripts: anything typed in here marks
+       the submit as a bot. Kept out of the tab order and off the screen rather
+       than `display: none`, which some bots skip. */
+    .have-questions form .cnt-hp {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      min-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .have-questions form button:disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    /* Replaces the form once the lead is saved. */
+    .have-questions .cnt-thanks h2 {
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+    .have-questions .cnt-thanks p {
+      max-width: 420px;
+      margin: 0;
+      color: #DDDDDD;
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 300;
     }
     .have-questions .form-row > * {
       flex: 1 1 0;
@@ -8416,4 +8512,797 @@ img.shape.p-absolute {
     .social-metrics .smt-card {
         transition: none;
     }
+}
+
+/* ── Blog sidebar enquiry: the budget field, the honeypot and the error line.
+   The rest of the card is styled in blogs.css; these three are new with the
+   form now asking exactly what the popup form asks. ───────────────────────── */
+.bdd-reach-form .bdd-reach-select {
+  width: 100%;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: var(--bl-dark, #0b0b0f);
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23b0b7c3' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.bdd-reach-form .bdd-reach-select:focus {
+  border-color: var(--bl-primary, #ee4c49);
+  box-shadow: 0 0 0 3px rgba(238, 76, 73, 0.08);
+}
+/* Empty means the placeholder option is showing — keep it grey like the inputs. */
+.bdd-reach-form .bdd-reach-select:invalid { color: #b0b7c3; }
+
+.bdd-reach-form .bdd-reach-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+}
+
+.bdd-reach-form .bdd-reach-err {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #d13c39;
+}
+
+/* ── Enquiry popup: where its messages land ───────────────────────────────
+   The page and the popup each render a react-toastify container. A toast with
+   no containerId goes to the one mounted last — the popup's — so the popup's
+   copy is the one that has to be visible, and it has to sit above the overlay
+   (z-index 12000). The page's copy is hidden meanwhile so nothing doubles up.
+   Without this every "fill in all fields" / "already sent us a request"
+   message was rendered into a display:none container and the SUBMIT button
+   looked dead. */
+body.vlp-enquiry-open .Toastify { display: none !important; }
+body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
+.vlp-panel .Toastify__toast-container { z-index: 13000 !important; }
+
+/* ── Honeypot: out of the browser's reach ────────────────────────────────────
+   The spam-trap field in the enquiry form (components/home/Form.js) sits
+   off-screen, which hides it from people but NOT from Chrome autofill and
+   password managers — they filled it with the visitor's own email, the API
+   read that as a bot and answered 400. A field that is not rendered at all is
+   skipped by autofill, while a script reading the HTML still fills it in, so
+   the trap keeps working. Declared here because Form.js must stay untouched. */
+.vl-hp {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Paid ads page -- hero (components/paid-ads/Hero.js)
+   The component renders .social-hero .paid-hero, so every rule above applies
+   first and only the differences live here: six stat columns instead of four,
+   and a floor, because this hero ends on the stats rather than on the social
+   page's platform strip. Responsive steps are at the end of responsive.css.
+   ========================================================================== */
+.social-hero.paid-hero {
+    padding-bottom: 90px;
+}
+
+/* Six columns in the same 1136 as four: the side padding comes down and the
+   figures step back a size, so "10,000" and "100 Cr" stay on one line. */
+.paid-hero .sch-stat {
+    padding: 0 16px;
+}
+
+.paid-hero .sch-figure {
+    font-size: 48px;
+    line-height: 56px;
+}
+
+.paid-hero .sch-label {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+/* The stroke is drawn for the taller four-column row; six shorter columns need
+   it shorter or it hangs well below the labels. */
+.paid-hero .sch-stat + .sch-stat::before {
+    height: 150px;
+}
+
+/* The six figures do not fit the 1136 container at the social hero's rhythm --
+   "3 yrs" and the longer labels were wrapping. Only on this page the stat row
+   steps outside the container: it is centred on the viewport and allowed up to
+   1400, columns size to their own text, and nothing wraps. Below 1240 the row
+   folds (responsive.css), which is where wrapping is fine again. */
+.paid-hero .sch-stats {
+    max-width: none;
+    width: min(1400px, calc(100vw - 48px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+}
+
+.paid-hero .sch-stat {
+    flex: 0 1 auto;
+    padding: 0 26px;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Paid ads page -- "What the accounts actually did."
+   (components/paid-ads/Results.js)
+   The search page's results band with four cards instead of three, a category
+   kicker over each figure and the client's name under the artwork. Values are
+   kept in step with .search-results on purpose -- the two read as a pair --
+   but the selectors are separate so either page can be retuned without moving
+   the other.
+   Every selector is prefixed .pa-results because the page is wrapped in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` and `p` rules in style.css
+   would otherwise wash this light band out.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.pa-results {
+    background: #EFEFF0;
+    padding: 100px 0 100px;
+}
+
+.pa-results .par-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.pa-results .par-heading {
+    margin: 0 0 50px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.pa-results .par-accent {
+    color: #FE4601;
+}
+
+.pa-results .par-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Flex column so the artwork takes whatever height is left after the copy:
+   a card with a shorter line gives its image more room rather than ending up
+   shorter than the card beside it. */
+.pa-results .par-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 84px;
+    min-height: 470px;
+    border-radius: 18px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.pa-results .par-kicker {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0B0B0F;
+    font-family: 'SF Pro Display';
+}
+
+/* line-height 1 and no top margin: at this size the default half-leading
+   would push the figure a visible step down from the kicker. */
+.pa-results .par-figure {
+    margin: 0 0 10px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 42px;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+.pa-results .par-card-body {
+    margin: 0;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    color: #1D1D1F;
+    font-family: 'SF Pro Display';
+}
+
+/* Negative side margins pull the artwork out to the card edges while the copy
+   above keeps its padding. */
+.pa-results .par-card-art {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 18px -24px 14px;
+    min-height: 0;
+}
+
+/* The exports are transparent cut-outs on no background, so they are
+   contained and sat on the floor of the card rather than cropped to fill. */
+.pa-results .par-card-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+.pa-results .par-client {
+    margin: 0;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    letter-spacing: -0.27px;
+    color: #1D1D1F;
+    font-family: 'SF Pro Display';
+}
+
+.pa-results .par-client-name {
+    color: #1D1D1F;
+}
+
+/* Pinned to the card floor so every button lines up across the row whatever
+   the copy above does -- the card's bottom padding is what reserves its
+   space. The violet is the same one /search uses for its own pill; everything
+   else on the site runs on #FE4601. */
+.pa-results .par-card-cta {
+    position: absolute;
+    left: 24px;
+    bottom: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: #754CDA;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    white-space: nowrap;
+    color: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.pa-results .par-card-cta:hover,
+.pa-results .par-card-cta:focus {
+    background: #5F3BBB;
+    color: #ffffff;
+}
+
+.pa-results .par-card-arrow {
+    font-size: 12px;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Paid ads page -- "You want return on ad spend."
+   (components/paid-ads/ReturnOnSpend.js)
+   The search page's dark statement band with no eyebrow and two paragraphs
+   under the heading. Values are kept in step with .search-shift on purpose;
+   the selectors are separate so either page can be retuned on its own.
+   Every selector is prefixed .pa-spend because the page is wrapped in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css would
+   otherwise take the orange half of the heading with it.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.pa-spend {
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+.pa-spend .pas-heading {
+    margin: 0 0 30px;
+    max-width: 1000px;
+    font-weight: 700;
+    font-size: 87px;
+    line-height: 97px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.pa-spend .pas-accent {
+    color: #FE4601;
+}
+
+.pa-spend .pas-body {
+    margin: 0 0 20px;
+    max-width: 980px;
+    font-size: 24px;
+    line-height: 35px;
+    color: #FFFFFF;
+    font-family: 'SF Pro Display';
+}
+
+/* The band ends on the last paragraph, so it gives up its own bottom margin
+   and lets the section padding do that work. */
+.pa-spend .pas-body:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Paid ads page -- "Eight Things Decide Performance."
+   (components/paid-ads/WhatDecides.js)
+   The social page's metric row (.social-metrics) as a rail: same gradients,
+   same overlap, same lift on hover, but each card is a step smaller than the
+   one before it so the row recedes to the right. Every size on a card is
+   derived from --pdw-step (0..7), which the component sets inline, so the
+   whole ramp is retuned by changing the multipliers below.
+   Every selector is prefixed .pa-decides because the page is wrapped in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css would
+   otherwise take the dark ink off the heading.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.pa-decides {
+    --pdw-overlap: 22px;
+    background: #ffffff;
+    padding: 100px 0;
+}
+
+/* Heading left, the audit note pinned to the top right. */
+.pa-decides .pdw-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.pa-decides .pdw-head-main {
+    /* max-width: 780px; */
+}
+
+.pa-decides .pdw-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.pa-decides .pdw-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 52px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+}
+
+.pa-decides .pdw-accent {
+    color: #FE4601;
+}
+
+.pa-decides .pdw-note {
+    flex: 0 0 318px;
+    color: #86868B !important;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: bold;
+    font-family: 'SF Pro Display';
+    text-align: right;
+    margin-bottom: 0;
+}
+/* The rail is padded top and bottom by the lift distance, so a raised card has
+   somewhere to go and the section does not grow when one is hovered. */
+.pa-decides .pdw-rail {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 50px 0 30px;
+    list-style: none;
+    /* Which card the ramp starts from. At rest it is the first one, which is
+       the row as the mock draws it; hovering moves it under the pointer. */
+    --pdw-hot: 0;
+}
+
+/* Hover anywhere in the rail re-centres the ramp on that card: it becomes the
+   head of the row and everything else steps away from it in both directions,
+   so walking to a small card on the right grows it and shrinks the ones on the
+   left. Eight rules rather than one, because a selector cannot read which
+   child is hovered -- but the ramp itself is still written once, below. */
+.pa-decides .pdw-rail:has(.pdw-card-1:hover),
+.pa-decides .pdw-rail:has(.pdw-card-1:focus-within) { --pdw-hot: 0; }
+.pa-decides .pdw-rail:has(.pdw-card-2:hover),
+.pa-decides .pdw-rail:has(.pdw-card-2:focus-within) { --pdw-hot: 1; }
+.pa-decides .pdw-rail:has(.pdw-card-3:hover),
+.pa-decides .pdw-rail:has(.pdw-card-3:focus-within) { --pdw-hot: 2; }
+.pa-decides .pdw-rail:has(.pdw-card-4:hover),
+.pa-decides .pdw-rail:has(.pdw-card-4:focus-within) { --pdw-hot: 3; }
+.pa-decides .pdw-rail:has(.pdw-card-5:hover),
+.pa-decides .pdw-rail:has(.pdw-card-5:focus-within) { --pdw-hot: 4; }
+.pa-decides .pdw-rail:has(.pdw-card-6:hover),
+.pa-decides .pdw-rail:has(.pdw-card-6:focus-within) { --pdw-hot: 5; }
+.pa-decides .pdw-rail:has(.pdw-card-7:hover),
+.pa-decides .pdw-rail:has(.pdw-card-7:focus-within) { --pdw-hot: 6; }
+.pa-decides .pdw-rail:has(.pdw-card-8:hover),
+.pa-decides .pdw-rail:has(.pdw-card-8:focus-within) { --pdw-hot: 7; }
+
+/* Width, height, radius and type all come off the same step, which is what
+   makes the row read as one rail rather than eight unrelated sizes. */
+.pa-decides .pdw-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Every size below is read off --pdw-eff, not --pdw-step: the step is the
+       card's fixed place in the row, the effective step is how far it sits
+       from whichever card the ramp currently starts at. max() of the two
+       subtractions is an absolute value, written the long way so it works
+       wherever calc() does. */
+    --pdw-eff: max(calc(var(--pdw-step) - var(--pdw-hot)),
+                   calc(var(--pdw-hot) - var(--pdw-step)));
+    flex-grow: calc(1 - var(--pdw-eff) * 0.083);
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    height: calc(400px - var(--pdw-eff) * 33px);
+    /* The cards drift down as they shrink, so the rail's top edge falls away
+       faster than its floor -- the perspective the mock draws. */
+    margin-top: calc(var(--pdw-eff) * 2.5px);
+    /* The left-hand padding carries the whole overlap, not half of it: the
+       card before this one sits on that strip, so copy centred across it
+       would read as running under its neighbour. The right side keeps the
+       plain gutter. */
+    padding: calc(22px - var(--pdw-eff) * 1.4px)
+             calc(16px - var(--pdw-eff) * 1px)
+             calc(22px - var(--pdw-eff) * 1.4px)
+             calc(16px - var(--pdw-eff) * 1px + var(--pdw-overlap));
+    border-radius: calc(24px - var(--pdw-eff) * 1.6px);
+    color: #ffffff;
+    /* A soft shadow under every card, not just the hovered one: it is what
+       separates the steps where two gradients meet and gives the rail its
+       depth. */
+    box-shadow: 0 14px 28px rgba(17, 17, 17, 0.12);
+    /* Only the shadow is animated. The card's size is real layout, so easing
+       it would re-wrap the copy on every frame of the transition -- the lines
+       zig-zagging as they settle. Snapping the geometry means the type is
+       drawn once, at its final size, in its final place. */
+    transition: box-shadow 0.35s ease;
+}
+
+/* Each card tucks under the one before it: the row is pulled together by a
+   negative margin, and the z-index falls as it goes, so the first card is the
+   one on top and every later card slides beneath its left-hand neighbour. */
+.pa-decides .pdw-card + .pdw-card {
+    margin-left: calc(var(--pdw-overlap) * -1);
+}
+
+/* Nothing laps over the first card, so it keeps an even gutter. */
+.pa-decides .pdw-card-1 {
+    padding-left: calc(16px - var(--pdw-eff) * 1px);
+}
+
+.pa-decides .pdw-card-1 { z-index: 8; background: linear-gradient(90deg, #7B4DF2 0%, #9664EB 100%); }
+.pa-decides .pdw-card-2 { z-index: 7; background: linear-gradient(90deg, #F86472 0%, #ED383E 100%); }
+.pa-decides .pdw-card-3 { z-index: 6; background: linear-gradient(90deg, #17C7F0 0%, #4660F0 100%); }
+.pa-decides .pdw-card-4 { z-index: 5; background: linear-gradient(90deg, #28DDB0 0%, #2ECDF4 100%); }
+.pa-decides .pdw-card-5 { z-index: 4; background: linear-gradient(90deg, #3A4BF4 0%, #506DEA 100%); }
+.pa-decides .pdw-card-6 { z-index: 3; background: #FE4601; }
+.pa-decides .pdw-card-7 { z-index: 2; background: linear-gradient(90deg, #7B4DF2 0%, #9664EB 100%); }
+.pa-decides .pdw-card-8 { z-index: 1; background: linear-gradient(90deg, #F86472 0%, #ED383E 100%); }
+
+/* The hovered card is the head of the ramp (--pdw-eff falls to 0 on its own,
+   from the rule above), so it takes the full width, height, padding, radius
+   and type -- a real magnification rather than a scaled picture, which is why
+   the copy grows to reading size instead of to a blur. All that is left to do
+   here is lift it clear of both neighbours and deepen its shadow. The rail's
+   own padding absorbs the growth, so the section's height never moves.
+   :focus-within is here too, so the same thing happens on a keyboard. */
+.pa-decides .pdw-card:hover,
+.pa-decides .pdw-card:focus-within {
+    /* A fixed 238px rather than a share of the row: wherever the pointer lands
+       the open card is the same size, and the rest of the rail divides what is
+       left. */
+    flex-grow: 0;
+    flex-basis: 238px;
+    /* Nothing laps over the open card -- it is above the whole row -- so it
+       drops the overlap gutter and keeps the plain one on both sides. */
+    padding-left: calc(16px - var(--pdw-eff) * 1px);
+    z-index: 10;
+    box-shadow: 0 24px 54px rgba(17, 17, 17, 0.28);
+}
+
+.pa-decides .pdw-title {
+    margin: 0 0 calc(12px - var(--pdw-eff) * 0.8px);
+    font-weight: 700;
+    /* The head of the ramp is 29.04/33 -- the size the card carries at rest as
+       the first card, and the size it comes back to under the pointer. Every
+       other card steps down from it. The line height is a ratio, so it steps
+       with the size instead of being set eight times. */
+    font-size: calc(29.04px - var(--pdw-eff) * 2.53px);
+    line-height: 1.136;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+}
+
+.pa-decides .pdw-body {
+    margin: 0;
+    /* 21.6/28.8 at the head of the ramp, same rule as the title above. */
+    font-size: calc(21.6px - var(--pdw-eff) * 1.89px);
+    line-height: 1.333;
+    color: rgba(255, 255, 255, 0.92);
+    font-family: 'SF Pro Display';
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pa-decides .pdw-card {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- the orange statistic band under the rail. Responsive steps
+   are at the end of responsive.css.
+
+   Every selector is prefixed .pa-dash because the page is wrapped in .bg-dark,
+   whose `h1..h6 { color: var(--white) }` in style.css would otherwise win over
+   a bare class.
+   ========================================================================== */
+.pa-dash {
+    background: #FE4601;
+    padding: 100px 0 100px;
+}
+
+.pa-dash .pad-heading {
+    max-width: 1080px;
+    margin: 0;
+    font-weight: 700;
+    font-size: 87px;
+    line-height: 97px;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+}
+
+/* The line that turns the statistic into the argument, so it sits well clear
+   of the claim rather than reading as its last line. */
+.pa-dash .pad-note {
+    /* max-width: 900px; */
+    margin: 46px 0 0;
+    font-size: 32px;
+    line-height: 35px;
+    color: #ffffff;
+    font-family: 'SF Pro Display';
+}
+
+/* ==========================================================================
+   Paid ads page -- "How we work", the six phones
+   (components/paid-ads/SixSteps.js)
+   The social page's phone row on a dark band, with six frames instead of five.
+   Everything about a phone comes off one number, --pst-w: the PNG's 350 x 708
+   body inside an 870-tall canvas gives the two ratios below, so setting
+   --pst-w at a breakpoint rescales the row whole.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.pa-steps {
+    --pst-w: 176px;
+    --pst-gap: 24px;
+    background: #0E0920;
+    padding: 100px 0 100px;
+    overflow: hidden;
+}
+
+.pa-steps .pst-eyebrow {
+    margin: 0 0 14px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.pa-steps .pst-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.pa-steps .pst-accent {
+    color: #FE4601;
+}
+
+/* `align-items: flex-start` so each phone's own offset is what places it: the
+   row's height comes from the tallest stack, not from the first phone. */
+.pa-steps .pst-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--pst-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* The box is the phone body exactly -- the image overhangs it with its own
+   drop shadow -- so the gap between two phones is read off the body rather
+   than guessed around transparent padding. */
+.pa-steps .pst-phone {
+    position: relative;
+    flex: 0 0 auto;
+    width: var(--pst-w);
+    height: calc(var(--pst-w) * 2.0231);
+}
+
+.pa-steps .pst-device {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    max-width: none;
+    height: calc(var(--pst-w) * 2.4859);
+}
+
+/* The staggered heights, read off the mock. Each phone has its own class so
+   one can be moved without disturbing the others. */
+.pa-steps .pst-phone-1 { margin-top: 12px; }
+.pa-steps .pst-phone-2 { margin-top: 102px; }
+.pa-steps .pst-phone-3 { margin-top: 48px; }
+.pa-steps .pst-phone-4 { margin-top: 88px; }
+.pa-steps .pst-phone-5 { margin-top: 0; }
+.pa-steps .pst-phone-6 { margin-top: 90px; }
+
+/* Held inside the body box with its own padding, so a long step can never sit
+   on the bezel or run out over the shadow. */
+.pa-steps .pst-screen {
+    position: absolute;
+    inset: 8% 9% 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.pa-steps .pst-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    overflow-wrap: break-word;
+}
+
+/* The turn: the line fades up into place, overshoots the resting line and
+   settles. Kept to the line itself, so nothing else on the phone moves. */
+.pa-steps .pst-title {
+    animation: pst-turn 0.62s cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+@keyframes pst-turn {
+    0%   { opacity: 0; transform: translateY(16px); }
+    55%  { opacity: 1; transform: translateY(-7px); }
+    75%  { transform: translateY(4px); }
+    90%  { transform: translateY(-2px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pa-steps .pst-title {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "Where we run them" (components/paid-ads/Places.js)
+   The row is the .social-platforms one, reused whole. Only the differences
+   this page's copy forces live here, so the two rows stay identical
+   everywhere else.
+   ========================================================================== */
+/* The last card names four platforms at once, which will not sit on two lines
+   at the shared 26px. Nothing else about the card changes. */
+.social-platforms.paid-platforms .spl-card:nth-child(6) .spl-name {
+    font-size: 20px;
+    line-height: 130%;
+}
+
+/* ==========================================================================
+   Paid ads page -- "What we measure" (components/paid-ads/Measure.js)
+   Four artwork cards in one row. The card is the homepage's "Broken?" card:
+   same #8668FF name at 28/32, same rounded media that lifts its image on
+   hover. Media is a fixed 332px tall and shares the row's width, so the four
+   columns stay level whatever the artwork's own ratio is.
+   ========================================================================== */
+.pa-measure {
+  background: #ffffff;
+    padding: 0px 0px 100px 0px;
+}
+
+.pa-measure .pms-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.pa-measure .pms-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+}
+
+.pa-measure .pms-accent {
+    color: #FE4601;
+}
+
+.pa-measure .pms-cards {
+    display: flex;
+    gap: 26px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pa-measure .pms-card {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.pa-measure .pms-media {
+    height: 332px;
+    border-radius: 20px;
+    overflow: hidden;
+    /* background: #191233; */
+}
+
+.pa-measure .pms-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pa-measure .pms-card:hover .pms-media img {
+    transform: scale(1.05);
+}
+
+.pa-measure .pms-card .pms-name {
+    margin: 22px 0 0;
+    padding: 0 4px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+    color: #8668FF;
+}
+
+/* ==========================================================================
+   The CTA form's one dropdown ("Are you running ads at the moment?").
+   .form-control paints the coral field, which leaves the browser's own arrow
+   invisible against it -- so the arrow is drawn here as a white chevron, the
+   same one the contact page and the blog sidebar use, and the field keeps room
+   for it on the right.
+   ========================================================================== */
+.vl-form .form-control.vl-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 42px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
 }

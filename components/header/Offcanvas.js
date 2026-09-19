@@ -59,6 +59,8 @@ export default function Offcanvas() {
                     >
                       <div className="accordion-body">
                         <ul className="list-unstyled">
+                          {/* Parked for now — the menu carries the four live
+                              service pages only. The pages themselves still exist.
                           <li>
                             {" "}
                             <Link
@@ -140,6 +142,8 @@ export default function Offcanvas() {
                               - Seo
                             </Link>{" "}
                           </li>
+                          */}
+
                           <li>
                             <Link className="nav-link" href="/brand">
                               - Brand
@@ -153,6 +157,11 @@ export default function Offcanvas() {
                           <li>
                             <Link className="nav-link" href="/social-content">
                               - Social Content
+                            </Link>
+                          </li>
+                          <li>
+                            <Link className="nav-link" href="/paid-ads">
+                              - Paid Ads
                             </Link>
                           </li>
                         </ul>

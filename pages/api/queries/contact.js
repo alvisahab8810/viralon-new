@@ -73,7 +73,7 @@ import { getToken } from "next-auth/jwt";
 import mongoose from "mongoose";
 import dbConnect from "../../../utils/dbConnect";
 import Contact from "../../../models/Contact";
-import nodemailer from "nodemailer";
+import { mailTransport, MAIL_FROM } from "../../../utils/mailer";
 
 const secret = process.env.NEXTAUTH_SECRET;
 
@@ -92,15 +92,10 @@ export default async function handler(req, res) {
         formType: "Contact",
       });
 
-      const transporter = nodemailer.createTransport({
-        host: "smtp.hostinger.com",
-        port: 465,
-        secure: true,
-        auth: { user: "info@viralon.in", pass: process.env.EMAIL_PASS },
-      });
+      const transporter = mailTransport();
 
       await transporter.sendMail({
-        from: '"Viralon" <info@viralon.in>',
+        from: MAIL_FROM,
         to: email,
         subject: "Thanks for contacting Viralon!",
         html: `<p>Hi ${name},</p><p>Thanks for reaching out. We’ll get back to you soon.</p><p>Regards,<br/>Team Viralon</p>`,

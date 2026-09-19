@@ -34,6 +34,8 @@ export default function Topbar() {
                   </Link>
 
                   <ul className="dropdown-menu">
+                    {/* Parked for now — the menu carries the four live
+                        service pages only. The pages themselves still exist.
                     <li>
                       {" "}
                       <Link
@@ -114,6 +116,8 @@ export default function Topbar() {
                         Seo
                       </Link>{" "}
                     </li>
+                    */}
+
                     <li>
                       <Link className="nav-link" href="/brand">
                         Brand
@@ -127,6 +131,11 @@ export default function Topbar() {
                     <li>
                       <Link className="nav-link" href="/social-content">
                         Social Content
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="nav-link" href="/paid-ads">
+                        Paid Ads
                       </Link>
                     </li>
                   </ul>

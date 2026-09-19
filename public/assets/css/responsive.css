@@ -1014,10 +1014,22 @@ display: none;
         height: 200px;;
     }
 
-    .have-questions form input, .have-questions form textarea {
+    .have-questions form input, .have-questions form textarea,
+    .have-questions form .cnt-select {
     min-height: 40px;
     height: 40px;
 }
+
+    /* The longest option label runs past the field at phone width, so the
+       closed select drops a step and keeps the chevron clear of the text. */
+    .have-questions form .cnt-select {
+        font-size: 12.5px;
+        padding-right: 2.2rem;
+    }
+
+    .have-questions .cnt-thanks p {
+        font-size: 14px;
+    }
 
     .have-questions .subtitle {
     font-size: 16px;
@@ -4007,5 +4019,457 @@ ul.import-list li {
     }
     .social-metrics .smt-card {
         height: 240px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page hero (/paid-ads) -- base rules are at the end of custome.css.
+   The social hero's steps run first (the section carries both classes); these
+   only handle the extra two stat columns.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    /* Back inside the container, and wrapping allowed again -- below this width
+       there is no room to keep six figures on one line. */
+    .paid-hero .sch-stats {
+        width: auto;
+        margin-left: auto;
+        transform: none;
+    }
+    .paid-hero .sch-stat {
+        flex: 1 1 0;
+        white-space: normal;
+        padding: 0 10px;
+    }
+    .paid-hero .sch-figure {
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .paid-hero .sch-label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .social-hero.paid-hero {
+        padding-bottom: 64px;
+    }
+    /* Six across is unreadable here; the row folds to three, and the stroke
+       runs between the columns of each row only. */
+    .paid-hero .sch-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .paid-hero .sch-stat:nth-child(odd)::before {
+        display: block;
+    }
+    .paid-hero .sch-stat:nth-child(3n + 1)::before {
+        display: none;
+    }
+    .paid-hero .sch-stat + .sch-stat::before {
+        height: 110px;
+    }
+    .paid-hero .sch-figure {
+        font-size: 34px;
+        line-height: 40px;
+    }
+}
+
+@media (max-width: 560px) {
+    .social-hero.paid-hero {
+        padding-bottom: 44px;
+    }
+    /* One column, so the strokes turn flat -- same treatment the social hero
+       gives its stats at this width. */
+    .paid-hero .sch-stats {
+        display: block;
+    }
+    .paid-hero .sch-stat:nth-child(3n + 1)::before {
+        display: block;
+    }
+    .paid-hero .sch-stat:first-child::before {
+        display: none;
+    }
+    .paid-hero .sch-figure {
+        font-size: 34px;
+        line-height: 40px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "What the accounts actually did." Base rules are at the end
+   of custome.css. Steps mirror .search-results', with the cards folding a
+   column at a time.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-results .par-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .pa-results .par-cards {
+        gap: 18px;
+    }
+    .pa-results .par-card {
+        padding: 20px 18px 78px;
+        min-height: 420px;
+    }
+    .pa-results .par-figure {
+        font-size: 34px;
+        line-height: 38px;
+    }
+    .pa-results .par-card-art {
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+    .pa-results .par-card-cta {
+        left: 18px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .pa-results {
+        padding: 64px 0 72px;
+    }
+    .pa-results .par-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 38px;
+    }
+    /* Four across leaves each line two or three words wide here, so the row
+       drops to two. */
+    .pa-results .par-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-results {
+        padding: 48px 0 56px;
+    }
+    .pa-results .par-eyebrow {
+        font-size: 20px;
+    }
+    .pa-results .par-heading {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .pa-results .par-cards {
+        grid-template-columns: 1fr;
+    }
+    .pa-results .par-card {
+        min-height: 380px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "You want return on ad spend." Base rules are at the end of
+   custome.css. Steps mirror .search-shift's.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-spend .pas-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .pa-spend {
+        padding: 64px 0;
+    }
+    .pa-spend .pas-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-spend {
+        padding: 48px 0;
+    }
+    .pa-spend .pas-heading {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .pa-spend .pas-body {
+        font-size: 15px;
+        line-height: 24px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "Eight Things Decide Performance." Base rules are at the
+   end of custome.css. The rail only works while there is width to recede
+   into; below 1023 it becomes a plain grid of equal cards, so the ramp is
+   switched off rather than squeezed.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-decides .pdw-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    .pa-decides .pdw-card {
+        height: calc(310px - var(--pdw-eff) * 26px);
+    }
+    .pa-decides .pdw-title {
+        font-size: calc(25.3px - var(--pdw-eff) * 2.09px);
+    }
+    .pa-decides .pdw-body {
+        font-size: calc(18.9px - var(--pdw-eff) * 1.55px);
+    }
+}
+
+@media (max-width: 1023px) {
+    .pa-decides {
+        padding: 64px 0;
+    }
+    .pa-decides .pdw-head {
+        display: block;
+    }
+    .pa-decides .pdw-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .pa-decides .pdw-note {
+        max-width: 100%;
+        margin-top: 16px;
+        text-align: left;
+    }
+    /* Eight receding cards have nowhere to recede to at this width, so the
+       ramp is dropped and every card goes back to one size. */
+    .pa-decides .pdw-rail {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 30px 0 0;
+    }
+    .pa-decides .pdw-card {
+        height: auto;
+        min-height: 200px;
+        margin-top: 0;
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+    .pa-decides .pdw-card + .pdw-card {
+        margin-left: 0;
+    }
+    .pa-decides .pdw-card:hover,
+    .pa-decides .pdw-card:focus-within {
+        transform: none;
+        box-shadow: none;
+    }
+    .pa-decides .pdw-title {
+        font-size: 20px;
+    }
+    .pa-decides .pdw-body {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-decides {
+        padding: 48px 0;
+    }
+    .pa-decides .pdw-heading {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .pa-decides .pdw-rail {
+        grid-template-columns: 1fr;
+    }
+    .pa-decides .pdw-card {
+        min-height: 0;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- the orange statistic band. Base rules are at the end of
+   custome.css. The claim is the section, so it is stepped down in three
+   moves rather than allowed to run off the side.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-dash {
+        padding: 84px 0 90px;
+    }
+    .pa-dash .pad-heading {
+        font-size: 64px;
+        line-height: 72px;
+    }
+    .pa-dash .pad-note {
+        margin-top: 36px;
+        font-size: 26px;
+        line-height: 30px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .pa-dash {
+        padding: 64px 0 68px;
+    }
+    .pa-dash .pad-heading {
+        font-size: 44px;
+        line-height: 50px;
+        letter-spacing: -1px;
+    }
+    .pa-dash .pad-note {
+        margin-top: 28px;
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-dash {
+        padding: 48px 0 52px;
+    }
+    .pa-dash .pad-heading {
+        font-size: 32px;
+        line-height: 38px;
+        letter-spacing: -0.5px;
+    }
+    .pa-dash .pad-note {
+        margin-top: 20px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "How we work", the six phones. Base rules are at the end of
+   custome.css. The row rescales on one value down to 1023; below that six
+   staggered phones have nowhere to stagger, so they go to a grid and the
+   offsets are dropped.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-steps {
+        --pst-w: 150px;
+        --pst-gap: 18px;
+        padding: 80px 0 86px;
+    }
+    .pa-steps .pst-heading {
+        font-size: 40px;
+        line-height: 46px;
+    }
+    .pa-steps .pst-title {
+        font-size: 19px;
+        line-height: 23px;
+    }
+    .pa-steps .pst-phone-2 { margin-top: 86px; }
+    .pa-steps .pst-phone-3 { margin-top: 40px; }
+    .pa-steps .pst-phone-4 { margin-top: 74px; }
+    .pa-steps .pst-phone-6 { margin-top: 76px; }
+}
+
+@media (max-width: 1023px) {
+    .pa-steps {
+        --pst-w: 180px;
+        padding: 64px 0 70px;
+    }
+    .pa-steps .pst-heading {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 30px;
+    }
+    .pa-steps .pst-row {
+        display: grid;
+        grid-template-columns: repeat(3, var(--pst-w));
+        justify-content: center;
+        gap: 30px var(--pst-gap);
+    }
+    .pa-steps .pst-phone-1,
+    .pa-steps .pst-phone-2,
+    .pa-steps .pst-phone-3,
+    .pa-steps .pst-phone-4,
+    .pa-steps .pst-phone-5,
+    .pa-steps .pst-phone-6 {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-steps {
+        --pst-w: 132px;
+        padding: 48px 0 52px;
+    }
+    .pa-steps .pst-eyebrow {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .pa-steps .pst-heading {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .pa-steps .pst-row {
+        grid-template-columns: repeat(2, var(--pst-w));
+    }
+    .pa-steps .pst-title {
+        font-size: 17px;
+        line-height: 21px;
+    }
+}
+
+/* ==========================================================================
+   Paid ads page -- "What we measure". Base rules are at the end of
+   custome.css.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .pa-measure .pms-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .pa-measure .pms-cards {
+        gap: 18px;
+    }
+    .pa-measure .pms-media {
+        height: 262px;
+    }
+    .pa-measure .pms-card .pms-name {
+        font-size: 22px;
+        line-height: 26px;
+    }
+}
+
+/* Four columns stop reading below this, so the row folds to two. */
+@media (max-width: 1023px) {
+    .pa-measure {
+        padding: 72px 0;
+    }
+    .pa-measure .pms-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    .pa-measure .pms-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+    .pa-measure .pms-media {
+        height: 300px;
+    }
+    .pa-measure .pms-card .pms-name {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .pa-measure .pms-eyebrow {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .pa-measure .pms-heading {
+        font-size: 26px;
+        line-height: 32px;
+        margin-bottom: 30px;
+    }
+    .pa-measure .pms-cards {
+        gap: 14px;
+    }
+    .pa-measure .pms-media {
+        height: 188px;
+        border-radius: 16px;
+    }
+    .pa-measure .pms-card .pms-name {
+        margin-top: 14px;
+        font-size: 17px;
+        line-height: 21px;
     }
 }

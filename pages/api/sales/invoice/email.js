@@ -1,6 +1,6 @@
 
 
-import nodemailer from "nodemailer";
+import { mailTransport, MAIL_FROM, MAIL_USER } from "../../../../utils/mailer";
 import dbConnect from "../../../../utils/dbConnect";
 import puppeteer from "puppeteer";
 
@@ -41,19 +41,10 @@ export default async function handler(req, res) {
     return res.status(404).json({ success: false, error: "PDF not available." });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "info@viralon.in",
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: { rejectUnauthorized: false },
-  });
+  const transporter = mailTransport();
 
   await transporter.sendMail({
-    from: `"Viralon Sales" <info@viralon.in>`,
+    from: `"Viralon Sales" <${MAIL_USER}>`,
     to,
     cc: cc || undefined,
     bcc: bcc || undefined,
