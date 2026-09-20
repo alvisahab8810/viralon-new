@@ -1,6 +1,6 @@
 // pages/index.js
 import React, { useEffect, useState } from "react";
-import CustomHead from "../components/CustomHead";
+import PageSeo from "../components/PageSeo";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Hero from "../components/home/Hero";
@@ -24,19 +24,23 @@ import SooSocial from "../components/home/SooSocial";
 import CTA from "../components/home/CTA";
 import LatestBlogs from "../components/common/LatestBlogs";
 import PageFaq from "../components/PageFaq";
-import { getPageFaq } from "../utils/pageFaq";
+import { pageStaticProps } from "../utils/pageSeo";
 
-export default function IndexPage({ data, faq }) {
+export default function IndexPage({ data, faq, seo }) {
   
 
   return (
     <section id="home" className="bg-dark">
-      {/* This overrides the title in _app.js, so it carries the full one --
-          "Viralon" alone was what the browser tab and Google both showed. */}
-      <CustomHead
-        title="Viralon | Best Digital Marketing Agency For Revenue Growth"
-        keywords=""
-        description="#"
+      {/* Whatever the admin saved in Website → Pages SEO, falling back to the
+          title the page always carried -- "Viralon" alone was what the
+          browser tab and Google both showed before. */}
+      <PageSeo
+        seo={seo}
+        path="/"
+        fallback={{
+          title: "Viralon | Best Digital Marketing Agency For Revenue Growth",
+          description: "",
+        }}
       />
       <Topbar />
       <Offcanvas />
@@ -73,6 +77,4 @@ export default function IndexPage({ data, faq }) {
 }
 
 // FAQ block content comes from the payroll admin (Website → FAQs).
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("home") }, revalidate: 60 };
-}
+export const getStaticProps = pageStaticProps("home");

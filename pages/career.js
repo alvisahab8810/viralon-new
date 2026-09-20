@@ -8,11 +8,21 @@ import Working from "../components/career/Working";
 import Employes from "../components/career/Employes";
 import Offcanvas from "../components/header/Offcanvas";
 import PageFaq from "../components/PageFaq";
-import { getPageFaq } from "../utils/pageFaq";
+import PageSeo from "../components/PageSeo";
+import { pageStaticProps } from "../utils/pageSeo";
 
-export default function career({ faq }) {
+export default function career({ faq, seo }) {
   return (
     <div className="bg-dark">
+      <PageSeo
+        seo={seo}
+        path="/career"
+        fallback={{
+          title: "Careers | Viralon",
+          description:
+            "Open roles at Viralon and what it is like to work here.",
+        }}
+      />
       <Topbar />
       <Offcanvas />
       <Hero />
@@ -27,6 +37,4 @@ export default function career({ faq }) {
 }
 
 // FAQ block content comes from the payroll admin (Website → FAQs).
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("career") }, revalidate: 60 };
-}
+export const getStaticProps = pageStaticProps("career");

@@ -104,13 +104,28 @@ const LOSS_ORDER = Object.freeze(
   })()
 );
 
-// The fall. Each dot drops in from above the field and the footer counts the
-// ones that have landed, so the number is not a caption on the animation --
-// it is the animation, read out. The order dots fall in is shuffled once from
-// a third seed, so the field fills in scattered rather than line by line, and
-// the per-dot delay rides out to CSS as --anl-delay.
-const FALL_MS = 1800;
-const FALL_STEP_MS = 34;
+// The rain. Every dot falls the same distance -- from a little above the
+// field to a little below it -- and keeps going: nothing stops in mid air.
+// The footer counts a dot the moment it touches the floor of the field, so
+// the number is not a caption on the animation, it is the animation read out.
+//
+// Because the travel is the same for all hundred, the floor is crossed at the
+// same fraction of the fall whatever height the dot started from, which is
+// what FLOOR_AT works out -- one number, from the field's own height.
+//
+// The order they fall in is shuffled once from a third seed, so the rain is
+// scattered rather than sweeping row by row, and the per-dot delay rides out
+// to CSS as --anl-delay.
+const FALL_MS = 2600;
+const FALL_STEP_MS = 40;
+
+// How far above the top and below the bottom a dot is held, in px. It is
+// written here and in the keyframe in custome.css; the two have to agree or
+// the count drifts off the dot it is counting.
+const FALL_EDGE_PX = 30;
+
+const FLOOR_AT = (height) =>
+  (height + FALL_EDGE_PX) / (height + FALL_EDGE_PX * 2);
 
 const FALL_DELAYS = Object.freeze(
   (() => {
@@ -149,6 +164,10 @@ export default function ConversionLoss() {
   // JavaScript off. armed: mounted and waiting, dots held back. falling:
   // dropping in. done: the fall is spent and the number stands.
   const [phase, setPhase] = React.useState("idle");
+  // Once the rain has left the bottom of the field the dots are gone for
+  // good: they do not reappear at rest. Only a run of the animation sets
+  // this, so the reduced-motion path still shows the scatter.
+  const [spent, setSpent] = React.useState(false);
   const [shownArrived, setShownArrived] = React.useState(0);
 
   // Every fall is a run, and the run number keys the field, so React builds a
@@ -157,6 +176,7 @@ export default function ConversionLoss() {
   // direction -- the comparison lands as an event rather than a recolour.
   const [run, setRun] = React.useState(0);
   const section = React.useRef(null);
+  const field = React.useRef(null);
 
   // Read inside the frame loop rather than closed over, so a toggle mid-fall
   // is counted from the frame it happens on.
@@ -217,6 +237,14 @@ export default function ConversionLoss() {
       return undefined;
     }
 
+    // The keyframe is written in the field's own height, which only the
+    // browser knows, so it is measured here and handed over as --anl-h.
+    const box = field.current;
+    const height = box ? box.getBoundingClientRect().height : 0;
+    if (box) box.style.setProperty("--anl-h", height + "px");
+
+    const floorMs = FALL_MS * FLOOR_AT(height);
+
     let frame = 0;
     let start = 0;
 
@@ -225,7 +253,7 @@ export default function ConversionLoss() {
       const elapsed = now - start;
       let landed = 0;
       for (let i = 0; i < DOTS.length; i += 1) {
-        if (!lostNow.current.has(i) && FALL_DELAYS[i] + FALL_MS <= elapsed) {
+        if (!lostNow.current.has(i) && FALL_DELAYS[i] + floorMs <= elapsed) {
           landed += 1;
         }
       }
@@ -234,11 +262,13 @@ export default function ConversionLoss() {
         frame = requestAnimationFrame(tick);
       } else {
         setShownArrived(arrivedNow.current);
+        setSpent(true);
         setPhase("done");
       }
     };
 
     setShownArrived(0);
+    setSpent(false);
     setPhase("falling");
     frame = requestAnimationFrame(tick);
 
@@ -319,10 +349,12 @@ export default function ConversionLoss() {
                 the rows beside it and in the footer below. */}
             <div
               key={run}
+              ref={field}
               className={
                 "anl-field" +
                 (phase === "armed" ? " is-armed" : "") +
-                (phase === "falling" ? " is-falling" : "")
+                (phase === "falling" ? " is-falling" : "") +
+                (spent ? " is-spent" : "")
               }
               aria-hidden="true"
             >
@@ -335,6 +367,10 @@ export default function ConversionLoss() {
                   style={{
                     "--anl-x": dot.x + "%",
                     "--anl-y": dot.y + "%",
+                    /* the same place again, as a fraction, because a
+                       percentage in a transform would measure itself
+                       against the dot rather than the field. */
+                    "--anl-yf": dot.y / 100,
                     "--anl-delay": FALL_DELAYS[i] + "ms",
                   }}
                 />

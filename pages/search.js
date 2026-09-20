@@ -18,7 +18,8 @@ import SooSocial from "../components/home/SooSocial";
 import PageFaq from "../components/PageFaq";
 import Form from "../components/home/Form";
 import LatestBlogs from "../components/common/LatestBlogs";
-import { getPageFaq } from "../utils/pageFaq";
+import PageSeo from "../components/PageSeo";
+import { pageStaticProps } from "../utils/pageSeo";
 
 // Shown until someone publishes a "search" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -53,9 +54,18 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function Search({ faq }) {
+export default function Search({ faq, seo }) {
   return (
     <div className="bg-dark">
+      <PageSeo
+        seo={seo}
+        path="/search"
+        fallback={{
+          title: "SEO & Search | Viralon",
+          description:
+            "Search work judged on enquiries and revenue, not rankings screenshots.",
+        }}
+      />
       <Topbar />
       <Offcanvas />
       <Hero />
@@ -86,6 +96,4 @@ export default function Search({ faq }) {
 // FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
 // the page's own path. Returns null when nothing is published under "search",
 // and <PageFaq /> then renders nothing at all.
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("search") }, revalidate: 60 };
-}
+export const getStaticProps = pageStaticProps("search");

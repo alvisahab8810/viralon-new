@@ -10036,22 +10036,48 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     opacity: 0;
 }
 
+/* The rain does not put the dots back: once it has passed the bottom of the
+   field they stay gone, so the panel is not repopulated with a resting
+   scatter the moment the animation ends. */
+.ant-loss .anl-field.is-spent .anl-dot {
+    opacity: 0;
+}
+
+/* Linear, because the count is read off the same travel: an eased fall
+   would cross the floor at a different moment than the arithmetic in the
+   component says it does. */
 .ant-loss .anl-field.is-falling .anl-dot {
-    animation: anl-fall 1.8s cubic-bezier(0.25, 0.6, 0.25, 1) both;
+    animation: anl-rain 2.6s linear both;
     animation-delay: var(--anl-delay, 0ms);
 }
 
-@keyframes anl-fall {
-    from {
+/* From 30px above the field to 30px below it, whatever height the dot rests
+   at: --anl-h is the field's measured height and --anl-yf is the dot's place
+   in it as a fraction, both handed over by the component. Every dot travels
+   the same distance, so they all cross the floor at the same point of their
+   own fall -- which is the point the footer counts on. The 30px here is
+   FALL_EDGE_PX there; change one and change the other. */
+@keyframes anl-rain {
+    0% {
         opacity: 0;
-        transform: translateY(-340px);
+        transform: translateY(
+            calc(-1 * (var(--anl-h, 340px) * var(--anl-yf, 0) + 30px))
+        );
     }
-    70% {
+    6% {
         opacity: 1;
     }
-    to {
+    94% {
         opacity: 1;
-        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(
+            calc(
+                var(--anl-h, 340px) - var(--anl-h, 340px) * var(--anl-yf, 0) +
+                    30px
+            )
+        );
     }
 }
 
@@ -10059,6 +10085,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
    arrived figure on the footer from the start. */
 @media (prefers-reduced-motion: reduce) {
     .ant-loss .anl-field.is-armed .anl-dot,
+    .ant-loss .anl-field.is-spent .anl-dot,
     .ant-loss .anl-field.is-falling .anl-dot {
         opacity: 1;
         animation: none;

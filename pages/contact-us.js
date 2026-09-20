@@ -5,11 +5,21 @@ import Offcanvas from "../components/header/Offcanvas";
 import Hero from "../components/contact-us/Hero";
 import Contact from "../components/contact-us/Contact";
 import PageFaq from "../components/PageFaq";
-import { getPageFaq } from "../utils/pageFaq";
+import PageSeo from "../components/PageSeo";
+import { pageStaticProps } from "../utils/pageSeo";
 
-export default function ContactUs({ faq }) {
+export default function ContactUs({ faq, seo }) {
   return (
     <div className="bg-dark">
+      <PageSeo
+        seo={seo}
+        path="/contact-us"
+        fallback={{
+          title: "Contact Us | Viralon",
+          description:
+            "Talk to Viralon about your marketing — Lucknow office, or wherever you are.",
+        }}
+      />
       <Topbar />
       <Offcanvas />
       <Hero />
@@ -36,6 +46,4 @@ export default function ContactUs({ faq }) {
 }
 
 // FAQ block content comes from the payroll admin (Website → FAQs).
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("contact-us") }, revalidate: 60 };
-}
+export const getStaticProps = pageStaticProps("contact-us");

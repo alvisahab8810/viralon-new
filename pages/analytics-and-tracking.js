@@ -26,7 +26,8 @@ import SooSocial from "../components/home/SooSocial";
 import PageFaq from "../components/PageFaq";
 import Form from "../components/home/Form";
 import LatestBlogs from "../components/common/LatestBlogs";
-import { getPageFaq } from "../utils/pageFaq";
+import PageSeo from "../components/PageSeo";
+import { pageStaticProps } from "../utils/pageSeo";
 
 // Shown until someone publishes a "website-and-cro" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -61,9 +62,18 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function AnalyticsAndTracking({ faq }) {
+export default function AnalyticsAndTracking({ faq, seo }) {
   return (
     <div className="bg-dark">
+      <PageSeo
+        seo={seo}
+        path="/analytics-and-tracking"
+        fallback={{
+          title: "Analytics & Tracking | Viralon",
+          description:
+            "Server side tracking, clean attribution and reporting you can make decisions on.",
+        }}
+      />
       <Topbar />
       <Offcanvas />
 
@@ -96,6 +106,4 @@ export default function AnalyticsAndTracking({ faq }) {
 // FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
 // the page's own path. Returns null when nothing is published under
 // "website-and-cro", and the block above stands in until it is.
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("website-and-cro") }, revalidate: 60 };
-}
+export const getStaticProps = pageStaticProps("analytics-and-tracking");
