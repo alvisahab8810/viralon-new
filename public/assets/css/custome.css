@@ -2462,7 +2462,7 @@ img.shape.p-absolute {
 }
 
 .blog-area h2 {
-    font-size: 54px !important;
+    font-size: 55px !important;
     font-weight: 700 !important;
 }
 
@@ -4260,6 +4260,7 @@ img.shape.p-absolute {
     padding: 100px 0px;
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: hidden;
+    padding-top:25px!important;
 }
 
 .workshow-section .workshow-heading,
@@ -4328,15 +4329,15 @@ img.shape.p-absolute {
 }
 
 .workshow-card {
-    flex: 0 0 338px;
-    max-width: 338px;
+    flex: 0 0 304px;
+    max-width: 304px;
     scroll-snap-align: start;
 }
 
 .workshow-media {
     display: block;
-    width: 338px;
-    height: 514px;
+    width: 304.2px;
+    height: 463px;
     border-radius: 26px;
     overflow: hidden;
     background: #191233;
@@ -4365,17 +4366,17 @@ img.shape.p-absolute {
     display: block;
     color: #ffffff;
     font-weight: 700;
-    font-size: 35.33px;
+    font-size: 31.8px;
     letter-spacing: -0.44px;
-    line-height: 33.9px;
+    line-height: 30.5px;
 }
 
 .workshow-stat span {
     display: block;
     color: #FFFFFF;
     font-weight: 400;
-    line-height: 33.9px;
-    font-size: 19.79px;
+    line-height: 30.5px;
+    font-size: 17.81px;
     margin-top: 4px;
     letter-spacing: -0.44px;
 }
@@ -5346,7 +5347,7 @@ img.shape.p-absolute {
 
 .faq-section.faq-section--light .display-4 {
     color: #0B0B0F;
-    font-size: 54px !important;
+    font-size: 55px !important;
     font-weight: 700 !important;
     line-height: 100%;
     letter-spacing: -0.4px;
@@ -6433,8 +6434,8 @@ img.shape.p-absolute {
 .bsee-section .bsee-col-title {
     margin: 10px 0 25px;
     font-weight: 700;
-    font-size: 27px;
-    line-height: 25px;
+    font-size: 42px;
+    line-height: 42px;
     color: #1D1D1F;
     text-align: center;
 }
@@ -6945,7 +6946,8 @@ img.shape.p-absolute {
 
 .search-why .swy-cta,
 .search-ways .swy-cta,
-.social-wrong .swy-cta {
+.social-wrong .swy-cta,
+.ant-reports .swy-cta {
     align-self: flex-start;
     display: inline-flex;
     align-items: center;
@@ -6974,7 +6976,8 @@ img.shape.p-absolute {
    flex would otherwise squeeze it to an oval when the row runs short of room. */
 .search-why .swy-cta-icon,
 .search-ways .swy-cta-icon,
-.social-wrong .swy-cta-icon {
+.social-wrong .swy-cta-icon,
+.ant-reports .swy-cta-icon {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -8811,7 +8814,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .pa-spend .pas-heading {
     margin: 0 0 30px;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     font-weight: 700;
     font-size: 87px;
     line-height: 97px;
@@ -9064,7 +9067,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 }
 
 .pa-dash .pad-heading {
-    max-width: 1080px;
+    /* max-width: 1080px; */
     margin: 0;
     font-weight: 700;
     font-size: 87px;
@@ -9305,4 +9308,1044 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 16px center;
+}
+
+/* ==========================================================================
+   "Sometimes You Need A New Site." — /website-and-cro
+   (components/website-and-cro/TwoJobs.js)
+
+   The section wears .bsee-section as well, so the white ground, the two grey
+   columns and their radius are /brand's and stay in step with it. Only what
+   is different on this page is written here: the head runs left with the
+   honesty note pinned top right rather than centred, the column titles turn
+   orange, and each column carries four numbered rows.
+
+   Every rule is prefixed .wcro-jobs. The page is wrapped in .bg-dark, whose
+   `h1..h6 { color: var(--white) }` in style.css scores (0,1,1) and would
+   otherwise take the dark ink off the heading and the column titles.
+   ========================================================================== */
+.wcro-jobs .wcj-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 40px;
+    align-items: start;
+    margin: 0 0 50px;
+}
+
+.wcro-jobs .wcj-eyebrow {
+    margin: 0 0 15px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.wcro-jobs .wcj-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0E0920;
+}
+
+.wcro-jobs .wcj-accent {
+    color: #FE4601;
+}
+
+/* Sits against the top of the heading, ragged left so its right edge lines up
+   with the column behind it. */
+.wcro-jobs .wcj-note {
+    margin: 8px 0 0;
+    font-size: 18px;
+    line-height: 26px;
+    color: #6B6B76;
+    text-align: right;
+}
+
+.wcro-jobs .bsee-col-title {
+    color: #FE4601;
+}
+
+.wcro-jobs .wcj-sub {
+    margin: 0 0 20px;
+    font-size: 18px;
+    line-height: 24px;
+    color: #3F3D4A;
+    text-align: center;
+}
+
+.wcro-jobs .wcj-sub strong {
+    font-weight: 700;
+    color: #0E0920;
+}
+
+.wcro-jobs .wcj-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wcro-jobs .wcj-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: #fff;
+    border-radius: 14px;
+}
+
+/* Fixed width so the four sentences start on the same vertical line. */
+.wcro-jobs .wcj-num {
+    flex: 0 0 34px;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 24px;
+    color: #9471FF;
+}
+
+.wcro-jobs .wcj-text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 25px;
+    color: #3F3D4A;
+}
+
+.wcro-jobs .wcj-text strong {
+    font-weight: 700;
+    color: #0E0920;
+}
+
+/* ==========================================================================
+   Website and CRO page -- "How we work", the five phones
+   (components/website-and-cro/FiveSteps.js)
+   The paid-ads row wears its own classes here, so the two sections cannot
+   drift apart. What this page changes is only what the Figma asks for: a
+   wider phone, a bigger step, a rule under it and the line beneath that --
+   all of it hung off .wcro-steps, so /paid-ads is untouched.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.wcro-steps {
+    --pst-w: 234px;
+}
+
+.wcro-steps .pst-title {
+    margin: 0;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.wcro-steps .pst-rule {
+    display: block;
+    width: 34px;
+    height: 2px;
+    margin: 16px auto;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.wcro-steps .pst-body {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.85);
+    overflow-wrap: break-word;
+}
+
+/* The turn moves the whole card -- step, rule and line together -- so the
+   rule never slides out from under its own heading. The paid-ads animation on
+   the step itself is dropped here, because it would run a second time inside
+   a card that is already moving. Keyframes: pst-turn, above. */
+.wcro-steps .pst-slide {
+    animation: pst-turn 0.62s cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+.wcro-steps .pst-title {
+    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wcro-steps .pst-slide {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   Website and CRO page -- "What we build on"
+   (components/website-and-cro/Tech.js)
+   A light band on a dark page: every rule carries .wcro-tech, because
+   style.css turns headings white inside .bg-dark and the heading would
+   disappear without it.
+   The row is one number wide, --wct-w; the card keeps the artwork's own
+   ratio, so the whole row rescales from that single value.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.wcro-tech {
+    --wct-w: 160px;
+    --wct-gap: 12px;
+    background: #ffffff;
+    padding: 100px 0;
+}
+
+.wcro-tech .wct-heading {
+    margin: 0 0 14px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0E0920;
+}
+
+.wcro-tech .wct-accent {
+    color: #FE4601;
+}
+
+.wcro-tech .wct-note {
+    margin: 0 0 40px;
+    max-width: 760px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #6B6B76;
+}
+
+.wcro-tech .wct-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wct-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wcro-tech .wct-card {
+    flex: 0 0 auto;
+    width: var(--wct-w);
+}
+
+.wcro-tech .wct-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- the hero
+   (components/analytics-and-tracking/Hero.js)
+   The claim on the page's own dark, then a panel holding the arithmetic. The
+   bar is one shape: a 100% track in #382554 with the platform's own share
+   drawn over it in #FE4601, both 18px tall on a 27px radius, so a short bar
+   keeps the same pill as a long one.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-hero {
+    background: #0E0920;
+    padding: 70px 0 0;
+}
+
+.ant-hero .anh-heading {
+    margin: 0 0 22px;
+    font-weight: 700;
+    font-size: 76px;
+    line-height: 111%;
+    letter-spacing: -5%;
+    color: #ffffff;
+}
+
+.ant-hero .anh-accent {
+    color: #FE4601;
+}
+
+.ant-hero .anh-note {
+    margin: 0 0 60px;
+    max-width: 800px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: -0.22px;
+    line-height: 17.3px;
+    color: #fff;
+}
+
+/* The panel is the same dark half a step lighter, fenced off with a hairline
+   top and bottom so the numbers read as a separate exhibit. */
+.ant-hero .anh-panel {
+    background: #120C26;
+    border-top: 1px solid #251A3F;
+    border-bottom: 1px solid #251A3F;
+    padding: 40px 0 44px;
+}
+
+.ant-hero .anh-label {
+    margin: 0 0 22px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #71627F;
+}
+
+.ant-hero .anh-bars {
+    margin: 0 0 40px;
+    padding: 0;
+    list-style: none;
+}
+
+.ant-hero .anh-bar {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr) 56px;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
+}
+
+.ant-hero .anh-bar:last-child {
+    margin-bottom: 0;
+}
+
+.ant-hero .anh-name {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #FE4601;
+}
+
+.ant-hero .anh-track {
+    display: block;
+    height: 18px;
+    border-radius: 27px;
+    background: #382554;
+    overflow: hidden;
+}
+
+.ant-hero .anh-fill {
+    display: block;
+    height: 18px;
+    border-radius: 27px;
+    background: #FE4601;
+}
+
+/* The colour is the row's own, set on the <li> in the component; the value
+   below is what a row that does not carry one falls back to. */
+.ant-hero .anh-value {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: var(--anh-value-color, #FE4601);
+    text-align: right;
+}
+
+.ant-hero .anh-total {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+}
+
+.ant-hero .anh-total .anh-label {
+    margin-bottom: 10px;
+}
+
+.ant-hero .anh-total-note {
+    margin: 0;
+    /* max-width: 720px; */
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFF9F5;
+}
+
+.ant-hero .anh-total-value {
+    margin: 0;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 44px;
+    letter-spacing: -0.5px;
+    color: #FF665C;
+}
+/* ==========================================================================
+   Analytics and tracking page -- "Three questions"
+   (components/analytics-and-tracking/ThreeQuestions.js)
+   A light band on a dark page: every rule carries .ant-questions, because
+   style.css turns headings white inside .bg-dark.
+   Sizes, colours, the 20px radius and the drop shadow are the Figma's own;
+   the letter-spacing given there as a percentage is written here in em, which
+   is the same thing measured against the type size.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-questions {
+    background: #F5F5F7;
+    padding: 90px 0 100px;
+}
+
+/* The section head -- orange eyebrow, heading, orange half -- runs at the
+   same size in every section on every page, so it is written once here,
+   unprefixed, and each section only says what colour its own heading is. The
+   colour has to stay prefixed: style.css sets .bg-dark h1..h6 to white at a
+   higher specificity than a bare class, so a light band would otherwise lose
+   its heading. */
+.anq-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.anq-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 52px;
+    letter-spacing: -0.28px;
+}
+
+.anq-accent {
+    color: #FE4601;
+}
+
+.ant-questions .anq-eyebrow {
+    color: #FE4601;
+}
+
+.ant-questions .anq-heading {
+    color: #1D1D1F;
+}
+
+/* The small orange line above every block -- the question number, the layer,
+   and "what we build" -- is one rule, so the three cannot drift apart. */
+.ant-questions .anq-label {
+    margin: 0 0 14px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FE4601;
+}
+
+.ant-questions .anq-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Column, so the owner line can be pushed to the foot of the card: three
+   questions of different lengths still line their footers up. */
+.ant-questions .anq-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px 28px 22px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.0627);
+}
+
+.ant-questions .anq-title {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 120%;
+    color: #1D1D1F;
+}
+
+.ant-questions .anq-body {
+    margin: 0 0 24px;
+    font-size: 15px;
+    line-height: 155%;
+    color: #6B7280;
+}
+
+.ant-questions .anq-owner {
+    margin: auto 0 0;
+    padding-top: 18px;
+    border-top: 1px solid #E5E5E5;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #A0A0A0;
+}
+
+.ant-questions .anq-layer {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 40px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.0627);
+}
+
+.ant-questions .anq-layer-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    color: #1D1D1F;
+}
+.ant-questions .anq-layer-lead {
+    margin: 0 0 26px;
+    font-size: 18px;
+    line-height: 155%;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #ddd;
+    color: #6B7280;
+}
+
+.ant-questions .anq-layer-body {
+    margin: 0;
+    font-size: 16px;
+    line-height: 165%;
+    color: #1D1D1F;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "100 real conversions"
+   (components/analytics-and-tracking/ConversionLoss.js)
+   A dark band on the page's own dark, so the panel is separated by a border
+   rather than by contrast. Every rule carries .ant-loss: style.css turns
+   headings white inside .bg-dark and the panel's own greys would be lost.
+   The hundred dots are one absolutely-positioned layer under the four label
+   rows -- the dot takes its place from --anl-x / --anl-y, which the component
+   supplies, and everything else about it is decided here. Losing a dot is a
+   class change and a transition, never a move, so the field is identical
+   between the two scenarios and only the colour reads as different.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-loss {
+    background: #0E0920;
+    padding: 100px 0 100px;
+}
+
+/* Both colours are stated here because .bg-dark carries its own rules for
+   headings and body copy at a higher specificity than a bare class. */
+.ant-loss .anq-eyebrow {
+    color: #FE4601;
+}
+
+.ant-loss .anq-heading {
+    max-width: 900px;
+    color: #ffffff;
+}
+
+.ant-loss .anl-panel {
+    background: #150E2B;
+    border: 1px solid #251A3F;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ant-loss .anl-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #241A3F;
+}
+
+.ant-loss .anl-panel-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.ant-loss .anl-toggles {
+    display: flex;
+    flex-shrink: 0;
+    padding: 4px;
+    gap: 8px;
+    border-radius: 4px;
+    background: #08050E;
+    border: 1px solid #382554;
+}
+/* `text-transform` is reset here because the theme capitalises button text
+   globally, and the Figma writes these two as sentences. */
+.ant-loss .anl-toggle {
+    padding: 10px 25px;
+    background: transparent;
+    /* border: 1px solid #2E2348; */
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-transform: none;
+    color: #C9C0DE;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.ant-loss .anl-toggle.is-active {
+    background: #FE4601;
+    border-color: #FE4601;
+    color: #ffffff;
+}
+
+/* The dot field and the four rows share this box: the rows sit on top of the
+   dots rather than beside them, which is what makes a leak read as taking its
+   slice out of the same hundred. */
+.ant-loss .anl-body {
+    position: relative;
+    min-height: 340px;
+    padding: 22px;
+}
+
+/* The field stops short of the labels on the left and the loss figures on the
+   right, so a dot can never scatter over a word. That is also why neither
+   column needs a background of its own. */
+.ant-loss .anl-field {
+    position: absolute;
+    top: 22px;
+    right: 74px;
+    bottom: 22px;
+    left: 170px;
+}
+
+.ant-loss .anl-dot {
+    position: absolute;
+    left: var(--anl-x);
+    top: var(--anl-y);
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: #6B4FE8;
+    transition: background 0.35s ease, transform 0.35s ease;
+}
+
+.ant-loss .anl-dot.is-lost {
+    background: #E05A50;
+    transform: scale(1.35);
+}
+
+.ant-loss .anl-rows {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    min-height: 296px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ant-loss .anl-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 8px;
+    border-bottom: 1px solid #382554;
+}
+
+/* The panel's own background behind the two labels, so a dot never lands
+   under a word and turns it to noise. */
+.ant-loss .anl-row-name {
+    padding: 2px 8px 2px 0;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+}
+
+.ant-loss .anl-row-loss {
+    padding: 2px 0 2px 8px;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+    color: #FE4601;
+}
+
+.ant-loss .anl-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 22px;
+    border-top: 1px solid #241A3F;
+}
+
+.ant-loss .anl-foot-label {
+    margin: 0;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.ant-loss .anl-foot-value {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.ant-loss .anl-foot-count {
+    font-weight: 700;
+    font-size: 39px;
+    line-height: 30px;
+    color: #FE4601;
+}
+.ant-loss .anl-foot-outof {
+    font-size: 20px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.anl-rows li:last-child {
+    border-bottom: none;
+}
+/* Asked not to be animated at: the dot still changes colour, because the
+   colour is the information -- only the pop and the easing go. */
+@media (prefers-reduced-motion: reduce) {
+    .ant-loss .anl-dot {
+        transition: none;
+    }
+    .ant-loss .anl-dot.is-lost {
+        transform: none;
+    }
+    .ant-loss .anl-toggle {
+        transition: none;
+    }
+}
+
+/* ===== analytics and tracking: the hundred dots falling in ===== */
+/* The dots drop in from above and the footer counts the ones that have
+   landed. The body clips, so they arrive out of the panel's own top edge
+   rather than over the heading; the per-dot delay comes in from the
+   component as --anl-delay, which is what scatters the fall instead of
+   letting it sweep row by row.
+
+   .is-armed is the held breath between mount and the section being scrolled
+   to -- without it the first dots would have fallen before anybody saw them.
+   The server's markup carries neither class, so with JavaScript off the field
+   is simply there. */
+.ant-loss .anl-body {
+    overflow: hidden;
+}
+
+.ant-loss .anl-field.is-armed .anl-dot {
+    opacity: 0;
+}
+
+.ant-loss .anl-field.is-falling .anl-dot {
+    animation: anl-fall 1.8s cubic-bezier(0.25, 0.6, 0.25, 1) both;
+    animation-delay: var(--anl-delay, 0ms);
+}
+
+@keyframes anl-fall {
+    from {
+        opacity: 0;
+        transform: translateY(-340px);
+    }
+    70% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Asked not to be animated at: the field is already there, at rest, with the
+   arrived figure on the footer from the start. */
+@media (prefers-reduced-motion: reduce) {
+    .ant-loss .anl-field.is-armed .anl-dot,
+    .ant-loss .anl-field.is-falling .anl-dot {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "The mistake everyone makes"
+   (components/analytics-and-tracking/Mistake.js)
+   The page's one solid-orange band. Everything on it is white, and every
+   rule carries .ant-mistake because style.css colours headings and body copy
+   inside .bg-dark at a higher specificity than a bare class would reach.
+   The white rule on the left is a border on the claim column, so it is
+   exactly as tall as the words beside it however the heading wraps.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-mistake {
+    background: #FE4601;
+    padding: 100px 0;
+}
+
+.ant-mistake .anm-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.ant-mistake .anm-claim {
+    flex: 1 1 54%;
+    padding-left: 30px;
+    border-left: 3px solid #FFFFFF;
+}
+
+.ant-mistake .anm-label {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    letter-spacing: 0.23px;
+    color: #FFFFFF;
+}
+
+.ant-mistake .anm-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 65px;
+    line-height: 74px;
+    letter-spacing: -0.28px;
+    color: #FFFFFF;
+}
+
+.ant-mistake .anm-reason {
+    flex: 1 1 46%;
+    padding-top: 6px;
+}
+
+.ant-mistake .anm-body {
+    margin: 0 0 28px;
+    font-size: 24px;
+    line-height: 35px;
+    color: #FFFFFF;
+}
+
+.ant-mistake .anm-body:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three people, three reports."
+   (components/analytics-and-tracking/ThreeReports.js)
+   The white card from "Three questions" carrying a different payload, on the
+   same #F5F5F7 band: the radius, the shadow and the 12px label are restated
+   here rather than shared, because the two sections are free to move apart
+   later and only the section head is meant to stay locked together.
+   Every rule carries .ant-reports -- the page is wrapped in .bg-dark, whose
+   h1..h6 rule in style.css would otherwise take the ink off the card titles.
+   The artwork is a cutout, so the purple plinth under it is drawn here and
+   the cadence on it stays real text.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-reports {
+    background: #F5F5F7;
+    padding: 100px 0 100px;
+}
+
+.ant-reports .anr-heading {
+    margin-bottom: 50px;
+    color: #1D1D1F;
+}
+
+.ant-reports .anr-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ant-reports .anr-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px 0;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.0627);
+    overflow: hidden;
+    padding-right: 0;
+}
+
+.ant-reports .anr-who {
+    margin: 0 0 14px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21.6px;
+    letter-spacing: -0.27px;
+    text-transform: uppercase;
+    color: #1D1D1F;
+}
+
+.ant-reports .anr-needs {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 30px;
+    color: #FE4601;
+}
+
+.ant-reports .anr-items {
+    margin: 0 0 0px;
+    padding: 0;
+    list-style: none;
+}
+
+/* The dot is drawn by the rule rather than the list, so it keeps its size
+   and its colour whatever the line does. */
+.ant-reports .anr-item {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 16.68px;
+    line-height: 21.6px;
+    color: #1D1D1F;
+}
+
+.ant-reports .anr-item:last-child {
+    margin-bottom: 0;
+}
+
+.ant-reports .anr-item::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #FE4601;
+}
+
+/* The artwork stands on the plinth: it is pushed to the foot of the card so
+   the three plinths line up however long the list above them runs. */
+/* The artwork is a cutout with no ground of its own, so it is let out to the
+   card's own edges and sat on the floor of it -- contain, never cover, so
+   nothing of the figure is cut away. margin-top: auto pushes the block to the
+   foot of the card, which is what lines the three pills up however long the
+   list above them runs. */
+.ant-reports .anr-media {
+    position: relative;
+    margin: auto 0 0;
+    padding-top: 0px;
+}
+
+.ant-reports .anr-image {
+    display: block;
+    width: 100%;
+    /* height: 250px; */
+    object-fit: contain;
+    object-position: right bottom;
+}
+
+/* Bottom left of the artwork, the way the frame draws it. */
+.ant-reports .anr-cta {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.ant-reports .swy-cta {
+    gap: 8px;
+    padding: 12px 25px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+}
+
+.ant-reports .swy-cta:hover,
+.ant-reports .swy-cta:focus {
+    filter: brightness(0.93);
+    color: #FFFFFF;
+}
+
+/* The disc's ink is named here rather than left to --swy-purple, which is
+   declared on the sections that variable was written for and not on this one. */
+.ant-reports .swy-cta-icon {
+    width: 24px;
+    height: 24px;
+    color: #8668FF;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Start with one question you cannot answer."
+   (components/analytics-and-tracking/Audit.js)
+   The closing band. The artwork is absolutely placed against the section's
+   right edge and the section clips it, so the crop is the same shape at every
+   width instead of the image resizing itself into a different composition.
+   The copy sits above it on z-index and keeps its own max-width, so the two
+   never overlap however wide the screen gets.
+   Every rule carries .ant-audit: the page is wrapped in .bg-dark, whose
+   h1..h6 rule in style.css sets its own colour at a higher specificity than
+   a bare class.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-audit {
+    position: relative;
+    overflow: hidden;
+    background: #0B0A1E;
+    padding: 120px 0;
+}
+
+.ant-audit .container {
+    position: relative;
+    z-index: 1;
+}
+
+.ant-audit .ana-art {
+    position: absolute;
+    right: 1px;
+    bottom: 0;
+    z-index: 0;
+    max-width: 684px;
+    height: auto;
+    pointer-events: none;
+}
+
+.ant-audit .ana-text {
+    max-width: 620px;
+}
+
+.ant-audit .ana-heading {
+    margin: 0 0 26px;
+    font-weight: 500;
+    font-size: 84.4px;
+    line-height: 85px;
+    letter-spacing: -3.46px;
+    color: #FFFFFF;
+}
+
+.ant-audit .ana-note {
+    margin: 0 0 38px;
+    max-width: 520px;
+    font-size: 19.2px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+/* 239 x 48 is the frame's own button. It is a fixed box rather than padding,
+   so the pill is the same size whatever the label is changed to. */
+.ant-audit .ana-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 239px;
+    height: 48px;
+    background: #FFFFFF;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #FE4601;
+    transition: filter 0.2s ease;
+}
+
+.ant-audit .ana-cta:hover,
+.ant-audit .ana-cta:focus {
+    filter: brightness(0.94);
+    color: #FE4601;
 }

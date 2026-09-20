@@ -4473,3 +4473,529 @@ ul.import-list li {
         line-height: 21px;
     }
 }
+
+/* ── "Sometimes You Need A New Site." — /website-and-cro ─────────────────
+   (components/website-and-cro/TwoJobs.js) */
+@media (max-width: 1199px) {
+    .wcro-jobs .wcj-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+/* The note stops being a second column and sits under the heading, reading
+   left like everything else on the row. */
+@media (max-width: 991px) {
+    .wcro-jobs .wcj-head {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 36px;
+    }
+
+    .wcro-jobs .wcj-note {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .wcro-jobs .wcj-eyebrow {
+        font-size: 22px;
+        line-height: 22px;
+    }
+
+    .wcro-jobs .wcj-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wcro-jobs .wcj-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .wcro-jobs .wcj-item {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .wcro-jobs .wcj-num {
+        flex-basis: 28px;
+        font-size: 19px;
+    }
+}
+
+/* ==========================================================================
+   Website and CRO page -- "How we work", the five phones. Base rules are at
+   the end of custome.css. The row rescales on --pst-w exactly as the paid-ads
+   one does; the step, its rule and its line step down with it.
+   ========================================================================== */
+@media (max-width: 1320px) {
+    .wcro-steps {
+        --pst-w: 196px;
+    }
+    .wcro-steps .pst-title {
+        font-size: 30px;
+        line-height: 34px;
+    }
+    .wcro-steps .pst-rule {
+        margin: 13px auto;
+    }
+    .wcro-steps .pst-body {
+        font-size: 13px;
+        line-height: 19px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .wcro-steps {
+        --pst-w: 210px;
+    }
+    .wcro-steps .pst-title {
+        font-size: 28px;
+        line-height: 32px;
+    }
+    .wcro-steps .pst-body {
+        font-size: 13px;
+        line-height: 19px;
+    }
+}
+
+@media (max-width: 560px) {
+    .wcro-steps {
+        --pst-w: 156px;
+    }
+    .wcro-steps .pst-title {
+        font-size: 21px;
+        line-height: 25px;
+    }
+    .wcro-steps .pst-rule {
+        width: 26px;
+        margin: 10px auto;
+    }
+    .wcro-steps .pst-body {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
+/* ==========================================================================
+   Website and CRO page -- "What we build on". Base rules are at the end of
+   custome.css. The row rescales on --wct-w and wraps on its own once the
+   cards no longer fit a line.
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .wcro-tech .wct-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+@media (max-width: 991px) {
+    .wcro-tech {
+        --wct-w: 140px;
+        padding: 70px 0;
+    }
+    .wcro-tech .wct-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    .wcro-tech .wct-note {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wcro-tech {
+        --wct-w: calc((100% - var(--wct-gap) * 2) / 3);
+        padding: 50px 0;
+    }
+    .wcro-tech .wct-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .wcro-tech .wct-note {
+        font-size: 15px;
+        line-height: 24px;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- the hero. Base rules are at the end of
+   custome.css. The bar keeps its 18px height and 27px radius at every width;
+   only the name column and the type step down, and below 767 the name sits
+   above its own bar rather than squeezing it.
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .ant-hero .anh-heading {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ant-hero {
+        padding-top: 50px;
+    }
+    .ant-hero .anh-heading {
+        font-size: 36px;
+        line-height: 44px;
+    }
+    .ant-hero .anh-note {
+        margin-bottom: 40px;
+    }
+    .ant-hero .anh-bar {
+        grid-template-columns: 120px minmax(0, 1fr) 52px;
+        gap: 14px;
+    }
+    .ant-hero .anh-value {
+        font-size: 19px;
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .ant-hero .anh-heading {
+        font-size: 28px;
+        line-height: 36px;
+    }
+    .ant-hero .anh-note {
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .ant-hero .anh-bar {
+        grid-template-columns: minmax(0, 1fr) 52px;
+        row-gap: 8px;
+    }
+    .ant-hero .anh-value {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .ant-hero .anh-name {
+        grid-column: 1 / -1;
+    }
+    .ant-hero .anh-total {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 12px;
+    }
+    .ant-hero .anh-total-value {
+        font-size: 34px;
+        line-height: 38px;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three questions". Base rules are at the end
+   of custome.css. The card keeps its 20px radius and its type at every width;
+   the row folds to two and then one, and the layer block stacks.
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .anq-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .ant-questions .anq-layer-title {
+        font-size: 34px;
+    }
+    .ant-questions .anq-layer {
+        gap: 30px;
+        padding: 34px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ant-questions {
+        padding: 64px 0 70px;
+    }
+    .ant-questions .anq-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .ant-questions .anq-layer {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+    }
+    .ant-questions .anq-title {
+        font-size: 23px;
+    }
+    .ant-questions .anq-layer-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .anq-eyebrow {
+        font-size: 22px;
+        line-height: 22px;
+    }
+    .anq-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .ant-questions {
+        padding: 48px 0 54px;
+    }
+    .ant-questions .anq-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+    .ant-questions .anq-card {
+        padding: 24px 22px 20px;
+    }
+    .ant-questions .anq-layer {
+        padding: 26px 22px;
+    }
+    .ant-questions .anq-layer-title {
+        font-size: 26px;
+    }
+    .ant-questions .anq-layer-lead {
+        font-size: 16px;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "100 real conversions". Base rules are at the
+   end of custome.css. The dot field is laid out in percentages, so it simply
+   gets shorter rather than scrolling; the heading steps down with its
+   neighbours and below 600 the panel header stacks, the label above its own
+   toggles, which is the only width where the two cannot share a line.
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .ant-loss .anl-body {
+        min-height: 300px;
+        padding: 18px;
+    }
+    .ant-loss .anl-field {
+        top: 18px;
+        right: 68px;
+        bottom: 18px;
+        left: 158px;
+    }
+    .ant-loss .anl-rows {
+        min-height: 264px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ant-loss {
+        padding: 64px 0 70px;
+    }
+    .ant-loss .anl-panel-head,
+    .ant-loss .anl-foot {
+        padding: 14px 18px;
+    }
+    .ant-loss .anl-body {
+        min-height: 260px;
+    }
+    .ant-loss .anl-rows {
+        min-height: 224px;
+    }
+}
+
+@media (max-width: 767px) {
+    .ant-loss {
+        padding: 48px 0 54px;
+    }
+    .ant-loss .anl-panel-title {
+        font-size: 13px;
+    }
+    .ant-loss .anl-body {
+        min-height: 220px;
+        padding: 14px;
+    }
+    .ant-loss .anl-field {
+        top: 14px;
+        right: 56px;
+        bottom: 14px;
+        left: 112px;
+    }
+    .ant-loss .anl-rows {
+        min-height: 192px;
+    }
+    .ant-loss .anl-row-name,
+    .ant-loss .anl-row-loss {
+        font-size: 10px;
+        line-height: 14px;
+    }
+    .ant-loss .anl-foot-count {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+
+@media (max-width: 599px) {
+    .ant-loss .anl-panel-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .ant-loss .anl-toggle {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ===== analytics and tracking: "the mistake everyone makes" ===== */
+@media (max-width: 1199px) {
+    .ant-mistake .anm-row {
+        gap: 48px;
+    }
+    .ant-mistake .anm-heading {
+        font-size: 50px;
+        line-height: 58px;
+    }
+    .ant-mistake .anm-body {
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ant-mistake {
+        padding: 70px 0;
+    }
+    .ant-mistake .anm-row {
+        display: block;
+    }
+    .ant-mistake .anm-reason {
+        padding-top: 32px;
+    }
+    .ant-mistake .anm-heading {
+        font-size: 42px;
+        line-height: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+    .ant-mistake {
+        padding: 55px 0;
+    }
+    .ant-mistake .anm-claim {
+        padding-left: 18px;
+        border-left-width: 2px;
+    }
+    .ant-mistake .anm-label {
+        margin-bottom: 12px;
+        font-size: 22px;
+        line-height: 22px;
+    }
+    .ant-mistake .anm-heading {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .ant-mistake .anm-body {
+        margin-bottom: 20px;
+        font-size: 17px;
+        line-height: 27px;
+    }
+}
+
+/* ===== analytics and tracking: "three people, three reports." ===== */
+@media (max-width: 1199px) {
+    .ant-reports .anr-row {
+        gap: 20px;
+    }
+    .ant-reports .anr-card {
+        padding: 24px 22px 0;
+    }
+    .ant-reports .anr-needs {
+        font-size: 22px;
+    }
+    .ant-reports .anr-image {
+        height: 200px;
+    }
+    .ant-reports .anr-cta {
+        bottom: 14px;
+    }
+    .ant-reports .swy-cta {
+        padding: 4px 4px 4px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ant-reports {
+        padding: 70px 0;
+    }
+    .ant-reports .anr-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .ant-reports {
+        padding: 55px 0;
+    }
+    .ant-reports .anr-heading {
+        margin-bottom: 32px;
+    }
+    .ant-reports .anr-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .ant-reports .anr-image {
+        height: 230px;
+    }
+}
+
+/* ===== analytics and tracking: "start with one question" ===== */
+@media (max-width: 1399px) {
+    .ant-audit .ana-heading {
+        font-size: 66px;
+        line-height: 68px;
+        letter-spacing: -2.6px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .ant-audit {
+        padding: 90px 0;
+    }
+    .ant-audit .ana-heading {
+        font-size: 54px;
+        line-height: 56px;
+        letter-spacing: -2px;
+    }
+    .ant-audit .ana-note {
+        font-size: 17px;
+        line-height: 27px;
+    }
+}
+
+/* Below this the artwork has no room beside the copy, so it goes under it and
+   keeps only the top of the crop. */
+@media (max-width: 991px) {
+    .ant-audit {
+        padding: 70px 0 0;
+    }
+    .ant-audit .ana-art {
+        position: static;
+        display: block;
+        width: 100%;
+        margin: 48px auto 0;
+    }
+    .ant-audit .ana-text {
+        max-width: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .ant-audit {
+        padding: 55px 0 0;
+    }
+    .ant-audit .ana-heading {
+        margin-bottom: 18px;
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -1.2px;
+    }
+    .ant-audit .ana-note {
+        margin-bottom: 28px;
+        font-size: 15px;
+        line-height: 25px;
+    }
+    .ant-audit .ana-cta {
+        width: 210px;
+        height: 44px;
+        font-size: 16px;
+    }
+}

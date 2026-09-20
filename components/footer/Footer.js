@@ -120,6 +120,13 @@ export default function Footer() {
                   {" "}
                   <Link href="/paid-ads"> Paid Ads </Link>{" "}
                 </li>
+                <li>
+                  {" "}
+                  <Link href="/analytics-and-tracking">
+                    {" "}
+                    Analytics & Tracking{" "}
+                  </Link>{" "}
+                </li>
                 {/* Parked for now — this column carries the four live
                     service pages. The pages themselves still exist.
                 <li>

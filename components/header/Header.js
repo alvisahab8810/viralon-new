@@ -138,6 +138,11 @@ export default function Topbar() {
                         Paid Ads
                       </Link>
                     </li>
+                    <li>
+                      <Link className="nav-link" href="/analytics-and-tracking">
+                        Analytics & Tracking
+                      </Link>
+                    </li>
                   </ul>
                 </li>
                 <li className="nav-item">

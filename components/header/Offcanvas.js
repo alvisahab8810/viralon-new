@@ -164,6 +164,14 @@ export default function Offcanvas() {
                               - Paid Ads
                             </Link>
                           </li>
+                          <li>
+                            <Link
+                              className="nav-link"
+                              href="/analytics-and-tracking"
+                            >
+                              - Analytics & Tracking
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                     </div>
