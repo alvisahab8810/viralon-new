@@ -16,6 +16,7 @@
 // Styles live at the end of custome.css under `.search-steps`, responsive
 // steps at the end of responsive.css.
 import React from "react";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const STEPS = [
   {
@@ -41,6 +42,12 @@ const STEPS = [
 ];
 
 export default function HowWeWork() {
+  // On a phone the four steps become the same swipeable rail the homepage
+  // uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the list is a grid or a scroller, so nothing changes on desktop.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".sst-card");
+
   return (
     <section className="search-steps">
       <div className="container">
@@ -52,7 +59,7 @@ export default function HowWeWork() {
           <span className="sst-accent">Decide The Rest.</span>
         </h2>
 
-        <ol className="sst-cards">
+        <ol className="sst-cards" ref={trackRef} onScroll={updateEdges}>
           {STEPS.map((step) => (
             <li className="sst-card" key={step.title}>
               <h3 className="sst-title">{step.title}</h3>
@@ -64,6 +71,12 @@ export default function HowWeWork() {
             </li>
           ))}
         </ol>
+
+        {/* Phone only -- `.sst-nav-below` is display:none above 560, where the
+            cards are a grid and there is nothing to scroll. */}
+        <div className="sst-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

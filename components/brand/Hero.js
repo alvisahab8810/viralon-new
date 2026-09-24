@@ -39,12 +39,25 @@ export default function Hero() {
             &ldquo;Your brand is what people say about you when<br/> you are not in
             the room.&rdquo;
           </blockquote>
-          <figcaption className="bh-attrib">Jeff Bezos</figcaption>
+      
         </figure>
 
+            <div className="mobile-none">
+           <figcaption className="bh-attrib">Jeff Bezos</figcaption>
         <p className="bh-note">
           Most businesses never find out what that is.
         </p>
+      </div>
+     <div className="desktop-none">
+       <div className="hero-stat-badge ">
+        <p className="bh-note">
+          Most businesses never find out what that is.
+        </p>
+
+           <figcaption className="bh-attrib-mobile">Jeff Bezos</figcaption>
+
+      </div>
+     </div>
 
         <div className="bh-rule" />
 

@@ -17,6 +17,7 @@
 // responsive.css.
 import React from "react";
 import Link from "next/link";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const DIR = "/assets/others/";
 
@@ -54,6 +55,12 @@ const REPORTS = [
 ];
 
 export default function ThreeReports() {
+  // On a phone the three cards become the same swipeable rail the rest of the
+  // site uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the row is a grid or a scroller, so nothing above 560 moves.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".anr-card");
+
   return (
     <section className="ant-reports">
       <div className="container">
@@ -62,7 +69,7 @@ export default function ThreeReports() {
           <span className="anq-accent">Three Reports.</span>
         </h2>
 
-        <ul className="anr-row">
+        <ul className="anr-row" ref={trackRef} onScroll={updateEdges}>
           {REPORTS.map((report) => (
             <li className="anr-card" key={report.who}>
               <p className="anr-who">{report.who}</p>
@@ -107,6 +114,12 @@ export default function ThreeReports() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.anr-nav-below` is display:none above 560, where the
+            cards are a grid and there is nothing to scroll. */}
+        <div className="anr-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

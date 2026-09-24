@@ -13,6 +13,8 @@ import Form from "../components/home/Form";
 import LatestBlogs from "../components/common/LatestBlogs";
 import PageSeo from "../components/PageSeo";
 import { pageStaticProps } from "../utils/pageSeo";
+import HaveLook from "../components/brand/HaveLook";
+import WhatWeMake from "../components/brand/WhatWeMake";
 
 // Shown until someone publishes a "brand" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -49,7 +51,7 @@ const FALLBACK_FAQ = {
 
 export default function Brand({ faq, seo }) {
   return (
-    <div className="bg-dark">
+    <div className="bg-dark brand-page">
       <PageSeo
         seo={seo}
         path="/brand"
@@ -67,7 +69,8 @@ export default function Brand({ faq, seo }) {
       <HowWeSee />
       <QuoteBand />
 
-
+      <HaveLook/>
+      <WhatWeMake/>
            <SooSocial />
       
           

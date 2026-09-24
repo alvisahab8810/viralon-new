@@ -68,7 +68,13 @@ function Column({ title, sub, subAccent, items }) {
       <ol className="wcj-list">
         {items.map((item, i) => (
           <li className="wcj-item" key={item.lead}>
-            <span className="wcj-num">{"0" + (i + 1)}</span>
+            {/* The leading zero is dropped on a phone, where the mock counts
+                1..4 rather than 01..04, so it is its own element for CSS to
+                hide rather than a second number in the data. */}
+            <span className="wcj-num">
+              <span className="wcj-zero">0</span>
+              {i + 1}
+            </span>
             <p className="wcj-text">
               <strong>{item.lead}</strong>
               {item.rest}

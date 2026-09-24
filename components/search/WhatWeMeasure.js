@@ -18,6 +18,7 @@
 // Styles live at the end of custome.css under `.search-measure`, responsive
 // steps at the end of responsive.css.
 import React from "react";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const METRICS = [
   {
@@ -47,6 +48,13 @@ const METRICS = [
 ];
 
 export default function WhatWeMeasure() {
+  // On a phone the four open cards become the same swipeable rail the rest of
+  // the page uses, arrows and all. The hooks run at every width; only CSS
+  // decides whether the row is a grid or a scroller, so nothing changes above
+  // 560 -- the hover-to-open behaviour is untouched.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".smm-card");
+
   return (
     <section className="search-measure">
       <div className="container">
@@ -58,7 +66,7 @@ export default function WhatWeMeasure() {
           <span className="smm-accent">The Results Are The Result</span>
         </h2>
 
-        <ul className="smm-row">
+        <ul className="smm-row" ref={trackRef} onScroll={updateEdges}>
           {METRICS.map((m) => (
             <li className="smm-card" key={m.num} tabIndex={0}>
               <div className="smm-closed" aria-hidden="true">
@@ -78,6 +86,12 @@ export default function WhatWeMeasure() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.smm-nav-below` is display:none above 560, where the
+            cards are a row and there is nothing to scroll. */}
+        <div className="smm-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

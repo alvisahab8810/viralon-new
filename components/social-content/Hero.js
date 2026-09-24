@@ -72,10 +72,21 @@ export default function Hero() {
             Marketing is no longer about the stuff you<br /> make, but the
             stories you tell.
           </blockquote>
-          <figcaption className="sch-attrib">{SOURCE}</figcaption>
+          <figcaption className="sch-attrib mobile-none">{SOURCE}</figcaption>
         </figure>
 
-        <p className="sch-note">{NOTE}</p>
+        <p className="sch-note mobile-none">{NOTE}</p>
+
+        {/* On a phone the note and the source move inside the same badge box
+            the brand hero uses, source underneath -- see .hero-stat-badge.
+            Two copies rather than one moved by CSS, because the order differs
+            between the two layouts. */}
+        <div className="desktop-none">
+          <div className="hero-stat-badge">
+            <p className="sch-note">{NOTE}</p>
+            <p className="sch-attrib-mobile">{SOURCE}</p>
+          </div>
+        </div>
 
         <div className="sch-rule" />
 

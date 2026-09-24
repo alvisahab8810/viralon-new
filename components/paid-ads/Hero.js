@@ -38,10 +38,20 @@ export default function Hero() {
             Never stop testing, and your advertising will<br /> never stop
             improving.
           </blockquote>
-          <figcaption className="sch-attrib">{SOURCE}</figcaption>
+          <figcaption className="sch-attrib mobile-none">{SOURCE}</figcaption>
         </figure>
 
-        <p className="sch-note">{NOTE}</p>
+        <p className="sch-note mobile-none">{NOTE}</p>
+
+        {/* On a phone the note and the source move inside the badge box, source
+            underneath -- the same treatment the social content hero gets, and
+            the same .hero-stat-badge it borrows from the home page. */}
+        <div className="desktop-none">
+          <div className="hero-stat-badge">
+            <p className="sch-note">{NOTE}</p>
+            <p className="sch-attrib-mobile">{SOURCE}</p>
+          </div>
+        </div>
 
         <div className="sch-rule" />
 

@@ -814,7 +814,9 @@ footer .before-bg::before {
 
 
 @media(max-width:560px){
-
+    .brand-page .workshow-section, .broken-section {
+        padding: 50px 0 50px;
+    }
         .vlp-close {
    
         right: 27px!important;
@@ -835,8 +837,8 @@ footer .before-bg::before {
 
         .sixparts-section .sixparts-heading {
         font-weight: 700;
-        font-size: 43.1px;
-        line-height: 48.01px;
+        font-size: 38px;
+        line-height: 105%;
     }
 
     .sixparts-section {
@@ -852,8 +854,8 @@ footer .before-bg::before {
            color: #0B0B0F;
            font-weight: 700;
            letter-spacing: 0.14px;
-           font-size: 43.1px;
-           line-height: 48.01px;
+           font-size: 38px;
+           line-height: 105%;
            margin: 0 0 15px;
 }
 
@@ -874,7 +876,7 @@ footer .before-bg::before {
 }
     .weknowm-section .weknowm-eyebrow {
     color: #FE4601;
-    font-size: 20.5px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 25px;
     letter-spacing: 0.23px;
@@ -889,13 +891,14 @@ footer .before-bg::before {
     padding: 50px 0 50px;
 }
         .hero-stat-badge {
-        padding: 23px 25px;
+        padding: 8px 25px;
         font-size: 18.4px;
         background: linear-gradient(180deg, #181818 0%, #4A3096 100%);
         backdrop-filter: blur(2.36px);
         border: none;
-        border-radius: 20px;
+        border-radius: 14px;
         line-height: 23px;
+        margin-top: 30px;
     }
 
         .hero-strike::after {
@@ -1353,7 +1356,7 @@ display: none;
         margin-bottom: 25px;
     }
     .blog-area h2 {
-        font-size: 25px!important;
+        font-size: 38px!important;
     }
 
     .ptb-80 {
@@ -2129,6 +2132,9 @@ ul.import-list li {
 
 
 @media(max-width:540px){
+        .builditfor-section {
+        padding: 50px 0 50px;
+    }
 
         .howruns-card {
         min-height: 585px;
@@ -2149,7 +2155,7 @@ ul.import-list li {
     }
 
     .workshow-head, .broken-head {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
     }
 
     .broken-intro {
@@ -2167,8 +2173,8 @@ ul.import-list li {
     }
 
         .workshow-section .workshow-heading, .broken-section .broken-heading {
-             font-size: 43.1px;
-        line-height: 48.01px
+             font-size: 38px;
+             line-height: 105%;
     }
 
     #prouduction .core-bx {
@@ -2205,8 +2211,8 @@ ul.import-list li {
     }
 
         .howruns-section .howruns-heading {
-        font-size: 43.1px;
-        line-height: 48.01px;
+        font-size: 38px;
+        line-height: 105%;
     }
 
         .howruns-section .howruns-intro {
@@ -2225,7 +2231,15 @@ ul.import-list li {
     }
     .soosocial-section {
         padding: 50px 0px;
-        padding-top: 20px !important;
+        /* padding-top: 20px !important; */
+    }
+
+    .brand-page   .soosocial-section {
+        padding: 50px 0px!important;
+    }
+
+    .brand-page .soosocial-head {
+        margin-bottom: 25px;
     }
     .builditfor-grid {
         gap: 40px;
@@ -2235,15 +2249,19 @@ ul.import-list li {
         margin-bottom: 40px;
     }
 
+    .blog-lists-section {
+    padding-bottom: 50px;
+}
+
         .builditfor-section .builditfor-heading {
         margin-bottom: 15px;
-        font-size: 43.1px;
-        line-height: 48.01px;
+        font-size: 38px;
+        line-height: 105%;
     }
 
         .soosocial-section .soosocial-heading {
-        font-size: 43.1px;
-        line-height: 48.01px;
+        font-size: 38px;
+        line-height: 105%;
     }
 
     .soosocial-section .soosocial-intro {
@@ -2265,15 +2283,15 @@ ul.import-list li {
 
     .faq-section.faq-section--light .text-orange {
         color: #FE4601;
-        font-size: 20.5px;
+        font-size: 20px;
         font-weight: 700;
         line-height: 25px;
         letter-spacing: 0.23px;
     }
 
           .faq-section.faq-section--light .display-4 {
-        font-size: 43.1px !important;
-        line-height: 48.01px;
+        font-size: 38px !important;
+        line-height: 105%;
         margin-bottom: 30px !important;
     }
 
@@ -2400,33 +2418,60 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+    figcaption.bh-attrib-mobile {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+        .brand-hero .bh-note {
+    font-size: 18px;
+    line-height: 23px;
+    color: #D0BDFF;
+    }
+
+    .brand-hero .bh-rule{
+        display: none;
+    }
+    
     .brand-hero {
         padding: 48px 0 56px;
     }
     .brand-hero .bh-title {
-        font-size: 46px;
+   font-size: 56px;
+        line-height: 95%;
     }
     .brand-hero .bh-quote blockquote {
-        font-size: 20px;
+      font-size: 26px;
+        line-height: 32px;
+        font-weight: 500;
     }
-    /* Three columns at this width leave the labels three words wide, so the
-       row stacks and the hairlines move between the rows. */
+    /* The three stats stay side by side on mobile, exactly as in the design,
+       so the dividers stay vertical here too -- they are only shorter. Stretch
+       rather than centre, so all three columns share one height and the two
+       hairlines match instead of each ending wherever its own label runs out. */
     .brand-hero .bh-stats {
-        display: block;
+        display: flex;
+        align-items: stretch;
     }
     .brand-hero .bh-stat {
-        padding: 22px 0;
+       padding: 10px 5px;
     }
-    /* Stacked, so the same stroke lies flat between the rows instead. */
+    /* Same gradient stroke as the desktop divider, sized to the column: it
+       runs the full height of the row and fades out at both ends. */
     .brand-hero .bh-stat + .bh-stat::before {
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 214px;
-        height: 2px;
+        left: 0;
+        transform: none;
+        width: 1px;
+        max-width: none;
+        height: 100%;
         background: linear-gradient(
-            90deg,
+            180deg,
             #0E0920 0%,
             #FE4601 35%,
             #FE4601 70%,
@@ -2434,9 +2479,16 @@ ul.import-list li {
         );
     }
     .brand-hero .bh-figure {
-        font-size: 38px;
-        line-height: 44px;
+   font-size: 32px;
+        line-height: 130%;
     }
+
+    .brand-hero .bh-label {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 130%;
+}
 }
 
 
@@ -2482,23 +2534,57 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .brand-why {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .brand-why .bw-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .brand-why .bw-heading {
-        font-size: 27px;
-        line-height: 33px;
+    font-size: 25px;
+        line-height: 108%;
     }
+    /* On a phone the three cards stop being a grid and become the same
+       swipeable rail the homepage runs (6 Parts / Which Part Is Broken):
+       scroll-snap, arrows underneath, and the next card peeking in at the
+       right edge so it is obvious there is more. The rail breaks out of
+       .container to the full viewport width the same way .sixparts-track-wrap
+       does, so a scrolled card runs out to the screen edge instead of being
+       clipped at the gutter. */
     .brand-why .bw-cards {
-        grid-template-columns: 1fr;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .brand-why .bw-cards::-webkit-scrollbar {
+        display: none;
     }
     .brand-why .bw-card:last-child {
         grid-column: auto;
     }
     .brand-why .bw-card {
+        flex: 0 0 268px;
+        max-width: 268px;
         min-height: 360px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    /* Right-aligned under the rail, exactly where the homepage puts them. */
+    .brand-why .bw-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
 }
 
@@ -2540,15 +2626,19 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+        .brand-marquee .bm-heading {
+        margin-bottom: 25px;
+    }
     .brand-marquee {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .brand-marquee .bm-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .brand-marquee .bm-heading {
-        font-size: 27px;
-        line-height: 33px;
+               font-size: 38px;
+        line-height: 105%;
     }
     .brand-marquee .bm-rows {
         gap: 12px;
@@ -2833,23 +2923,39 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+    .bsee-section .bsee-col-title {
+    margin: 15px 0 24px;
+    font-size: 27px;
+    color: #FE4601;
+    text-align: left;
+}
+
+    .bsee-section .bsee-eyebrow {
+        font-size: 20px;
+        text-align: left;
+    }
     .bsee-section {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .bsee-section .bsee-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .bsee-section .bsee-heading {
-        font-size: 27px;
-        line-height: 33px;
+               font-size: 37px;
+               
+        margin-bottom: 25px;
+
+        line-height: 105%;
+        text-align: left;
     }
     .bsee-section .bsee-col {
         padding: 16px;
-        border-radius: 18px;
+        border-radius: 20px;
     }
     .bsee-section .bsee-text {
         padding: 0 16px 16px;
-        font-size: 13px;
+        font-size: 15px;
         line-height: 21px;
     }
 }
@@ -2880,11 +2986,11 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .bquote-band {
-        padding: 56px 0;
+        padding: 50px 0;
     }
-    .bquote-band .bquote-text {
-        font-size: 22px;
-        line-height: 30px;
+        .bquote-band .bquote-text {
+        font-size: 34px;
+        line-height: 116%;
         letter-spacing: -0.66px;
     }
     /* Below here the authored breaks would leave very short lines, so the
@@ -2960,53 +3066,66 @@ ul.import-list li {
         padding: 48px 0 56px;
     }
     .search-hero .sh-title {
-        font-size: 46px;
+        font-size: 56px;
+        line-height: 95%;
     }
     /* The query is a long single sentence; at this width it has to wrap, so the
        pill stops being a capsule and becomes a rounded box that grows with it. */
-    .search-hero .sh-query {
-        align-items: flex-start;
+       .search-hero .sh-query {
+        align-items: center;
         gap: 12px;
         min-height: 0;
-        padding: 14px 18px;
-        border-radius: 20px;
+        padding: 15px 22px;
+        border-radius: 50px;
     }
     .search-hero .sh-query-text {
         font-size: 14px;
         line-height: 20px;
     }
     .search-hero .sh-query-icon {
-        font-size: 18px;
-        line-height: 20px;
-    }
-    .search-hero .sh-dead {
         font-size: 26px;
         line-height: 20px;
+    }
+      .search-hero .sh-dead {
+                margin-top: 40px;
+        font-size: 34px;
+        line-height: 38px;
         letter-spacing: -0.68px;
+    }
+.search-hero .sh-label {
+    font-size: 15px;
+    line-height: 19px;
+}
+        .search-hero .sh-stats {
+        margin-top: 40px;
     }
     .search-hero .sh-dead span::after {
         height: 9px;
     }
-    .search-hero .sh-line {
-        font-size: 20px;
+       .search-hero .sh-line {
+        font-size: 34px;
+        line-height: 38px;
     }
-    /* Three columns leave the labels three words wide, so the row stacks and
-       the strokes turn flat between the rows. */
+    /* The three stats stay side by side here, so the strokes stay vertical --
+       they are only shorter. Stretch rather than centre, so all three columns
+       share one height and the two hairlines match instead of each ending
+       wherever its own label runs out. Same as .brand-hero's. */
     .search-hero .sh-stats {
-        display: block;
+        display: flex;
+        align-items: stretch;
     }
     .search-hero .sh-stat {
-        padding: 22px 0;
+                padding: 16px 5px;
     }
     .search-hero .sh-stat + .sh-stat::before {
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 214px;
-        height: 2px;
+        left: 0;
+        transform: none;
+        width: 1px;
+        max-width: none;
+        height: 100%;
         background: linear-gradient(
-            90deg,
+            180deg,
             #0E0920 0%,
             #FE4601 35%,
             #FE4601 70%,
@@ -3065,23 +3184,57 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .search-results {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .search-results .sr-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-results .sr-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+                margin-bottom: 25px;
     }
+    /* On a phone the cards stop being a grid and become the same swipeable
+       rail .brand-why uses: scroll-snap, arrows underneath, and the next card
+       peeking in at the right edge. The rail breaks out of .container to the
+       full viewport width the way .sixparts-track-wrap does, so a scrolled
+       card runs out to the screen edge instead of being clipped at the
+       gutter. */
     .search-results .sr-cards {
-        grid-template-columns: 1fr;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .search-results .sr-cards::-webkit-scrollbar {
+        display: none;
     }
     .search-results .sr-card:last-child {
         grid-column: auto;
     }
     .search-results .sr-card {
+        flex: 0 0 268px;
+        max-width: 268px;
         min-height: 360px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    /* Right-aligned under the rail, exactly where the homepage puts them. */
+    .search-results .sr-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
     .search-results .sr-figure {
         font-size: 64px;
@@ -3144,11 +3297,12 @@ ul.import-list li {
         padding: 48px 0 56px;
     }
     .search-why .swy-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-why .swy-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
     }
     /* Two blocks across leave four or five words a line here. */
     .search-why .swy-cards {
@@ -3196,15 +3350,25 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+    .social-hero .sch-strip {
+        margin-top: 30px;
+    }
+        .social-hero .sch-rule {
+        display: none;
+    }
+    .search-shift .ssh-intro {
+        margin-bottom: 25px;
+    }
     .search-shift {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .search-shift .ssh-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-shift .ssh-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 15px;
     }
     .search-shift .ssh-pairs {
         grid-template-columns: 1fr;
@@ -3212,11 +3376,27 @@ ul.import-list li {
     .search-shift .ssh-pair:last-child {
         grid-column: auto;
     }
+    /* On a phone the struck-out keyword moves INSIDE the card, above the
+       question, the way the frame draws it. So the card itself becomes the
+       painted box -- radial fill, 25 radius -- and the question goes back to
+       being plain text inside it. On desktop the keyword stays above a flat
+       violet card, untouched. */
+    .search-shift .ssh-pair {
+        padding: 20px;
+        border-radius: 25px;
+        background: radial-gradient(circle at 50% 50%, #9471FF 0%, #6341B8 100%);
+    }
     .search-shift .ssh-keyword {
-        font-size: 16px;
+        margin-bottom: 10px;
+        font-size: 22px;
+        line-height: 150%;
     }
     .search-shift .ssh-question {
-        padding: 20px;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        font-size: 18px;
+        line-height: 150%;
     }
 }
 
@@ -3277,29 +3457,61 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .search-layers {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .search-layers .sly-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-layers .sly-heading {
-        font-size: 27px;
-        line-height: 33px;
+               font-size: 38px;
+        line-height: 105%;
     }
+    /* On a phone this stops being a two-column lookup and becomes three
+       centred blocks, the way the frame draws it: at this width a 30% label
+       column leaves the goal three words wide and the two collide. The column
+       headings go with it -- with the name directly above its own goal there
+       is nothing left for them to label. */
     .search-layers .sly-row {
-        grid-template-columns: 30% minmax(0, 1fr);
-        column-gap: 12px;
+        display: block;
         padding: 22px 0;
+        text-align: center;
+        border-bottom: 0;
     }
     .search-layers .sly-row-head {
-        padding: 0 0 14px;
-        font-size: 12px;
+        display: none;
     }
+    /* The same gradient stroke the rest of the page uses, drawn between the
+       rows only -- never under the last one. */
+    .search-layers .sly-row + .sly-row {
+        border-top: 0;
+        background-image: linear-gradient(
+            90deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 214px 1px;
+    }
+    /* One orange for all three here, as a linear gradient across the letters,
+       instead of the per-layer tone the desktop table carries. */
     .search-layers .sly-name {
-        font-size: 26px;
+        display: block;
+        margin-bottom:15px;
+        font-size: 38px;
+        line-height: 28px;
+        background-image: linear-gradient(90deg, #FE4601 0%, #FF6D36 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
     }
     .search-layers .sly-goal {
-        font-size: 15px;
+        display: block;
+        font-size: 16px;
+        line-height: 130%;
+        color: #C3C3C3;
     }
 }
 
@@ -3332,21 +3544,50 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .search-steps {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .search-steps .sst-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-steps .sst-heading {
-        font-size: 28px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
     }
+    /* On a phone the four steps stop stacking and become the same swipeable
+       rail as "Why it matters" on /brand and the homepage machine: a full-bleed
+       track so a scrolled card runs to the screen edge instead of being clipped
+       at the container gutter, snapping one card at a time. */
     .search-steps .sst-cards {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .search-steps .sst-cards::-webkit-scrollbar {
+        display: none;
     }
     .search-steps .sst-card {
+        flex: 0 0 268px;
+        max-width: 268px;
         padding: 22px 20px 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .search-steps .sst-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
     .search-steps .sst-media {
         margin: auto -20px 0;
@@ -3444,18 +3685,49 @@ ul.import-list li {
         padding: 48px 0 56px;
     }
     .search-measure .smm-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .search-measure .smm-heading {
-        font-size: 26px;
-        line-height: 31px;
+        font-size: 38px;
+        line-height: 105%;
     }
+    /* On a phone the four cards stop stacking and become the same swipeable
+       rail as the rest of the page: a full-bleed track so a scrolled card runs
+       to the screen edge instead of being clipped at the container gutter,
+       snapping one card at a time. */
     .search-measure .smm-row {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .search-measure .smm-row::-webkit-scrollbar {
+        display: none;
+    }
+    .search-measure .smm-card {
+        flex: 0 0 268px;
+        max-width: 268px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
     .search-measure .smm-media {
         max-height: 300px;
+    }
+    .search-measure .smm-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
     .search-measure .smm-title {
         font-size: 20.2px;
@@ -3508,20 +3780,22 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .search-ways {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .search-ways .swa-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
+        text-align: left;
     }
     .search-ways .swa-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+        text-align: left;
     }
     .search-ways .swa-card {
         padding: 24px 20px 28px;
     }
     .search-ways .swa-name {
-        font-size: 24px;
+        font-size: 30px;
         line-height: 30px;
     }
     .search-ways .swa-outcome {
@@ -3601,29 +3875,65 @@ ul.import-list li {
         padding: 48px 0 0;
     }
     .social-hero .sch-title {
-        font-size: 46px;
+        font-size: 56px;
     }
-    .social-hero .sch-quote blockquote {
-        font-size: 20px;
+      .social-hero .sch-quote blockquote {
+        font-size: 26px;
+        line-height: 32px;
+        font-weight: 500;
     }
-    /* One column, so the strokes turn flat and run between the rows. */
-    .social-hero .sch-stats {
+    /* The note and the source sit in the brand hero's badge box here, so the
+       copy inside it is centred and the orange attribution turns into the
+       small white caps the frame draws under the sentence. */
+    .social-hero .hero-stat-badge {
         display: block;
+        margin-top: 24px;
+        text-align: center;
+    }
+    .social-hero .hero-stat-badge .sch-note {
+        margin: 0;
+        font-size: 18px;
+        line-height: 23px;
+        color: #D0BDFF;
+    }
+    .social-hero .sch-attrib-mobile {
+        margin: 10px 0 0;
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    /* Two columns, as in the frame: four stats in a 2x2 with the gradient
+       stroke standing between the columns. Stretch rather than centre, so both
+       cells of a row share one height and the stroke matches instead of ending
+       wherever its own label runs out. */
+    .social-hero .sch-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        row-gap: 26px;
+        margin-top: 34px;
     }
     .social-hero .sch-stat {
-        padding: 22px 0;
+        padding: 10px 5px;
     }
-    .social-hero .sch-stat + .sch-stat::before,
-    .social-hero .sch-stat:nth-child(odd)::before {
+    /* Only the right-hand cell of each row carries it -- a stroke on the first
+       column would sit on the band's left edge. */
+    .social-hero .sch-stat + .sch-stat::before {
+        display: none;
+    }
+    .social-hero .sch-stat:nth-child(even)::before {
+        content: "";
         display: block;
+        position: absolute;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 214px;
-        height: 2px;
+        left: 0;
+        transform: none;
+        width: 1px;
+        max-width: none;
+        height: 100%;
         background: linear-gradient(
-            90deg,
+            180deg,
             #0E0920 0%,
             #FE4601 35%,
             #FE4601 70%,
@@ -3631,8 +3941,14 @@ ul.import-list li {
         );
     }
     .social-hero .sch-figure {
-        font-size: 38px;
-        line-height: 44px;
+        font-size: 32px;
+        line-height: 130%;
+    }
+    .social-hero .sch-label {
+        margin-top: 5px;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 130%;
     }
     .social-hero .sch-chip {
         padding: 14px 22px;
@@ -3672,14 +3988,14 @@ ul.import-list li {
         padding: 44px 0 48px;
     }
     .social-wrong .swr-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .social-wrong .swr-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
     }
     .social-wrong .swr-body {
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
@@ -3755,21 +4071,55 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+        .social-platforms .spl-icon {
+        width: 132px;
+    }
     .social-platforms {
-        padding: 56px 0;
+        padding: 50px 0;
     }
     .social-platforms .spl-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+        margin: 0 0 25px;
     }
     .social-platforms .spl-eyebrow {
-        font-size: 16px;
+        font-size:20px;
     }
+    /* On a phone the six cards stop stacking and become the same swipeable
+       rail as the rest of the site: a full-bleed track so a scrolled card runs
+       to the screen edge instead of being clipped at the container gutter,
+       snapping one card at a time. */
     .social-platforms .spl-cards {
-        grid-template-columns: minmax(0, 1fr);
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .social-platforms .spl-cards::-webkit-scrollbar {
+        display: none;
     }
     .social-platforms .spl-card {
+        flex: 0 0 268px;
+        max-width: 268px;
         min-height: 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .social-platforms .spl-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
 }
 
@@ -3851,14 +4201,70 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .social-steps .sst-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
+        text-align: left;
+
     }
     .social-steps .sst-heading {
-        font-size: 27px;
-        line-height: 33px;
+        font-size: 38px;
+        line-height: 105%;
+        text-align: left;
+        margin: 0 0 25px;
+    }
+    /* The pin comes back on a phone, stacked instead of side by side: the
+       image on top, the copy under it, the whole thing one screen tall and
+       held there while the five steps turn -- the same behaviour as desktop,
+       laid out as the frame draws it. (The 1023 block above drops the pin for
+       tablets, where a half-height image beside nothing reads worse than a
+       plain stack; these rules put it back for the phone only.) */
+    .social-steps .sst-scroll {
+        height: 500vh;
+    }
+    .social-steps .sst-stage {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
     }
     .social-steps .sst-visual {
-        height: 240px;
+        flex: 0 0 50%;
+        height: auto;
+    }
+    .social-steps .sst-panel {
+        flex: 1 1 auto;
+        display: block;
+        padding: 34px 20px;
+    }
+    /* Every step in the same box again, stacked and faded, so only the active
+       one is on screen and the panel never reflows mid-scroll. Pinned to the
+       top of the panel, directly under the image, the way the frame draws it
+       -- not centred in the space left over. */
+    .social-steps .sst-step,
+    .social-steps .sst-step + .sst-step {
+        position: absolute;
+        top: 34px;
+        left: 20px;
+        right: 20px;
+        margin-top: 0;
+        opacity: 0;
+        transform: translateY(18px);
+        pointer-events: none;
+    }
+    .social-steps .sst-step.is-active,
+    .social-steps .sst-step + .sst-step.is-active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    .social-steps .sst-num {
+        margin-bottom: 12px;
+        font-size: 48px;
+        line-height: 52px;
+    }
+    .social-steps .sst-step .sst-title {
+        font-size: 24px;
+        line-height: 30px;
     }
     .social-steps .sst-body {
         font-size: 16px;
@@ -3924,15 +4330,62 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .social-make {
-        --wmk-w: 200px;
-        padding: 56px 0;
+        --wmk-w: 132px;
+        padding: 50px 0;
     }
     .social-make .wmk-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
     }
     .social-make .wmk-heading {
+           font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
+    }
+
+    /* On a phone the five devices lie on their side and come down the page as
+       a staircase, the way the frame draws them: five portrait phones side by
+       side need a width this screen does not have, and stacked upright they
+       would run to several screens of scrolling. */
+    .social-make .wmk-row {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* The box turns landscape: the same body, width and height swapped. */
+    .social-make .wmk-phone {
+        width: calc(var(--wmk-w) * 2.0231);
+        height: var(--wmk-w);
+    }
+
+    /* Only the device turns -- the copy on the screen stays upright and reads
+       normally. Rotated a quarter turn clockwise about its top-left corner the
+       body lands to the LEFT of the box, so it is pushed back by its own
+       (now horizontal) length. The phone's top edge, and with it the notch,
+       ends up on the right, which is the side the frame shows it on. */
+    .social-make .wmk-device {
+        transform-origin: 0 0;
+        transform: translateX(calc(var(--wmk-w) * 2.0231)) rotate(90deg);
+    }
+
+    /* The staircase: every other device steps out to the right. */
+    .social-make .wmk-phone-1,
+    .social-make .wmk-phone-3,
+    .social-make .wmk-phone-5 {
+        margin-right: 44px;
+    }
+    .social-make .wmk-phone-2,
+    .social-make .wmk-phone-4 {
+        margin-left: 44px;
+    }
+
+    .social-make .wmk-title {
         font-size: 27px;
-        line-height: 33px;
+        line-height: 32px;
+    }
+    .social-make .wmk-label {
+        font-size: 10px;
     }
 }
 
@@ -3955,9 +4408,10 @@ ul.import-list li {
         font-size: 21px;
         line-height: 25px;
     }
-    .social-metrics .smt-body {
-        font-size: 16px;
-        line-height: 22px;
+       .social-metrics .smt-body {
+        font-size: 15px;
+        line-height: 19px;
+        font-weight: 400;
     }
 }
 
@@ -4007,18 +4461,72 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+    .social-hero .sch-quote blockquote br{
+        disply: none;
+    }
+
+    .social-metrics .smt-card:hover, .social-metrics .smt-card:focus-within {
+    transform: unset;
+}
+
+    .social-metrics .smt-note {
+    margin: 0 auto 25px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D1F;
+    text-align: left;
+}
+
+
     .social-metrics {
         padding: 56px 0;
     }
     .social-metrics .smt-heading {
-        font-size: 27px;
-        line-height: 33px;
+             font-size: 38px;
+        line-height: 105%;
     }
+    /* On a phone the six cards stop stacking and become a swipeable rail, as
+       in the frame: narrow cards, two and a bit on screen, the track running
+       full-bleed so a scrolled card reaches the screen edge instead of being
+       clipped at the container gutter. No arrows here -- the frame does not
+       draw them, and the row is a list to flick through, not a sequence. */
     .social-metrics .smt-row {
-        grid-template-columns: minmax(0, 1fr);
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        justify-content: flex-start;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .social-metrics .smt-row::-webkit-scrollbar {
+        display: none;
     }
     .social-metrics .smt-card {
-        height: 240px;
+        flex: 0 0 148px;
+        max-width: 148px;
+        height: 250px;
+        padding: 24px 12px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .social-metrics .smt-card .smt-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .social-metrics .smt-body {
+        font-size: 14px;
+        line-height: 19px;
     }
 }
 
@@ -4077,20 +4585,49 @@ ul.import-list li {
     .social-hero.paid-hero {
         padding-bottom: 44px;
     }
-    /* One column, so the strokes turn flat -- same treatment the social hero
-       gives its stats at this width. */
+    /* Three columns, as in the frame: six figures in a 3x2 with the gradient
+       stroke standing between the columns. The social hero's rules above put
+       the row in a two-column grid -- this page has six stats, not four. */
     .paid-hero .sch-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+        row-gap: 22px;
+    }
+    .paid-hero .sch-stat {
+        padding: 10px 4px;
+    }
+    /* Every cell but the first of each row carries the stroke -- one on the
+       left column would sit on the band's edge. Declared here in full rather
+       than leant on the social hero's rule, because that one only dresses the
+       even cells and this row is three wide. */
+    .paid-hero .sch-stat::before {
+        content: "";
         display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 1px;
+        max-width: none;
+        height: 100%;
+        background: linear-gradient(
+            180deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
     }
     .paid-hero .sch-stat:nth-child(3n + 1)::before {
-        display: block;
-    }
-    .paid-hero .sch-stat:first-child::before {
         display: none;
     }
     .paid-hero .sch-figure {
-        font-size: 34px;
-        line-height: 40px;
+        font-size: 26px;
+        line-height: 130%;
+    }
+    .paid-hero .sch-label {
+        font-size: 14px;
     }
 }
 
@@ -4142,20 +4679,51 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .pa-results {
-        padding: 48px 0 56px;
+        padding: 50px 0 50px;
     }
     .pa-results .par-eyebrow {
         font-size: 20px;
     }
     .pa-results .par-heading {
-        font-size: 28px;
-        line-height: 34px;
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
     }
+    /* On a phone the cards stop stacking and become the same swipeable rail as
+       the rest of the site: a full-bleed track so a scrolled card runs to the
+       screen edge instead of being clipped at the container gutter, snapping
+       one card at a time. */
     .pa-results .par-cards {
-        grid-template-columns: 1fr;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .pa-results .par-cards::-webkit-scrollbar {
+        display: none;
     }
     .pa-results .par-card {
+        flex: 0 0 268px;
+        max-width: 268px;
         min-height: 380px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .pa-results .par-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
 }
 
@@ -4182,16 +4750,25 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+    .pa-decides .pdw-eyebrow {
+    margin: 0px 0 15px;
+    font-size: 20px;
+    color: #FE4601;
+}
     .pa-spend {
-        padding: 48px 0;
+        padding: 50px 0;
     }
-    .pa-spend .pas-heading {
-        font-size: 28px;
-        line-height: 34px;
+       .pa-spend .pas-heading {
+        text-align: center;
+        font-size: 38px;
+        line-height: 105%;
     }
-    .pa-spend .pas-body {
-        font-size: 15px;
-        line-height: 24px;
+       .pa-spend .pas-body {
+        font-size: 16px;
+        line-height: 130%;
+        text-align: center;
+        font-weight: 400;
     }
 }
 
@@ -4231,6 +4808,7 @@ ul.import-list li {
     .pa-decides .pdw-note {
         max-width: 100%;
         margin-top: 16px;
+        font-weight: 400;
         text-align: left;
     }
     /* Eight receding cards have nowhere to recede to at this width, so the
@@ -4268,15 +4846,81 @@ ul.import-list li {
     .pa-decides {
         padding: 48px 0;
     }
-    .pa-decides .pdw-heading {
-        font-size: 26px;
-        line-height: 32px;
+       .pa-decides .pdw-heading {
+        font-size: 38px;
+        line-height: 105%;
     }
+    /* On a phone the cards stop stacking and become the same swipeable rail as
+       the rest of the site: a full-bleed track so a scrolled card runs to the
+       screen edge instead of being clipped at the container gutter, snapping
+       one card at a time. */
     .pa-decides .pdw-rail {
-        grid-template-columns: 1fr;
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        /* No gap on a phone: the cards lap over each other the way the desktop
+           ramp does, the overlap carried by a negative margin below. */
+        gap: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 30px 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
     }
+    .pa-decides .pdw-rail::-webkit-scrollbar {
+        display: none;
+    }
+    /* Narrower than the track, so the next card is always half in frame. The
+       card at the head of the rail is the one drawn full size -- the component
+       puts `is-lead` on it as you scroll -- so a card grows on its way in and
+       settles back as it leaves, the desktop ramp one card at a time. Height
+       and width are real layout, so they are eased rather than snapped. */
     .pa-decides .pdw-card {
+        flex: 0 0 210px;
+        max-width: 210px;
+        height: 300px;
         min-height: 0;
+        margin-top: 22px;
+        padding: 22px 18px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        transition: flex-basis 0.35s ease, max-width 0.35s ease,
+                    height 0.35s ease, margin-top 0.35s ease;
+    }
+    /* The active card is lifted clear of both neighbours -- above the one it
+       laps over and above the one lapping over it -- and carries the only
+       deep shadow in the rail, so the card being read is unmistakably the top
+       one. */
+    .pa-decides .pdw-card.is-lead {
+        z-index: 9;
+        flex-basis: 232px;
+        max-width: 232px;
+        height: 344px;
+        margin-top: 0;
+        /* box-shadow: 0 18px 34px rgba(17, 17, 17, 0.24); */
+    }
+    /* Each card slides under its neighbour. The strip hidden underneath is
+       added back as left padding, otherwise centred copy would read as
+       running out from behind the card on top of it. */
+    .pa-decides .pdw-card + .pdw-card {
+        margin-left: -20px;
+        padding-left: 36px;
+    }
+    /* ...except on the lead, which sits on top and is therefore whole: its
+       copy is centred across the full card again. */
+    .pa-decides .pdw-card.is-lead {
+        padding-left: 18px;
+    }
+    .pa-decides .pdw-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
 }
 
@@ -4318,17 +4962,19 @@ ul.import-list li {
 
 @media (max-width: 560px) {
     .pa-dash {
-        padding: 48px 0 52px;
+        padding: 50px 0 50px;
     }
-    .pa-dash .pad-heading {
-        font-size: 32px;
-        line-height: 38px;
+      .pa-dash .pad-heading {
+        font-size: 38px;
+        text-align: center;
+        line-height: 105%;
         letter-spacing: -0.5px;
     }
-    .pa-dash .pad-note {
+      .pa-dash .pad-note {
         margin-top: 20px;
-        font-size: 17px;
+        font-size: 18px;
         line-height: 24px;
+        text-align: center;
     }
 }
 
@@ -4385,24 +5031,75 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+        .pa-measure {
+        padding: 0px 0!important;
+        padding-bottom: 50px!important;
+    }
+
+   
+    /* On a phone the row becomes the mock's ladder: the frames lie on their
+       side, one per line, alternating left and right edge and lapping over
+       each other slightly. --pst-w is the phone's long side here rather than
+       its width, so every size below still comes off the one number. */
     .pa-steps {
-        --pst-w: 132px;
-        padding: 48px 0 52px;
+        --pst-w: 240px;
+        padding: 50px 0 50px;
     }
     .pa-steps .pst-eyebrow {
-        font-size: 16px;
+        font-size: 20px;
         line-height: 20px;
     }
-    .pa-steps .pst-heading {
-        font-size: 24px;
-        line-height: 30px;
+       .pa-steps .pst-heading {
+        font-size: 38px;
+        line-height: 105%;
     }
     .pa-steps .pst-row {
-        grid-template-columns: repeat(2, var(--pst-w));
+        display: block;
+        grid-template-columns: none;
+        gap: 0;
+    }
+    .pa-steps .pst-phone {
+        /* The body, turned: the portrait ratio read the other way round. */
+        width: var(--pst-w);
+        height: calc(var(--pst-w) / 2.0231);
+        margin: 0 auto 0 0;
+        margin-bottom:25px;
+    }
+    /* The lap. The stagger is the alternating margin below, so the per-phone
+       offsets the desktop row carries are cleared. */
+    .pa-steps .pst-phone + .pst-phone {
+        margin-top: -10px;
+    }
+    .pa-steps .pst-phone-2,
+    .pa-steps .pst-phone-4,
+    .pa-steps .pst-phone-6 {
+        margin-right: 0;
+        margin-left: auto;
+    }
+    /* Only the frame turns -- the step stays upright and centred on it. The
+       image keeps its own aspect, so its height is the turned body's short
+       side times the overhang ratio the desktop rule uses. */
+    .pa-steps .pst-device {
+        top: 0;
+        left: 0;
+        height: calc(var(--pst-w) / 2.0231 * 2.4859);
+        /* The body sits at the top left of the PNG, not in its middle, which
+           is why the desktop rule pins the image to 0,0. Turning it about
+           that same corner and then pushing it one box width to the right
+           lands the body back on the box exactly. */
+        transform-origin: 0 0;
+        transform: translateX(var(--pst-w)) rotate(90deg);
+    }
+    /* The turned frame is short, so the screen takes back the margin the
+       portrait bezel needs: at 27px a three line step has to sit inside the
+       glass rather than run over the frame. */
+    .pa-steps .pst-screen {
+        inset: 4% 6%;
     }
     .pa-steps .pst-title {
-        font-size: 17px;
-        line-height: 21px;
+        font-size: 27px;
+        line-height: 32px;
     }
 }
 
@@ -4451,27 +5148,70 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+    .pa-decides .pdw-card{
+        box-shadow:unset;
+    }
     .pa-measure .pms-eyebrow {
         font-size: 20px;
         line-height: 24px;
     }
-    .pa-measure .pms-heading {
-        font-size: 26px;
-        line-height: 32px;
-        margin-bottom: 30px;
+     .pa-measure .pms-heading {
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
     }
+    /* On a phone the four cards stop sharing the width and become the same
+       swipeable rail as the rest of the site: a full-bleed track, so a
+       scrolled card runs to the screen edge instead of being clipped at the
+       container gutter, snapping one card at a time. */
     .pa-measure .pms-cards {
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
         gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        scroll-padding-left: calc(2.5vw + 12px);
+    }
+    .pa-measure .pms-cards::-webkit-scrollbar {
+        display: none;
+    }
+    .pa-measure .pms-card {
+        flex: 0 0 196px;
+        max-width: 196px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
     .pa-measure .pms-media {
-        height: 188px;
+        height: 228px;
         border-radius: 16px;
+    }
+    .pa-measure .pms-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
     }
     .pa-measure .pms-card .pms-name {
         margin-top: 14px;
         font-size: 17px;
         line-height: 21px;
     }
+
+    .pa-decides .pdw-note {
+    color: #000000 !important;
+    font-size: 16px;
+        line-height: 20px;
+    text-align: left;
+}
 }
 
 /* ── "Sometimes You Need A New Site." — /website-and-cro ─────────────────
@@ -4498,20 +5238,30 @@ ul.import-list li {
     }
 
     .wcro-jobs .wcj-eyebrow {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 22px;
     }
 
     .wcro-jobs .wcj-heading {
         font-size: 36px;
         line-height: 42px;
+        
     }
 }
 
 @media (max-width: 767px) {
-    .wcro-jobs .wcj-heading {
-        font-size: 30px;
-        line-height: 36px;
+       .wcro-jobs .wcj-heading {
+        font-size: 38px;
+        line-height: 105%;
+    }
+
+    .wcro-jobs .wcj-sub
+{
+    text-align: left;
+}
+
+    .wcro-jobs .wcj-note {
+        color: #000000;
     }
 
     .wcro-jobs .wcj-item {
@@ -4520,8 +5270,9 @@ ul.import-list li {
     }
 
     .wcro-jobs .wcj-num {
-        flex-basis: 28px;
-        font-size: 19px;
+                flex-basis: 22px;
+        font-size: 38px;
+        line-height: 40px;
     }
 }
 
@@ -4561,21 +5312,25 @@ ul.import-list li {
     }
 }
 
+/* The phone ladder the .pa-steps block above builds is this row too: the
+   frames lie on their side, one per line, alternating edges. --pst-w is the
+   long side there, and the step's three lines have to sit inside the short
+   one, which is what sizes the type here. */
 @media (max-width: 560px) {
     .wcro-steps {
-        --pst-w: 156px;
+        --pst-w: 248px;
     }
     .wcro-steps .pst-title {
-        font-size: 21px;
-        line-height: 25px;
+        font-size: 15px;
+        line-height: 19px;
     }
     .wcro-steps .pst-rule {
-        width: 26px;
-        margin: 10px auto;
+        width: 22px;
+        margin: 6px auto;
     }
     .wcro-steps .pst-body {
-        font-size: 11px;
-        line-height: 16px;
+        font-size: 10px;
+        line-height: 13px;
     }
 }
 
@@ -4611,12 +5366,13 @@ ul.import-list li {
         padding: 50px 0;
     }
     .wcro-tech .wct-heading {
-        font-size: 30px;
-        line-height: 36px;
+        font-size: 38px;
+        line-height: 105%;
     }
-    .wcro-tech .wct-note {
-        font-size: 15px;
-        line-height: 24px;
+      .wcro-tech .wct-note {
+        font-size: 16px;
+        line-height: 20px;
+        color: #000000;
     }
 }
 
@@ -4652,25 +5408,53 @@ ul.import-list li {
         font-size: 19px;
         line-height: 24px;
     }
+
+    .ant-hero .anh-label {
+            margin: 0 0 35px;
+    }
+
+    .ant-hero .anh-total-note {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
 }
 
 @media (max-width: 767px) {
-    .ant-hero .anh-heading {
-        font-size: 28px;
-        line-height: 36px;
+
+    .ant-hero .anh-name {
+    font-weight: 400;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+    .ant-hero .anh-panel {
+    border-top: 1px solid #ffffff6e;
+}
+
+    .ant-hero .anh-label {
+    margin: 0 0 30px;
+    font-size: 15px;
+    line-height: 16px;
+}
+     .ant-hero .anh-heading {
+        font-size: 48px;
+        line-height: 102%;
     }
     .ant-hero .anh-note {
-        text-align: left;
-        font-size: 14px;
-        line-height: 22px;
+               text-align: left;
+        font-size: 16px;
+        line-height: 145%;
     }
     .ant-hero .anh-bar {
         grid-template-columns: minmax(0, 1fr) 52px;
-        row-gap: 8px;
+        row-gap: 15px;
     }
-    .ant-hero .anh-value {
-        font-size: 17px;
+       .ant-hero .anh-value {
+        font-size: 19px;
         line-height: 22px;
+        color: #FE4601;
     }
     .ant-hero .anh-name {
         grid-column: 1 / -1;
@@ -4680,8 +5464,9 @@ ul.import-list li {
         row-gap: 12px;
     }
     .ant-hero .anh-total-value {
-        font-size: 34px;
+     font-size: 42px;
         line-height: 38px;
+        color:#FE4601;
     }
 }
 
@@ -4725,12 +5510,13 @@ ul.import-list li {
 
 @media (max-width: 767px) {
     .anq-eyebrow {
-        font-size: 22px;
-        line-height: 22px;
+        font-size: 20px;
+        line-height: 20px;
     }
     .anq-heading {
-        font-size: 30px;
+        font-size: 38px;
         line-height: 36px;
+            margin: 0 0 25px
     }
     .ant-questions {
         padding: 48px 0 54px;
@@ -4797,7 +5583,8 @@ ul.import-list li {
         padding: 48px 0 54px;
     }
     .ant-loss .anl-panel-title {
-        font-size: 13px;
+                font-size: 16px;
+        line-height: 25px;
     }
     .ant-loss .anl-body {
         min-height: 220px;
@@ -4814,7 +5601,7 @@ ul.import-list li {
     }
     .ant-loss .anl-row-name,
     .ant-loss .anl-row-loss {
-        font-size: 10px;
+        font-size: 14px;
         line-height: 14px;
     }
     .ant-loss .anl-foot-count {
@@ -4829,9 +5616,9 @@ ul.import-list li {
         align-items: flex-start;
         gap: 12px;
     }
-    .ant-loss .anl-toggle {
-        padding: 7px 12px;
-        font-size: 12px;
+      .ant-loss .anl-toggle {
+        padding: 9px 15px;
+        font-size: 16px;
     }
 }
 
@@ -4964,6 +5751,12 @@ ul.import-list li {
 /* Below this the artwork has no room beside the copy, so it goes under it and
    keeps only the top of the crop. */
 @media (max-width: 991px) {
+
+    .social-hero .sch-note {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+}
     .ant-audit {
         padding: 70px 0 0;
     }
@@ -4979,23 +5772,417 @@ ul.import-list li {
 }
 
 @media (max-width: 767px) {
+
+    .social-make .wmk-rule {
+    margin: 6px auto;
+}
     .ant-audit {
         padding: 55px 0 0;
+                display: flex;
+        flex-wrap: wrap-reverse;
     }
     .ant-audit .ana-heading {
-        margin-bottom: 18px;
-        font-size: 36px;
-        line-height: 40px;
+    margin-bottom: 18px;
+        font-size: 38px;
+        line-height: 105%;
         letter-spacing: -1.2px;
     }
     .ant-audit .ana-note {
-        margin-bottom: 28px;
-        font-size: 15px;
-        line-height: 25px;
+      margin-bottom: 28px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
     }
     .ant-audit .ana-cta {
-        width: 210px;
+            width: 210px;
         height: 44px;
+        font-weight: 400;
+        font-size: 14px;
+        background: #754CDA;
+        color: #fff;
+    }
+}
+
+
+@media (max-width:360px){
+        .social-hero .sch-title {
+        /* font-size: 56px; */
+    }
+
+        .pa-decides .pdw-heading {
+        font-size: 38px;
+        line-height: 105%;
+    }
+
+     .pa-steps .pst-title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .wcro-steps .pst-body{
+        line-height: 100%;
+    }
+}
+/* ==========================================================================
+   Website and CRO page -- "We build" / "We improve" on a phone. Base rules
+   are at the end of custome.css. The mock turns the four separate white
+   cards into one white block with the rows inside it, counts 1..4 instead
+   of 01..04, and centres the column's title and its line of copy. Nothing
+   here runs above 560, so the two desktop columns are untouched.
+   ========================================================================== */
+@media (max-width: 560px) {
+    .wcro-jobs .bsee-col {
+        padding: 20px 14px;
+    }
+    .wcro-jobs .bsee-col-title {
+        margin: 6px 0 12px;
+        font-size: 32px;
+        line-height: 28px;
+        text-align: center;
+    }
+    .wcro-jobs .wcj-sub {
+              margin-bottom: 14px;
+        font-size: 18px;
+        line-height: 20px;
+        text-align: center;
+    }
+    /* One card for the whole list: the rows keep their own padding, so they
+       still read as four, but the white ground is continuous. */
+    .wcro-jobs .wcj-list {
+        gap: 0;
+        padding: 4px 2px;
+        background: #ffffff;
+        border-radius: 14px;
+    }
+    .wcro-jobs .wcj-item {
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 12px;
+        background: transparent;
+        border-radius: 0;
+    }
+    .wcro-jobs .wcj-zero {
+        display: none;
+    }
+    .wcro-jobs .wcj-num {
+               flex-basis: 22px;
+        font-size: 38px;
+        line-height: 40px;
+    }
+    .wcro-jobs .wcj-text {
+             font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+/* ==========================================================================
+   Website and CRO page -- "What we build on" on a phone. Base rules are at
+   the end of custome.css; the 767 step above wraps the six cards into two
+   rows of three, which is not what the phone mock shows. Here the row stops
+   wrapping and becomes the same full-bleed swipe rail the other sections on
+   this page use: one line of artwork running off the right edge, the card a
+   little larger than the wrapped grid allowed.
+   ========================================================================== */
+@media (max-width: 560px) {
+    .wcro-tech .wct-row {
+        position: relative;
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        flex-wrap: nowrap;
+        gap: 10px;
+        padding: 0 0 6px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: calc(2.5vw + 12px);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .wcro-tech .wct-row::-webkit-scrollbar {
+        display: none;
+    }
+    .wcro-tech .wct-card {
+        flex: 0 0 132px;
+        width: 132px;
+        max-width: 132px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three questions" on a phone. Base rules are
+   at the end of custome.css. The three cards give way to three tabs and the
+   layer below answers whichever one is on: the mock's grey panel, the head
+   centred in it, the two paragraphs as white cards and the artwork closing
+   it. The tab row runs off the right edge rather than wrapping, so two sit on
+   the line as they do in the mock.
+   ========================================================================== */
+@media (max-width: 560px) {
+    .ant-questions .anq-row {
+        display: none;
+    }
+    .ant-questions .anq-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin: 0 0 18px;
+        padding: 0 0 4px;
+        list-style: none;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    .ant-questions .anq-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    .ant-questions .anq-tab {
+        border: 0;
+        border-radius: 999px;
+        padding: 11px 20px;
+        background: #E7E7EA;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        white-space: nowrap;
+        color: #1D1D1F;
+    }
+    .ant-questions .anq-tab.is-on {
+        background: #7B3FE4;
+        color: #ffffff;
+    }
+    .ant-questions .anq-layer {
+        gap: 12px;
+        background: #EDEDEF;
+        border-radius: 16px;
+        padding: 16px 12px;
+        box-shadow: none;
+    }
+    .ant-questions .anq-layer-left {
+        text-align: center;
+    }
+    .ant-questions .anq-layer-left .anq-label {
+        margin-bottom: 8px;
+        font-weight: 500;
         font-size: 16px;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        color: #6B7280;
+    }
+    .ant-questions .anq-layer-title {
+        font-size: 22px;
+        line-height: 24px;
+    }
+    /* The two paragraphs are cards of their own here, so the rule between
+       them in the desktop layout is the gap instead. */
+    .ant-questions .anq-layer-lead,
+    .ant-questions .anq-layer-body {
+              margin: 0;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 14px 14px;
+        font-size: 16px;
+        line-height: 150%;
+        color: #111;
+    }
+    .ant-questions .anq-layer-lead {
+        margin-bottom: 12px;
+        padding-bottom: 14px;
+        border-bottom: 0;
+    }
+    .ant-questions .anq-build-label {
+        display: inline;
+        margin: 0 4px 0 0;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 17px;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+    .ant-questions .anq-build-label::after {
+        content: ":";
+    }
+    .ant-questions .anq-shot {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three people, three reports." on a phone.
+   Base rules are at the end of custome.css. The stacked column becomes the
+   same full-bleed swipe rail the other sections use: one card on the line,
+   the next one showing at the edge, arrows under it.
+   ========================================================================== */
+@media (max-width: 560px) {
+    .ant-reports .anr-row {
+        position: relative;
+        left: 50%;
+        display: flex;
+        grid-template-columns: none;
+        width: 100vw;
+        transform: translateX(-50%);
+        gap: 14px;
+        padding: 6px 0 10px;
+        padding-left: calc(2.5vw + 12px);
+        padding-right: calc(2.5vw + 12px);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: calc(2.5vw + 12px);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .ant-reports .anr-row::-webkit-scrollbar {
+        display: none;
+    }
+    .ant-reports .anr-card {
+        flex: 0 0 276px;
+        max-width: 276px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .ant-reports .anr-image {
+        height: 200px;
+    }
+    .ant-reports .anr-nav-below {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
+    }
+}
+
+/* ==========================================================================
+   Home page -- the hero's numbers panel. Base rules are at the end of
+   custome.css. The three numbers keep their one line at every width; only
+   the gap and the type step down, so the panel never wraps into a column.
+   ========================================================================== */
+@media (max-width: 991px) {
+    .hero-stats {
+        gap: 20px;
+        padding: 20px 22px;
+    }
+    .hero-stats .hero-stat-num {
+        font-size: 26px;
+        line-height: 32px;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero-stats {
+        gap: 12px;
+        padding: 16px 14px;
+    }
+    .hero-stats .hero-stat-num {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .hero-stats .hero-stat-label {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .hero-countries {
+        margin-top: 12px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+/* ==========================================================================
+   Home page -- "Case Studies". Base rules are at the end of custome.css.
+   The two columns hold until 991, where the artwork moves above the copy the
+   way the phone mock draws it, and the logo row keeps scrolling at every
+   width rather than wrapping.
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .wsc-cases .wsc-grid {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 34px;
+    }
+    .wsc-cases .wsc-title {
+        font-size: 28px;
+        line-height: 38px;
+    }
+    .wsc-cases .wsc-logo {
+        width: 148px;
+        height: 104px;
+    }
+}
+
+@media (max-width: 991px) {
+    .wsc-cases .wsc-panel {
+        padding: 30px 26px 26px;
+    }
+    .wsc-cases .wsc-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+    /* Artwork first, as the mock has it. */
+    .wsc-cases .wsc-media {
+        order: -1;
+        aspect-ratio: 4 / 3;
+    }
+    .wsc-cases .wsc-eyebrow {
+        font-size: 26px;
+        line-height: 32px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 560px) {
+    .wsc-cases .wsc-media {
+    width: 100%;
+    height: 293px;
+}
+    .wsc-cases .wsc-panel {
+        border-radius: 18px;
+        padding: 22px 16px 18px;
+    }
+   .wsc-cases .wsc-eyebrow {
+        margin-bottom: 40px;
+        font-size: 46px;
+        line-height: 28px;
+    }
+    .wsc-cases .wsc-grid {
+        gap: 18px;
+        margin-bottom: 22px;
+    }
+    .wsc-cases .wsc-media {
+        border-radius: 20px;
+    }
+        .wsc-cases .wsc-title {
+             margin-bottom: 15px;
+        font-size: 33px;
+        line-height: 105%;
+        margin-top: 10px;
+        max-width: 100%;
+    }
+        .wsc-cases .wsc-body {
+        margin-bottom: 20px;
+        font-size: 16px;
+        line-height: 130%;
+        font-weight: 400;
+    }
+       .wsc-cases .wsc-cta {
+        padding: 10px 10px 10px 10px;
+        font-size: 15px;
+        line-height: 22px;
+        margin-bottom: 10px;
+        gap: 10px;
+    }
+    .wsc-cases .wsc-cta .swy-cta-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+    }
+    .wsc-cases .wsc-logos {
+        gap: 10px;
+    }
+    .wsc-cases .wsc-logo {
+             width: 121px;
+        height: 115px;
+        border-radius: 10px;
     }
 }

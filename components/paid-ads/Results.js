@@ -19,6 +19,7 @@
 // contained and sat on the floor of its card rather than cropped to fill.
 import React from "react";
 import Link from "next/link";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const CARDS = [
   {
@@ -56,6 +57,12 @@ const CARDS = [
 ];
 
 export default function Results() {
+  // On a phone the cards become the same swipeable rail the rest of the site
+  // uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the list is a grid or a scroller, so nothing changes on desktop.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".par-card");
+
   return (
     <section className="pa-results">
       <div className="container">
@@ -65,7 +72,7 @@ export default function Results() {
           What the accounts <span className="par-accent">actually did.</span>
         </h2>
 
-        <ul className="par-cards">
+        <ul className="par-cards" ref={trackRef} onScroll={updateEdges}>
           {CARDS.map((card) => (
             <li className="par-card" key={card.client}>
               <p className="par-kicker">{card.kicker}</p>
@@ -91,6 +98,12 @@ export default function Results() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.par-nav-below` is display:none above 560, where the
+            cards are a grid and there is nothing to scroll. */}
+        <div className="par-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

@@ -5628,6 +5628,7 @@ img.shape.p-absolute {
     font-size: 22px;
     line-height: 25.6px;
     letter-spacing: 0.2px;
+    text-align: center; 
     color: #FE4601;
 }
 
@@ -6947,7 +6948,8 @@ img.shape.p-absolute {
 .search-why .swy-cta,
 .search-ways .swy-cta,
 .social-wrong .swy-cta,
-.ant-reports .swy-cta {
+.ant-reports .swy-cta,
+.wsc-cases .swy-cta {
     align-self: flex-start;
     display: inline-flex;
     align-items: center;
@@ -6977,7 +6979,8 @@ img.shape.p-absolute {
 .search-why .swy-cta-icon,
 .search-ways .swy-cta-icon,
 .social-wrong .swy-cta-icon,
-.ant-reports .swy-cta-icon {
+.ant-reports .swy-cta-icon,
+.wsc-cases .swy-cta-icon {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -10375,4 +10378,314 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 .ant-audit .ana-cta:focus {
     filter: brightness(0.94);
     color: #FE4601;
+}
+
+/* ==========================================================================
+   Brand page -- "Why it matters" slider arrows.
+   The three cards are a grid at every width except the phone, where they turn
+   into the same swipeable rail the homepage uses (see responsive.css). These
+   arrows belong to that rail only, so they are off by default and switched on
+   at the breakpoint that builds the track.
+   ========================================================================== */
+.brand-why .bw-nav-below {
+    display: none;
+}
+
+/* ==========================================================================
+   Brand page -- "What you get" phones.
+   The little rule under each format name belongs to the social-content
+   version of this section. On /brand the same component is reused, and there
+   the line is not wanted, so it is dropped under the page's own .brand-page
+   parent -- at every width, and without touching /social-content.
+   ========================================================================== */
+.brand-page .social-make .wmk-rule {
+    display: none;
+}
+
+/* ==========================================================================
+   Search page -- "Not Just Numbers" slider arrows.
+   Same arrangement as .brand-why's: the cards are a grid at every width
+   except the phone, where they turn into a swipeable rail (see
+   responsive.css). These arrows belong to that rail only.
+   ========================================================================== */
+.search-results .sr-nav-below {
+    display: none;
+}
+
+/* ── /search — "How we work" slider arrows (phone only) ───────────────────── */
+/* The arrows belong to the phone rail. Above 560 the four steps are a grid
+   with nothing to scroll, so the control has nothing to do. */
+.search-steps .sst-nav-below {
+    display: none;
+}
+
+/* ── /search — "What we measure" slider arrows (phone only) ───────────────── */
+/* The arrows belong to the phone rail. Above 560 the cards are a row that
+   opens on hover, so the control has nothing to do. */
+.search-measure .smm-nav-below {
+    display: none;
+}
+
+/* ── /social-content — "Platforms we run" slider arrows (phone only) ──────── */
+/* The arrows belong to the phone rail. Above 560 the cards are a grid with
+   nothing to scroll, so the control has nothing to do. */
+.social-platforms .spl-nav-below {
+    display: none;
+}
+
+/* ── /paid-ads — "What the accounts actually did" arrows (phone only) ─────── */
+/* The arrows belong to the phone rail. Above 560 the cards are a grid with
+   nothing to scroll, so the control has nothing to do. */
+.pa-results .par-nav-below {
+    display: none;
+}
+
+/* ── /paid-ads — "Eight things decide performance" arrows (phone only) ────── */
+/* The arrows belong to the phone rail. Above 560 the cards are a grid, or the
+   desktop ramp, so the control has nothing to do. */
+.pa-decides .pdw-nav-below {
+    display: none;
+}
+
+/* ==========================================================================
+   Paid ads page -- "What we measure". The arrows under the metric cards are
+   a phone-only control: above 560 the four cards are a row that shows whole,
+   so there is nothing to step through. The rail itself is in responsive.css.
+   ========================================================================== */
+.pa-measure .pms-nav-below {
+    display: none;
+}
+
+/* ==========================================================================
+   Paid ads page -- the Google and Meta marks in "Where we run them".
+   Every other icon in the set is drawn on a 291x221 canvas with the mark
+   sitting inside it, so a plain width draws them all at the same visual
+   size. These two came from elsewhere: google.png is a tight 158 square and
+   meta.png a 252x221, so the same width paints a far bigger mark. Rather
+   than a width per breakpoint, both are given the set's canvas shape and
+   contained inside it -- so they scale with whatever width the breakpoint
+   already sets, and only the mark inside changes.
+   ========================================================================== */
+.paid-platforms .spl-icon-google,
+.paid-platforms .spl-icon-meta {
+    height: auto;
+    aspect-ratio: 291 / 221;
+    object-fit: contain;
+}
+
+/* The Google mark has no margin of its own at all, so it takes the one the
+   rest of the set carries as padding. */
+.paid-platforms .spl-icon-google {
+    padding: 6.5% 0;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three questions", the pieces the phone
+   needs (components/analytics-and-tracking/ThreeQuestions.js)
+   The tab row and the artwork exist only below 560; they are switched off
+   here so the desktop block above stays exactly as it was. The label inside
+   "what we build" moved into the paragraph, so it is put back to a block --
+   the same shape it drew as its own <p>.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.ant-questions .anq-tabs,
+.ant-questions .anq-shot {
+    display: none;
+}
+
+.ant-questions .anq-build-label {
+    display: block;
+}
+
+/* ==========================================================================
+   Analytics and tracking page -- "Three people, three reports.", the arrows
+   under the row (components/analytics-and-tracking/ThreeReports.js)
+   They belong to the phone's rail only; above 560 the row is a grid with
+   nothing to scroll, so they are off here and switched on in responsive.css.
+   ========================================================================== */
+.ant-reports .anr-nav-below {
+    display: none;
+}
+
+/* ==========================================================================
+   Home page -- the hero's numbers panel (components/home/Hero.js)
+   The sentence about 15 brands is now three numbers on one line inside the
+   same .hero-stat-badge panel the other heroes wear, with the markets they
+   were earned in reading underneath it. Only the inside of the panel is
+   described here, so the brand, paid ads and social heroes that share the
+   badge are untouched.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.hero-stats {
+    display: flex;
+    align-items: flex-start;
+    gap: 34px;
+    padding: 22px 17px;
+    max-width: 570px;
+    text-align: center;
+}
+
+.hero-stats .hero-stat {
+    flex: 1 1 0;
+    min-width: 0;
+}
+.hero-stats .hero-stat-num {
+    margin: 0px 0 10px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 105%;
+    color: #FE4601;
+}
+.hero-stats .hero-stat-label {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 16px;
+    color: #D0BDFF;
+}
+
+.hero-countries-dot {
+    margin: 0 5px;
+    font-weight: 700;
+    color: #FE4601;
+}
+
+.hero-countries {
+    margin: 20px 0 0;
+    max-width: 499px;
+    font-weight: 500;
+    font-size: 22.68px;
+    letter-spacing: 0.22px;
+    line-height: 27.4px;
+    text-align: center;
+    color: #ffffff!important;
+}
+
+/* ==========================================================================
+   Home page -- "Case Studies" (components/home/WorkShowcase.js)
+   One study open inside a panel on the page's dark: the copy on the left,
+   its artwork on the right, and the row of logos underneath acting as the
+   control. Only the open logo is in colour -- the rest are drained -- which
+   is the whole state this section has, so it is one filter rule rather than
+   a second set of cards.
+   The section keeps .workshow-section for the dark ground and the page
+   rhythm; everything inside it is .wsc-.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.wsc-cases .wsc-panel {
+    /* background: #1A1235; */
+    /* border-radius: 24px; */
+    /* padding: 46px 48px 40px; */
+}
+
+.wsc-cases .wsc-eyebrow {
+    margin: 0 0 26px;
+    font-weight: 700;
+    font-size: 54.3px;
+    letter-spacing: -0.28px;
+    line-height: 60px;
+    color: #FE4601;
+}
+
+.wsc-cases .wsc-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 40px;
+}
+
+.wsc-cases .wsc-title {
+    margin: 0 0 18px;
+    max-width: 520px;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 50px;
+    color: #ffffff;
+}
+
+.wsc-cases .wsc-accent {
+    color: #FE4601;
+}
+
+.wsc-cases .wsc-body {
+    margin: 0 0 30px;
+    max-width: 680px;
+    font-size: 22px;
+    line-height: 150%;
+    color: #D0D0D0;
+}
+
+.wsc-cases .wsc-media {
+    border-radius: 20px;
+    overflow: hidden;
+       width: 459.54px;
+    aspect-ratio: 1 / 1;
+    height: 439px;
+}
+
+.wsc-cases .wsc-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wsc-cases .wsc-logos {
+    display: flex;
+    gap: 14px;
+    margin: 0;
+    padding: 0 0 4px;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.wsc-cases .wsc-logos::-webkit-scrollbar {
+    display: none;
+}
+
+/* The drained state is the resting one: colour is how the open study says
+   it is open, so the filter is lifted rather than added. */
+.wsc-cases .wsc-logo {
+    display: block;
+    width: 168px;
+    height: 118px;
+    padding: 0;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    overflow: hidden;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+.wsc-cases .wsc-logo.is-on {
+    filter: none;
+    opacity: 1;
+}
+
+.wsc-cases .wsc-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wsc-cases .wsc-cta {
+    padding: 6px 6px 6px 24px;
+    font-size: 15px;
+    line-height: 26px;
+    gap: 12px;
+}
+
+/* The disc's ink is named here rather than left to --swy-purple, which is
+   declared on the sections that variable was written for and not on this
+   one, so the arrow would otherwise draw white on white. */
+.wsc-cases .wsc-cta .swy-cta-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+    color: #8668FF;
 }

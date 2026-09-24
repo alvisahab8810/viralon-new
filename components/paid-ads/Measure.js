@@ -15,6 +15,7 @@
 // wrapped in .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css
 // would otherwise take the ink off the heading and the metric names.
 import React from "react";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const DIR = "/assets/others/the-work/paid-ads/";
 
@@ -26,6 +27,12 @@ const METRICS = [
 ];
 
 export default function Measure() {
+  // On a phone the four cards become the same swipeable rail the rest of the
+  // site uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the list is a row or a scroller, so nothing changes above 560.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".pms-card");
+
   return (
     <section className="pa-measure">
       <div className="container">
@@ -35,7 +42,7 @@ export default function Measure() {
           Clicks Are Not <span className="pms-accent">Customers.</span>
         </h2>
 
-        <ul className="pms-cards">
+        <ul className="pms-cards" ref={trackRef} onScroll={updateEdges}>
           {METRICS.map((m) => (
             <li className="pms-card" key={m.name}>
               {/* Decorative: the metric is named in the heading under it. */}
@@ -46,6 +53,12 @@ export default function Measure() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.pms-nav-below` is display:none above 560, where the
+            cards are a row and there is nothing to scroll. */}
+        <div className="pms-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

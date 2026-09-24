@@ -15,7 +15,8 @@
 // responsive.css. Every rule is prefixed .pa-decides because the page is
 // wrapped in .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css
 // would otherwise take the dark ink off the heading.
-import React from "react";
+import React, { useCallback, useState } from "react";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const CARDS = [
   {
@@ -61,6 +62,43 @@ const CARDS = [
 ];
 
 export default function WhatDecides() {
+  // On a phone the eight cards become the same swipeable rail the rest of the
+  // site uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the list is a grid or a scroller, so the desktop ramp is untouched.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".pdw-card");
+
+  // Which card is at the head of the rail. It is the one drawn at full size
+  // (see .is-lead in responsive.css), so a card grows as it is scrolled in and
+  // settles back as it leaves -- the ramp the desktop row has, one card at a
+  // time. Above 560 the class is inert: the grid gives every card one size.
+  const [lead, setLead] = useState(0);
+
+  const onScroll = useCallback(
+    (e) => {
+      updateEdges();
+      // Read off the cards' own offsets rather than a card width times an
+      // index: the lead card is wider than the rest, so a fixed step would
+      // drift by a few pixels per card and pick the wrong one near the end.
+      const el = e.currentTarget;
+      const cards = el.querySelectorAll(".pdw-card");
+      const edge =
+        el.getBoundingClientRect().left +
+        (parseFloat(getComputedStyle(el).paddingLeft) || 0);
+      let best = 0;
+      let bestGap = Infinity;
+      cards.forEach((card, i) => {
+        const d = Math.abs(card.getBoundingClientRect().left - edge);
+        if (d < bestGap) {
+          bestGap = d;
+          best = i;
+        }
+      });
+      setLead(best);
+    },
+    [updateEdges]
+  );
+
   return (
     <section className="pa-decides">
       <div className="container">
@@ -83,10 +121,12 @@ export default function WhatDecides() {
         {/* The stack order is set in source order by z-index, exactly as on
             /social-content: hover only lifts a card, it never reorders the
             rail. --pdw-step is the card's place on the ramp. */}
-        <ul className="pdw-rail">
+        <ul className="pdw-rail" ref={trackRef} onScroll={onScroll}>
           {CARDS.map((card, i) => (
             <li
-              className={"pdw-card pdw-card-" + (i + 1)}
+              className={
+                "pdw-card pdw-card-" + (i + 1) + (i === lead ? " is-lead" : "")
+              }
               key={card.title}
               style={{ "--pdw-step": i }}
             >
@@ -95,6 +135,12 @@ export default function WhatDecides() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.pdw-nav-below` is display:none above 560, where the
+            cards are a grid or the desktop ramp. */}
+        <div className="pdw-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

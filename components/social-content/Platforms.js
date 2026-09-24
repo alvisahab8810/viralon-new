@@ -17,6 +17,7 @@
 // wrapped in .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css
 // would otherwise turn the card names white on the light cards.
 import React from "react";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const ICONS = "/assets/others/the-work/social-content/icons/";
 
@@ -69,6 +70,12 @@ const PLATFORMS = [
 ];
 
 export default function Platforms() {
+  // On a phone the six cards become the same swipeable rail the rest of the
+  // site uses, arrows and all. The hooks run at every width; only CSS decides
+  // whether the list is a grid or a scroller, so nothing changes above 560.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".spl-card");
+
   return (
     <section className="social-platforms">
       <div className="container">
@@ -78,7 +85,7 @@ export default function Platforms() {
           <span className="spl-accent">Does A Different Job.</span>
         </h2>
 
-        <ul className="spl-cards">
+        <ul className="spl-cards" ref={trackRef} onScroll={updateEdges}>
           {PLATFORMS.map((p, i) => (
             <li className={"spl-card spl-" + TONES[i % TONES.length]} key={p.name}>
               <h3 className="spl-name">{p.name}</h3>
@@ -91,6 +98,12 @@ export default function Platforms() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.spl-nav-below` is display:none above 560, where the
+            cards are a grid and there is nothing to scroll. */}
+        <div className="spl-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );

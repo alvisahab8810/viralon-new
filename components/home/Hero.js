@@ -28,6 +28,16 @@ const ARROW_BASE_ANGLE = 30;
 
 const AUTO_INTERVAL = 2800;
 
+// The panel under the sub-copy: the numbers as they read in the Figma, so a
+// later change is a change to this list and nothing else.
+const STATS = [
+  { num: "14,200", label: "Qualified Leads" },
+  { num: "5", label: "Countries" },
+  { num: "$350k", label: "Ad Spent" },
+];
+
+const MARKETS = ["India", "USA", "UK", "UAE", "Australia"];
+
 const WHEEL_ITEMS = [
   {
     num: "01",
@@ -139,15 +149,30 @@ export default function Hero() {
               </strong>
               , working as one machine. <br/><span className="orange-col">We build that machine.</span>
             </p>
-            <div className="hero-stat-badge">
-              Across 15 brands, this machine increased qualified leads by an
-              average of{" "}
-              <img
-                src="/assets/images/icons/state.svg"
-                alt="40%"
-                className="hero-stat-figure"
-              />
+            {/* The panel the Figma now shows in place of the sentence
+                about 15 brands: three numbers on one line, the markets they
+                were earned in underneath. It keeps .hero-stat-badge so the
+                panel itself stays the one the other heroes use; .hero-stats
+                only says how the three sit inside it. */}
+            <div className="hero-stat-badge hero-stats">
+              {STATS.map((stat) => (
+                <div className="hero-stat" key={stat.label}>
+                  <p className="hero-stat-num">{stat.num}</p>
+                  <p className="hero-stat-label">{stat.label}</p>
+                </div>
+              ))}
             </div>
+
+            {/* The separators are orange, so they are their own element
+                rather than part of the string. */}
+            <p className="hero-countries">
+              {MARKETS.map((market, i) => (
+                <React.Fragment key={market}>
+                  {i > 0 && <span className="hero-countries-dot">·</span>}
+                  {market}
+                </React.Fragment>
+              ))}
+            </p>
           </div>
 
           <div className="hero-wheel-wrap">

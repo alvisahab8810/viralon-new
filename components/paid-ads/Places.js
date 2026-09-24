@@ -7,11 +7,6 @@
 // .paid-platforms, which carries the handful of differences this page needs
 // (the sixth card names four platforms at once, so its name sets smaller).
 //
-// Two icons are not in the repo yet: the Google mark and the Meta mark. Their
-// filenames are set below, so both cards light up the moment someone drops
-// google.png and meta.png into the icons folder; until then the <img> hides
-// itself rather than showing a broken frame.
-//
 // Styles live at the end of custome.css, responsive steps at the end of
 // responsive.css.
 import React from "react";
@@ -83,17 +78,13 @@ export default function Places() {
               <p className="spl-kicker">{p.kicker}</p>
               <p className="spl-body">{p.body}</p>
               <p className="spl-tags">{p.tags}</p>
-              {/* Decorative: the platform is already named above the icon, so
-                  it carries no alt text. An icon that is not in the repo yet
-                  removes itself instead of drawing a broken frame. */}
+              {/* Decorative: the platform is already named above the icon,
+                  so it carries no alt text. */}
               <img
-                className="spl-icon"
+                className={"spl-icon spl-icon-" + p.icon.replace(".png", "")}
                 src={ICONS + p.icon}
                 alt=""
                 loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
               />
             </li>
           ))}

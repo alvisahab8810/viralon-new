@@ -21,6 +21,7 @@
 // cropped to fill.
 import React from "react";
 import Link from "next/link";
+import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const CARDS = [
   {
@@ -47,6 +48,12 @@ const CARDS = [
 ];
 
 export default function Results() {
+  // On a phone the cards become the same swipeable rail the homepage uses,
+  // arrows and all. The hooks run at every width; only CSS decides whether the
+  // list is a grid or a scroller, so nothing changes on desktop.
+  const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
+    useSliderTrack(".sr-card");
+
   return (
     <section className="search-results">
       <div className="container">
@@ -56,7 +63,7 @@ export default function Results() {
           Not Just Numbers <span className="sr-accent">Measured Results</span>
         </h2>
 
-        <ul className="sr-cards">
+        <ul className="sr-cards" ref={trackRef} onScroll={updateEdges}>
           {CARDS.map((card) => (
             <li className="sr-card" key={card.figure}>
               <p className="sr-figure">{card.figure}</p>
@@ -77,6 +84,12 @@ export default function Results() {
             </li>
           ))}
         </ul>
+
+        {/* Phone only -- `.sr-nav-below` is display:none above 560, where the
+            cards are a grid and there is nothing to scroll. */}
+        <div className="sr-nav-below">
+          <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
+        </div>
       </div>
     </section>
   );
