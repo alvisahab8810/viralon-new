@@ -56,7 +56,7 @@ export default function HowWeWork() {
         <h2 className="sst-heading">
           Four Steps. The First Two
           <br />
-          <span className="sst-accent">Decide The Rest.</span>
+          <span className="sst-accent"> Decide The Rest.</span>
         </h2>
 
         <ol className="sst-cards" ref={trackRef} onScroll={updateEdges}>

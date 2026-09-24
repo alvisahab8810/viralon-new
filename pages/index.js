@@ -25,8 +25,9 @@ import CTA from "../components/home/CTA";
 import LatestBlogs from "../components/common/LatestBlogs";
 import PageFaq from "../components/PageFaq";
 import { pageStaticProps } from "../utils/pageSeo";
+import { getHomeCaseStudies } from "../utils/caseStudy";
 
-export default function IndexPage({ data, faq, seo }) {
+export default function IndexPage({ data, faq, seo, caseStudies }) {
   
 
   return (
@@ -53,7 +54,7 @@ export default function IndexPage({ data, faq, seo }) {
       <BuildItFor />
       {/* <BuildItForCube /> */}
 
-      <WorkShowcase />
+      <WorkShowcase cases={caseStudies} />
       <BrokenParts />
       <HowItRuns />
       <SooSocial />
@@ -76,5 +77,14 @@ export default function IndexPage({ data, faq, seo }) {
   );
 }
 
-// FAQ block content comes from the payroll admin (Website → FAQs).
-export const getStaticProps = pageStaticProps("home");
+// FAQ block content comes from the payroll admin (Website → FAQs), and so do
+// the case studies in the rail — each logo links to its own /case-study page.
+const basePageProps = pageStaticProps("home");
+
+export async function getStaticProps(ctx) {
+  const base = await basePageProps(ctx);
+  return {
+    ...base,
+    props: { ...base.props, caseStudies: await getHomeCaseStudies() },
+  };
+}

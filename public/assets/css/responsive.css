@@ -830,7 +830,7 @@ footer .before-bg::before {
         color: #86868B;
         line-height: 23px;
         font-size: 18.4px;
-        font-weight: 700;
+        font-weight: 500;
         margin: 7px 0 30px;
         max-width: 460px;
     }
@@ -864,7 +864,7 @@ footer .before-bg::before {
         /* text-align: justify; */
         line-height: 23px;
         font-size: 18.4px;
-        font-weight: 700;
+        font-weight: 500;
         letter-spacing: 0.23px;
         margin: 0 0 20px;
 }
@@ -1931,10 +1931,10 @@ section.work-area .py-5 {
     font-size: 25px;
 }
 .site-heading p {
-    padding: 0;
-    font-size: 13px;
-    margin-top: 0;
-    font-weight: 300;
+   padding: 0;
+        font-size: 18.5px;
+        margin-top: 0;
+        font-weight: 500;
 }
 .blog-area h2 {
     font-size: 25px;
@@ -2162,6 +2162,7 @@ ul.import-list li {
         text-align: left;
         line-height: 23px;
         flex-basis: auto;
+        font-weight: 500;
         font-size: 18.4px;
         color: #B8B8B8 !important;
     }
@@ -2217,6 +2218,7 @@ ul.import-list li {
 
         .howruns-section .howruns-intro {
         text-align: left;
+        font-weight: 500;
         line-height: 23px;
         flex-basis: auto;
         font-size: 18.4px;
@@ -2227,6 +2229,7 @@ ul.import-list li {
         line-height: 23px;
         flex-basis: auto;
         font-size: 18.4px;
+        font-weight: 500;
         color: #86868B !important;
     }
     .soosocial-section {
@@ -2267,6 +2270,7 @@ ul.import-list li {
     .soosocial-section .soosocial-intro {
         margin: 0;
         text-align: left;
+        font-weight: 500;
         line-height: 23px;
         flex-basis: auto;
         font-size: 18.4px;
@@ -3094,7 +3098,28 @@ ul.import-list li {
     }
 .search-hero .sh-label {
     font-size: 15px;
+    font-weight: 400;
     line-height: 19px;
+}
+
+.sch-quote br{
+    display: none;
+}
+
+.wmk-heading br{
+    display: none;
+}
+
+.anh-heading br{
+    display: none;
+}
+
+.pas-heading br{
+    display: none;
+}
+
+.soosocial-intro br{
+    display: none;
 }
         .search-hero .sh-stats {
         margin-top: 40px;
@@ -6132,6 +6157,14 @@ ul.import-list li {
 }
 
 @media (max-width: 560px) {
+
+      .bh-quote br {
+    display: none;
+  }
+
+    .sst-heading br {
+    display: none;
+  }
     .wsc-cases .wsc-media {
     width: 100%;
     height: 293px;
@@ -6184,5 +6217,387 @@ ul.import-list li {
              width: 121px;
         height: 115px;
         border-radius: 10px;
+    }
+}
+
+/* ======================================================================
+   CASE STUDY — /case-study/<slug>
+   The rail beside the page needs a column of its own; below 1199 there is
+   not one, so it is dropped and the page runs full width. Everything else
+   is the usual step down in type.
+   ====================================================================== */
+
+@media (max-width: 1199px) {
+    .cs-body {
+        display: block;
+    }
+
+    .cs-toc {
+        display: none;
+    }
+
+    .cs-hero .csh-title {
+        font-size: 44px;
+        line-height: 52px;
+    }
+
+    .cs-hero .csh-stat-value {
+        font-size: 34px;
+        line-height: 42px;
+    }
+}
+
+@media (max-width: 991px) {
+    .cs-hero {
+        padding-top: 32px;
+    }
+
+    .cs-hero .csh-title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    /* Two up, ruled off by a gap instead of the hairlines -- a border
+       between wrapped cells lands in the wrong places. */
+    .cs-hero .csh-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 18px;
+        margin-top: 36px;
+    }
+
+    .cs-hero .csh-stat {
+        padding: 0;
+    }
+
+    .cs-hero .csh-stat + .csh-stat {
+        border-left: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .cs-hero .csh-ident {
+        gap: 14px;
+        padding-bottom: 20px;
+    }
+
+    .cs-hero .csh-title {
+        font-size: 27px;
+        line-height: 34px;
+    }
+
+    .cs-hero .csh-intro {
+        margin-top: 14px;
+        font-size: 13px;
+        line-height: 21px;
+    }
+
+    .cs-hero .csh-media {
+        margin-top: 22px;
+        border-radius: 14px;
+    }
+
+    .cs-hero .csh-play {
+        width: 54px;
+        height: 54px;
+    }
+
+    .cs-hero .csh-stats {
+        gap: 20px 14px;
+        margin-top: 26px;
+    }
+
+    .cs-hero .csh-stat-value {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .cs-hero .csh-stat-label {
+        font-size: 12px;
+        line-height: 17px;
+    }
+}
+
+/* ==========================================================================
+   CASE STUDY SECTIONS — narrower steps. The side rail is already dropped at
+   1199 in the block above, so from here the sections have the full width and
+   only their own grids need to give way.
+   ========================================================================== */
+
+@media (max-width: 1199px) {
+    .cs-main .cs-section {
+        padding-top: 64px;
+    }
+
+    .cs-main .csd-title {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    /* The split head stacks: at this width the paragraph set against the
+       heading is narrower than its own lines. */
+    .cs-main .cs-head-split {
+        display: block;
+    }
+
+    .cs-main .cs-head-split .csd-intro {
+        margin-top: 16px;
+        text-align: left;
+    }
+
+    .cs-problem .csp-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Three columns rather than four: the fourth is only there to keep a
+       short row from stretching, and there is no room for it here. */
+    .cs-approach .csa-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .cs-teams {
+        margin-top: 64px;
+    }
+
+    .cs-landed {
+        margin-top: 64px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .cs-ran .csr-card {
+        border-radius: 22px;
+    }
+
+    .cs-ran .csr-eyebrow {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .cs-ran .csr-card-title {
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+
+    .cs-ran .csr-card-desc {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .cs-ran .csr-num {
+        font-size: 52px;
+    }
+}
+
+@media (max-width: 991px) {
+    .cs-motion .csm-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cs-motion .csm-tile:first-child {
+        grid-row: auto;
+    }
+
+    .cs-motion .csm-frame,
+    .cs-motion .csm-tile:first-child .csm-frame {
+        width: auto;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .cs-approach .csa-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cs-main .csd-title {
+        font-size: 29px;
+        line-height: 37px;
+    }
+
+    .cs-landed .csl-value {
+        font-size: 34px;
+    }
+
+    .cs-ran .csr-eyebrow {
+        font-size: 14px;
+    }
+
+    .cs-ran .csr-card-title {
+        font-size: 18px;
+    }
+
+    .cs-ran .csr-card-desc {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .cs-ran .csr-num {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .cs-work .csw-row {
+        --csw-h: 340px;
+        --csw-w: 153px;
+    }
+
+    .cs-approach .csa-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .cs-main .cs-section {
+        padding-top: 48px;
+    }
+
+    .cs-main .csd-title {
+        font-size: 25px;
+        line-height: 33px;
+    }
+
+    .cs-main .csd-eyebrow {
+        font-size: 11.5px;
+        letter-spacing: 1.4px;
+    }
+
+    .cs-main .csd-intro {
+        font-size: 15px;
+        line-height: 26px;
+        font-weight: 400;
+    }
+
+    .cs-motion .csm-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .cs-motion .csm-play {
+        width: 44px;
+        height: 44px;
+    }
+
+    .cs-motion .csm-play-ico {
+        margin-left: 3px;
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-left-width: 12px;
+    }
+
+    .cs-problem .csp-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cs-work .csw-row {
+        --csw-h: 230px;
+        --csw-w: 104px;
+        --csw-gap: 8px;
+    }
+
+    .cs-work .csw-tall,
+    .cs-work .csw-half {
+        border-radius: 10px;
+    }
+
+    .cs-teams {
+        margin-top: 48px;
+    }
+
+    .cs-landed {
+        margin-top: 48px;
+        padding: 52px 16px 56px;
+        border-radius: 20px;
+    }
+
+    /* Half a phone is too narrow to hold readable copy, so the card grows
+       taller and the words take the full width over a scrim instead of
+       sharing the row with the picture. */
+    .cs-ran .csr-card,
+    .cs-ran .csr-card.is-flipped {
+        aspect-ratio: auto;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-height: 360px;
+        padding: 30px 0;
+        border-radius: 18px;
+    }
+
+    .cs-ran .csr-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, rgba(10, 6, 26, .5) 0%, rgba(10, 6, 26, .28) 48%, rgba(10, 6, 26, 0) 75%);
+        pointer-events: none;
+    }
+
+    .cs-ran .csr-card-body,
+    .cs-ran .csr-card.is-flipped .csr-card-body {
+        width: 100%;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .cs-ran .csr-num,
+    .cs-ran .csr-card.is-flipped .csr-num {
+        top: auto;
+        bottom: 18px;
+        left: auto;
+        right: 22px;
+        font-size: 34px;
+    }
+
+    .cs-landed .csl-flow {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* The chain reads downwards here, so its arrows turn with it. */
+    .cs-landed .csl-arrow svg {
+        transform: rotate(90deg);
+    }
+
+    .cs-landed .csl-stat {
+        min-width: 0;
+        flex: 1 1 140px;
+    }
+
+    .cs-landed .csl-value {
+        font-size: 28px;
+    }
+}
+
+/* --- HOME / WHAT WE BUILD IT FOR: the rewritten copy block --------------- */
+
+@media (max-width: 1239px) {
+    .builditfor-section .builditfor-heading {
+        font-size: 36px;
+        line-height: 43px;
+        margin-bottom: 26px;
+    }
+
+    .builditfor-section .builditfor-copy .builditfor-desc {
+        font-size: 16px;
+        line-height: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .builditfor-section .builditfor-heading {
+        font-size: 30px;
+        line-height: 37px;
+        margin-bottom: 20px;
+    }
+
+    .builditfor-section .builditfor-copy .builditfor-desc {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
+    .builditfor-section .builditfor-cta {
+        margin-top: 20px;
+        padding: 11px 22px;
+        font-size: 14px;
     }
 }

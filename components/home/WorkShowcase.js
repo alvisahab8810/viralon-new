@@ -57,7 +57,27 @@ const CASES = [
   },
 ];
 
-export default function WorkShowcase() {
+// A record from the admin, reshaped into what this section draws. The four
+// entries above stay as the fallback, so the home page never goes blank
+// between a deploy and the first published study.
+function fromRecord(doc) {
+  const home = doc.home || {};
+  const heading = home.heading || {};
+  return {
+    name: doc.brandName,
+    logo: doc.brandLogo || home.image,
+    hero: home.image || doc.brandLogo,
+    href: `/case-study/${doc.slug}`,
+    title: [heading.lead || "", heading.accent || "", heading.tail || ""],
+    body: home.body || "",
+    ctaLabel: home.ctaLabel || "Read Case Study",
+  };
+}
+
+export default function WorkShowcase({ cases }) {
+  const studies =
+    Array.isArray(cases) && cases.length ? cases.map(fromRecord) : CASES;
+
   // Which study is open. The logos set it, and the timer below moves it on
   // its own so the section keeps turning while nobody is touching it.
   const [active, setActive] = useState(0);
@@ -65,11 +85,11 @@ export default function WorkShowcase() {
 
   useEffect(() => {
     const id = setInterval(
-      () => setActive((i) => (i + 1) % CASES.length),
+      () => setActive((i) => (i + 1) % studies.length),
       AUTO_INTERVAL
     );
     return () => clearInterval(id);
-  }, []);
+  }, [studies.length]);
 
   // The logo row scrolls on a phone, so the one that just opened is brought
   // into view rather than left off the edge.
@@ -84,7 +104,7 @@ export default function WorkShowcase() {
     });
   }, [active]);
 
-  const study = CASES[active];
+  const study = studies[active];
 
   return (
     <section className="workshow-section wsc-cases">
@@ -106,7 +126,7 @@ export default function WorkShowcase() {
                   /social-content's in custome.css, so the button stays one
                   rule across the site. */}
               <Link href={study.href} className="swy-cta wsc-cta">
-                <span className="swy-cta-text">Read Case Study</span>
+                <span className="swy-cta-text">{study.ctaLabel || "Read Case Study"}</span>
                 <span className="swy-cta-icon" aria-hidden="true">
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                     <path
@@ -128,7 +148,7 @@ export default function WorkShowcase() {
           </div>
 
           <ul className="wsc-logos" ref={railRef}>
-            {CASES.map((item, i) => (
+            {studies.map((item, i) => (
               <li key={item.name}>
                 <button
                   type="button"

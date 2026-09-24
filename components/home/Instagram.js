@@ -53,7 +53,7 @@ export default function Instagram() {
                 rel="noopener noreferrer"
               >
                 <video
-                  src="./assets/images/instagram/video1.mp4"
+                  src="./assets/images/instagram/video20.mp4"
                   alt="National Destination"
                   autoPlay
                   muted
@@ -65,7 +65,7 @@ export default function Instagram() {
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
                   src="./assets/images/instagram/video2.mp4"
                   alt="National Destination"
@@ -74,11 +74,11 @@ export default function Instagram() {
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
                   src="./assets/images/instagram/video3.mp4"
                   alt="National Destination"
@@ -87,11 +87,11 @@ export default function Instagram() {
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
                   src="./assets/images/instagram/video4.mp4"
                   alt="National Destination"
@@ -100,11 +100,11 @@ export default function Instagram() {
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
                   src="./assets/images/instagram/video5.mp4"
                   alt="National Destination"
@@ -113,11 +113,11 @@ export default function Instagram() {
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
                   src="./assets/images/instagram/video6.mp4"
                   alt="National Destination"
@@ -126,47 +126,188 @@ export default function Instagram() {
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
-                  src="./assets/images/instagram/video4.mp4"
+                  src="./assets/images/instagram/video7.mp4"
                   alt="National Destination"
                   autoPlay
                   muted
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
-                  src="./assets/images/instagram/video5.mp4"
+                  src="./assets/images/instagram/video8.mp4"
                   alt="National Destination"
                   autoPlay
                   muted
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
 
             <SwiperSlide className="swiper-slide">
-              <Link href="https://www.instagram.com/tourwatchout/?hl=en">
+              <>
                 <video
-                  src="./assets/images/instagram/video6.mp4"
+                  src="./assets/images/instagram/video9.mp4"
                   alt="National Destination"
                   autoPlay
                   muted
                   loop
                   playsInline
                 ></video>
-              </Link>
+              </>
             </SwiperSlide>
+
+
+              <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video11.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video12.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video13.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video14.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video15.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             {/* <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video16.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide> */}
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video17.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video18.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video19.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
+
+             <SwiperSlide className="swiper-slide">
+              <>
+                <video
+                  src="./assets/images/instagram/video20.mp4"
+                  alt="National Destination"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
+              </>
+            </SwiperSlide>
+
           </Swiper>
         </div>
       </section>

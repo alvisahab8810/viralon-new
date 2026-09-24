@@ -11,16 +11,18 @@ import SliderNav, { useSliderTrack } from "./SliderNav";
  * Clips are the local Instagram set and are meant to be swapped later.
  */
 
-const REELS = [
-  "/assets/img/our-services/instagram/video1.mp4",
-  "/assets/img/our-services/instagram/video2.mp4",
-  "/assets/img/our-services/instagram/video3.mp4",
-  "/assets/img/our-services/instagram/video4.mp4",
-  "/assets/img/our-services/instagram/video5.mp4",
-  "/assets/img/our-services/instagram/video6.mp4",
-  "/assets/img/our-services/instagram/video7.mp4",
-  "/assets/img/our-services/instagram/video8.mp4",
+// The clips live in public/assets/img/our-services/instagram as videoN.mp4.
+// This list is the running order, left to right: reorder the numbers to
+// reorder the rail, drop one out to hide that clip, add the next number when a
+// new file lands in the folder. Nothing else needs touching.
+const REEL_ORDER = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+  11, 12, 13, 14, 15, 16, 17, 18, 19,
 ];
+
+const REELS = REEL_ORDER.map(
+  (n) => `/assets/img/our-services/instagram/video${n}.mp4`
+);
 
 export default function SooSocial() {
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =

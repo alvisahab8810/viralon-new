@@ -186,17 +186,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
-const videoSources = [
-  "/assets/img/our-services/instagram/video1.mp4",
-  "/assets/img/our-services/instagram/video2.mp4",
-  "/assets/img/our-services/instagram/video3.mp4",
-  "/assets/img/our-services/instagram/video4.mp4",
-  "/assets/img/our-services/instagram/video5.mp4",
-  "/assets/img/our-services/instagram/video6.mp4",
-  "/assets/img/our-services/instagram/video7.mp4",
-  "/assets/img/our-services/instagram/video8.mp4",
-
+// Same clip set as the homepage rail (components/home/SooSocial.js), and the
+// same idea: this list is the running order. Reorder the numbers to reorder
+// the slider, drop one out to hide that clip, add the next number when a new
+// file lands in public/assets/img/our-services/instagram.
+const VIDEO_ORDER = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+  11, 12, 13, 14, 15, 16, 17, 18, 19,
 ];
+
+const videoSources = VIDEO_ORDER.map(
+  (n) => `/assets/img/our-services/instagram/video${n}.mp4`
+);
 
 export default function Videos() {
   const videoRefs = useRef([]);

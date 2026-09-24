@@ -145,6 +145,7 @@
 
 
 
+import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
@@ -222,18 +223,43 @@ export default function BuildItFor() {
   return (
     <section className="builditfor-section">
       <div className="container">
+        {/* The heading runs the full width above the row, so it reads across
+            both the copy column and the card stage. */}
+        <h2 className="builditfor-heading">
+          <span className="builditfor-accent">Ten Industries.</span> We Already
+          Know What A Lead Means In Each One.
+        </h2>
+
         <div className="builditfor-grid">
           <div className="builditfor-copy">
-            <h2 className="builditfor-heading">
-              What We
-              <br />
-              <span className="builditfor-accent">Build It For...</span>
-            </h2>
             <p className="builditfor-desc">
-              Tailored deployment structures mapped to specific business
-              models. We build the exact customer acquisition machine your
-              industry requires.
+              In real estate, the form fill means nothing, and the site visit is
+              everything. In education, parents search six months before the
+              session opens. Patients never fill a form; they read reviews for
+              three weeks and then call. A car wash enquiry and a full paint
+              enquiry cost the same to buy and are worth twenty times apart.
             </p>
+            <p className="builditfor-desc">
+              <strong className="builditfor-lead">
+                You should not have to explain any of that to your agency.
+              </strong>{" "}
+              We have run these accounts, made these mistakes, and learned what a
+              qualified lead actually means in each one. That knowledge sits at
+              the strategy level, not with whoever manages your account.
+            </p>
+
+            <Link className="builditfor-cta" href="/contact-us">
+              Let's Talk
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M7 17L17 7M9 7h8v8"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           </div>
 
           <div className="builditfor-stage">

@@ -64,7 +64,7 @@ const FALLBACK_FAQ = {
 
 export default function AnalyticsAndTracking({ faq, seo }) {
   return (
-    <div className="bg-dark">
+    <div className="analytics-and-tracking-page">
       <PageSeo
         seo={seo}
         path="/analytics-and-tracking"

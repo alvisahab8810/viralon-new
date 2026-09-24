@@ -52,7 +52,7 @@ const FALLBACK_FAQ = {
 
 export default function PaidAds({ faq, seo }) {
   return (
-    <div className="bg-dark">
+    <div className="paid-ads-page">
       <PageSeo
         seo={seo}
         path="/paid-ads"

@@ -58,7 +58,7 @@ const FALLBACK_FAQ = {
 
 export default function WebsiteAndCro({ faq }) {
   return (
-    <div className="bg-dark">
+    <div className="website-and-cro-page">
       <Topbar />
       <Offcanvas />
 

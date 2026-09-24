@@ -2,14 +2,18 @@ import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/social-content/Hero";
-import TheWork from "../components/social-content/TheWork";
-import WrongPlatform from "../components/social-content/WrongPlatform";
-import Platforms from "../components/social-content/Platforms";
-import HowWeWork from "../components/social-content/HowWeWork";
-import WhatWeMake from "../components/social-content/WhatWeMake";
-import ThreeWays from "../components/social-content/ThreeWays";
-import Metrics from "../components/social-content/Metrics";
+import Hero from "../components/search/Hero";
+import Results from "../components/search/Results";
+import WhySearch from "../components/search/WhySearch";
+import TheShift from "../components/search/TheShift";
+import Layers from "../components/search/Layers";
+import HowWeWork from "../components/search/HowWeWork";
+import WhatWeMeasure from "../components/search/WhatWeMeasure";
+import ThreeWays from "../components/search/ThreeWays";
+import WhyItMatters from "../components/brand/WhyItMatters";
+import BrandsBuilt from "../components/brand/BrandsBuilt";
+import HowWeSee from "../components/brand/HowWeSee";
+import QuoteBand from "../components/brand/QuoteBand";
 import SooSocial from "../components/home/SooSocial";
 import PageFaq from "../components/PageFaq";
 import Form from "../components/home/Form";
@@ -22,7 +26,7 @@ import { pageStaticProps } from "../utils/pageSeo";
 // tell the difference -- the moment a real set is published it wins and this
 // block is never read again.
 const FALLBACK_FAQ = {
-  pageKey: "social-content",
+  pageKey: "search",
   kicker: "Still Having Queries ?",
   heading: "Frequently Asked Questions",
   footerText: "Ask Your Queries...",
@@ -50,32 +54,35 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function SocialContent({ faq, seo }) {
+export default function CaseStudy({ faq, seo }) {
   return (
-    <div className="social-content-page">
+    <div className="case-study-page">
       <PageSeo
         seo={seo}
-        path="/social-content"
+        path="/case-study"
         fallback={{
-          title: "Social Media & Content | Viralon",
+          title: "SEO & Search | Viralon",
           description:
-            "Social content built for the platform it runs on, measured on what it brings in.",
+            "Search work judged on enquiries and revenue, not rankings screenshots.",
         }}
       />
       <Topbar />
       <Offcanvas />
       <Hero />
-      <TheWork />
-      <WrongPlatform />
-      <Platforms />
+      <Results />
+      <WhySearch />
+      <TheShift />
+      <Layers />
       <HowWeWork />
-      <WhatWeMake />
+      <WhatWeMeasure />
       <ThreeWays />
-      <Metrics />
 
 
            <SooSocial />
-    
+      
+          
+      
+      
             <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
       
              <Form variant="light" />
@@ -89,4 +96,4 @@ export default function SocialContent({ faq, seo }) {
 // FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
 // the page's own path. Returns null when nothing is published under "search",
 // and <PageFaq /> then renders nothing at all.
-export const getStaticProps = pageStaticProps("social-content");
+export const getStaticProps = pageStaticProps("search");
