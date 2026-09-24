@@ -14,7 +14,7 @@ import LatestBlogs from "../components/common/LatestBlogs";
 import PageSeo from "../components/PageSeo";
 import { pageStaticProps } from "../utils/pageSeo";
 import HaveLook from "../components/brand/HaveLook";
-import WhatWeMake from "../components/brand/WhatWeMake";
+import WhatWeMake from "../components/brand/WhatweMake";
 
 // Shown until someone publishes a "brand" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
