@@ -20,9 +20,9 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://viralon.in";
    List-Unsubscribe header instead, where Gmail turns it into its own
    "Unsubscribe" button beside the sender name and mailbox providers look for
    it before deciding a bulk mail is not spam. */
-// Mail can only load an image over a public URL, and Gmail and Outlook both
-// refuse SVG -- so this is the wordmark PNG already live on the site.
-const LOGO = `${SITE}/assets/images/logo.png`;
+// Mail can only load an image over a public URL, so this is the wordmark
+// already live on the site.
+const LOGO = `${SITE}/assets/images/brand-logo.png`;
 
 function sendWelcome(email) {
   if (!email || !mailConfigured) return;
@@ -33,11 +33,7 @@ function sendWelcome(email) {
   <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
     <tr>
       <td style="background:#5138EE;background-image:linear-gradient(90deg,#5138EE,#7C5CFF);padding:26px 32px;">
-        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-          <td style="background:#ffffff;border-radius:10px;padding:11px 16px;">
-            <img src="${LOGO}" width="118" alt="Viralon" style="display:block;border:0;outline:none;width:118px;max-width:118px;height:auto;" />
-          </td>
-        </tr></table>
+        <img src="${LOGO}" width="76" alt="Viralon" style="display:block;border:0;outline:none;width:76px;max-width:76px;height:auto;" />
         <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:18px;">You're on the list</div>
       </td>
     </tr>

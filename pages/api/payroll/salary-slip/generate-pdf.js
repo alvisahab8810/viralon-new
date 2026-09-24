@@ -90,7 +90,7 @@ export default async function handler(req, res) {
   <body>
     <div class="header">
       <div>
-        <img src="https://viralon.in/themes/viralon/images/logo.png" alt="Company Logo" />
+        <img src="https://viralon.in/assets/images/brand-logo.png" alt="Company Logo" />
       </div>
       <div class="company-details">
         <strong>Viralon Pvt Ltd</strong><br/>

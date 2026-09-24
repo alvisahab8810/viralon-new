@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         </head>
         <body>
           <div class="header">
-            <img src="https://your-company-logo-url" />
+            <img src="https://viralon.in/assets/images/brand-logo.png" />
             <h2>Salary Slip</h2>
             <p>${slip.month}, ${slip.year}</p>
           </div>

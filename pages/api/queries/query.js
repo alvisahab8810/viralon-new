@@ -19,11 +19,11 @@ const escapeRe = (v) => String(v).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
    person has a record of it and can correct anything by replying -- the reply
    lands on info@viralon.in, where the team already works.
    Plain text goes with the HTML for clients that refuse it. */
-// Mail can only load an image over a public URL, and Gmail and Outlook both
-// refuse SVG -- so the header uses the wordmark PNG that is already live on
-// the site, the same file hq.viralon.in puts on its lead mails.
+// Mail can only load an image over a public URL, so the header points at the
+// wordmark already live on the site -- the same file hq.viralon.in puts on
+// its lead mails.
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://viralon.in";
-const LOGO = `${SITE}/assets/images/logo.png`;
+const LOGO = `${SITE}/assets/images/brand-logo.png`;
 
 const esc = (v) =>
   String(v == null ? "" : v)
@@ -61,11 +61,7 @@ function sendThankYou(lead) {
   <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
     <tr>
       <td style="background:#5138EE;background-image:linear-gradient(90deg,#5138EE,#7C5CFF);padding:26px 32px;">
-        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-          <td style="background:#ffffff;border-radius:10px;padding:11px 16px;">
-            <img src="${LOGO}" width="118" alt="Viralon" style="display:block;border:0;outline:none;width:118px;max-width:118px;height:auto;" />
-          </td>
-        </tr></table>
+        <img src="${LOGO}" width="76" alt="Viralon" style="display:block;border:0;outline:none;width:76px;max-width:76px;height:auto;" />
         <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:18px;">We have your enquiry</div>
       </td>
     </tr>
