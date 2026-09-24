@@ -60,9 +60,13 @@ function sendThankYou(lead) {
 <div style="background:#F4F4F6;padding:28px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
   <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
     <tr>
-      <td style="background:#5138EE;background-image:linear-gradient(90deg,#5138EE,#7C5CFF);padding:26px 32px;">
-        <img src="${LOGO}" width="76" alt="Viralon" style="display:block;border:0;outline:none;width:76px;max-width:76px;height:auto;" />
-        <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:18px;">We have your enquiry</div>
+      <td style="background:#19132F;padding:26px 32px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+          <td valign="middle" width="76" style="width:76px;">
+            <img src="${LOGO}" width="76" alt="Viralon" style="display:block;border:0;outline:none;width:76px;max-width:76px;height:auto;" />
+          </td>
+          <td valign="middle" align="right" style="color:#ffffff;font-size:22px;font-weight:700;line-height:28px;padding-left:16px;">We have your enquiry</td>
+        </tr></table>
       </td>
     </tr>
 
