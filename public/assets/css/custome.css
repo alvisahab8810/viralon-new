@@ -11736,6 +11736,12 @@ section#cs-work {
     object-fit: cover;
 }
 
+/* The admin's wide picture is the one that shows; the portrait phone crop
+   takes over at 560, where the card itself turns portrait. */
+.cs-ran .csr-bg--mobile {
+    display: none;
+}
+
 .cs-ran .csr-card-body {
     position: relative;
     z-index: 2;
@@ -13283,3 +13289,4 @@ section#cs-in-motion {
 section#cs-how-it-ran {
     padding-bottom: 100px;
 }
+
