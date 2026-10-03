@@ -2030,7 +2030,7 @@ figure.image-2 img {
 
 .blog-area .item .info .meta ul li i {
     margin-right: 5px;
-    color: #8668FF;
+    color: #FE4601;
     font-weight: 3;
     font-size: 17px;
     position: relative;
@@ -2084,7 +2084,7 @@ figure.image-2 img {
 .blog-area .item .date span {
     display: block;
     font-size: 14px;
-        background: #8668FF;
+        background: #FE4601;
     color: white;
     padding: 0 19px;
     border-radius: 0 0 8px 8px;
@@ -10716,13 +10716,20 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     background: #0E0920;
 }
 
+section#cs-landed {
+    background: #fe4601;
+    padding-bottom: 100px;
+}
+
 /* The page sits inside the site's own .container, so the width and the side
    gutters are the ones every other page uses; this only splits that column
    into the content and the rail. */
 .cs-body {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 236px;
+    /* The rail's own column is its full 270px, so the rail can sit inside it
+       rather than being lifted out of the flow -- see .cs-toc. */
+    grid-template-columns: minmax(0, 1fr) 270px;
     gap: 40px;
     align-items: start;
 }
@@ -10733,14 +10740,24 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 /* ---- the rail --------------------------------------------------------- */
 
+/* Sticky rather than fixed: the rail belongs to the case study, so it has to
+   stop where the study does. Fixed, it carried on over the video wall and the
+   FAQ below, which are the site's shared furniture and have nothing for it to
+   point at. Sticky keeps it pinned for the whole of .cs-main and then lets it
+   scroll away with its own column, which ends with the last section.
+
+   It needs its parent's align-items: start to have anywhere to travel, and its
+   own column to sit in -- that is why the column is 270px rather than 236. */
 .cs-toc {
     position: sticky;
-    top: 100px;
-    background: #171033;
+    top: 91px;
+    align-self: start;
+       background: #0E0920;
     border: 1px solid rgba(255, 255, 255, .07);
     border-radius: 0px;
     overflow: hidden;
-    max-width: 270px;
+    max-width: 100%;
+    width: 270px;
 }
 
 /* The title is a band across the top of the panel, not a line of text
@@ -10749,13 +10766,13 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     margin: 0;
     padding: 12px 16px;
     background: #ffffff1a;
-    font-size: 14.5px;
+    font-size: 14px;
     text-align: center;
     line-height: 14px;
     font-weight: 700;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    color: #C9C3E4;
+    color: #fff;
 }
 
 .cs-toc .cst-list {
@@ -10765,7 +10782,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 }
 
 .cs-toc .cst-list li + li .cst-link {
-    border-top: 1px solid rgba(255, 255, 255, .06);
+    /* border-top: 1px solid rgba(255, 255, 255, .06); */
 }
 
 .cs-toc .cst-link {
@@ -10773,10 +10790,10 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     align-items: center;
     gap: 10px;
     padding: 10px 13px;
-    font-size: 15px;
-    line-height: 17px;
+    font-size: 16px;
+    line-height: 162%;
     font-weight: 500;
-    color: #B9B4CC;
+    color: #fff;
     text-decoration: none;
     transition: color .2s ease, background .2s ease;
 }
@@ -10784,11 +10801,19 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 /* The section's own number, the same one printed above its heading, so the
    rail and the page agree. */
 .cs-toc .cst-n {
-    flex: 0 0 18px;
+    /* flex: 0 0 18px; */
     font-size: 12px;
+    height: 25px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
     font-weight: 700;
+    border-radius: 5px;
     letter-spacing: .4px;
-    color: #8668FF;
+    width: 23px;
+    background: #8668ff17;
+    color: #8668FF !important;
 }
 
 .cs-toc .cst-label {
@@ -10798,7 +10823,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .cs-toc .cst-chev {
     flex: 0 0 auto;
-    color: #6C63A8;
+    color: #fff;
 }
 
 .cs-toc .cst-link:hover {
@@ -10808,7 +10833,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 /* The section currently under the reading line. */
 .cs-toc .cst-link.is-on {
-    color: #ffffff;
+    color: #fff;
     background: rgba(255, 255, 255, .05);
 }
 
@@ -10855,7 +10880,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     justify-content: space-between;
     gap: 24px;
     flex-wrap: wrap;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
 .cs-hero .csh-brand {
@@ -10927,6 +10952,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 .cs-hero .csh-intro {
     max-width: 660px;
     margin: 22px auto 0;
+    font-weight: 400;
     font-size: 18.5px;
     line-height: 29px;
     text-align: center;
@@ -10939,7 +10965,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     position: relative;
     max-width: 930px;
     margin: 38px auto 0;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
     height: 447px;
     /* aspect-ratio: 16 / 9; */
@@ -11052,7 +11078,8 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
    ========================================================================== */
 
 .cs-main .cs-section {
-    padding: 86px 0 0;
+    padding: 100px 0 0;
+    background: #fff;
 }
 
 .cs-main .cs-section:last-child {
@@ -11062,15 +11089,16 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 /* --- the "05 / THE PROBLEM" strip and the heading under it ---------------- */
 
 .cs-main .cs-head {
-    max-width: 820px;
-    margin-bottom: 30px;
+    max-width: 930px;
+    margin-bottom: 50px!important;
+    margin:auto;
 }
 
 .cs-main .csd-eyebrow {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 4px;
+    margin: 0 0 25px!important;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -11099,7 +11127,11 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     font-size: 55px;
     line-height: 105%;
     font-weight: 700;
-    color: #ffffff;
+    color: #000;
+}
+
+.cs-main .cs-work .csd-eyebrow{
+    margin-bottom: 10px!important;
 }
 
 .cs-main .csd-accent {
@@ -11110,7 +11142,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     margin: 16px 0 0;
     font-size: 16px;
     line-height: 22px;
-    color: #fff;
+    color: #000;
 }
 
 /* The light band and the orange band each re-ink the same strip. */
@@ -11151,22 +11183,42 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
    right-hand column runs. */
 
 .cs-motion .csm-grid {
-    display: grid;
-    grid-template-columns: 670px 302px;
-    justify-content: center;
-    column-gap: 18px;
-    row-gap: 26.45px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    max-width: 930px;
+    margin:auto;
+    list-style: none;
+}
+
+/* Two halves of the row. The side column stacks what is left of the clips and
+   is held to the wide one's height, so the block stays flush top and bottom
+   however many tiles the study loaded. */
+.cs-motion .csm-col {
+    flex: 0 0 calc(70% - 7px);
+    max-width: calc(70% - 7px);
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.cs-motion .csm-tile {
-    min-width: 0;
+.cs-motion .csm-col-side {
+    display: flex;
+    flex-direction: column;
+    gap: 7.45px;
+    height: 394.45px;
+    max-width:30%;
 }
 
-.cs-motion .csm-tile:first-child {
-    grid-row: span 2;
+.cs-motion .csm-col-side .csm-tile {
+    flex: 1;
+    min-height: 0;
+}
+
+.cs-motion .csm-tile {
+    min-width: 0;
 }
 
 .cs-motion .csm-frame {
@@ -11179,11 +11231,18 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     background: #17102F;
 }
 
-/* The wide one is ruled by its two-row span, so its own ratio is dropped:
-   whatever the tiles beside it add up to is its height. */
-.cs-motion .csm-tile:first-child .csm-frame {
+/* Both halves fill the width they are given; the wide one is as tall as the
+   stack beside it. */
+.cs-motion .csm-col .csm-frame {
     width: 100%;
+}
+
+.cs-motion .csm-col-main .csm-frame {
     height: 394.45px;
+}
+
+.cs-motion .csm-col-side .csm-frame {
+    height: 100%;
 }
 
 .cs-motion .csm-still,
@@ -11342,7 +11401,8 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     align-items: flex-start;
     justify-content: space-between;
     gap: 40px;
-    max-width: none;
+    max-width: 930px;
+    margin: auto;
 }
 
 .cs-main .cs-head-split .csd-head-main {
@@ -11364,7 +11424,9 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 .cs-teams .cs-head-split {
     align-items: center;
 }
-
+section#cs-work {
+    padding-bottom: 100px;
+}
 .cs-problem .csp-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -11372,6 +11434,8 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     margin: 0;
     padding: 0;
     list-style: none;
+        max-width: 930px;
+    margin: auto;
 }
 
 .cs-problem .csp-frame {
@@ -11423,21 +11487,23 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .cs-approach .csa-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     margin: 0;
     padding: 0;
+    max-width: 930px;
+    margin: auto;
     list-style: none;
 }
 
 .cs-approach .csa-card {
     display: flex;
     flex-direction: column;
-    min-height: 300px;
+    min-height: 445px;
     padding: 22px 22px 26px;
     background: #171033;
     border: 1px solid rgba(255, 255, 255, .07);
-    border-radius: 16px;
+    border-radius: 17px;
 }
 
 .cs-approach .csa-light {
@@ -11455,9 +11521,9 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 .cs-approach .csa-num {
     display: block;
     margin: 0px 0 0;
-    font-size: 100px;
+    font-size: 171px;
     text-align: center;
-    line-height: 82px;
+    line-height: 150px;
     font-weight: 700;
     letter-spacing: -2px;
     color: rgba(255, 255, 255, .09);
@@ -11518,6 +11584,21 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
+    /* The row starts level with the heading -- the same 930px column the heads
+       are centred in, so the first card and the first letter share an edge --
+       but it is a padding, not a narrower box: the cards run on past the right
+       of that column to the band's own edge, and scrolling fills the strip on
+       the left with the cards that have gone by.
+
+       scroll-padding has to repeat the figure. Snapping is mandatory, so with
+       the padding alone the browser parks the first card against the very left
+       of the scroller on load and the alignment is lost before it is seen;
+       this moves the snap line to the same place the padding does.
+
+       max() keeps both at 0 once the band itself is narrower than 930. */
+    padding-left: max(0px, calc((100% - 930px) / 2));
+    padding-right: 0;
+    scroll-padding-left: max(0px, calc((100% - 930px) / 2));
 }
 
 .cs-teams .cstm-track::-webkit-scrollbar {
@@ -11617,6 +11698,8 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     display: flex;
     flex-direction: column;
     gap: 22px;
+        max-width: 930px;
+    margin: auto;
 }
 
 .cs-ran .csr-card {
@@ -11624,24 +11707,24 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     display: flex;
     align-items: center;
     aspect-ratio: 1800 / 671;
-    border-radius: 28px;
+    border-radius: 20px;
     overflow: hidden;
-    background: linear-gradient(115deg, #7C3FE4 0%, #A46BF5 100%);
+    /* background: linear-gradient(115deg, #7C3FE4 0%, #A46BF5 100%); */
 }
 
 .cs-ran .csr-card.is-flipped {
     justify-content: flex-end;
-    background: linear-gradient(115deg, #3B7BE0 0%, #6FA8F2 100%);
+    /* background: linear-gradient(115deg, #3B7BE0 0%, #6FA8F2 100%); */
 }
 
 .cs-ran .csr-purple,
 .cs-ran .csr-purple.is-flipped {
-    background: linear-gradient(115deg, #7C3FE4 0%, #A46BF5 100%);
+    /* background: linear-gradient(115deg, #7C3FE4 0%, #A46BF5 100%); */
 }
 
 .cs-ran .csr-blue,
 .cs-ran .csr-blue.is-flipped {
-    background: linear-gradient(115deg, #3B7BE0 0%, #6FA8F2 100%);
+    /* background: linear-gradient(115deg, #3B7BE0 0%, #6FA8F2 100%); */
 }
 
 .cs-ran .csr-bg {
@@ -11671,7 +11754,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
-    font-size: 19px;
+    font-size: 27px;
     font-weight: 600;
     line-height: 140%;
     color: #ffffff;
@@ -11687,7 +11770,7 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .cs-ran .csr-card-title {
     margin: 0 0 14px;
-    font-size: 27px;
+    font-size: 36px;
     line-height: 130%;
     font-weight: 700;
     color: #ffffff;
@@ -11696,9 +11779,10 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .cs-ran .csr-card-desc {
     margin: 0;
-    font-size: 17px;
-    line-height: 27px;
-    color: rgba(255, 255, 255, .92);
+    font-size: 25.35px;
+    line-height: 34.5px;
+    font-weight: 400;
+    color: #fff;
 }
 
 /* Sunk into the artwork behind the copy, on the side the copy has left. */
@@ -11707,8 +11791,8 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     top: 8%;
     right: 3.5%;
     z-index: 1;
-    font-size: 72px;
-    line-height: 1;
+    font-size: 171px;
+    line-height: 150px;
     font-weight: 700;
     letter-spacing: -2px;
     color: rgba(255, 255, 255, .22);
@@ -11849,12 +11933,12 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     margin-top: 86px;
     padding: 64px 40px 68px;
     background: #FE4601;
-    border-radius: 28px;
+    /* border-radius: 28px; */
     text-align: center;
 }
 
 .cs-landed .cs-head {
-    max-width: 780px;
+    max-width: 930px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -11886,20 +11970,18 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
 
 .cs-landed .csl-label {
     display: block;
-    font-size: 16px;
+    font-size: 25.6px;
     font-weight: 700;
-    line-height: 22px;
+    line-height: 30px;
     color: #ffffff;
 }
-
 .cs-landed .csl-sub {
     display: block;
     margin-top: 3px;
-    font-size: 11px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 32px;
     color: rgba(255, 255, 255, .82);
 }
-
 /* The figures: pale pills sat side by side under the chain, sized by their
    own content rather than stretched across the band. */
 .cs-landed .csl-stats {
@@ -11992,4 +12074,1212 @@ body.vlp-enquiry-open .vlp-panel .Toastify { display: block !important; }
     color: #ffffff;
     opacity: .9;
     transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Sample page -- hero (components/sample/Hero.js)
+   A standalone copy of the band /paid-ads and /social-content wear: the same
+   #0E0920 floor, orange title, gradient hairlines and gradient strokes between
+   six stat columns -- but declared in full here rather than borrowed, so this
+   page can be retuned without touching either of those two.
+   Every selector is prefixed .sample-hero because the page is wrapped in
+   .bg-dark, whose `h1..h6 { color: var(--white) }` in style.css would
+   otherwise turn the orange title white.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.sample-hero {
+    background: #0E0920;
+    padding: 50px 0 90px;
+}
+
+.sample-hero .smh-title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 128.8px;
+    line-height: 105%;
+    letter-spacing: -0.02em;
+    color: #FE4601;
+}
+
+/* The two hairlines, one under the title and one above the stats: 996.8 wide,
+   1 tall, stops 0E0920 -> FE4601 at 36% and 71% -> 0E0920, so each fades into
+   the band at both ends rather than stopping dead. */
+.sample-hero .smh-rule {
+    margin: 50px auto 0;
+    max-width: 996.8px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        #0E0920 0%,
+        #FE4601 36%,
+        #FE4601 71%,
+        #0E0920 100%
+    );
+}
+
+/* Only the lower line needs breathing room off the note above it. */
+.sample-hero .smh-note + .smh-rule {
+    margin-top: 46px;
+}
+
+.sample-hero .smh-quote {
+    margin: 34px auto 0;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.sample-hero .smh-quote blockquote {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
+.sample-hero .smh-attrib {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 25.6px;
+    letter-spacing: 0.2px;
+    color: #FE4601;
+}
+
+.sample-hero .smh-note {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 14px;
+    color: #fff;
+    font-family: 'SF Pro Display';
+    letter-spacing: -0.22px;
+}
+
+/* Six figures do not fit the 1136 container at this type scale -- the labels
+   wrap. The row therefore steps outside the container: centred on the viewport
+   and allowed up to 1400, columns sized to their own text, nothing wrapping.
+   Below 1240 it folds back inside (responsive.css), where wrapping is fine. */
+.sample-hero .smh-stats {
+    display: flex;
+    justify-content: center;
+    margin: 44px auto 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    width: min(1400px, calc(100vw - 48px));
+    list-style: none;
+}
+
+.sample-hero .smh-stat {
+    position: relative;
+    flex: 0 1 auto;
+    padding: 0 26px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* The column stroke: 1 wide, fading to the band colour at both ends so it
+   overhangs the text rather than boxing it. A pseudo-element because a border
+   cannot carry a gradient. Between columns only, never on the outer edges. */
+.sample-hero .smh-stat + .smh-stat::before {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 150px;
+    background: linear-gradient(
+        180deg,
+        #0E0920 0%,
+        #FE4601 35%,
+        #FE4601 70%,
+        #0E0920 100%
+    );
+}
+
+.sample-hero .smh-figure {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    color: #FE4601;
+}
+
+.sample-hero .smh-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'SF Pro Display';
+    color: #ffffff;
+}
+
+/* The phone-only panel that carries the note and the source. Hidden above 560
+   by .desktop-none; everything that dresses it lives in responsive.css. */
+.sample-hero .smh-badge {
+    display: none;
+}
+
+/* ==========================================================================
+   Sample page -- the card rail under the hero (components/sample/Results.js)
+   Standalone: the band reads like the /paid-ads results row, but every value
+   is declared here so this page can be retuned on its own. Two things differ
+   from that row -- the artwork sits across the top of the card instead of on
+   its floor, and the cards are in a snapping scroller rather than a grid, so
+   the row is a slider at every width.
+   Every selector is prefixed .smp-results so the light band cannot be washed
+   out by a page-level colour rule.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-results {
+    background: #EFEFF0;
+    padding: 100px 0 100px;
+}
+
+.smp-results .smr-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.smp-results .smr-heading {
+    margin: 0 0 50px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.smp-results .smr-accent {
+    color: #FE4601;
+}
+
+/* The rail. `scrollbar-width: none` and the -webkit rule below hide the bar:
+   the cut-off card on the right is what says there is more, as in the frame. */
+.smp-results .smr-track {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0 0 4px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.smp-results .smr-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* A fixed card width rather than a share of the row: four fit and the fifth
+   is cut, whatever the container is, which is what makes it read as a rail. */
+.smp-results .smr-card {
+    display: flex;
+    flex: 0 0 300px;
+    flex-direction: column;
+    max-width: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(11, 11, 15, 0.06);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* A fixed height so the row of pictures lines up even when the files do not
+   share an aspect ratio; the image is cropped to it rather than letterboxed. */
+.smp-results .smr-art {
+    position: relative;
+    height: 230px;
+    background: #E4E4E6;
+}
+
+/* The picture is rounded here rather than clipped by .smr-art, because the
+   date tab hangs past that box's bottom edge and an overflow on it was
+   cutting the tab in half. */
+.smp-results .smr-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+    object-fit: cover;
+}
+
+/* The date tab straddles the bottom edge of the picture, so it belongs to the
+   artwork and the copy at once. */
+.smp-results .smr-date {
+    position: absolute;
+    right: 16px;
+    bottom: -14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 38px;
+    border-radius: 6px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(11, 11, 15, 0.14);
+}
+
+.smp-results .smr-day {
+    padding: 4px 0 3px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #0B0B0F;
+}
+
+.smp-results .smr-month {
+    padding: 2px 0 3px;
+    background: #FE4601;
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* Column, and the pill pushed to the floor by the margin below, so cards with
+   a shorter line still end their buttons on one line across the row. */
+.smp-results .smr-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 22px 20px 22px;
+}
+
+.smp-results .smr-kicker {
+    margin: 0;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0B0B0F;
+}
+
+.smp-results .smr-figure {
+    margin: 8px 0 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 32px;
+    color: #FE4601;
+}
+
+.smp-results .smr-line {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1D1D1F;
+}
+
+.smp-results .smr-client {
+    margin: 18px 0 16px;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1D1D1F;
+}
+
+.smp-results .smr-client-name {
+    color: #1D1D1F;
+}
+
+.smp-results .smr-cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: auto;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: #754CDA;
+    font-weight: 600;
+    font-size: 12.5px;
+    line-height: 16px;
+    white-space: nowrap;
+    color: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.smp-results .smr-cta:hover,
+.smp-results .smr-cta:focus {
+    background: #5F3BBB;
+    color: #ffffff;
+}
+
+
+.smp-results .smr-arrow {
+    font-size: 11px;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Sample page -- the orange statement band (components/sample/Statement.js)
+   The page already carries an orange statement band -- the one on .pa-dash --
+   so this one is set at exactly its values: same floor, same 87/97 heading,
+   same 32/35 line under it. Only the markup differs, because this band breaks
+   its line into two paragraphs rather than one note.
+   The values are written out rather than borrowed, like the rest of
+   components/sample, so this page can be retuned on its own; every selector is
+   prefixed .smp-statement because the type is white on orange and must not be
+   reached by a page-level colour rule.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-statement {
+    background: #FE4601;
+    padding: 100px 0 100px;
+}
+
+.smp-statement .sms-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 87px;
+    line-height: 97px;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+}
+
+/* The passage under the claim, set well clear of it so it does not read as the
+   heading's last line. */
+.smp-statement .sms-body {
+    margin: 46px 0 0;
+    font-size: 32px;
+    line-height: 35px;
+    color: #ffffff;
+    font-family: 'SF Pro Display';
+}
+
+/* Between the two paragraphs the gap is a blank line, not a fresh block: they
+   are one passage broken in the middle. */
+.smp-statement .sms-body + .sms-body {
+    margin-top: 28px;
+}
+
+/* ==========================================================================
+   Sample page -- "The work / Images" (components/sample/TheWork.js)
+   Three full-bleed marquee rows. The heading keeps the container; the rows run
+   edge to edge, so they are siblings of it rather than children.
+   Every value here is the one the existing marquee uses (.brand-marquee, and
+   its lighter .social-work variant), written out rather than borrowed so this
+   page can be retuned on its own. The band is white with a dark heading, which
+   is how /social-content shows it.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-work {
+    background: #ffffff;
+    padding: 100px 0 100px;
+    font-family: var(--font-heading);
+    overflow: hidden;
+}
+
+.smp-work .smw-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.smp-work .smw-heading {
+    margin: 0 0 50px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #1D1D1F;
+}
+
+.smp-work .smw-accent {
+    color: #FE4601;
+}
+
+.smp-work .smw-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.smp-work .smw-row {
+    overflow: hidden;
+}
+
+/* `width: max-content` stops the flex line from wrapping or shrinking: the
+   track has to be its full natural length for -50% to equal exactly one copy.
+   `will-change` keeps the whole strip on its own compositor layer, which is
+   what makes a track this wide move without tearing. */
+.smp-work .smw-track {
+    display: flex;
+    width: max-content;
+    animation-name: smw-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* Reversing the same keyframes rather than writing a second set, so both
+   directions stay locked to one definition of "one copy". */
+.smp-work .smw-track-rev {
+    animation-direction: reverse;
+}
+
+/* Paused rather than slowed, so a tile someone is looking at stays put. */
+.smp-work .smw-row:hover .smw-track {
+    animation-play-state: paused;
+}
+
+/* The trailing margin is the row's spacing -- see the note in the component
+   about why this cannot be a flex `gap`. */
+.smp-work .smw-item {
+    flex: 0 0 auto;
+    margin-right: 18px;
+}
+
+@keyframes smw-scroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* A continuously moving strip is exactly what this setting is for. The rows
+   still read, they just stop travelling. */
+@media (prefers-reduced-motion: reduce) {
+    .smp-work .smw-track {
+        animation: none;
+    }
+    .smp-work .smw-row {
+        overflow-x: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   The two picture rows. Two variables drive them. --smw-work-h is the row
+   height, and --smw-work-w is the width of a stacked column, which cannot be
+   derived from the height the way the tall tiles' width is: the halves are
+   exported at two different widths (324 and 287 against the same 353 height),
+   so letting them size themselves would leave one column narrower than the
+   rest and put a notch in the strip. Fixing the width and cropping to fill is
+   what keeps the row's rhythm even. Both step down together in responsive.css.
+   -------------------------------------------------------------------------- */
+.smp-work .smw-row-work {
+    --smw-work-h: 480px;
+    --smw-work-w: 216px;
+    --smw-work-gap: 10px;
+}
+
+.smp-work .smw-row-work .smw-item {
+    height: var(--smw-work-h);
+}
+
+/* Height-driven: the tile keeps its 413x720 ratio and takes whatever width
+   that needs. The ratio is declared rather than left to the file, because
+   `width: auto` on an image that has not arrived yet is zero: the tall tiles
+   would start the row collapsed and shove the strip sideways as each one
+   decoded. */
+.smp-work .smw-row-work .smw-tall {
+    display: block;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 413 / 720;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+/* `min-height: 0` on the halves because a flex item defaults to min-content:
+   without it each image would refuse to go below its own natural height and
+   the column would push past the row. */
+.smp-work .smw-row-work .smw-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--smw-work-gap);
+    width: var(--smw-work-w);
+    height: 100%;
+}
+
+.smp-work .smw-row-work .smw-stack img {
+    display: block;
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   The third row, the brand tiles. The box is fixed at 210x189 from the design.
+   The artwork is 315x284, the same ratio, so `cover` has nothing to crop -- it
+   is there to hold the shape if a later export comes in slightly off.
+   -------------------------------------------------------------------------- */
+.smp-work .smw-row-brands {
+    --smw-brand-w: 210px;
+    --smw-brand-h: 189px;
+}
+
+.smp-work .smw-row-brands .smw-item {
+    height: var(--smw-brand-h);
+}
+
+.smp-work .smw-row-brands .smw-brand {
+    display: block;
+    width: var(--smw-brand-w);
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   Sample page -- the four diagnostic cards (components/sample/Parts.js)
+   The home page's .broken-section composition: dark band, heading left, the
+   grey line ranged right against it, cards under both. Its values are used
+   as they are -- the 55/60 heading, the 24px grey intro, the violet card
+   title -- written out here so this page can be retuned on its own.
+   The one real difference is the row: four cards in a grid that sits still,
+   not a rail. It only becomes a slider on a phone (responsive.css).
+   Every selector is prefixed .smp-parts because the band is dark and the
+   card titles must not be reached by a page-level colour rule.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-parts {
+    background: #0E0920;
+    padding: 100px 0 100px;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+/* The heading and the line are set to the same baseline rather than centred on
+   each other: the line is a note against the claim, not a second column. */
+.smp-parts .smpt-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+.smp-parts .smpt-eyebrow {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.smp-parts .smpt-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.smp-parts .smpt-accent {
+    color: #FE4601;
+}
+.smp-parts article.smpt-card {
+    background: #16163C;
+    border-radius: 20px!important;
+}
+.smp-parts .smpt-intro {
+    flex: 0 1 588px;
+    margin-bottom: 0;
+    font-family: 'SF Pro Display';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 126%;
+    text-align: right;
+    color: #fff;
+}
+
+.smp-parts .smpt-track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px;
+    align-items: start;
+}
+
+/* The artwork is square here rather than the home page's 372x502, because four
+   cards across a row leave no height for a portrait frame. The ratio is
+   declared rather than left to the file, so the row does not reflow as each
+   image decodes. */
+.smp-parts .smpt-media {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    background: #191233;
+}
+
+.smp-parts .smpt-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.smp-parts .smpt-card:hover .smpt-media img {
+    transform: scale(1.05);
+}
+
+.smp-parts .smpt-card-title {
+    margin: 26px 0 12px;
+    padding: 0 20px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #8668FF;
+}
+
+.smp-parts .smpt-card-desc {
+    margin: 0;
+    padding: 0 20px;
+    padding-bottom: 30px;
+    font-size: 15.5px;
+    line-height: 21px;
+    color:#fff;;
+}
+
+/* ==========================================================================
+   Sample page -- "Ten Industries." (components/sample/Industries.js)
+   The composition /search runs as "Why search": heading across the full width,
+   then a column of copy beside a photograph. The type and the pill are that
+   section's -- 55/60 heading, 18px body, the violet button with its white disc
+   -- so the two bands read the same size wherever they appear. The values are
+   written out rather than borrowed, like the rest of components/sample, so this
+   page can be retuned on its own.
+   Two differences the frame asks for: the copy is plain paragraphs rather than
+   the two grey boxes, and the button sits at the floor of the column instead of
+   the top -- hence margin-top: auto rather than space-between.
+   Every selector is prefixed .smp-ind, because a page-level heading colour
+   would otherwise wash this light band out.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-ind {
+    --smi-purple: #754CDA;
+    background: #ffffff;
+    padding: 100px 0 100px;
+}
+
+/* The orange run leads the sentence here rather than sitting above it as an
+   eyebrow, so it is part of the heading and inherits its size. */
+.smp-ind .smi-heading {
+    margin: 0 0 44px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.smp-ind .smi-accent {
+    color: #FE4601;
+}
+
+.smp-ind .smi-grid {
+    display: grid;
+    grid-template-columns: 1fr 537px;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.smp-ind .smi-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.smp-ind .smi-body {
+    margin: 0 0 22px;
+    font-family: 'SF Pro Display';
+    font-size: 24px;
+    line-height: 150%;
+    color: #1D1D1F;
+}
+
+.smp-ind .smi-lead {
+    font-weight: 700;
+    color: #0B0B0F;
+}
+
+/* The pill is pushed to the floor of the column so it lines up with the bottom
+   of the picture however long the copy runs. */
+.smp-ind .smi-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 9px 9px 9px 36px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 21.6px;
+    line-height: 38.9px;
+    letter-spacing: -0.48px;
+    white-space: nowrap;
+    background: #8668FF;
+    color: #ffffff;
+    transition: filter .2s ease;
+}
+
+.smp-ind .smi-cta:hover {
+    filter: brightness(0.93);
+    color: #ffffff;
+}
+
+.smp-ind .smi-cta-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--smi-purple);
+}
+
+.smp-ind .smi-art {
+    overflow: hidden;
+    width: 537px;
+    height: 454px;
+    border-radius: 26px;
+}
+
+.smp-ind .smi-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   Sample page -- "What you get" (components/sample/WhatYouGet.js)
+   A violet card: the ticked list on the left, the photograph filling the right
+   half of the same card. The heading above it is set at this page's other
+   headings -- 55/60 with the orange run inline -- so the bands stack evenly.
+   The list is the frame's own measurement: 36px, 158% line, bold.
+   The white line is two exported vectors plus a straight run between them, all
+   three sharing one centre in --smg-line-x. The bottom vector is 697px wide
+   against a panel narrower than that on purpose: the panel's overflow cuts it
+   off where the photograph begins, which is the stop the frame shows.
+   Every selector is prefixed .smp-get, because the type is white on violet and
+   must not be reached by a page-level colour rule.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-get {
+    /* The frame's line geometry, doubled with the rest of the card: the
+       descent sits 28px in from the panel edge there, the vectors are 97x69
+       and 697x66, and the turns land on the descent's centre. */
+    --smg-line-x: 56px;
+    --smg-vec: 2;
+    background: #ffffff;
+    padding: 100px 0 100px;
+}
+
+.smp-get .smg-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+.smp-get .smg-heading {
+    margin: 0 0 44px;
+    max-width: 1100px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #0B0B0F;
+}
+
+.smp-get .smg-accent {
+    color: #FE4601;
+}
+.smp-get .smg-card {
+    display: grid;
+    grid-template-columns: 63% 37%;
+    align-items: stretch;
+    border-radius: 42px 42px 42px 42px;
+    background: radial-gradient(82% 82% at 10% 0%, #9471FF 0%, #6341B8 100%);
+}
+
+/* Rounded on the outer corners only, so the panel and the picture read as one
+   card rather than two boxes placed side by side. */
+.smp-get .smg-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 90px 56px 90px 104px;
+    /* border-radius: 42px 0 0 42px; */
+    /* background: radial-gradient(82% 82% at 10% 0%, #9471FF 0%, #6341B8 100%); */
+}
+
+.smp-get .smg-line {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Pulled left so the vector's turn -- it sits 93.6px along a 97px drawing --
+   lands on the line's centre; what is left of the horizontal run reaches the
+   panel edge and is cut there. */
+
+.smp-get .smg-line-top {
+    position: absolute;
+    top: 18px;
+    left: calc(var(--smg-line-x) - (60.6px - 3px) * var(--smg-vec));
+    display: block;
+    /* width: calc(97px * var(--smg-vec)); */
+    height: calc(69px * var(--smg-vec));
+}
+/* The straight descent between the two turns: nothing to export, so it is a
+   rule at the vectors' own width and colour. */
+
+
+.smp-get .smg-line-bot {
+    position: absolute;
+    bottom: 33px;
+    left: calc(var(--smg-line-x) - -30px * var(--smg-vec));
+    display: block;
+    width: calc(697px * var(--smg-vec));
+    max-width: none;
+    /* height: calc(66px * var(--smg-vec)); */
+}
+
+.smp-get .smg-list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.smp-get .smg-item {
+    display: flex;
+    align-items:center;
+    gap: 24px;
+}
+
+.smp-get .smg-tick {
+    flex: 0 0 auto;
+    /* Nudged to the first line's cap height rather than its box. */
+    /* margin-top: 23px;/ */
+}
+
+.smp-get .smg-tick svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+}
+
+.smp-get .smg-text {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 158%;
+    color: #ffffff;
+}
+
+.smp-get .smg-art {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.smp-get .smg-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   Sample page -- "Start with one question you cannot answer."
+   (components/sample/Audit.js)
+   The /analytics-and-tracking closing band, rebuilt as this page's own at that
+   band's exact values -- 84.4/85 heading, 19.2/30 note, the 239x48 pill -- and
+   with the same artwork, so the two read identically wherever they appear.
+   The picture is absolute and cropped by the section's overflow, which is how
+   it runs off the right edge; the container is lifted above it so the copy is
+   never covered.
+   Every rule carries .smp-audit, because the type is white on near-black and a
+   page-level heading colour must not reach it.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-audit {
+    position: relative;
+    overflow: hidden;
+    background: #0B0A1E;
+    padding: 120px 0;
+}
+
+.smp-audit .container {
+    position: relative;
+    z-index: 1;
+}
+
+.smp-audit .sma-art {
+    position: absolute;
+    right: 1px;
+    bottom: 0;
+    z-index: 0;
+    max-width: 684px;
+    height: auto;
+    pointer-events: none;
+}
+
+.smp-audit .sma-text {
+    max-width: 620px;
+}
+
+.smp-audit .sma-heading {
+    margin: 0 0 26px;
+    font-weight: 500;
+    font-size: 84.4px;
+    line-height: 85px;
+    letter-spacing: -3.46px;
+    color: #FFFFFF;
+}
+
+.smp-audit .sma-note {
+    margin: 0 0 38px;
+    max-width: 520px;
+    font-size: 19.2px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+/* 239 x 48 is the frame's own button. It is a fixed box rather than padding,
+   so the pill is the same size whatever the label is changed to. */
+.smp-audit .sma-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 239px;
+    height: 48px;
+    background: #FFFFFF;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #FE4601;
+    transition: filter 0.2s ease;
+}
+
+.smp-audit .sma-cta:hover,
+.smp-audit .sma-cta:focus {
+    filter: brightness(0.94);
+    color: #FE4601;
+}
+
+/* ==========================================================================
+   Sample page -- "What you get" (SEO / AEO / GEO)
+   (components/sample/Layers.js)
+   The /search layers band set as three ruled columns instead of three rows.
+   The type is that section's -- 27px eyebrow, 55/60 heading, 18px intro, 42px
+   names -- so the two read as the same component; the values are written out
+   rather than borrowed, like the rest of components/sample.
+   The rules between the columns are borders on the columns themselves rather
+   than drawn elements, so they are exactly as tall as the tallest column and
+   disappear with it when the grid collapses on a phone.
+   Every selector is prefixed .smp-layers, because the type is white on near
+   black and a page-level colour rule must not reach it.
+   Responsive steps live at the end of responsive.css.
+   ========================================================================== */
+.smp-layers {
+    background: #0E0920;
+    padding: 100px 0;
+}
+
+/* Heading column on the left, the intro set against it on the right and
+   centred on the heading block, as in the frame. */
+.smp-layers .sml-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 39%;
+    gap: 40px;
+    align-items: center;
+    margin: 0 0 90px;
+}
+
+.smp-layers .sml-eyebrow {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 25px;
+    color: #FE4601;
+}
+
+/* max-width holds the frame's three-line setting -- "Run Together." finishes
+   line one -- instead of letting the heading run the full column. */
+.smp-layers .sml-heading {
+    margin: 0;
+    max-width: 560px;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+}
+
+.smp-layers .sml-accent {
+    color: #FE4601;
+}
+
+.smp-layers .sml-intro {
+    margin: 0;
+    font-size: 18px;
+    line-height: 150%;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.smp-layers .sml-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+}
+
+.smp-layers .sml-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 0 40px;
+    text-align: center;
+}
+
+/* The rule belongs to the column it starts, so the first one has none. It is
+   the frame's own 2 x 214 strip: white through the middle and fading into the
+   band's background at both ends, which is why it is a gradient on a pseudo
+   element rather than a border. Centred on the column, so it stays put however
+   long the goals run. */
+.smp-layers .sml-col + .sml-col::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 214px;
+    background: linear-gradient(180deg, #0E0920 0%, #FFFFFF 32%, #FFFFFF 68%, #0E0920 100%);
+}
+
+.smp-layers .sml-name {
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 68px;
+    color: #FE4601;
+}
+.smp-layers .sml-goal {
+    max-width: 290px;
+    font-size: 24px;
+    line-height: 37px;
+    color: #FFFFFF;
+    font-weight: 400;
+}
+
+
+.sample-page .pa-measure{
+    padding-top: 100px;
+}
+
+
+.sample-page .smp-get {
+        padding: 0;
+        padding-bottom: 50px;
+    }
+
+
+   .cs-page .cs-hero {
+    padding: 50px 100px;
+    max-width: 1170px;
+    margin: auto;
+    padding-bottom: 0!important;
+}
+
+
+section#cs-problem {
+    background: #0e0920;
+    padding-bottom: 100px;
+}
+
+
+section#cs-problem .csd-title {
+    color: #ffffff;
+}
+
+
+.cs-main section#cs-approach {
+    background: #0e0920;
+    padding-bottom: 100px !important;
+    padding-top: 0;
+}
+
+
+.cs-main section#cs-approach .csd-title {
+    color: #ffffff;
+}
+section#cs-teams {
+        background: #EFEFF0;
+        padding-bottom: 100px;
+}
+
+section#cs-stack {
+    background: #EFEFF0;
+    /* margin-top: 100px; */
+    padding: 100px 0px;
+}
+
+.cs-head.cs-head-on-orange .cs-main .csd-eyebrow{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 25px !important;
+    font-size: 20px;
+    font-weight: 700;
+    jsutify-content: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+section#cs-landed  .csd-eyebrow{
+    justify-content: center;
+}
+
+section#cs-in-motion {
+    background: #0e0920;
+    padding-bottom: 100px;
+}
+
+.cs-page .cs-landed{
+    margin-top: 0;
+}
+
+.cs-page .form-section--light {
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+section#cs-how-it-ran {
+    padding-bottom: 100px;
 }

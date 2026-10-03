@@ -52,11 +52,22 @@ export default function InMotion({ section }) {
   return (
     <section className="cs-section cs-motion" id="cs-in-motion">
       <SectionHead section={section} />
-      <ul className="csm-grid">
-        {items.map((item, i) => (
-          <Tile item={item} key={i} />
-        ))}
-      </ul>
+      {/* Two halves rather than one run of tiles: the first clip takes the
+          left 50% on its own, everything after it stacks down the right 50%.
+          Each half is its own list so the tiles stay <li>s inside a <ul>. */}
+      <div className="csm-grid">
+        <ul className="csm-col csm-col-main">
+          <Tile item={items[0]} />
+        </ul>
+
+        {items.length > 1 ? (
+          <ul className="csm-col csm-col-side">
+            {items.slice(1).map((item, i) => (
+              <Tile item={item} key={i} />
+            ))}
+          </ul>
+        ) : null}
+      </div>
     </section>
   );
 }

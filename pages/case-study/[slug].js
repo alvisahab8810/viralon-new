@@ -59,13 +59,14 @@ function navSections(study) {
     if (!s.key) return true;
     const section = study?.[s.key];
     return section && section.enabled !== false;
-  }).map((s) => {
+  }).map((s, i) => {
     const section = s.key ? study[s.key] : null;
     return {
       id: s.id,
-      // Every line carries the number the section prints above its own
-      // heading; the intro has none of its own, so it carries nothing.
-      number: s.key ? section?.number || "" : "",
+      // The rail counts its own lines rather than printing the number stored
+      // on each section, so it starts at 01 on the intro and runs unbroken
+      // however many sections are switched off in the admin.
+      number: String(i + 1).padStart(2, "0"),
       label: section?.navLabel || section?.label || s.label,
     };
   });
@@ -84,7 +85,7 @@ export default function CaseStudyPage({ study, faq }) {
   const seo = study.seo || {};
 
   return (
-    <div className="cs-page bg-dark">
+    <div className="cs-page">
       <PageSeo
         seo={seo.title || seo.metaDescription ? seo : null}
         path={`/case-study/${study.slug}`}
@@ -97,7 +98,7 @@ export default function CaseStudyPage({ study, faq }) {
       <Topbar />
       <Offcanvas />
 
-      <div className="container">
+      <div className="container3">
         <div className="cs-body">
           <div className="cs-main">
             <Hero study={study} />

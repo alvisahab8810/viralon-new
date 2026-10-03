@@ -5060,6 +5060,8 @@ ul.import-list li {
         .pa-measure {
         padding: 0px 0!important;
         padding-bottom: 50px!important;
+        padding-top: 50px!important;
+
     }
 
    
@@ -5073,11 +5075,13 @@ ul.import-list li {
     }
     .pa-steps .pst-eyebrow {
         font-size: 20px;
+        text-align: center;
         line-height: 20px;
     }
        .pa-steps .pst-heading {
         font-size: 38px;
         line-height: 105%;
+        text-align: center;
     }
     .pa-steps .pst-row {
         display: block;
@@ -6390,16 +6394,25 @@ ul.import-list li {
 }
 
 @media (max-width: 991px) {
+    /* Side by side the halves are too narrow to read, so the two columns
+       become one and every clip runs full width. */
     .cs-motion .csm-grid {
-        grid-template-columns: minmax(0, 1fr);
+        flex-direction: column;
     }
 
-    .cs-motion .csm-tile:first-child {
-        grid-row: auto;
+    .cs-motion .csm-col {
+        flex: 0 0 auto;
+        max-width: none;
+    }
+
+    .cs-motion .csm-col-side {
+        height: auto;
+        gap: 14px;
     }
 
     .cs-motion .csm-frame,
-    .cs-motion .csm-tile:first-child .csm-frame {
+    .cs-motion .csm-col-main .csm-frame,
+    .cs-motion .csm-col-side .csm-frame {
         width: auto;
         aspect-ratio: 16 / 9;
         height: auto;
@@ -6437,6 +6450,23 @@ ul.import-list li {
 }
 
 @media (max-width: 767px) {
+
+    .smp-get .smg-eyebrow {
+    font-size: 20px;
+    text-align: center;
+}
+
+    .smp-get .smg-card {
+        border-radius: 21px;
+
+    }
+    .smp-get .smg-item {
+    align-items: flex-start;
+}
+
+    .smp-get .smg-text{
+        font-weight: 400;
+    }
     .cs-work .csw-row {
         --csw-h: 340px;
         --csw-w: 153px;
@@ -6468,8 +6498,8 @@ ul.import-list li {
         font-weight: 400;
     }
 
-    .cs-motion .csm-grid {
-        grid-template-columns: minmax(0, 1fr);
+    .cs-motion .csm-grid,
+    .cs-motion .csm-col-side {
         gap: 16px;
     }
 
@@ -6599,5 +6629,819 @@ ul.import-list li {
         margin-top: 20px;
         padding: 11px 22px;
         font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- hero. Base rules are at the end of custome.css.
+   Four steps: the row comes back inside the container at 1240, folds to three
+   columns at 1023, the note and source move into their panel at 560.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .sample-hero .smh-title {
+        font-size: 96px;
+    }
+    .sample-hero .smh-quote blockquote {
+        font-size: 32px;
+    }
+    /* Back inside the container, and wrapping allowed again -- below this
+       width there is no room to keep six figures on one line. */
+    .sample-hero .smh-stats {
+        margin-left: auto;
+        transform: none;
+        width: auto;
+    }
+    .sample-hero .smh-stat {
+        flex: 1 1 0;
+        padding: 0 10px;
+        white-space: normal;
+    }
+    .sample-hero .smh-figure {
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .sample-hero .smh-label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .sample-hero {
+        padding: 64px 0 64px;
+    }
+    .sample-hero .smh-title {
+        font-size: 68px;
+    }
+    .sample-hero .smh-rule {
+        margin-top: 22px;
+    }
+    .sample-hero .smh-note + .smh-rule {
+        margin-top: 36px;
+    }
+    .sample-hero .smh-quote {
+        margin-top: 24px;
+    }
+    .sample-hero .smh-quote blockquote {
+        font-size: 26px;
+    }
+    /* Six across is unreadable here; the row folds to three, and the stroke
+       runs between the columns of each row only. */
+    .sample-hero .smh-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 34px;
+        margin-top: 56px;
+    }
+    .sample-hero .smh-stat + .smh-stat::before {
+        height: 110px;
+    }
+    .sample-hero .smh-stat:nth-child(3n + 1)::before {
+        display: none;
+    }
+    .sample-hero .smh-figure {
+        font-size: 34px;
+        line-height: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .sample-hero .smh-note {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+}
+
+@media (max-width: 560px) {
+    .sample-hero {
+        padding: 48px 0 44px;
+    }
+    .sample-hero .smh-title {
+        font-size: 56px;
+    }
+    .sample-hero .smh-rule {
+        display: none;
+    }
+    .sample-hero .smh-quote blockquote {
+        font-size: 26px;
+        line-height: 32px;
+        font-weight: 500;
+    }
+    /* The line turns where the width lets it at this size. */
+    .sample-hero .smh-quote blockquote br {
+        display: none;
+    }
+    /* The note and the source sit in the panel here, copy centred, and the
+       orange source turns into the small white caps the frame draws under the
+       sentence. */
+    .sample-hero .smh-badge {
+        display: block;
+        margin-top: 30px;
+        padding: 8px 25px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #181818 0%, #4A3096 100%);
+        backdrop-filter: blur(2.36px);
+        text-align: center;
+    }
+    .sample-hero .smh-badge .smh-note {
+        margin: 0;
+        font-size: 18px;
+        line-height: 23px;
+        color: #D0BDFF;
+    }
+    .sample-hero .smh-attrib-mobile {
+        margin: 10px 0 0;
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    /* Three columns, as in the frame: six figures in a 3x2 with the gradient
+       stroke standing between them. Stretch rather than centre, so both cells
+       of a row share one height and the stroke matches instead of ending
+       wherever its own label runs out. */
+    .sample-hero .smh-stats {
+        align-items: stretch;
+        row-gap: 22px;
+        margin-top: 34px;
+    }
+    .sample-hero .smh-stat {
+        padding: 10px 4px;
+    }
+    /* Every cell but the first of each row carries it -- a stroke on the left
+       column would sit on the band's edge. Declared in full because the row is
+       three wide here and the desktop rule only dresses the gaps of a line. */
+    .sample-hero .smh-stat::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 1px;
+        max-width: none;
+        height: 100%;
+        background: linear-gradient(
+            180deg,
+            #0E0920 0%,
+            #FE4601 35%,
+            #FE4601 70%,
+            #0E0920 100%
+        );
+    }
+    .sample-hero .smh-stat:nth-child(3n + 1)::before {
+        display: none;
+    }
+    .sample-hero .smh-figure {
+        font-size: 26px;
+        line-height: 130%;
+    }
+    .sample-hero .smh-label {
+        margin-top: 5px;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 130%;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- the card rail under the hero. Base rules are at the end of
+   custome.css. The cards themselves barely move: a rail already handles a
+   narrow screen, so only the band's padding, the heading and the card width
+   step down.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-results .smr-heading {
+        font-size: 46px;
+        line-height: 52px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-results {
+        padding: 70px 0 70px;
+    }
+    .smp-results .smr-eyebrow {
+        margin-bottom: 14px;
+        font-size: 22px;
+    }
+    .smp-results .smr-heading {
+        margin-bottom: 36px;
+        font-size: 38px;
+        line-height: 44px;
+    }
+    .smp-results .smr-card {
+        flex: 0 0 270px;
+        max-width: 270px;
+    }
+    .smp-results .smr-art {
+        height: 200px;
+    }
+}
+
+@media (max-width: 560px) {
+    .smp-results {
+        padding: 50px 0 50px;
+    }
+    .smp-results .smr-eyebrow {
+        font-size: 20px;
+    }
+    .smp-results .smr-heading {
+        margin-bottom: 28px;
+        font-size: 30px;
+        line-height: 36px;
+    }
+    /* One card and a sliver of the next, which is the clearest way to say the
+       row slides on a phone. */
+    .smp-results .smr-track {
+        gap: 16px;
+    }
+    .smp-results .smr-card {
+        flex: 0 0 82%;
+        max-width: 82%;
+    }
+    .smp-results .smr-art {
+        height: 210px;
+    }
+    .smp-results .smr-body {
+        padding: 20px 18px;
+    }
+    .smp-results .smr-figure {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- the orange statement band. Base rules are at the end of
+   custome.css. The steps are the ones the page's other orange band takes, so
+   the two stay the same size at every width.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-statement {
+        padding: 84px 0 90px;
+    }
+    .smp-statement .sms-heading {
+        font-size: 64px;
+        line-height: 72px;
+    }
+    .smp-statement .sms-body {
+        margin-top: 36px;
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .smp-statement .sms-body + .sms-body {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-statement {
+        padding: 64px 0 68px;
+    }
+    .smp-statement .sms-heading {
+        font-size: 44px;
+        line-height: 50px;
+        letter-spacing: -1px;
+    }
+    .smp-statement .sms-body {
+        margin-top: 28px;
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .smp-statement .sms-body + .sms-body {
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 560px) {
+    .smp-statement {
+        padding: 50px 0 50px;
+    }
+    .smp-statement .sms-heading {
+        font-size: 38px;
+        line-height: 105%;
+        letter-spacing: -0.5px;
+        text-align: center;
+    }
+    .smp-statement .sms-body {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+    }
+    .smp-statement .sms-body + .sms-body {
+        margin-top: 14px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- "The work / Images". Base rules are at the end of
+   custome.css. Only the type and the row variables step down; the animation is
+   width-independent because it travels in percentages of its own track. The
+   picture rows' stacked column is recomputed from the row height against the
+   halves' 324x353 ratio, so the column keeps its shape as it shrinks, and the
+   brand tiles step width and height together to hold their 210:189.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-work .smw-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .smp-work .smw-row-work {
+        --smw-work-h: 380px;
+        --smw-work-w: 170px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-work {
+        padding: 64px 0 72px;
+    }
+    .smp-work .smw-heading {
+        margin-bottom: 32px;
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .smp-work .smw-row-work {
+        --smw-work-h: 300px;
+        --smw-work-w: 134px;
+        --smw-work-gap: 8px;
+    }
+    .smp-work .smw-row-brands {
+        --smw-brand-w: 170px;
+        --smw-brand-h: 153px;
+    }
+}
+
+@media (max-width: 560px) {
+    .smp-work {
+        padding: 50px 0 50px;
+    }
+    .smp-work .smw-eyebrow {
+        font-size: 20px;
+    }
+    .smp-work .smw-heading {
+        margin-bottom: 25px;
+        font-size: 38px;
+        line-height: 105%;
+    }
+    .smp-work .smw-rows {
+        gap: 12px;
+    }
+    .smp-work .smw-item {
+        margin-right: 12px;
+    }
+    .smp-work .smw-row-work {
+        --smw-work-h: 220px;
+        --smw-work-w: 97px;
+        --smw-work-gap: 8px;
+    }
+    .smp-work .smw-row-work .smw-tall,
+    .smp-work .smw-row-work .smw-stack img {
+        border-radius: 10px;
+    }
+    .smp-work .smw-row-brands {
+        --smw-brand-w: 130px;
+        --smw-brand-h: 117px;
+    }
+    .smp-work .smw-row-brands .smw-brand {
+        border-radius: 14px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- the four diagnostic cards. Base rules are at the end of
+   custome.css. The row holds four columns down to 1023, where it folds to two,
+   and only on a phone does it become a snapping rail -- everything that makes
+   it slide is declared in that last step and nowhere else.
+   ========================================================================== */
+@media (max-width: 1239px) {
+    .smp-parts .smpt-heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .smp-parts .smpt-intro {
+        flex-basis: 300px;
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .smp-parts .smpt-card-title {
+        font-size: 21px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-parts {
+        padding: 64px 0 68px;
+    }
+    .smp-parts .smpt-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 36px;
+    }
+    .smp-parts .smpt-eyebrow {
+        font-size: 22px;
+    }
+    .smp-parts .smpt-heading {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    /* Ranged left once it is under the heading rather than beside it. */
+    .smp-parts .smpt-intro {
+        flex-basis: auto;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+    }
+    .smp-parts .smpt-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .smp-parts {
+        padding: 50px 0 50px;
+    }
+    .smp-parts .smpt-eyebrow {
+        font-size: 20px;
+    }
+    .smp-parts .smpt-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .smp-parts .smpt-intro {
+        font-size: 16px;
+        line-height: 23px;
+    }
+    /* One card and a sliver of the next: the only width where the row slides.
+       The grid is dropped for a flex line, because a grid cannot be scrolled
+       column by column with snapping. */
+    .smp-parts .smpt-track {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+    .smp-parts .smpt-track::-webkit-scrollbar {
+        display: none;
+    }
+    .smp-parts .smpt-card {
+        flex: 0 0 78%;
+        max-width: 78%;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .smp-parts .smpt-media {
+        border-radius: 18px;
+    }
+    .smp-parts .smpt-card-title {
+        margin: 20px 0 10px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .smp-parts .smpt-card-desc {
+        font-size: 14.5px;
+        line-height: 20px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- "Ten Industries." Base rules are at the end of custome.css.
+   The steps are the ones the /search band takes, so the two stay the same size
+   at every width.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-ind .smi-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .smp-ind .smi-grid {
+        grid-template-columns: 1fr 42%;
+        gap: 22px;
+    }
+    .smp-ind .smi-body {
+        font-size: 16px;
+    }
+    .smp-ind .smi-art {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 537 / 454;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-ind {
+        padding: 64px 0 72px;
+    }
+    .smp-ind .smi-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 34px;
+    }
+    /* Side by side the photograph has to shrink to a letterbox before the copy
+       fits, so below this it drops under the text at full width. */
+    .smp-ind .smi-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    /* Stacked there is no picture to line the button up with, so it just
+       follows the copy. */
+    .smp-ind .smi-cta {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 560px) {
+    .smp-ind {
+        padding: 48px 0 56px;
+    }
+    .smp-ind .smi-heading {
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
+    }
+    .smp-ind .smi-cta {
+        padding: 8px 8px 8px 26px;
+        gap: 14px;
+        font-size: 18px;
+        line-height: 32px;
+    }
+    .smp-ind .smi-cta-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- "What you get". Base rules are at the end of custome.css.
+   The list carries the band: once 36px no longer leaves a sensible measure
+   beside the photograph, the type steps down, and below that the picture drops
+   under the panel and the card rounds on all four corners.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-get .smg-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .smp-get {
+        --smg-line-x: 40px;
+        --smg-vec: 1.4;
+    }
+    .smp-get .smg-panel {
+        padding: 64px 36px 64px 76px;
+    }
+    .smp-get .smg-text {
+        font-size: 40px;
+    }
+    .smp-get .smg-tick svg {
+        width: 30px;
+        height: 30px;
+    }
+    .smp-get .smg-tick {
+        margin-top: 16px;
+    }
+    .smp-get .smg-item {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-get {
+        padding: 64px 0 72px;
+    }
+    .smp-get .smg-heading {
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 34px;
+    }
+    /* Side by side the picture has to shrink to a letterbox before the list
+       fits, so below this it sits under the panel at full width. */
+    .smp-get .smg-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .smp-get {
+        --smg-line-x: 28px;
+        --smg-vec: 1;
+    }
+    .smp-get .smg-panel {
+        border-radius: 32px;
+        padding: 48px 30px 48px 56px;
+    }
+    .smp-get .smg-art {
+        height: 320px;
+        border-radius: 32px;
+    }
+    .smp-get .smg-text {
+        font-size: 32px;
+    }
+    .smp-get .smg-tick svg {
+        width: 26px;
+        height: 26px;
+    }
+    .smp-get .smg-tick {
+        margin-top: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .smp-get {
+        padding: 48px 0 56px;
+    }
+    .smp-get .smg-heading {
+        font-size: 38px;
+        line-height: 105%;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    .smp-get .smg-panel {
+        padding: 36px 20px 36px 34px;
+    }
+    .smp-get .smg-text {
+        font-size: 22px;
+    }
+    .smp-get .smg-tick svg {
+        width: 20px;
+        height: 20px;
+        border:none;
+    }
+    .smp-get .smg-tick {
+        margin-top: 8px;
+    }
+    .smp-get .smg-item {
+        gap: 14px;
+    }
+      .smp-get .smg-art {
+        height: 208px;
+        border-radius: 0px 0px 20px 20px;
+    }
+    /* The drawn line is cut too close at this width to read as one stroke. */
+    .smp-get .smg-line {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- "Start with one question you cannot answer." Base rules are
+   at the end of custome.css. The steps are the ones the analytics band takes,
+   so the two stay the same size at every width.
+   ========================================================================== */
+@media (max-width: 1399px) {
+    .smp-audit .sma-heading {
+        font-size: 66px;
+        line-height: 68px;
+        letter-spacing: -2.6px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .smp-audit {
+        padding: 90px 0;
+    }
+    .smp-audit .sma-heading {
+        font-size: 54px;
+        line-height: 56px;
+        letter-spacing: -2px;
+    }
+    .smp-audit .sma-note {
+        font-size: 17px;
+        line-height: 27px;
+    }
+}
+
+/* Below this the artwork has no room beside the copy, so it goes under it and
+   keeps only the top of the crop. */
+@media (max-width: 991px) {
+    .smp-audit {
+        padding: 70px 0 0;
+    }
+    .smp-audit .sma-art {
+        position: static;
+        display: block;
+        width: 100%;
+        margin: 48px auto 0;
+    }
+    .smp-audit .sma-text {
+        max-width: none;
+    }
+}
+
+/* wrap-reverse puts the picture under the copy without moving it in the
+   markup, where it has to stay behind the text. */
+@media (max-width: 767px) {
+    .smp-audit {
+        padding: 55px 0 0;
+        display: flex;
+        flex-wrap: wrap-reverse;
+    }
+    .smp-audit .sma-heading {
+        margin-bottom: 18px;
+        font-size: 38px;
+        line-height: 105%;
+        letter-spacing: -1.2px;
+    }
+    .smp-audit .sma-note {
+        margin-bottom: 28px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+    }
+    .smp-audit .sma-cta {
+        width: 210px;
+        height: 44px;
+        font-weight: 400;
+        font-size: 14px;
+        background: #754CDA;
+        color: #fff;
+    }
+}
+
+/* ==========================================================================
+   Sample page -- "What you get" (SEO / AEO / GEO). Base rules are at the end
+   of custome.css. The steps follow the /search band, with one addition: the
+   three columns hold to the phone, where they stack and the rules between them
+   become rules above them.
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .smp-layers .sml-head {
+        margin-bottom: 64px;
+    }
+    .smp-layers .sml-heading {
+        font-size: 44px;
+        line-height: 50px;
+    }
+    .smp-layers .sml-col {
+        padding: 0 24px;
+    }
+    .smp-layers .sml-name {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .smp-layers {
+        padding: 64px 0 72px;
+    }
+    /* Side by side the intro is down to four words a line, so it goes under
+       the heading. */
+    .smp-layers .sml-head {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        margin-bottom: 48px;
+    }
+       .smp-layers .sml-name {
+        font-size: 38px;
+        line-height: 27.2px;
+    }
+    .smp-layers .sml-col {
+        padding: 0 16px;
+        gap: 16px;
+    }
+    .smp-layers .sml-name {
+        font-size: 30px;
+    }
+    .smp-layers .sml-goal {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .smp-layers .sml-goal{
+               padding-bottom: 20px;
+    }
+    .smp-layers {
+        padding: 48px 0 56px;
+    }
+    .smp-layers .sml-heading {
+        font-size: 38px;
+        line-height: 105%;
+    }
+    .smp-layers .sml-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .smp-layers .sml-col {
+        padding: 26px 0 0;
+    }
+    /* Stacked, the rule that separated the columns separates the rows: the
+       same strip turned on its side, so it still fades out at both ends. */
+    .smp-layers .sml-col + .sml-col::before {
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 214px;
+        max-width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, #0E0920 0%, #FFFFFF 32%, #FFFFFF 68%, #0E0920 100%);
+    }
+    .smp-layers .sml-goal {
+        max-width: 420px;
     }
 }
