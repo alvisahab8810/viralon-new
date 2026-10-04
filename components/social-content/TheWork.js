@@ -17,6 +17,13 @@
 // BrandsBuilt.js — the same reasoning applies here unchanged.
 import React from "react";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "The work",
+  headA: "Start Here. This Is What",
+  accent: "We Actually Make.",
+};
+
 const WORK = "/assets/others/the-work/social-content/";
 
 // A slide is either a tall image that fills the row on its own, or a narrow
@@ -57,6 +64,20 @@ const ROW_TWO = from("second-slider", [
   { stack: ["little3.png", "little3.1.png"] },
   { tall: "tall4.png" },
 ]);
+
+/* A stored slide is three boxes — one tall image, or two stacked — because the
+   admin form has no shape for a list inside a list. Both are folded back into
+   the shape the renderer below already draws, and a row with nothing in it is
+   dropped rather than left as a gap in the strip. */
+function toSlide(row) {
+  if (row.stack) return row;
+  if (row.tall) return { tall: row.tall };
+  const stack = [row.stackA, row.stackB].filter(Boolean);
+  return stack.length ? { stack } : null;
+}
+
+const toRow = (stored, shipped) =>
+  stored?.length ? stored.map(toSlide).filter(Boolean) : shipped;
 
 function renderSlide(slide) {
   if (slide.tall) {
@@ -101,20 +122,25 @@ function Row({ items, reverse, duration }) {
   );
 }
 
-export default function TheWork() {
+export default function TheWork({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const rowOne = toRow(d.rowOne, ROW_ONE);
+  const rowTwo = toRow(d.rowTwo, ROW_TWO);
+
   return (
     <section className="brand-marquee social-work">
       <div className="container">
-        <p className="bm-eyebrow">The work</p>
+        <p className="bm-eyebrow">{c.eyebrow}</p>
         <h2 className="bm-heading">
-          Start Here. This Is What{" "}
-          <span className="bm-accent">We Actually Make.</span>
+          {c.headA}{" "}
+          <span className="bm-accent">{c.accent}</span>
         </h2>
       </div>
 
       <div className="bm-rows">
-        <Row items={repeat(ROW_ONE, 2)} reverse={false} duration="52s" />
-        <Row items={repeat(ROW_TWO, 2)} reverse duration="60s" />
+        <Row items={repeat(rowOne, 2)} reverse={false} duration="52s" />
+        <Row items={repeat(rowTwo, 2)} reverse duration="60s" />
       </div>
     </section>
   );

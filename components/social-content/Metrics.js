@@ -17,6 +17,14 @@
 // would otherwise take the dark ink off the section heading.
 import React from "react";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  accent: "Followers Are",
+  headA: "Not A Business Outcome.",
+  note: "Account level engagement, not vanity counts. These are the numbers that move before revenue does, so they are",
+  noteTail: "the ones worth watching.",
+};
+
 const CARDS = [
   { title: "Saves and shares", body: "The only engagement that signals real interest" },
   { title: "Profile to website", body: "How many went looking for more" },
@@ -26,27 +34,29 @@ const CARDS = [
   { title: "Cost per qualified lead", body: "The number every platform reports last" },
 ];
 
-export default function Metrics() {
+export default function Metrics({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   return (
     <section className="social-metrics">
       <div className="container">
         <h2 className="smt-heading">
-          <span className="smt-accent">Followers Are</span> Not A Business
-          Outcome.
+          <span className="smt-accent">{c.accent}</span> {c.headA}
         </h2>
 
         <p className="smt-note">
-          Account level engagement, not vanity counts. These are the numbers
-          that move before revenue does, so they are
+          {c.note}
           {/* The line is broken by hand so it reads as two balanced lines;
               responsive.css drops the break once the paragraph is narrow
               enough to wrap on its own. */}
-          <br className="smt-break" /> the ones worth watching.
+          <br className="smt-break" /> {c.noteTail}
         </p>
 
         <ul className="smt-row">
-          {CARDS.map((card, i) => (
-            <li className={"smt-card smt-card-" + (i + 1)} key={card.title}>
+          {cards.map((card, i) => (
+            <li className={"smt-card smt-card-" + (i + 1)} key={i}>
               <h3 className="smt-title">{card.title}</h3>
               <p className="smt-body">{card.body}</p>
             </li>

@@ -26,7 +26,24 @@ const METRICS = [
   { name: "Blended acquisition cost", image: "m4.png" },
 ];
 
-export default function Measure() {
+const COPY = {
+  eyebrow: "What we measure",
+  headA: "Clicks Are Not",
+  accent: "Customers.",
+};
+
+// A stored path is already absolute; the set above is named relative to DIR.
+const src = (im) => (String(im || "").startsWith("/") ? im : DIR + im);
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. /paid-ads and /sample pass nothing and get the set above.
+export default function Measure({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length
+    ? d.cards
+    : METRICS.map((m) => ({ name: m.name, img: m.image }));
+
   // On a phone the four cards become the same swipeable rail the rest of the
   // site uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a row or a scroller, so nothing changes above 560.
@@ -36,18 +53,18 @@ export default function Measure() {
   return (
     <section className="pa-measure">
       <div className="container">
-        <p className="pms-eyebrow">What we measure</p>
+        <p className="pms-eyebrow">{c.eyebrow}</p>
 
         <h2 className="pms-heading">
-          Clicks Are Not <span className="pms-accent">Customers.</span>
+          {c.headA} <span className="pms-accent">{c.accent}</span>
         </h2>
 
         <ul className="pms-cards" ref={trackRef} onScroll={updateEdges}>
-          {METRICS.map((m) => (
+          {cards.map((m) => (
             <li className="pms-card" key={m.name}>
               {/* Decorative: the metric is named in the heading under it. */}
               <div className="pms-media">
-                <img src={DIR + m.image} alt="" loading="lazy" />
+                <img src={src(m.img)} alt="" loading="lazy" />
               </div>
               <h3 className="pms-name">{m.name}</h3>
             </li>

@@ -55,29 +55,35 @@ const CARDS = [
   },
 ];
 
-export default function Results() {
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets the constants above. A card stores its date as two plain
+// fields rather than a nested object, because that is what an admin form can
+// edit; either one present is enough to draw the tab.
+export default function Results({ d = {} }) {
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   return (
     <section className="smp-results">
       <div className="container">
-        <p className="smr-eyebrow">Lorem ipsum</p>
+        <p className="smr-eyebrow">{d.eyebrow || "Lorem ipsum"}</p>
 
         <h2 className="smr-heading">
-          Lorem Ipsum Is A{" "}
-          <span className="smr-accent">Standard Placeholder</span>
+          {d.headA || "Lorem Ipsum Is A"}{" "}
+          <span className="smr-accent">{d.accent || "Standard Placeholder"}</span>
         </h2>
 
         <ul className="smr-track">
-          {CARDS.map((card) => (
+          {cards.map((card) => (
             <li className="smr-card" key={card.client}>
               <div className="smr-art">
                 <img src={card.img} alt="" loading="lazy" />
 
                 {/* Only some studies carry a date, so the tab is drawn only
                     where there is one -- an empty box would read as a gap. */}
-                {card.date ? (
+                {card.date || card.day || card.month ? (
                   <span className="smr-date">
-                    <span className="smr-day">{card.date.day}</span>
-                    <span className="smr-month">{card.date.month}</span>
+                    <span className="smr-day">{card.date?.day || card.day}</span>
+                    <span className="smr-month">{card.date?.month || card.month}</span>
                   </span>
                 ) : null}
               </div>
@@ -93,7 +99,7 @@ export default function Results() {
                   Client: <span className="smr-client-name">{card.client}</span>
                 </p>
 
-                <Link href={card.href} className="smr-cta">
+                <Link href={card.href || "/our-work"} className="smr-cta">
                   Read Case Study
                   <span className="smr-arrow" aria-hidden="true">
                     &#8599;

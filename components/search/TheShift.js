@@ -14,6 +14,16 @@
 // beat a bare class here.
 import React from "react";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "The shift that matters",
+  headA: "People",
+  accent: "Stopped Typing Keywords.",
+  headB: "They Started Asking Questions.",
+  intro:
+    "A Keyword Gave You A Topic. A Question Gives You A Situation, A Budget, A Doubt And A Deadline. Far More Useful, And Almost Nobody Is Mapping Content To It.",
+};
+
 const PAIRS = [
   {
     keyword: "Best CRM Software",
@@ -32,26 +42,26 @@ const PAIRS = [
   },
 ];
 
-export default function TheShift() {
+export default function TheShift({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const pairs = d.pairs?.length ? d.pairs : PAIRS;
+
   return (
     <section className="search-shift">
       <div className="container">
-        <p className="ssh-eyebrow">The shift that matters</p>
+        <p className="ssh-eyebrow">{c.eyebrow}</p>
 
         <h2 className="ssh-heading">
-          People <span className="ssh-accent">Stopped Typing Keywords.</span>{" "}
-          They Started Asking Questions.
+          {c.headA} <span className="ssh-accent">{c.accent}</span>{" "}
+          {c.headB}
         </h2>
 
-        <p className="ssh-intro">
-          A Keyword Gave You A Topic. A Question Gives You A Situation, A Budget,
-          A Doubt And A Deadline. Far More Useful, And Almost Nobody Is Mapping
-          Content To It.
-        </p>
+        <p className="ssh-intro">{c.intro}</p>
 
         <dl className="ssh-pairs">
-          {PAIRS.map((pair) => (
-            <div className="ssh-pair" key={pair.keyword}>
+          {pairs.map((pair, i) => (
+            <div className="ssh-pair" key={i}>
               <dt className="ssh-keyword">{pair.keyword}</dt>
               <dd className="ssh-question">{pair.question}</dd>
             </div>

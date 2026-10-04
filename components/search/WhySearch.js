@@ -23,15 +23,45 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
-export default function WhySearch() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Why search",
+  headA: "The Only Channel Where They",
+  accent: "Arrive Already Wanting It.",
+  ctaText: "Let's talk",
+  img: "/assets/others/abt1.png",
+};
+
+// Each block is one sentence with its claim in the middle, so it is stored as
+// three boxes rather than as HTML — the admin cannot break the markup and the
+// <strong> stays a <strong>, which is what carries the emphasis without CSS.
+const CARDS = [
+  {
+    lead: "An Ad Interrupts Someone. A Reel Earns Three Seconds.",
+    hl: "A Search Is A Person Typing Their Problem Into A Box",
+    tail: ", Right Now, Intending To Solve It.",
+  },
+  {
+    lead:
+      "You Are Not Creating Demand. You Are Catching It At The Exact Moment It Exists. That Is Why",
+    hl: "Search Enquiries Close Faster And Cost Less Than Anything Else You Run",
+    tail: ", And Why A Page That Ranks Keeps Producing Them Long After The Work Is Done.",
+  },
+];
+
+export default function WhySearch({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   return (
     <section className="search-why">
       <div className="container">
-        <p className="swy-eyebrow">Why search</p>
+        <p className="swy-eyebrow">{c.eyebrow}</p>
 
         <h2 className="swy-heading">
-          The Only Channel Where They{" "}
-          <span className="swy-accent">Arrive Already Wanting It.</span>
+          {c.headA}{" "}
+          <span className="swy-accent">{c.accent}</span>
         </h2>
 
         <div className="swy-grid">
@@ -44,7 +74,7 @@ export default function WhySearch() {
                 openEnquiry();
               }}
             >
-              <span className="swy-cta-text">Let's talk</span>
+              <span className="swy-cta-text">{c.ctaText}</span>
               <span className="swy-cta-icon" aria-hidden="true">
                 {/* An SVG, not the ↗ character: the glyph sits off-centre in the disc
                     by a different amount in every font. */}
@@ -61,29 +91,18 @@ export default function WhySearch() {
             </Link>
 
             <div className="swy-cards">
-              <p className="swy-card">
-                An Ad Interrupts Someone. A Reel Earns Three Seconds.{" "}
-                <strong className="swy-hl">
-                  A Search Is A Person Typing Their Problem Into A Box
-                </strong>
-                , Right Now, Intending To Solve It.
-              </p>
-
-              <p className="swy-card">
-                You Are Not Creating Demand. You Are Catching It At The Exact
-                Moment It Exists. That Is Why{" "}
-                <strong className="swy-hl">
-                  Search Enquiries Close Faster And Cost Less Than Anything Else
-                  You Run
-                </strong>
-                , And Why A Page That Ranks Keeps Producing Them Long After The
-                Work Is Done.
-              </p>
+              {cards.map((row, i) => (
+                <p className="swy-card" key={i}>
+                  {row.lead}{" "}
+                  <strong className="swy-hl">{row.hl}</strong>
+                  {row.tail}
+                </p>
+              ))}
             </div>
           </div>
 
           <div className="swy-art">
-            <img src="/assets/others/abt1.png" alt="" loading="lazy" />
+            <img src={c.img} alt="" loading="lazy" />
           </div>
         </div>
       </div>

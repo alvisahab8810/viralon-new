@@ -25,6 +25,13 @@ const DIR = "/assets/others/the-work/social-content/";
 // How long each line stays on screen.
 const HOLD_MS = 3200;
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "How we work",
+  headA: "Six Steps. In This Order.",
+  accent: "Every Time.",
+};
+
 const STEPS = [
   {
     image: "phone1.png",
@@ -52,7 +59,21 @@ const STEPS = [
   },
 ];
 
-export default function SixSteps() {
+// A stored phone writes its two lines flat, one field each; a shipped one
+// already carries the pair. Either way the component gets { image, slides }.
+const toStep = (row) => ({
+  image: row.image,
+  slides: row.slides || [row.lineOne, row.lineTwo].filter(Boolean),
+});
+
+// A stored row carries a finished path, the shipped list a bare filename.
+const deviceSrc = (v) => (String(v || "").includes("/") ? v : DIR + v);
+
+export default function SixSteps({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const steps = (d.steps?.length ? d.steps : STEPS).map(toStep);
+
   const [slot, setSlot] = useState(0);
 
   useEffect(() => {
@@ -65,26 +86,29 @@ export default function SixSteps() {
   return (
     <section className="pa-steps">
       <div className="container">
-        <p className="pst-eyebrow">How we work</p>
+        <p className="pst-eyebrow">{c.eyebrow}</p>
 
         <h2 className="pst-heading">
-          Six Steps. In This Order.{" "}
-          <span className="pst-accent">Every Time.</span>
+          {c.headA}{" "}
+          <span className="pst-accent">{c.accent}</span>
         </h2>
 
         <ol className="pst-row">
-          {STEPS.map((step, i) => {
-            const line = step.slides[slot % step.slides.length];
+          {steps.map((step, i) => {
+            const line =
+              step.slides.length
+                ? step.slides[slot % step.slides.length]
+                : "";
             return (
               <li
                 className={"pst-phone pst-phone-" + (i + 1)}
-                key={step.slides[0]}
+                key={i}
               >
                 {/* Decorative: the frame is the container, the line written
                     across it is the content. */}
                 <img
                   className="pst-device"
-                  src={DIR + step.image}
+                  src={deviceSrc(step.image)}
                   alt=""
                   loading="lazy"
                 />

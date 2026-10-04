@@ -18,6 +18,13 @@
 import React from "react";
 import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "How we work",
+  headA: "Four Steps. The First Two",
+  accent: "Decide The Rest.",
+};
+
 const STEPS = [
   {
     title: "Fix the foundation",
@@ -41,7 +48,11 @@ const STEPS = [
   },
 ];
 
-export default function HowWeWork() {
+export default function HowWeWork({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const steps = d.steps?.length ? d.steps : STEPS;
+
   // On a phone the four steps become the same swipeable rail the homepage
   // uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a grid or a scroller, so nothing changes on desktop.
@@ -51,17 +62,18 @@ export default function HowWeWork() {
   return (
     <section className="search-steps">
       <div className="container">
-        <p className="sst-eyebrow">How we work</p>
+        <p className="sst-eyebrow">{c.eyebrow}</p>
 
         <h2 className="sst-heading">
-          Four Steps. The First Two
+          {c.headA}
           <br />
-          <span className="sst-accent"> Decide The Rest.</span>
+          {/* The accent keeps the leading space the line was signed off with. */}
+          <span className="sst-accent">{" " + c.accent}</span>
         </h2>
 
         <ol className="sst-cards" ref={trackRef} onScroll={updateEdges}>
-          {STEPS.map((step) => (
-            <li className="sst-card" key={step.title}>
+          {steps.map((step, i) => (
+            <li className="sst-card" key={i}>
               <h3 className="sst-title">{step.title}</h3>
               <p className="sst-desc">{step.desc}</p>
 

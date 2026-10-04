@@ -17,35 +17,40 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
-export default function Industries() {
+const COPY = {
+  accent: "Ten Industries.",
+  headB: "We Already Know What A Lead Means In Each One.",
+  body1:
+    "In real estate, the form fill means nothing, and the site visit is everything. In education, parents search six months before the session opens. Patients never fill a form; they read reviews for three weeks and then call. A car wash enquiry and a full paint enquiry cost the same to buy and are worth twenty times apart.",
+  lead: "You should not have to explain any of that to your agency.",
+  body2:
+    "We have run these accounts, made these mistakes, and learned what a qualified lead actually means in each one. That knowledge sits at the strategy level, not with whoever manages your account.",
+  ctaText: "Let's Talk",
+  img: "/assets/others/sample-abt.png",
+};
+
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets COPY.
+export default function Industries({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="smp-ind">
       <div className="container">
         <h2 className="smi-heading">
-          <span className="smi-accent">Ten Industries.</span> We Already Know
-          What A Lead Means In Each One.
+          <span className="smi-accent">{c.accent}</span> {c.headB}
         </h2>
 
         <div className="smi-grid">
           <div className="smi-col">
-            <p className="smi-body">
-              In real estate, the form fill means nothing, and the site visit is
-              everything. In education, parents search six months before the
-              session opens. Patients never fill a form; they read reviews for
-              three weeks and then call. A car wash enquiry and a full paint
-              enquiry cost the same to buy and are worth twenty times apart.
-            </p>
+            <p className="smi-body">{c.body1}</p>
 
             {/* The lead-in is the claim, so it is <strong> rather than a styled
                 span: it is emphasis in the sentence, and anything reading the
                 page without the stylesheet should still get it. */}
             <p className="smi-body">
-              <strong className="smi-lead">
-                You should not have to explain any of that to your agency.
-              </strong>{" "}
-              We have run these accounts, made these mistakes, and learned what a
-              qualified lead actually means in each one. That knowledge sits at
-              the strategy level, not with whoever manages your account.
+              <strong className="smi-lead">{c.lead}</strong> {c.body2}
             </p>
 
             <Link
@@ -56,7 +61,7 @@ export default function Industries() {
                 openEnquiry();
               }}
             >
-              <span className="smi-cta-text">Let&apos;s Talk</span>
+              <span className="smi-cta-text">{c.ctaText}</span>
               <span className="smi-cta-icon" aria-hidden="true">
                 {/* An SVG, not the ↗ character: the glyph sits off-centre in
                     the disc by a different amount in every font. */}
@@ -74,7 +79,7 @@ export default function Industries() {
           </div>
 
           <div className="smi-art">
-            <img src="/assets/others/sample-abt.png" alt="" loading="lazy" />
+            <img src={c.img} alt="" loading="lazy" />
           </div>
         </div>
       </div>

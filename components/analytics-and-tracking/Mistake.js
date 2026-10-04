@@ -9,33 +9,34 @@
 // responsive.css.
 import React from "react";
 
-export default function Mistake() {
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  label: "The mistake everyone makes",
+  headA: "Buying A Tool Before Deciding What You Measure.",
+  bodyA: "A tool is an instrument. A framework is a set of decisions about what gets measured, how often, and who has to act on it. Without the second one, the best attribution platform in the world produces interesting data that changes nothing about how you run the company.",
+  bodyB: "So we start at the other end. What decision are you struggling to make, who makes it, and how often. Then we build backward until there is a number that answers it.",
+};
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Mistake({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="ant-mistake">
       <div className="container">
         <div className="anm-row">
           <div className="anm-claim">
-            <p className="anm-label">The mistake everyone makes</p>
+            <p className="anm-label">{c.label}</p>
 
-            <h2 className="anm-heading">
-              Buying A Tool Before Deciding What You Measure.
-            </h2>
+            <h2 className="anm-heading">{c.headA}</h2>
           </div>
 
           <div className="anm-reason">
-            <p className="anm-body">
-              A tool is an instrument. A framework is a set of decisions about
-              what gets measured, how often, and who has to act on it. Without
-              the second one, the best attribution platform in the world
-              produces interesting data that changes nothing about how you run
-              the company.
-            </p>
+            <p className="anm-body">{c.bodyA}</p>
 
-            <p className="anm-body">
-              So we start at the other end. What decision are you struggling to
-              make, who makes it, and how often. Then we build backward until
-              there is a number that answers it.
-            </p>
+            <p className="anm-body">{c.bodyB}</p>
           </div>
         </div>
       </div>

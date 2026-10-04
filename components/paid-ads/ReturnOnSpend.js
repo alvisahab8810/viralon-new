@@ -17,25 +17,29 @@
 // bare class and take the orange half of the heading with it.
 import React from "react";
 
-export default function ReturnOnSpend() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "You want return on ad spend.",
+  accent: "Nobody ever wanted anything else.",
+  bodyA: "The part nobody says out loud is that ads are not a slot machine. You do not put money in one end and get customers out the other.",
+  bodyB: "They are a process. Test, read the data, fix what is leaking, test again. The agencies promising results in week one are the ones quietly resetting your account in week three.",
+};
+
+export default function ReturnOnSpend({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="pa-spend">
       <div className="container">
         <h2 className="pas-heading">
-          You want return on ad spend.{" "}
-          <span className="pas-accent">Nobody ever wanted anything else.</span>
+          {c.headA}{" "}
+          <span className="pas-accent">{c.accent}</span>
         </h2>
 
-        <p className="pas-body">
-          The part nobody says out loud is that ads are not a slot machine. You
-          do not put money in one end and get customers out the other.
-        </p>
+        <p className="pas-body">{c.bodyA}</p>
 
-        <p className="pas-body">
-          They are a process. Test, read the data, fix what is leaking, test
-          again. The agencies promising results in week one are the ones quietly
-          resetting your account in week three.
-        </p>
+        <p className="pas-body">{c.bodyB}</p>
       </div>
     </section>
   );

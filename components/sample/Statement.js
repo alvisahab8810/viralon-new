@@ -14,16 +14,23 @@ const PARAS = [
   "ooked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
 ];
 
-export default function Statement() {
+// `d` is one section's stored content on a CRM-built page. The paragraphs come
+// back from the CRM as rows of { text } rather than bare strings, because that
+// is what a repeating form field produces, so both shapes are accepted.
+export default function Statement({ d = {} }) {
+  const paras = (d.paras?.length ? d.paras : PARAS).map((p) =>
+    typeof p === "string" ? p : p?.text || ""
+  );
+
   return (
     <section className="smp-statement">
       <div className="container">
         <h2 className="sms-heading">
-          Lorem ipsum is a standard placeholder or dummy text used widely in
-          graphic design.
+          {d.heading ||
+            "Lorem ipsum is a standard placeholder or dummy text used widely in graphic design."}
         </h2>
 
-        {PARAS.map((text) => (
+        {paras.map((text) => (
           <p className="sms-body" key={text.slice(0, 24)}>
             {text}
           </p>

@@ -1,27 +1,26 @@
+// pages/website-and-cro.js
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the record the CRM holds (Website -> Pages -> Website & CRO) and
+// are rendered by components/website-and-cro/WebsiteCroBands.js, so an admin
+// can reorder, park, duplicate or re-word any of them without a deploy.
+// Nothing stored means every component renders the copy written in its own
+// file, so the page is unchanged until somebody saves it once.
+//
+// The head is the record saved under Website -> Pages SEO (or the page's own
+// SEO tab), and its JSON-LD is finished in utils/sitePageProps.js from the
+// questions the page actually shows.
 import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/website-and-cro/Hero";
-import Results from "../components/website-and-cro/Results";
-import ReturnOnSpend from "../components/website-and-cro/ReturnOnSpend";
-import WhatDecides from "../components/website-and-cro/WhatDecides";
-import Dashboards from "../components/website-and-cro/Dashboards";
-import TwoJobs from "../components/website-and-cro/TwoJobs";
-import FiveSteps from "../components/website-and-cro/FiveSteps";
-import Tech from "../components/website-and-cro/Tech";
-// The bands below still render the /paid-ads components. This page is being
-// rebuilt one section at a time: as each screenshot arrives, its component
-// moves into components/website-and-cro/ with this page's own copy and the
-// import above it is swapped. Until then these stand in, so the page can be
-// looked at whole rather than half-built.
+import WebsiteCroBands from "../components/website-and-cro/WebsiteCroBands";
+import PageSeo from "../components/PageSeo";
+import { siteStaticProps } from "../utils/sitePageProps";
 
-import Measure from "../components/paid-ads/Measure";
-import SooSocial from "../components/home/SooSocial";
-import PageFaq from "../components/PageFaq";
-import Form from "../components/home/Form";
-import LatestBlogs from "../components/common/LatestBlogs";
-import { getPageFaq } from "../utils/pageFaq";
+const FALLBACK_TITLE = "Website Design & CRO | Viralon";
+const FALLBACK_DESCRIPTION =
+  "Sites built to convert, and the leaks in the one you already have found and fixed.";
 
 // Shown until someone publishes a "website-and-cro" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -56,36 +55,27 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function WebsiteAndCro({ faq }) {
+export default function WebsiteAndCro({ seo, schemas, sections, faqs }) {
   return (
     <div className="website-and-cro-page">
+      <PageSeo
+        seo={seo}
+        path="/website-and-cro"
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: FALLBACK_DESCRIPTION }}
+      />
       <Topbar />
       <Offcanvas />
 
-      <Hero />
-
-      <Results />
-      <ReturnOnSpend />
-      <WhatDecides />
-      <Dashboards />
-      <TwoJobs />
-      <FiveSteps />
-      <Tech />
-      <Measure />
-
-      <SooSocial />
-      <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
-      <Form variant="light" />
-      <LatestBlogs />
+      <WebsiteCroBands sections={sections} faqs={faqs} />
 
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
-// the page's own path. Returns null when nothing is published under
-// "website-and-cro", and the block above stands in until it is.
-export async function getStaticProps() {
-  return { props: { faq: await getPageFaq("website-and-cro") }, revalidate: 60 };
-}
+// Bands, FAQ sets and structured data, all keyed on the page's own key.
+export const getStaticProps = siteStaticProps("website-and-cro", {
+  fallbackTitle: FALLBACK_TITLE,
+  fallbackFaq: FALLBACK_FAQ,
+});

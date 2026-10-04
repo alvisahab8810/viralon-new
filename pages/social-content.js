@@ -1,21 +1,26 @@
+// pages/social-content.js
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the record the CRM holds (Website -> Pages -> Social Content) and
+// are rendered by components/social-content/SocialBands.js, so an admin can
+// reorder, park, duplicate or re-word any of them without a deploy. Nothing
+// stored means every component renders the copy written in its own file, so
+// the page is unchanged until somebody saves it once.
+//
+// The head is the record saved under Website -> Pages SEO (or the page's own
+// SEO tab), and its JSON-LD is finished in utils/sitePageProps.js from the
+// questions the page actually shows.
 import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/social-content/Hero";
-import TheWork from "../components/social-content/TheWork";
-import WrongPlatform from "../components/social-content/WrongPlatform";
-import Platforms from "../components/social-content/Platforms";
-import HowWeWork from "../components/social-content/HowWeWork";
-import WhatWeMake from "../components/social-content/WhatWeMake";
-import ThreeWays from "../components/social-content/ThreeWays";
-import Metrics from "../components/social-content/Metrics";
-import SooSocial from "../components/home/SooSocial";
-import PageFaq from "../components/PageFaq";
-import Form from "../components/home/Form";
-import LatestBlogs from "../components/common/LatestBlogs";
+import SocialBands from "../components/social-content/SocialBands";
 import PageSeo from "../components/PageSeo";
-import { pageStaticProps } from "../utils/pageSeo";
+import { siteStaticProps } from "../utils/sitePageProps";
+
+const FALLBACK_TITLE = "Social Media & Content | Viralon";
+const FALLBACK_DESCRIPTION =
+  "Social content built for the platform it runs on, measured on what it brings in.";
 
 // Shown until someone publishes a "search" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -50,43 +55,27 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function SocialContent({ faq, seo }) {
+export default function SocialContent({ seo, schemas, sections, faqs }) {
   return (
     <div className="social-content-page">
       <PageSeo
         seo={seo}
         path="/social-content"
-        fallback={{
-          title: "Social Media & Content | Viralon",
-          description:
-            "Social content built for the platform it runs on, measured on what it brings in.",
-        }}
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: FALLBACK_DESCRIPTION }}
       />
       <Topbar />
       <Offcanvas />
-      <Hero />
-      <TheWork />
-      <WrongPlatform />
-      <Platforms />
-      <HowWeWork />
-      <WhatWeMake />
-      <ThreeWays />
-      <Metrics />
 
+      <SocialBands sections={sections} faqs={faqs} />
 
-           <SooSocial />
-    
-            <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
-      
-             <Form variant="light" />
-            <LatestBlogs />
-   
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
-// the page's own path. Returns null when nothing is published under "search",
-// and <PageFaq /> then renders nothing at all.
-export const getStaticProps = pageStaticProps("social-content");
+// Bands, FAQ sets and structured data, all keyed on the page's own key.
+export const getStaticProps = siteStaticProps("social-content", {
+  fallbackTitle: FALLBACK_TITLE,
+  fallbackFaq: FALLBACK_FAQ,
+});

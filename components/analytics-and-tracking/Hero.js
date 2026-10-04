@@ -22,22 +22,55 @@ const SHARES = [
   { name: "Organic says", value: 20, color: "#FFB13B" },
 ];
 
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "Your platforms claim more revenue",
+  headB: "than your bank",
+  accent: "received.",
+  note: "Every platform is paid to take credit. None of them are paid to tell you the truth. Add up what Meta and Google each claim and the total usually exceeds what the business actually made.",
+  label: "Platform-reported revenue share",
+  totalLabel: "Total credit claimed",
+  totalNote: "You only made 100%. Somebody is taking credit for a sale they did not cause, and right now you are funding whoever shouts loudest.",
+};
+
+// A stored share writes its figure in a text box, so it arrives as a string;
+// the bar width and the total are arithmetic, which is why it is coerced here
+// rather than trusted.
+const toShare = (s) => ({
+  name: s.name,
+  value: Number(s.value) || 0,
+  color: s.color || "#FE4601",
+});
+
 // The fill and the figure are one number: the bar is drawn from whatever the
 // count is holding, so they cannot come apart mid-animation. The three start
 // one after another, and the last one to finish decides when the run is over.
 const FILL_MS = 1400;
 const FILL_STEP_MS = 180;
-const FILL_TOTAL_MS = FILL_MS + FILL_STEP_MS * (SHARES.length - 1);
 
 // Out of the gate quickly, then easing into the figure rather than stopping
 // dead on it.
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
-export default function Hero() {
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
+  // The stored list wins whole or not at all: a half-filled list would make
+  // the bars and the total disagree, which is the one thing this band must
+  // never do.
+  const shares = React.useMemo(
+    () => (d.shares?.length ? d.shares.map(toShare) : SHARES),
+    [d.shares]
+  );
+  const fillTotal = FILL_MS + FILL_STEP_MS * (shares.length - 1);
+
   // The figures start at their full value, so the band is right in the
   // server's markup and with JavaScript off. Mounting is what empties them;
   // the section coming into view is what fills them again.
-  const [shown, setShown] = React.useState(() => SHARES.map((s) => s.value));
+  const [shown, setShown] = React.useState(() => shares.map((s) => s.value));
   const [run, setRun] = React.useState(0);
   const section = React.useRef(null);
 
@@ -57,7 +90,7 @@ export default function Hero() {
 
     if (quiet) return undefined;
 
-    setShown(SHARES.map(() => 0));
+    setShown(shares.map(() => 0));
 
     if (typeof IntersectionObserver !== "function") {
       setRun((n) => n + 1);
@@ -75,7 +108,7 @@ export default function Hero() {
     watcher.observe(node);
 
     return () => watcher.disconnect();
-  }, []);
+  }, [shares]);
 
   // One run of the fill.
   React.useEffect(() => {
@@ -89,7 +122,7 @@ export default function Hero() {
       const elapsed = now - start;
 
       setShown(
-        SHARES.map((share, i) => {
+        shares.map((share, i) => {
           const t = Math.min(
             1,
             Math.max(0, (elapsed - i * FILL_STEP_MS) / FILL_MS)
@@ -98,42 +131,38 @@ export default function Hero() {
         })
       );
 
-      if (elapsed < FILL_TOTAL_MS) {
+      if (elapsed < fillTotal) {
         frame = requestAnimationFrame(tick);
       } else {
-        setShown(SHARES.map((share) => share.value));
+        setShown(shares.map((share) => share.value));
       }
     };
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [run]);
+  }, [run, shares, fillTotal]);
 
   return (
     <section className="ant-hero" ref={section}>
       <div className="container">
         <h1 className="anh-heading">
-          Your platforms claim more revenue
+          {c.headA}
           <br />
-          than your bank <span className="anh-accent">received.</span>
+          {c.headB} <span className="anh-accent">{c.accent}</span>
         </h1>
 
-        <p className="anh-note">
-          Every platform is paid to take credit. None of them are paid to tell
-          you the truth. Add up what Meta and Google each claim and the total
-          usually exceeds what the business actually made.
-        </p>
+        <p className="anh-note">{c.note}</p>
       </div>
 
       <div className="anh-panel">
         <div className="container">
-          <p className="anh-label">Platform-reported revenue share</p>
+          <p className="anh-label">{c.label}</p>
 
           <ul className="anh-bars">
-            {SHARES.map((share, i) => (
+            {shares.map((share, i) => (
               <li
                 className="anh-bar"
-                key={share.name}
+                key={i}
                 style={{ "--anh-value-color": share.color }}
               >
                 <span className="anh-name">{share.name}</span>
@@ -145,7 +174,7 @@ export default function Hero() {
                   <span className="anh-fill" style={{ width: shown[i] + "%" }} />
                 </span>
                 <span className="anh-value" aria-live="polite">
-                  {Math.round(shown[i])}%
+                  {Math.round(shown[i] || 0)}%
                 </span>
               </li>
             ))}
@@ -153,12 +182,8 @@ export default function Hero() {
 
           <div className="anh-total">
             <div className="anh-total-text">
-              <p className="anh-label">Total credit claimed</p>
-              <p className="anh-total-note">
-                You only made 100%. Somebody is taking credit for a sale they
-                did not cause, and right now you are funding whoever shouts
-                loudest.
-              </p>
+              <p className="anh-label">{c.totalLabel}</p>
+              <p className="anh-total-note">{c.totalNote}</p>
             </div>
             <p className="anh-total-value">{total}%</p>
           </div>

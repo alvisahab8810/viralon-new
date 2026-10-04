@@ -86,39 +86,56 @@ function Column({ title, sub, subAccent, items }) {
   );
 }
 
-export default function TwoJobs() {
+const COPY = {
+  eyebrow: "Two different jobs",
+  headA: "Sometimes You Need A New Site.",
+  accent: "Usually You Do Not.",
+  note:
+    "We will tell you honestly which one you are, and we lose money saying it more often than you would expect.",
+  leftTitle: "We build",
+  leftSub: "Built to convert from day one,",
+  leftSubAccent: "not redesigned into converting later.",
+  rightTitle: "We improve",
+  rightSub: "Find the leak, fix the leak, prove it moved.",
+  rightSubAccent: "No blind redesigns.",
+};
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. /website-and-cro and /sample pass nothing and get COPY, so the
+// pages that already run this section are untouched.
+export default function TwoJobs({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="bsee-section wcro-jobs">
       <div className="container">
         <div className="wcj-head">
           <div className="wcj-head-main">
-            <p className="wcj-eyebrow">Two different jobs</p>
+            <p className="wcj-eyebrow">{c.eyebrow}</p>
 
             <h2 className="wcj-heading">
-              Sometimes You Need A New Site.
+              {c.headA}
               <br />
-              <span className="wcj-accent">Usually You Do Not.</span>
+              <span className="wcj-accent">{c.accent}</span>
             </h2>
           </div>
 
-          <p className="wcj-note">
-            We will tell you honestly which one you are, and we lose money
-            saying it more often than you would expect.
-          </p>
+          <p className="wcj-note">{c.note}</p>
         </div>
 
         <div className="bsee-grid">
           <Column
-            title="We build"
-            sub="Built to convert from day one,"
-            subAccent="not redesigned into converting later."
-            items={BUILD}
+            title={c.leftTitle}
+            sub={c.leftSub}
+            subAccent={c.leftSubAccent}
+            items={d.leftItems?.length ? d.leftItems : BUILD}
           />
           <Column
-            title="We improve"
-            sub="Find the leak, fix the leak, prove it moved."
-            subAccent="No blind redesigns."
-            items={IMPROVE}
+            title={c.rightTitle}
+            sub={c.rightSub}
+            subAccent={c.rightSubAccent}
+            items={d.rightItems?.length ? d.rightItems : IMPROVE}
           />
         </div>
       </div>

@@ -14,6 +14,18 @@
 // class because style.css's `.bg-dark h1..h6` rule would otherwise win.
 import React from "react";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "What you get",
+  headA: "They",
+  accent: "Run Together.",
+  headB: "Not Instead Of Each Other.",
+  intro:
+    "Ranking on page one does not guarantee you appear in AI answers. Appearing in AI answers does not require page one. Two games, one foundation, and the domains already ranking well tend to win both.",
+  colLayer: "Layer",
+  colGoal: "The goal",
+};
+
 const LAYERS = [
   {
     name: "SEO",
@@ -32,36 +44,36 @@ const LAYERS = [
   },
 ];
 
-export default function Layers() {
+export default function Layers({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const layers = d.layers?.length ? d.layers : LAYERS;
+
   return (
     <section className="search-layers">
       <div className="container">
         <div className="sly-head">
           <div>
-            <p className="sly-eyebrow">What you get</p>
+            <p className="sly-eyebrow">{c.eyebrow}</p>
             <h2 className="sly-heading">
-              They <span className="sly-accent">Run Together.</span>{" "}
-              Not Instead Of Each Other.
+              {c.headA} <span className="sly-accent">{c.accent}</span>{" "}
+              {c.headB}
             </h2>
           </div>
 
-          <p className="sly-intro">
-            Ranking on page one does not guarantee you appear in AI answers.
-            Appearing in AI answers does not require page one. Two games, one
-            foundation, and the domains already ranking well tend to win both.
-          </p>
+          <p className="sly-intro">{c.intro}</p>
         </div>
 
         <div className="sly-table" role="table" aria-label="Search layers">
           <div className="sly-row sly-row-head" role="row">
-            <span role="columnheader">Layer</span>
-            <span role="columnheader">The goal</span>
+            <span role="columnheader">{c.colLayer}</span>
+            <span role="columnheader">{c.colGoal}</span>
           </div>
-          {LAYERS.map((layer) => (
+          {layers.map((layer, i) => (
             <div
               className="sly-row"
               role="row"
-              key={layer.name}
+              key={i}
               style={{ "--sly-tone": layer.tone }}
             >
               <span className="sly-name" role="rowheader">

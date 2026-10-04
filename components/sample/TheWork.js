@@ -114,17 +114,37 @@ function Row({ items, reverse, duration, className, renderItem }) {
   );
 }
 
-export default function TheWork() {
+// The CRM cannot edit a slide that is either a `tall` string or a `stack`
+// array, so a stored row is flat -- tall, stackA, stackB -- and is folded back
+// into the shape the renderer above expects. A row with `tall` filled is a
+// tall tile; otherwise whichever stack images are present are stacked.
+function fold(rows) {
+  return rows
+    .map((r) =>
+      r.tall
+        ? { tall: r.tall }
+        : { stack: [r.stackA, r.stackB].filter(Boolean) }
+    )
+    .filter((s) => s.tall || s.stack.length);
+}
+
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets the sets above.
+export default function TheWork({ d = {} }) {
+  const one = d.rowOne?.length ? fold(d.rowOne) : ROW_ONE;
+  const two = d.rowTwo?.length ? fold(d.rowTwo) : ROW_TWO;
+  const brands = d.brands?.length ? d.brands.map((b) => b.img).filter(Boolean) : BRANDS;
+
   return (
     <section className="smp-work">
       <div className="container">
-        <p className="smw-eyebrow">The work</p>
-        <h2 className="smw-heading">Images</h2>
+        <p className="smw-eyebrow">{d.eyebrow || "The work"}</p>
+        <h2 className="smw-heading">{d.heading || "Images"}</h2>
       </div>
 
       <div className="smw-rows">
         <Row
-          items={repeat(ROW_ONE, 2)}
+          items={repeat(one, 2)}
           reverse={false}
           duration="52s"
           className="smw-row-work"
@@ -132,7 +152,7 @@ export default function TheWork() {
         />
 
         <Row
-          items={repeat(ROW_TWO, 2)}
+          items={repeat(two, 2)}
           reverse
           duration="60s"
           className="smw-row-work"
@@ -140,7 +160,7 @@ export default function TheWork() {
         />
 
         <Row
-          items={repeat(BRANDS, 3)}
+          items={repeat(brands, 3)}
           reverse={false}
           duration="38s"
           className="smw-row-brands"

@@ -147,9 +147,54 @@ const FALL_DELAYS = Object.freeze(
 
 const FALL_TOTAL_MS = FALL_MS + FALL_STEP_MS * (DOTS.length - 1);
 
-export default function ConversionLoss() {
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Question 01, watch it break",
+  headA: "Real Conversions.",
+  accentA: "Only",
+  accentB: "Reach The Platform.",
+  panelTitle: "real conversions → how many reach the platform",
+  footLabel: "Arrived",
+  outOfLabel: "out of",
+  clientLabel: "Your setup",
+  serverLabel: "Server side",
+};
+
+// A stored row writes its percentage in a text box, so it arrives as a
+// string; every number on this band is arithmetic off those figures, which is
+// why they are coerced here rather than trusted.
+const toRows = (rows, fallback) =>
+  rows?.length
+    ? rows.map((r) => ({ name: r.name, loss: Number(r.loss) || 0 }))
+    : fallback;
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function ConversionLoss({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
+  // The two scenarios keep their ids: the toggle buttons carry them in a
+  // class name, so .anl-toggle-client and .anl-toggle-server go on styling
+  // whichever words an admin puts on them.
+  const scenarios = React.useMemo(
+    () => ({
+      client: {
+        id: "client",
+        label: c.clientLabel,
+        rows: toRows(d.clientRows, SCENARIOS.client.rows),
+      },
+      server: {
+        id: "server",
+        label: c.serverLabel,
+        rows: toRows(d.serverRows, SCENARIOS.server.rows),
+      },
+    }),
+    [c.clientLabel, c.serverLabel, d.clientRows, d.serverRows]
+  );
+
   const [active, setActive] = React.useState("client");
-  const scenario = SCENARIOS[active];
+  const scenario = scenarios[active];
 
   const arrived = arrivedFrom(scenario);
   const lost = TOTAL - arrived;
@@ -309,21 +354,23 @@ export default function ConversionLoss() {
   return (
     <section className="ant-loss" ref={section}>
       <div className="container">
-        <p className="anq-eyebrow">Question 01, watch it break</p>
+        <p className="anq-eyebrow">{c.eyebrow}</p>
 
         <h2 className="anq-heading">
-          {TOTAL} Real Conversions.{" "}
-          <span className="anq-accent">Only {arrived} Reach The Platform.</span>
+          {TOTAL} {c.headA}{" "}
+          <span className="anq-accent">
+            {c.accentA} {arrived} {c.accentB}
+          </span>
         </h2>
 
         <div className="anl-panel">
           <div className="anl-panel-head">
             <p className="anl-panel-title">
-              {TOTAL} real conversions &rarr; how many reach the platform
+              {TOTAL} {c.panelTitle}
             </p>
 
             <div className="anl-toggles">
-              {Object.values(SCENARIOS).map((option) => (
+              {Object.values(scenarios).map((option) => (
                 <button
                   type="button"
                   key={option.id}
@@ -378,8 +425,8 @@ export default function ConversionLoss() {
             </div>
 
             <ul className="anl-rows">
-              {scenario.rows.map((row) => (
-                <li className="anl-row" key={row.name}>
+              {scenario.rows.map((row, i) => (
+                <li className="anl-row" key={i}>
                   <span className="anl-row-name">{row.name}</span>
                   <span className="anl-row-loss">-{row.loss}%</span>
                 </li>
@@ -388,10 +435,13 @@ export default function ConversionLoss() {
           </div>
 
           <div className="anl-foot">
-            <p className="anl-foot-label">Arrived</p>
+            <p className="anl-foot-label">{c.footLabel}</p>
             <p className="anl-foot-value" aria-live="polite">
               <span className="anl-foot-count">{shownArrived}</span>
-              <span className="anl-foot-outof"> out of {TOTAL}</span>
+              <span className="anl-foot-outof">
+                {" "}
+                {c.outOfLabel} {TOTAL}
+              </span>
             </p>
           </div>
         </div>

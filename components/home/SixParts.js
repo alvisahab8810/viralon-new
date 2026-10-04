@@ -57,18 +57,32 @@ const CARDS = [
   },
 ];
 
-export default function SixParts() {
+/* The wording around the rail. Overridden by the home record when the CRM
+   holds one, so a bare <SixParts /> renders what it always did. */
+const COPY = {
+  headA: "The 6 Parts Of",
+  accent: "Machine",
+  intro:
+    "One of these five is your business right now. Pick it, and we will tell you where to start and what it costs.",
+  ctaText: "Have a look",
+};
+
+export default function SixParts({ d = {} }) {
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
     useSliderTrack(".sixparts-card");
+
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
 
   return (
     <section className="sixparts-section">
       <div className="container">
         <div className="sixparts-head">
           <h2 className="sixparts-heading">
-            The 6 Parts Of
+            {c.headA}
             <br />
-            <span className="sixparts-accent">Machine</span>
+            <span className="sixparts-accent">{c.accent}</span>
           </h2>
 
           <SliderNav atStart={atStart} atEnd={atEnd} onScroll={scrollByCard} />
@@ -76,16 +90,13 @@ export default function SixParts() {
 
         {/* Figma's phone layout carries a lead-in line under the heading that
             the desktop composition does not, so it only renders below 1024. */}
-        <p className="sixparts-intro">
-          One of these five is your business right now. Pick it, and we will
-          tell you where to start and what it costs.
-        </p>
+        <p className="sixparts-intro">{c.intro}</p>
       </div>
 
       <div className="sixparts-track-wrap">
         <div className="sixparts-track" ref={trackRef} onScroll={updateEdges}>
-          {CARDS.map((card) => (
-            <article className="sixparts-card" key={card.tag}>
+          {cards.map((card, i) => (
+            <article className="sixparts-card" key={card.tag + i}>
               <span className="sixparts-tag">{card.tag}</span>
               <h3 className="sixparts-title">{card.title}</h3>
               <p className="sixparts-desc">{card.desc}</p>
@@ -95,8 +106,8 @@ export default function SixParts() {
               <div className="sixparts-media">
                 <img src={card.img} alt="" loading="lazy" />
 
-                <Link href={card.href} className="sixparts-cta">
-                  Have a look
+                <Link href={card.href || "#"} className="sixparts-cta">
+                  {c.ctaText}
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

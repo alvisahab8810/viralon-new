@@ -12,6 +12,14 @@ import SliderNav, { useSliderTrack } from "../home/SliderNav";
  * cropped to fill.
  */
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Why it matters",
+  headA: "Brand Is Not A Design Exercise. It Is The Cheapest Way To Lower",
+  accent: "What A Customer Costs You.",
+  ctaText: "Have a look",
+};
+
 const CARDS = [
   {
     title: "Cheaper leads",
@@ -36,7 +44,11 @@ const CARDS = [
   },
 ];
 
-export default function WhyItMatters() {
+export default function WhyItMatters({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   // On a phone the three cards become the same swipeable rail the homepage
   // uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a grid or a scroller, so nothing changes on desktop.
@@ -46,16 +58,16 @@ export default function WhyItMatters() {
   return (
     <section className="brand-why">
       <div className="container">
-        <p className="bw-eyebrow">Why it matters</p>
+        <p className="bw-eyebrow">{c.eyebrow}</p>
 
         <h2 className="bw-heading">
-          Brand Is Not A Design Exercise. It Is The Cheapest Way To Lower{" "}
-          <span className="bw-accent">What A Customer Costs You.</span>
+          {c.headA}{" "}
+          <span className="bw-accent">{c.accent}</span>
         </h2>
 
         <ul className="bw-cards" ref={trackRef} onScroll={updateEdges}>
-          {CARDS.map((card) => (
-            <li className="bw-card" key={card.title}>
+          {cards.map((card, i) => (
+            <li className="bw-card" key={card.title + i}>
               <h3 className="bw-card-title">{card.title}</h3>
               <p className="bw-card-body">{card.body}</p>
 
@@ -65,8 +77,8 @@ export default function WhyItMatters() {
 
               {/* Sits over the artwork, pinned to the bottom of the card, so
                   every button lines up across the row whatever the copy does. */}
-              <Link href={card.href} className="bw-card-cta">
-                Have a look
+              <Link href={card.href || "#"} className="bw-card-cta">
+                {c.ctaText}
                 <span className="bw-card-arrow" aria-hidden="true">
                   &#8599;
                 </span>

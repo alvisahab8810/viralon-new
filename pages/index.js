@@ -1,77 +1,51 @@
 // pages/index.js
-import React, { useEffect, useState } from "react";
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the home record the CRM holds (Website → Pages → Home page) and
+// are rendered by components/home/HomeBands.js, so an admin can reorder,
+// park, duplicate or re-word any of them without a deploy. Nothing stored
+// means every component renders the copy written in its own file, so the page
+// is unchanged until somebody saves it once.
+//
+// The head is the record saved under Website → Pages → Home page → SEO, and
+// its JSON-LD is finished here rather than in the editor: a FAQPage block is
+// built from the questions the page actually shows, and a WebPage block when
+// nobody wrote any schema at all, so the structured data cannot drift from
+// the page.
+import React from "react";
 import PageSeo from "../components/PageSeo";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import Hero from "../components/home/Hero";
-import Form from "../components/home/Form";
-import Testimonials from "../components/home/Testimonials";
 import Offcanvas from "../components/header/Offcanvas";
-import OurWork from "../components/home/OurWork";
-import Process from "../components/home/Process";
-import Partnering from "../components/home/Partnering";
-import WeKnow from "../components/home/WeKnow";
-import WeKnowMobile from "../components/home/WeKnowMobile";
-import SixParts from "../components/home/SixParts";
-import WorkShowcase from "../components/home/WorkShowcase";
-import BrokenParts from "../components/home/BrokenParts";
-import HowItRuns from "../components/home/HowItRuns";
-import BuildItFor from "../components/home/BuildItFor";
-// Cube-effect variant of the section above, rendered alongside it so the two
-// can be compared. Drop one of the two lines below once you have picked.
-import BuildItForCube from "../components/home/BuildItForCube";
-import SooSocial from "../components/home/SooSocial";
-import CTA from "../components/home/CTA";
-import LatestBlogs from "../components/common/LatestBlogs";
-import PageFaq from "../components/PageFaq";
+import HomeBands from "../components/home/HomeBands";
 import { pageStaticProps } from "../utils/pageSeo";
+import { getPageFaq } from "../utils/pageFaq";
 import { getHomeCaseStudies } from "../utils/caseStudy";
+import { getHomeSections } from "../utils/homePage";
+import { allFaqs } from "../utils/sampleSchema";
+import { fromPageSeo, pageSchemas } from "../utils/landingSeo";
 
-export default function IndexPage({ data, faq, seo, caseStudies }) {
-  
+const FALLBACK_TITLE =
+  "Viralon | Best Digital Marketing Agency For Revenue Growth";
 
+export default function IndexPage({ seo, faqs, caseStudies, sections, schemas }) {
   return (
     <section id="home" className="bg-dark">
-      {/* Whatever the admin saved in Website → Pages SEO, falling back to the
-          title the page always carried -- "Viralon" alone was what the
-          browser tab and Google both showed before. */}
+      {/* Whatever the admin saved in Website → Pages → Home page → SEO,
+          falling back to the title the page always carried. */}
       <PageSeo
         seo={seo}
         path="/"
-        fallback={{
-          title: "Viralon | Best Digital Marketing Agency For Revenue Growth",
-          description: "",
-        }}
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: "" }}
       />
       <Topbar />
       <Offcanvas />
-      <Hero />
-      <Partnering />
-      {/* Two layouts, one visible at a time -- swapped at 1023px in custome.css. */}
-      <WeKnow />
-      <WeKnowMobile />
-      <SixParts />
-      <BuildItFor />
-      {/* <BuildItForCube /> */}
 
-      <WorkShowcase cases={caseStudies} />
-      <BrokenParts />
-      <HowItRuns />
-      <SooSocial />
+      <HomeBands sections={sections} faqs={faqs} caseStudies={caseStudies} />
 
-      {/* <OurWork /> */}
-      <div className="parallax-container">
-      {/* <Testimonials /> */}
-      {/* <Process /> */}
-      {/* <Form /> */}
-      </div>
+      <div className="parallax-container"></div>
 
-
-      <PageFaq faq={faq}  variant="light" />
-
-       <Form variant="light" />
-      <LatestBlogs />
-      {/* <CTA /> */}
       <Footer />
     </section>
   );
@@ -83,8 +57,34 @@ const basePageProps = pageStaticProps("home");
 
 export async function getStaticProps(ctx) {
   const base = await basePageProps(ctx);
+  const sections = await getHomeSections();
+
+  // The FAQ band can borrow any published set, so whichever ones the bands
+  // ask for are fetched here; "home" is always loaded, as the default.
+  const faqs = {};
+  if (base.props.faq) faqs.home = base.props.faq;
+  for (const key of new Set(
+    sections
+      .filter((s) => s?.type === "faqform" && s?.data?.faqKey)
+      .map((s) => s.data.faqKey)
+  )) {
+    if (!faqs[key]) faqs[key] = await getPageFaq(key);
+  }
+
+  const seo = base.props.seo;
+  const schemas = pageSchemas(
+    fromPageSeo({ ...(seo || {}), title: seo?.title || FALLBACK_TITLE }, "/"),
+    allFaqs(sections, faqs)
+  );
+
   return {
     ...base,
-    props: { ...base.props, caseStudies: await getHomeCaseStudies() },
+    props: {
+      ...base.props,
+      caseStudies: await getHomeCaseStudies(),
+      sections,
+      faqs: JSON.parse(JSON.stringify(faqs)),
+      schemas,
+    },
   };
 }

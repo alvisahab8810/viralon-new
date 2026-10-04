@@ -16,9 +16,14 @@
 // would lose that cascade and the heading would come out white, not orange.
 import React from "react";
 
-const SOURCE = "Seth Godin";
-const NOTE =
-  "Three quarters of your buyers read those stories long before they ever speak to you.";
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  title: "Social Content",
+  quoteA: "Marketing is no longer about the stuff you",
+  quoteB: "make, but the stories you tell.",
+  attrib: "Seth Godin",
+  note: "Three quarters of your buyers read those stories long before they ever speak to you.",
+};
 
 const STATS = [
   {
@@ -54,13 +59,18 @@ const PLATFORMS = [
 // alone leave gaps at wide viewports; at four the strip is full at every width
 // and the loop still has only two copies to keep in step.
 const REPEATS = 4;
-const ONE_COPY = Array.from({ length: REPEATS }, () => PLATFORMS).flat();
+const oneCopy = (list) => Array.from({ length: REPEATS }, () => list).flat();
 
-export default function Hero() {
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+  const ONE_COPY = oneCopy(d.platforms?.length ? d.platforms : PLATFORMS);
+
   return (
     <section className="social-hero">
       <div className="container">
-        <h1 className="sch-title">Social Content</h1>
+        <h1 className="sch-title">{c.title}</h1>
 
         <div className="sch-rule" />
 
@@ -69,13 +79,12 @@ export default function Hero() {
               meant to turn after "stuff you" at every width it fits on two
               lines. */}
           <blockquote>
-            Marketing is no longer about the stuff you<br /> make, but the
-            stories you tell.
+            {c.quoteA}<br /> {c.quoteB}
           </blockquote>
-          <figcaption className="sch-attrib mobile-none">{SOURCE}</figcaption>
+          <figcaption className="sch-attrib mobile-none">{c.attrib}</figcaption>
         </figure>
 
-        <p className="sch-note mobile-none">{NOTE}</p>
+        <p className="sch-note mobile-none">{c.note}</p>
 
         {/* On a phone the note and the source move inside the same badge box
             the brand hero uses, source underneath -- see .hero-stat-badge.
@@ -83,16 +92,16 @@ export default function Hero() {
             between the two layouts. */}
         <div className="desktop-none">
           <div className="hero-stat-badge">
-            <p className="sch-note">{NOTE}</p>
-            <p className="sch-attrib-mobile">{SOURCE}</p>
+            <p className="sch-note">{c.note}</p>
+            <p className="sch-attrib-mobile">{c.attrib}</p>
           </div>
         </div>
 
         <div className="sch-rule" />
 
         <ul className="sch-stats">
-          {STATS.map((s) => (
-            <li className="sch-stat" key={s.figure}>
+          {stats.map((s, i) => (
+            <li className="sch-stat" key={i}>
               <span className="sch-figure">{s.figure}</span>
               <span className="sch-label">{s.label}</span>
             </li>

@@ -17,6 +17,28 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Three ways we work",
+  headA: "Not Packages.",
+  accent: "Three Different Jobs.",
+  ctaText: "Let us talk",
+};
+
+// A stored card keeps its two groups in flat boxes — a title and five bullets
+// each — because the admin form has no shape for a list inside a list inside a
+// list. Empty bullets drop out and a group with no title at all is skipped, so
+// a card saved with one group renders one.
+function toGroups(way) {
+  if (way.groups) return way.groups;
+  return [
+    [way.groupOneTitle, [way.oneItemOne, way.oneItemTwo, way.oneItemThree, way.oneItemFour, way.oneItemFive]],
+    [way.groupTwoTitle, [way.twoItemOne, way.twoItemTwo, way.twoItemThree, way.twoItemFour, way.twoItemFive]],
+  ]
+    .map(([title, items]) => ({ title, items: items.filter(Boolean) }))
+    .filter((g) => g.title || g.items.length);
+}
+
 const WAYS = [
   {
     name: "Presence",
@@ -126,19 +148,23 @@ function Tick() {
   );
 }
 
-export default function ThreeWays() {
+export default function ThreeWays({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const ways = d.ways?.length ? d.ways : WAYS;
+
   return (
     <section className="search-ways social-ways">
       <div className="container">
-        <p className="swa-eyebrow">Three ways we work</p>
+        <p className="swa-eyebrow">{c.eyebrow}</p>
 
         <h2 className="swa-heading">
-          Not Packages. <span className="swa-accent">Three Different Jobs.</span>
+          {c.headA} <span className="swa-accent">{c.accent}</span>
         </h2>
 
         <ul className="swa-cards">
-          {WAYS.map((way) => (
-            <li className="swa-card" key={way.name}>
+          {ways.map((way, w) => (
+            <li className="swa-card" key={w}>
               <h3 className="swa-name">{way.name}</h3>
               <p className="swa-promise">{way.promise}</p>
 
@@ -148,12 +174,12 @@ export default function ThreeWays() {
 
               {/* Two cards repeat a group title ("Content we make"), so the
                   key is the position, not the title. */}
-              {way.groups.map((group, i) => (
+              {toGroups(way).map((group, i) => (
                 <div className="swa-group" key={i}>
                   <p className="swa-group-title">{group.title}</p>
                   <ul className="swa-items">
-                    {group.items.map((item) => (
-                      <li className="swa-item" key={item}>
+                    {group.items.map((item, j) => (
+                      <li className="swa-item" key={j}>
                         <Tick />
                         <span className="swa-item-text">{item}</span>
                       </li>
@@ -174,7 +200,7 @@ export default function ThreeWays() {
               openEnquiry();
             }}
           >
-            <span className="swy-cta-text">Let us talk</span>
+            <span className="swy-cta-text">{c.ctaText}</span>
             <span className="swy-cta-icon" aria-hidden="true">
               {/* An SVG, not the ↗ character: the glyph sits off-centre in the
                   disc by a different amount in every font. */}

@@ -20,6 +20,13 @@
 import React from "react";
 import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "What we measure",
+  headA: "The Deliverables Are Not The Results",
+  accent: "The Results Are The Result",
+};
+
 const METRICS = [
   {
     num: "01.",
@@ -47,7 +54,11 @@ const METRICS = [
   },
 ];
 
-export default function WhatWeMeasure() {
+export default function WhatWeMeasure({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const metrics = d.metrics?.length ? d.metrics : METRICS;
+
   // On a phone the four open cards become the same swipeable rail the rest of
   // the page uses, arrows and all. The hooks run at every width; only CSS
   // decides whether the row is a grid or a scroller, so nothing changes above
@@ -58,17 +69,17 @@ export default function WhatWeMeasure() {
   return (
     <section className="search-measure">
       <div className="container">
-        <p className="smm-eyebrow">What we measure</p>
+        <p className="smm-eyebrow">{c.eyebrow}</p>
 
         <h2 className="smm-heading">
-          The Deliverables Are Not The Results
+          {c.headA}
           <br />
-          <span className="smm-accent">The Results Are The Result</span>
+          <span className="smm-accent">{c.accent}</span>
         </h2>
 
         <ul className="smm-row" ref={trackRef} onScroll={updateEdges}>
-          {METRICS.map((m) => (
-            <li className="smm-card" key={m.num} tabIndex={0}>
+          {metrics.map((m, i) => (
+            <li className="smm-card" key={i} tabIndex={0}>
               <div className="smm-closed" aria-hidden="true">
                 <span className="smm-num">{m.num}</span>
                 <span className="smm-label">{m.title}</span>

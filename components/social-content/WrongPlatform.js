@@ -21,23 +21,31 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
-export default function WrongPlatform() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Where most get it wrong",
+  headA: "Everyone Starts On Instagram.",
+  accent: "Most Should Not.",
+  body: "Your Competitors Being On A Platform Is Not A Reason For You To Be There. The Only Question That Matters Is Where The Person Who Signs The Cheque Already Spends Their Attention.",
+  ctaText: "Let us talk",
+};
+
+export default function WrongPlatform({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="social-wrong">
       <div className="container">
         <div className="swr-panel">
-          <p className="swr-eyebrow">Where most get it wrong</p>
+          <p className="swr-eyebrow">{c.eyebrow}</p>
 
           <h2 className="swr-heading">
-            Everyone Starts On Instagram.{" "}
-            <span className="swr-accent">Most Should Not.</span>
+            {c.headA}{" "}
+            <span className="swr-accent">{c.accent}</span>
           </h2>
 
-          <p className="swr-body">
-            Your Competitors Being On A Platform Is Not A Reason For You To Be
-            There. The Only Question That Matters Is Where The Person Who Signs
-            The Cheque Already Spends Their Attention.
-          </p>
+          <p className="swr-body">{c.body}</p>
 
           <Link
             href="/contact-us"
@@ -47,7 +55,7 @@ export default function WrongPlatform() {
               openEnquiry();
             }}
           >
-            <span className="swy-cta-text">Let us talk</span>
+            <span className="swy-cta-text">{c.ctaText}</span>
             <span className="swy-cta-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path

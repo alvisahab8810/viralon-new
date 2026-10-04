@@ -15,12 +15,27 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
-export default function Audit() {
+const ART = "/assets/others/start-abt.png";
+
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "Start with one question you cannot answer.",
+  note: "Tell us the decision you are stuck on. We will tell you whether it is a tracking problem, a modelling problem, or a question only a holdout test can settle.",
+  ctaText: "Request an audit",
+  art: ART,
+};
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Audit({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="ant-audit">
       <img
         className="ana-art"
-        src="/assets/others/start-abt.png"
+        src={c.art}
         alt=""
         aria-hidden="true"
         loading="lazy"
@@ -28,15 +43,9 @@ export default function Audit() {
 
       <div className="container">
         <div className="ana-text">
-          <h2 className="ana-heading">
-            Start with one question you cannot answer.
-          </h2>
+          <h2 className="ana-heading">{c.headA}</h2>
 
-          <p className="ana-note">
-            Tell us the decision you are stuck on. We will tell you whether it
-            is a tracking problem, a modelling problem, or a question only a
-            holdout test can settle.
-          </p>
+          <p className="ana-note">{c.note}</p>
 
           <Link
             href="/contact-us"
@@ -46,7 +55,7 @@ export default function Audit() {
               openEnquiry();
             }}
           >
-            Request an audit
+            {c.ctaText}
           </Link>
         </div>
       </div>

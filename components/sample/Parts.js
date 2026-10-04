@@ -36,33 +36,35 @@ const PARTS = [
   },
 ];
 
-export default function Parts() {
+const INTRO =
+  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.";
+
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets the cards above.
+export default function Parts({ d = {} }) {
+  const cards = d.cards?.length ? d.cards : PARTS;
+
   return (
     <section className="smp-parts">
       <div className="container">
         <div className="smpt-head">
           <div className="smpt-head-left">
-            <p className="smpt-eyebrow">Lorem ipsum</p>
+            <p className="smpt-eyebrow">{d.eyebrow || "Lorem ipsum"}</p>
             <h2 className="smpt-heading">
-              Lorem Ipsum Is A
+              {d.headA || "Lorem Ipsum Is A"}
               <br />
-              <span className="smpt-accent">Standard Placeholder</span>
+              <span className="smpt-accent">{d.accent || "Standard Placeholder"}</span>
             </h2>
           </div>
 
-          <p className="smpt-intro">
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia.
-          </p>
+          <p className="smpt-intro">{d.intro || INTRO}</p>
         </div>
 
         {/* A grid at every width the cards can be read side by side, and a
             snapping rail only once they cannot -- the overflow and the snap are
             declared in the phone step alone. */}
         <div className="smpt-track">
-          {PARTS.map((part) => (
+          {cards.map((part) => (
             <article className="smpt-card" key={part.title}>
               <div className="smpt-media">
                 <img src={part.img} alt="" loading="lazy" aria-hidden="true" />

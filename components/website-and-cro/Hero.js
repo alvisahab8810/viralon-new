@@ -7,9 +7,14 @@
 // can be nudged without disturbing /paid-ads.
 import React from "react";
 
-const SOURCE = "Steve Jobs";
-const NOTE =
-  "Your website is not a brochure. It is the last thing standing between a click and a customer.";
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  title: "Website And CRO",
+  quoteA: "Design is not just what it looks like. Design is",
+  quoteB: "how it works.",
+  attrib: "Steve Jobs",
+  note: "Your website is not a brochure. It is the last thing standing between a click and a customer.",
+};
 
 const STATS = [
   { figure: "3 yrs", label: "Building and testing" },
@@ -20,11 +25,17 @@ const STATS = [
   { figure: "10+", label: "Stacks we work in" },
 ];
 
-export default function Hero() {
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+
   return (
     <section className="social-hero paid-hero wcro-hero">
       <div className="container">
-        <h1 className="sch-title">Website And CRO</h1>
+        <h1 className="sch-title">{c.title}</h1>
 
         <div className="sch-rule" />
 
@@ -32,18 +43,18 @@ export default function Hero() {
           {/* The break is set here rather than left to wrapping: the quote is
               meant to turn after "looks like" wherever it fits on two lines. */}
           <blockquote>
-            Design is not just what it looks like. Design is<br /> how it works.
+            {c.quoteA}<br /> {c.quoteB}
           </blockquote>
-          <figcaption className="sch-attrib">{SOURCE}</figcaption>
+          <figcaption className="sch-attrib">{c.attrib}</figcaption>
         </figure>
 
-        <p className="sch-note">{NOTE}</p>
+        <p className="sch-note">{c.note}</p>
 
         <div className="sch-rule" />
 
         <ul className="sch-stats">
-          {STATS.map((s) => (
-            <li className="sch-stat" key={s.label}>
+          {stats.map((s, i) => (
+            <li className="sch-stat" key={i}>
               <span className="sch-figure">{s.figure}</span>
               <span className="sch-label">{s.label}</span>
             </li>

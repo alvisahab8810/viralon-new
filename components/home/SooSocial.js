@@ -24,7 +24,21 @@ const REELS = REEL_ORDER.map(
   (n) => `/assets/img/our-services/instagram/video${n}.mp4`
 );
 
-export default function SooSocial() {
+const COPY = {
+  headA: "We Are Soo",
+  accent: "Social...",
+  intro1: "Connect and see",
+  intro2: "if you like us",
+};
+
+// `d` is one section's stored content when this rail is placed on a page the
+// CRM built. The homepage and /sample pass nothing and get the clip list
+// above, so the pages that already run this rail are untouched.
+export default function SooSocial({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const reels = d.reels?.length ? d.reels.map((r) => r.src).filter(Boolean) : REELS;
+
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
     useSliderTrack(".soosocial-card");
 
@@ -50,22 +64,22 @@ export default function SooSocial() {
       <div className="container">
         <div className="soosocial-head">
           <h2 className="soosocial-heading">
-            We Are Soo
+            {c.headA}
             <br />
-            <span className="soosocial-accent">Social...</span>
+            <span className="soosocial-accent">{c.accent}</span>
           </h2>
 
           <p className="soosocial-intro">
-            Connect and see
+            {c.intro1}
             <br />
-            if you like us
+            {c.intro2}
           </p>
         </div>
       </div>
 
       <div className="soosocial-track-wrap">
         <div className="soosocial-track" ref={trackRef} onScroll={updateEdges}>
-          {REELS.map((src, index) => (
+          {reels.map((src, index) => (
             <article className="soosocial-card" key={src}>
               <video
                 ref={(el) => (videoRefs.current[index] = el)}

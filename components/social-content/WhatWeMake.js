@@ -28,6 +28,35 @@ const DIR = "/assets/others/the-work/social-content/";
 // How long each format stays on screen.
 const HOLD_MS = 3200;
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "What we make",
+  headA: "Formats Chosen For The Job.",
+  accent: "Not For The Calendar.",
+};
+
+// A stored row keeps its four formats in eight boxes rather than in a list
+// inside a list, which the admin form has no shape for. The pairs are folded
+// back into the same { title, label } slides the row below carries, and a pair
+// with no title drops out, so a phone saved with three formats cycles three.
+function toPhone(row) {
+  if (row.slides) return row;
+  const pairs = [
+    [row.titleOne, row.labelOne],
+    [row.titleTwo, row.labelTwo],
+    [row.titleThree, row.labelThree],
+    [row.titleFour, row.labelFour],
+  ];
+  const slides = pairs
+    .filter(([title]) => title)
+    .map(([title, label]) => ({ title, label: label || "" }));
+  return { image: row.image, slides: slides.length ? slides : [{ title: "", label: "" }] };
+}
+
+// A stored row carries a finished path; the list below carries a file name out
+// of the page's own folder, so both are accepted.
+const deviceSrc = (v) => (String(v || "").includes("/") ? v : DIR + v);
+
 const PHONES = [
   {
     image: "phone1.png",
@@ -76,7 +105,11 @@ const PHONES = [
   },
 ];
 
-export default function WhatWeMake() {
+export default function WhatWeMake({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const phones = (d.phones?.length ? d.phones : PHONES).map(toPhone);
+
   const [slot, setSlot] = useState(0);
 
   useEffect(() => {
@@ -91,23 +124,23 @@ export default function WhatWeMake() {
   return (
     <section className="social-make">
       <div className="container">
-        <p className="wmk-eyebrow">What we make</p>
+        <p className="wmk-eyebrow">{c.eyebrow}</p>
         <h2 className="wmk-heading">
-          Formats Chosen For The Job.
+          {c.headA}
           <br />
-          <span className="wmk-accent">Not For The Calendar.</span>
+          <span className="wmk-accent">{c.accent}</span>
         </h2>
 
         <ul className="wmk-row">
-          {PHONES.map((phone, i) => {
+          {phones.map((phone, i) => {
             const slide = phone.slides[slot % phone.slides.length];
             return (
-              <li className={"wmk-phone wmk-phone-" + (i + 1)} key={phone.image}>
+              <li className={"wmk-phone wmk-phone-" + (i + 1)} key={i}>
                 {/* Decorative: the phone is the frame, the copy over it is the
                     content. */}
                 <img
                   className="wmk-device"
-                  src={DIR + phone.image}
+                  src={deviceSrc(phone.image)}
                   alt=""
                   loading="lazy"
                 />

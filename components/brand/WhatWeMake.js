@@ -76,7 +76,34 @@ const PHONES = [
   },
 ];
 
-export default function WhatWeMake() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "What you get",
+  headA: "Everything Your Team Needs",
+  accent: " To Say The Same Thing.",
+};
+
+// What the renderer reads: a finished image path and the formats that phone
+// turns through. A phone stored in the CRM carries its four formats as four
+// flat boxes, and its image as a whole path, so nothing has to know about the
+// folder the shipped exports happen to live in.
+const SHIPPED = PHONES.map((p) => ({
+  src: DIR + p.image,
+  slides: p.slides.map((s) => s.title),
+}));
+
+const toPhone = (row) => ({
+  src: row.image,
+  slides: [row.titleOne, row.titleTwo, row.titleThree, row.titleFour].filter(Boolean),
+});
+
+export default function WhatWeMake({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const phones = d.phones?.length
+    ? d.phones.map(toPhone).filter((p) => p.src && p.slides.length)
+    : SHIPPED;
+
   const [slot, setSlot] = useState(0);
 
   useEffect(() => {
@@ -91,23 +118,23 @@ export default function WhatWeMake() {
   return (
     <section className="social-make">
       <div className="container">
-        <p className="wmk-eyebrow">What you get</p>
+        <p className="wmk-eyebrow">{c.eyebrow}</p>
         <h2 className="wmk-heading">
-          Everything Your Team Needs
+          {c.headA}
           <br />
-          <span className="wmk-accent"> To Say The Same Thing.</span>
+          <span className="wmk-accent">{c.accent}</span>
         </h2>
 
         <ul className="wmk-row">
-          {PHONES.map((phone, i) => {
+          {phones.map((phone, i) => {
             const slide = phone.slides[slot % phone.slides.length];
             return (
-              <li className={"wmk-phone wmk-phone-" + (i + 1)} key={phone.image}>
+              <li className={"wmk-phone wmk-phone-" + (i + 1)} key={phone.src + i}>
                 {/* Decorative: the phone is the frame, the copy over it is the
                     content. */}
                 <img
                   className="wmk-device"
-                  src={DIR + phone.image}
+                  src={phone.src}
                   alt=""
                   loading="lazy"
                 />
@@ -117,10 +144,10 @@ export default function WhatWeMake() {
                     is what re-runs the fade-and-rise. The live region tells a
                     screen reader the copy changed on its own. */}
                 <div className="wmk-screen" aria-live="polite">
-                  <div className="wmk-slide" key={slide.title}>
-                    <p className="wmk-title">{slide.title}</p>
+                  <div className="wmk-slide" key={slide}>
+                    <p className="wmk-title">{slide}</p>
                     <span className="wmk-rule" aria-hidden="true" />
-                    <p className="wmk-label">{slide.label}</p>
+                    <p className="wmk-label"></p>
                   </div>
                 </div>
               </li>

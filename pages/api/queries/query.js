@@ -31,91 +31,108 @@ const esc = (v) =>
     .replace(/"/g, "&quot;");
 
 function sendThankYou(lead) {
-  const { name, email, phone, businessName, runningAds, formType } = lead || {};
+  const { name, email, phone, businessName, runningAds } = lead || {};
   if (!email || !mailConfigured) return;
 
   const first = String(name || "").trim().split(/\s+/)[0] || "there";
 
-  // Only the answers that exist, in the order the form asks them.
+  // Only the answers that exist, in the order the form asks them. Which form
+  // it came from is ours to know -- it tells the sender nothing about their
+  // own enquiry, so it is left off their copy and only kept on the record.
   const rows = [
     ["Name", name],
     ["Business name", businessName],
     ["Email", email],
     ["Phone", phone ? `+91 ${phone}` : ""],
     ["Running ads at the moment", runningAds],
-    ["Enquired from", formType],
   ].filter(([, v]) => String(v || "").trim());
 
+  // Label over value rather than beside it. A two-column row needs a fixed
+  // label width to line up, and at 320px that width is most of the screen --
+  // the value then wrapped under itself and ran into the next row. Stacked,
+  // every row is one column at any width and nothing has to be measured.
   const rowsHtml = rows
     .map(
-      ([k, v]) => `
+      ([k, v], n) => `
         <tr>
-          <td style="padding:9px 0;color:#6B6B76;font-size:13px;width:190px;vertical-align:top;">${esc(k)}</td>
-          <td style="padding:9px 0;color:#14121F;font-size:14px;font-weight:600;">${esc(v)}</td>
+          <td style="padding:11px 16px;${n < rows.length - 1 ? "border-bottom:1px solid #EDEDF1;" : ""}">
+            <div style="color:#6B6B76;font-size:12px;line-height:16px;letter-spacing:.3px;text-transform:uppercase;">${esc(k)}</div>
+            <div style="color:#14121F;font-size:15px;line-height:22px;font-weight:600;word-break:break-word;">${esc(v)}</div>
+          </td>
         </tr>`
     )
     .join("");
 
-  const html = `
-<div style="background:#F4F4F6;padding:28px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  /* Phones get the smaller wordmark and tighter gutters. Clients that drop
+     the <style> block keep the desktop figures, which are the safe ones. */
+  @media only screen and (max-width:480px) {
+    .vq-pad { padding-left:18px !important; padding-right:18px !important; }
+    .vq-head { padding:16px 18px 15px !important; }
+    .vq-logo { width:46px !important; max-width:46px !important; }
+    .vq-tag { font-size:12px !important; line-height:16px !important; }
+    .vq-copy { font-size:14px !important; line-height:22px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F4F4F6;">
+<div style="background:#F4F4F6;padding:24px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
     <tr>
-      <td style="background:#19132F;padding:26px 32px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
-          <td valign="middle" width="76" style="width:76px;">
-            <img src="${LOGO}" width="76" alt="Viralon" style="display:block;border:0;outline:none;width:76px;max-width:76px;height:auto;" />
-          </td>
-          <td valign="middle" align="right" style="color:#ffffff;font-size:22px;font-weight:700;line-height:28px;padding-left:16px;">We have your enquiry</td>
-        </tr></table>
+      <td class="vq-head" align="center" style="background:#19132F;padding:20px 24px 18px;text-align:center;">
+        <img class="vq-logo" src="${LOGO}" width="54" alt="Viralon" style="display:block;margin:0 auto;border:0;outline:none;width:54px;max-width:54px;height:auto;" />
+        <div class="vq-tag" style="margin:9px 0 0;color:#ffffff;font-size:13px;line-height:17px;font-weight:700;letter-spacing:.4px;">Nothing works alone</div>
       </td>
     </tr>
 
     <tr>
-      <td style="padding:28px 32px 6px;">
-        <p style="margin:0 0 14px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
-        <p style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
-          Thank you for getting in touch with Viralon. Your enquiry has reached our team
-          and someone will call you on the number below within one working day to
-          understand what you need and tell you honestly where we would start.
+      <td class="vq-pad" style="padding:26px 28px 8px;">
+        <p class="vq-copy" style="margin:0 0 12px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
+        <p class="vq-copy" style="margin:0 0 18px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          Thank you for getting in touch. Our representative will call you within 24 hours.
         </p>
-        <p style="margin:0 0 22px;color:#3F3D4A;font-size:15px;line-height:24px;">
-          Here is what you sent us, so you have it on record:
+        <p class="vq-copy" style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          Here is what you sent us:
         </p>
       </td>
     </tr>
 
     <tr>
-      <td style="padding:0 32px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#FAFAFB;border:1px solid #EDEDF1;border-radius:10px;padding:6px 18px;">
+      <td class="vq-pad" style="padding:0 28px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;background:#FAFAFB;border:1px solid #EDEDF1;border-radius:10px;">
           ${rowsHtml}
         </table>
       </td>
     </tr>
 
     <tr>
-      <td style="padding:22px 32px 4px;">
-        <p style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
-          If anything above is wrong, simply reply to this email and we will correct it.
-          Anything you would like us to look at before the call &mdash; your website, your ad
-          account, a deck &mdash; is welcome in the same reply.
+      <td class="vq-pad" style="padding:20px 28px 6px;">
+        <p class="vq-copy" style="margin:0 0 16px;color:#3F3D4A;font-size:15px;line-height:24px;">
+          Anything wrong, or anything you want us to look at before the call? Just reply to this email.
         </p>
-        <p style="margin:0 0 4px;color:#14121F;font-size:15px;line-height:24px;">Regards,</p>
-        <p style="margin:0 0 24px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
+        <p class="vq-copy" style="margin:0 0 2px;color:#14121F;font-size:15px;line-height:24px;">Regards,</p>
+        <p class="vq-copy" style="margin:0 0 24px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
       </td>
     </tr>
   </table>
-</div>`;
+</div>
+</body>
+</html>`;
 
   const text = [
     `Hi ${first},`,
     "",
-    "Thank you for getting in touch with Viralon. Your enquiry has reached our team",
-    "and someone will call you within one working day.",
+    "Thank you for getting in touch. Our representative will call you within 24 hours.",
     "",
-    "What you sent us:",
+    "Here is what you sent us:",
     ...rows.map(([k, v]) => `  ${k}: ${v}`),
     "",
-    "If anything above is wrong, simply reply to this email and we will correct it.",
+    "Anything wrong, or anything you want us to look at before the call? Just reply to this email.",
     "",
     "Regards,",
     "Team Viralon",

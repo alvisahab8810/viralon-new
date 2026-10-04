@@ -7,18 +7,43 @@
 // ground; .wcro-dash is an empty handle.
 import React from "react";
 
-export default function Dashboards() {
+// The copy the page ships with; a stored band overrides a line at a time.
+// A pipe in the statement is a line break.
+const COPY = {
+  headA: "Doubling your conversion|rate halves what a|customer costs you.|Without spending another|dollar on traffic.",
+  note: "This is the only lever in marketing that works that way.",
+};
+
+// The headings here are broken by hand, line by line, rather than left to
+// wrap. A stored field keeps that control without becoming HTML: the lines are
+// written in one box separated by a pipe, and rendered with a <br /> between
+// them -- the same markup the band shipped with.
+const lines = (v) =>
+  String(v || "")
+    .split("|")
+    .map((l, i) =>
+      i === 0 ? (
+        l
+      ) : (
+        <React.Fragment key={i}>
+          <br />
+          {l}
+        </React.Fragment>
+      )
+    );
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Dashboards({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="pa-dash wcro-dash">
       <div className="container">
-        <h2 className="pad-heading">
-          Doubling your conversion<br/> rate halves what a<br/> customer costs you.<br/>
-          Without spending another<br/> dollar on traffic.
-        </h2>
+        <h2 className="pad-heading">{lines(c.headA)}</h2>
 
-        <p className="pad-note">
-          This is the only lever in marketing that works that way.
-        </p>
+        <p className="pad-note">{c.note}</p>
       </div>
     </section>
   );

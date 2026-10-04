@@ -10010,3 +10010,8 @@ ease-in-out;
     left: 24px;
     top: 27.7px;
 }
+
+
+.sample-page .form-section--light {
+    margin-top: 100px;
+}

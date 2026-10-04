@@ -52,14 +52,22 @@ function Tick() {
   );
 }
 
-export default function WhatYouGet() {
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets the list above. The items come back from the CRM as rows of
+// { text } rather than bare strings, so both shapes are accepted.
+export default function WhatYouGet({ d = {} }) {
+  const items = (d.items?.length ? d.items : ITEMS).map((x) =>
+    typeof x === "string" ? x : x?.text || ""
+  );
+
   return (
     <section className="smp-get">
       <div className="container">
-        <p className="smg-eyebrow">What you get</p>
+        <p className="smg-eyebrow">{d.eyebrow || "What you get"}</p>
         <h2 className="smg-heading">
-          Everything <span className="smg-accent">Your Team Needs</span> To Say
-          The Same Thing.
+          {d.headA || "Everything"}{" "}
+          <span className="smg-accent">{d.accent || "Your Team Needs"}</span>{" "}
+          {d.headB || "To Say The Same Thing."}
         </h2>
 
         <div className="smg-card">
@@ -73,7 +81,7 @@ export default function WhatYouGet() {
             </span>
 
             <ul className="smg-list">
-              {ITEMS.map((item) => (
+              {items.map((item) => (
                 <li className="smg-item" key={item}>
                   <Tick />
                   <span className="smg-text">{item}</span>
@@ -83,7 +91,7 @@ export default function WhatYouGet() {
           </div>
 
           <div className="smg-art">
-            <img src={DIR + "sample2.webp"} alt="" loading="lazy" />
+            <img src={d.img || DIR + "sample2.webp"} alt="" loading="lazy" />
           </div>
         </div>
       </div>

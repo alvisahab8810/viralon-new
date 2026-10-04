@@ -20,7 +20,11 @@ const absolute = (url) => {
   return /^https?:\/\//i.test(url) ? url : `${BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
 };
 
-export default function PageSeo({ seo, fallback = {}, path = "" }) {
+// `schemas` lets a page hand in the finished JSON-LD instead of the record's
+// own blocks — the home page does, because its FAQPage block is generated
+// from the questions the page actually shows (utils/landingSeo.js). Left out,
+// the record's blocks are printed exactly as before.
+export default function PageSeo({ seo, fallback = {}, path = "", schemas: given }) {
   const s = seo || {};
 
   const title = s.title || fallback.title || "Viralon";
@@ -36,7 +40,7 @@ export default function PageSeo({ seo, fallback = {}, path = "" }) {
 
   // Only blocks that actually parse are printed: a broken one would be dead
   // weight in the page and can make a validator reject the rest.
-  const schemas = (s.schemas || [])
+  const schemas = given?.length ? given.filter(Boolean) : (s.schemas || [])
     .map((block) => {
       try {
         return JSON.stringify(JSON.parse(block.content));

@@ -74,7 +74,7 @@ function fromRecord(doc) {
   };
 }
 
-export default function WorkShowcase({ cases }) {
+export default function WorkShowcase({ cases, d = {} }) {
   const studies =
     Array.isArray(cases) && cases.length ? cases.map(fromRecord) : CASES;
 
@@ -110,7 +110,7 @@ export default function WorkShowcase({ cases }) {
     <section className="workshow-section wsc-cases">
       <div className="container">
         <div className="wsc-panel">
-          <p className="wsc-eyebrow">Case Studies</p>
+          <p className="wsc-eyebrow">{d.eyebrow || "Case Studies"}</p>
 
           <div className="wsc-grid">
             <div className="wsc-copy">

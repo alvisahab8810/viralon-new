@@ -69,7 +69,25 @@ const ROW_TWO_OWN = from("second-slider", [
 //
 // `slice()` first because `reverse()` mutates -- reversing ROW_ONE in place
 // would turn the top row round as well.
-const ROW_TWO = ROW_TWO_OWN.concat(ROW_ONE.slice().reverse());
+// The copy above the rows. A stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "The work",
+  headA: "Brands We Have",
+  accent: "Built.",
+};
+
+// A row stored in the CRM is a flat list: either one tall export, or the two
+// halves of a stacked column. It is turned back into the shape the renderer
+// reads here, so the stored form stays something an admin can fill in.
+function toSlides(rows) {
+  return rows
+    .map((r) =>
+      r.tall
+        ? { tall: r.tall }
+        : { stack: [r.stackA, r.stackB].filter(Boolean) }
+    )
+    .filter((s) => s.tall || s.stack.length);
+}
 
 // Both rows draw their slides the same way, so the markup lives in one place.
 // The column is a fixed width worked out from the row height in the
@@ -130,19 +148,32 @@ function Row({ items, reverse, duration, className, renderItem }) {
   );
 }
 
-export default function BrandsBuilt() {
+export default function BrandsBuilt({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
+  const rowOne = d.rowOne?.length ? toSlides(d.rowOne) : ROW_ONE;
+  const rowTwoOwn = d.rowTwo?.length ? toSlides(d.rowTwo) : ROW_TWO_OWN;
+  // Row two leads with its own set and then carries on through row one's work,
+  // read back to front, whichever set it is working from. slice() first
+  // because reverse() mutates.
+  const rowTwo = rowTwoOwn.concat(rowOne.slice().reverse());
+  const brands = d.brands?.length
+    ? d.brands.map((b) => b.img).filter(Boolean)
+    : BRANDS;
+
   return (
     <section className="brand-marquee">
       <div className="container">
-        <p className="bm-eyebrow">The work</p>
+        <p className="bm-eyebrow">{c.eyebrow}</p>
         <h2 className="bm-heading">
-          Brands We Have <span className="bm-accent">Built.</span>
+          {c.headA} <span className="bm-accent">{c.accent}</span>
         </h2>
       </div>
 
       <div className="bm-rows">
         <Row
-          items={repeat(ROW_ONE, 2)}
+          items={repeat(rowOne, 2)}
           reverse={false}
           duration="52s"
           className="bm-row-work"
@@ -150,7 +181,7 @@ export default function BrandsBuilt() {
         />
 
         <Row
-          items={repeat(ROW_TWO, 2)}
+          items={repeat(rowTwo, 2)}
           reverse
           duration="60s"
           className="bm-row-work"
@@ -158,7 +189,7 @@ export default function BrandsBuilt() {
         />
 
         <Row
-          items={repeat(BRANDS, 3)}
+          items={repeat(brands, 3)}
           reverse={false}
           duration="38s"
           className="bm-row-brands"

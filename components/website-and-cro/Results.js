@@ -12,6 +12,15 @@
 import React from "react";
 import Link from "next/link";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Results",
+  headA: "Same traffic.",
+  accent: "Different business.",
+  clientLabel: "Client:",
+  ctaText: "Read Case Study",
+};
+
 const CARDS = [
   {
     kicker: "Travel · Kashmir",
@@ -47,19 +56,25 @@ const CARDS = [
   },
 ];
 
-export default function Results() {
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function Results({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   return (
     <section className="pa-results wcro-results">
       <div className="container">
-        <p className="par-eyebrow">Results</p>
+        <p className="par-eyebrow">{c.eyebrow}</p>
 
         <h2 className="par-heading">
-          Same traffic. <span className="par-accent">Different business.</span>
+          {c.headA} <span className="par-accent">{c.accent}</span>
         </h2>
 
         <ul className="par-cards">
-          {CARDS.map((card) => (
-            <li className="par-card" key={card.client}>
+          {cards.map((card, i) => (
+            <li className="par-card" key={i}>
               <p className="par-kicker">{card.kicker}</p>
               {/* The figure is the card's whole argument, so it is read as
                   part of the sentence rather than treated as decoration. */}
@@ -71,11 +86,12 @@ export default function Results() {
               </div>
 
               <p className="par-client">
-                Client: <span className="par-client-name">{card.client}</span>
+                {c.clientLabel}{" "}
+                <span className="par-client-name">{card.client}</span>
               </p>
 
-              <Link href={card.href} className="par-card-cta">
-                Read Case Study
+              <Link href={card.href || "#"} className="par-card-cta">
+                {c.ctaText}
                 <span className="par-card-arrow" aria-hidden="true">
                   &#8599;
                 </span>

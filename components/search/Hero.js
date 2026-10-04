@@ -18,7 +18,13 @@
 // would lose that cascade and the heading would come out white, not orange.
 import React from "react";
 
-const QUERY = "which agency handles both seo and ai search for education brands";
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  title: "Search",
+  query: "which agency handles both seo and ai search for education brands",
+  dead: "SEO is dead.",
+  line: "Search just stopped being a list.",
+};
 
 const STATS = [
   {
@@ -35,14 +41,18 @@ const STATS = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+
   return (
     <section className="search-hero">
       <div className="container">
-        <h1 className="sh-title">Search</h1>
+        <h1 className="sh-title">{c.title}</h1>
 
         <div className="sh-query">
-          <span className="sh-query-text">{QUERY}</span>
+          <span className="sh-query-text">{c.query}</span>
           <i className="ri-search-line sh-query-icon" aria-hidden="true" />
         </div>
 
@@ -50,14 +60,14 @@ export default function Hero() {
             rule has to overhang the words at both ends and run orange against
             grey text, and text-decoration gives neither. */}
         <p className="sh-dead">
-          <span>SEO is dead.</span>
+          <span>{c.dead}</span>
         </p>
 
-        <h2 className="sh-line">Search just stopped being a list.</h2>
+        <h2 className="sh-line">{c.line}</h2>
 
         <ul className="sh-stats">
-          {STATS.map((s) => (
-            <li className="sh-stat" key={s.figure}>
+          {stats.map((s, i) => (
+            <li className="sh-stat" key={i}>
               <span className="sh-figure">{s.figure}</span>
               <span className="sh-label">{s.label}</span>
             </li>

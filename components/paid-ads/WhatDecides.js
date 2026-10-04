@@ -18,6 +18,14 @@
 import React, { useCallback, useState } from "react";
 import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Before you blame the ads",
+  headA: "Eight Things Decide Performance.",
+  accent: "Only Two Are The Ads.",
+  note: "Most accounts we audit are not badly run. They are running perfectly against a problem sitting somewhere else entirely.",
+};
+
 const CARDS = [
   {
     title: "Creative",
@@ -61,7 +69,11 @@ const CARDS = [
   },
 ];
 
-export default function WhatDecides() {
+export default function WhatDecides({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   // On a phone the eight cards become the same swipeable rail the rest of the
   // site uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a grid or a scroller, so the desktop ramp is untouched.
@@ -104,30 +116,27 @@ export default function WhatDecides() {
       <div className="container">
         <div className="pdw-head">
           <div className="pdw-head-main">
-            <p className="pdw-eyebrow">Before you blame the ads</p>
+            <p className="pdw-eyebrow">{c.eyebrow}</p>
 
             <h2 className="pdw-heading">
-              Eight Things Decide Performance.{" "}
-              <span className="pdw-accent">Only Two Are The Ads.</span>
+              {c.headA}{" "}
+              <span className="pdw-accent">{c.accent}</span>
             </h2>
           </div>
 
-          <p className="pdw-note">
-            Most accounts we audit are not badly run. They are running perfectly
-            against a problem sitting somewhere else entirely.
-          </p>
+          <p className="pdw-note">{c.note}</p>
         </div>
 
         {/* The stack order is set in source order by z-index, exactly as on
             /social-content: hover only lifts a card, it never reorders the
             rail. --pdw-step is the card's place on the ramp. */}
         <ul className="pdw-rail" ref={trackRef} onScroll={onScroll}>
-          {CARDS.map((card, i) => (
+          {cards.map((card, i) => (
             <li
               className={
                 "pdw-card pdw-card-" + (i + 1) + (i === lead ? " is-lead" : "")
               }
-              key={card.title}
+              key={i}
               style={{ "--pdw-step": i }}
             >
               <h3 className="pdw-title">{card.title}</h3>

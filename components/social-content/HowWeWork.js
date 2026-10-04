@@ -24,7 +24,13 @@
 // would otherwise turn the section heading white on the white band.
 import React, { useEffect, useRef, useState } from "react";
 
-const IMAGE = "/assets/others/the-work/social-content/steps.webp";
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "How we work",
+  headA: "Five Steps, Every Month,",
+  accent: "In The Same Order.",
+  img: "/assets/others/the-work/social-content/steps.webp",
+};
 
 const STEPS = [
   {
@@ -54,7 +60,11 @@ const STEPS = [
   },
 ];
 
-export default function HowWeWork() {
+export default function HowWeWork({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const steps = d.steps?.length ? d.steps : STEPS;
+
   const wrapRef = useRef(null);
   const [active, setActive] = useState(0);
 
@@ -73,8 +83,8 @@ export default function HowWeWork() {
         pinned
       );
       const i = Math.min(
-        STEPS.length - 1,
-        Math.floor((travelled / pinned) * STEPS.length)
+        steps.length - 1,
+        Math.floor((travelled / pinned) * steps.length)
       );
       setActive(i);
     };
@@ -86,15 +96,16 @@ export default function HowWeWork() {
       window.removeEventListener("scroll", read);
       window.removeEventListener("resize", read);
     };
-  }, []);
+    // A band saved with a step more or fewer re-divides the pinned distance.
+  }, [steps.length]);
 
   return (
     <section className="social-steps">
       <div className="container">
-        <p className="sst-eyebrow">How we work</p>
+        <p className="sst-eyebrow">{c.eyebrow}</p>
         <h2 className="sst-heading">
-          Five Steps, Every Month,{" "}
-          <span className="sst-accent">In The Same Order.</span>
+          {c.headA}{" "}
+          <span className="sst-accent">{c.accent}</span>
         </h2>
       </div>
 
@@ -102,7 +113,7 @@ export default function HowWeWork() {
         <div className="sst-stage">
           <div className="sst-visual">
             {/* Decorative: the step copy beside it carries the meaning. */}
-            <img src={IMAGE} alt="" />
+            <img src={c.img} alt="" />
           </div>
 
           {/* All five panels are rendered and stacked; only the active one is
@@ -114,10 +125,10 @@ export default function HowWeWork() {
               visible on the background as well as in the copy: odd steps sit
               on the lighter of the two. */}
           <div className={"sst-panel" + (active % 2 ? " is-alt" : "")}>
-            {STEPS.map((s, i) => (
+            {steps.map((s, i) => (
               <article
                 className={"sst-step" + (i === active ? " is-active" : "")}
-                key={s.n}
+                key={i}
                 aria-hidden={i === active ? undefined : "true"}
               >
                 <p className="sst-num">{s.n}</p>

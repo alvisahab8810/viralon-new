@@ -16,6 +16,14 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Three ways we work",
+  headA: "Not Packages.",
+  accent: "Three Different Jobs.",
+  ctaText: "Let's talk",
+};
+
 const WAYS = [
   {
     name: "Growth",
@@ -58,19 +66,32 @@ const WAYS = [
   },
 ];
 
-export default function ThreeWays() {
+/* A stored card keeps its five bullets in five boxes rather than in a list
+   inside a list, which the admin form has no shape for. Empty boxes drop out,
+   so a card with four bullets renders four. */
+const bullets = (way) =>
+  way.items ||
+  [way.itemOne, way.itemTwo, way.itemThree, way.itemFour, way.itemFive].filter(
+    Boolean
+  );
+
+export default function ThreeWays({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const ways = d.ways?.length ? d.ways : WAYS;
+
   return (
     <section className="search-ways">
       <div className="container">
-        <p className="swa-eyebrow">Three ways we work</p>
+        <p className="swa-eyebrow">{c.eyebrow}</p>
 
         <h2 className="swa-heading">
-          Not Packages. <span className="swa-accent">Three Different Jobs.</span>
+          {c.headA} <span className="swa-accent">{c.accent}</span>
         </h2>
 
         <ul className="swa-cards">
-          {WAYS.map((way) => (
-            <li className="swa-card" key={way.name}>
+          {ways.map((way, i) => (
+            <li className="swa-card" key={i}>
               <h3 className="swa-name">{way.name}</h3>
               <p className="swa-promise">{way.promise}</p>
 
@@ -78,8 +99,8 @@ export default function ThreeWays() {
               <p className="swa-outcome">{way.outcome}</p>
 
               <ul className="swa-items">
-                {way.items.map((item) => (
-                  <li className="swa-item" key={item}>
+                {bullets(way).map((item, j) => (
+                  <li className="swa-item" key={j}>
                     {item}
                   </li>
                 ))}
@@ -97,7 +118,7 @@ export default function ThreeWays() {
               openEnquiry();
             }}
           >
-            <span className="swy-cta-text">Let's talk</span>
+            <span className="swy-cta-text">{c.ctaText}</span>
             <span className="swy-cta-icon" aria-hidden="true">
               {/* An SVG, not the ↗ character: the glyph sits off-centre in the disc
                   by a different amount in every font. */}

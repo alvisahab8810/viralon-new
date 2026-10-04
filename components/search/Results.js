@@ -23,6 +23,14 @@ import React from "react";
 import Link from "next/link";
 import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Results",
+  headA: "Not Just Numbers",
+  accent: "Measured Results",
+  ctaText: "Have a look",
+};
+
 const CARDS = [
   {
     figure: "240%",
@@ -47,7 +55,11 @@ const CARDS = [
   },
 ];
 
-export default function Results() {
+export default function Results({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   // On a phone the cards become the same swipeable rail the homepage uses,
   // arrows and all. The hooks run at every width; only CSS decides whether the
   // list is a grid or a scroller, so nothing changes on desktop.
@@ -57,15 +69,15 @@ export default function Results() {
   return (
     <section className="search-results">
       <div className="container">
-        <p className="sr-eyebrow">Results</p>
+        <p className="sr-eyebrow">{c.eyebrow}</p>
 
         <h2 className="sr-heading">
-          Not Just Numbers <span className="sr-accent">Measured Results</span>
+          {c.headA} <span className="sr-accent">{c.accent}</span>
         </h2>
 
         <ul className="sr-cards" ref={trackRef} onScroll={updateEdges}>
-          {CARDS.map((card) => (
-            <li className="sr-card" key={card.figure}>
+          {cards.map((card, i) => (
+            <li className="sr-card" key={i}>
               <p className="sr-figure">{card.figure}</p>
               <p className="sr-card-body">{card.body}</p>
 
@@ -75,8 +87,8 @@ export default function Results() {
 
               {/* Sits over the artwork, pinned to the bottom of the card, so
                   every button lines up across the row whatever the copy does. */}
-              <Link href={card.href} className="sr-card-cta">
-                Have a look
+              <Link href={card.href || "#"} className="sr-card-cta">
+                {c.ctaText}
                 <span className="sr-card-arrow" aria-hidden="true">
                   &#8599;
                 </span>

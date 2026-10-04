@@ -116,7 +116,7 @@ function Column({ title, items }) {
           return (
             <button
               type="button"
-              key={item.title}
+              key={item.title + i}
               className={"bsee-panel" + (isOpen ? " is-open" : "")}
               aria-expanded={isOpen}
               onClick={() => setOpen(i)}
@@ -142,20 +142,34 @@ function Column({ title, items }) {
   );
 }
 
-export default function HowWeSee() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "How we see brand",
+  headA: "Two Halves. Fourteen Decisions.",
+  accent: "Nothing Decorative.",
+  colOne: "Direction",
+  colTwo: "Expression",
+};
+
+export default function HowWeSee({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const direction = d.direction?.length ? d.direction : DIRECTION;
+  const expression = d.expression?.length ? d.expression : EXPRESSION;
+
   return (
     <section className="bsee-section">
       <div className="container">
-        <p className="bsee-eyebrow">How we see brand</p>
+        <p className="bsee-eyebrow">{c.eyebrow}</p>
         <h2 className="bsee-heading">
-          Two Halves. Fourteen Decisions.
+          {c.headA}
           <br />
-          <span className="bsee-accent">Nothing Decorative.</span>
+          <span className="bsee-accent">{c.accent}</span>
         </h2>
 
         <div className="bsee-grid">
-          <Column title="Direction" items={DIRECTION} />
-          <Column title="Expression" items={EXPRESSION} />
+          <Column title={c.colOne} items={direction} />
+          <Column title={c.colTwo} items={expression} />
         </div>
       </div>
     </section>

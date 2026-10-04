@@ -1,4 +1,5 @@
 import React from "react";
+import { isYes } from "../../utils/homeSchema";
 
 /*
  * "How It Runs" — stacked stage cards. Each card is a full-bleed image with
@@ -49,25 +50,37 @@ const STEPS = [
   },
 ];
 
-export default function HowItRuns() {
+/* The wording around the cards, overridden by the home record when the CRM
+   holds one. `flip` arrives from the CRM as a word rather than a boolean, so
+   isYes reads it — the hard-coded steps above stay booleans. */
+const COPY = {
+  headA: "How It",
+  accent: "Runs",
+  intro: "Everything starts together. The parts just mature at different speeds.",
+};
+
+export default function HowItRuns({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const steps = d.steps?.length ? d.steps : STEPS;
+
   return (
     <section className="howruns-section">
       <div className="container">
         <div className="howruns-head">
           <h2 className="howruns-heading">
-            How It <span className="howruns-accent">Runs</span>
+            {c.headA} <span className="howruns-accent">{c.accent}</span>
           </h2>
-          <p className="howruns-intro">
-            Everything starts together. The parts just mature at different
-            speeds.
-          </p>
+          <p className="howruns-intro">{c.intro}</p>
         </div>
 
         <div className="howruns-list">
-          {STEPS.map((step) => (
+          {steps.map((step, i) => (
             <article
-              className={`howruns-card${step.flip ? " is-flipped" : ""}`}
-              key={step.num}
+              className={`howruns-card${
+                step.flip === true || isYes(step.flip) ? " is-flipped" : ""
+              }`}
+              key={step.num + i}
             >
               <img
                 className="howruns-card-bg howruns-card-bg--desktop"

@@ -37,37 +37,50 @@ const PARTS = [
   },
 ];
 
-export default function BrokenParts() {
+/* The wording around the rail. The phone heading breaks in a different place,
+   so it is its own pair of lines rather than the same ones reflowed.
+   Overridden by the home record when the CRM holds one. */
+const COPY = {
+  headA: "Which Part Of Yours",
+  headB: "Is",
+  accent: "Broken?",
+  headMobileA: "Which Part Of",
+  headMobileB: "Yours Is",
+  intro:
+    "One of these five is your business right now. Pick it, and we will tell you where to start and what it costs.",
+};
+
+export default function BrokenParts({ d = {} }) {
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
     useSliderTrack(".broken-card");
+
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const parts = d.cards?.length ? d.cards : PARTS;
 
   return (
     <section className="broken-section">
       <div className="container">
         <div className="broken-head">
           <h2 className="broken-heading mobile-none" >
-            Which Part Of Yours
+            {c.headA}
             <br />
-            Is <span className="broken-accent">Broken?</span>
+            {c.headB} <span className="broken-accent">{c.accent}</span>
           </h2>
 
           <h2 className="broken-heading desktop-none" >
-            
-            Which Part Of <br /> Yours
-            Is <span className="broken-accent">Broken?</span>
+            {c.headMobileA} <br /> {c.headMobileB}{" "}
+            <span className="broken-accent">{c.accent}</span>
           </h2>
 
-          <p className="broken-intro">
-            One of these five is your business right now. Pick it, and we will
-            tell you where to start and what it costs.
-          </p>
+          <p className="broken-intro">{c.intro}</p>
         </div>
       </div>
 
       <div className="broken-track-wrap">
         <div className="broken-track" ref={trackRef} onScroll={updateEdges}>
-          {PARTS.map((part) => (
-            <article className="broken-card" key={part.title}>
+          {parts.map((part, i) => (
+            <article className="broken-card" key={part.title + i}>
               <div className="broken-media">
                 <img src={part.img} alt="" loading="lazy" aria-hidden="true" />
               </div>

@@ -1,25 +1,26 @@
+// pages/search.js
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the record the CRM holds (Website -> Pages -> Search) and are
+// rendered by components/search/SearchBands.js, so an admin can reorder, park,
+// duplicate or re-word any of them without a deploy. Nothing stored means
+// every component renders the copy written in its own file, so the page is
+// unchanged until somebody saves it once.
+//
+// The head is the record saved under Website -> Pages SEO (or the page's own
+// SEO tab), and its JSON-LD is finished in utils/sitePageProps.js from the
+// questions the page actually shows.
 import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/search/Hero";
-import Results from "../components/search/Results";
-import WhySearch from "../components/search/WhySearch";
-import TheShift from "../components/search/TheShift";
-import Layers from "../components/search/Layers";
-import HowWeWork from "../components/search/HowWeWork";
-import WhatWeMeasure from "../components/search/WhatWeMeasure";
-import ThreeWays from "../components/search/ThreeWays";
-import WhyItMatters from "../components/brand/WhyItMatters";
-import BrandsBuilt from "../components/brand/BrandsBuilt";
-import HowWeSee from "../components/brand/HowWeSee";
-import QuoteBand from "../components/brand/QuoteBand";
-import SooSocial from "../components/home/SooSocial";
-import PageFaq from "../components/PageFaq";
-import Form from "../components/home/Form";
-import LatestBlogs from "../components/common/LatestBlogs";
+import SearchBands from "../components/search/SearchBands";
 import PageSeo from "../components/PageSeo";
-import { pageStaticProps } from "../utils/pageSeo";
+import { siteStaticProps } from "../utils/sitePageProps";
+
+const FALLBACK_TITLE = "SEO & Search | Viralon";
+const FALLBACK_DESCRIPTION =
+  "Search work judged on enquiries and revenue, not rankings screenshots.";
 
 // Shown until someone publishes a "search" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -54,46 +55,27 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function Search({ faq, seo }) {
+export default function Search({ seo, schemas, sections, faqs }) {
   return (
     <div className="bg-dark">
       <PageSeo
         seo={seo}
         path="/search"
-        fallback={{
-          title: "SEO & Search | Viralon",
-          description:
-            "Search work judged on enquiries and revenue, not rankings screenshots.",
-        }}
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: FALLBACK_DESCRIPTION }}
       />
       <Topbar />
       <Offcanvas />
-      <Hero />
-      <Results />
-      <WhySearch />
-      <TheShift />
-      <Layers />
-      <HowWeWork />
-      <WhatWeMeasure />
-      <ThreeWays />
 
+      <SearchBands sections={sections} faqs={faqs} />
 
-           <SooSocial />
-      
-          
-      
-      
-            <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
-      
-             <Form variant="light" />
-            <LatestBlogs />
-   
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
-// the page's own path. Returns null when nothing is published under "search",
-// and <PageFaq /> then renders nothing at all.
-export const getStaticProps = pageStaticProps("search");
+// Bands, FAQ sets and structured data, all keyed on the page's own key.
+export const getStaticProps = siteStaticProps("search", {
+  fallbackTitle: FALLBACK_TITLE,
+  fallbackFaq: FALLBACK_FAQ,
+});

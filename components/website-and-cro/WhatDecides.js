@@ -43,7 +43,23 @@ const CARDS = [
   },
 ];
 
-export default function WhatDecides() {
+const COPY = {
+  eyebrow: "Where the money goes",
+  headA: "Six Leaks.",
+  accent: "Most Sites Have",
+  accent2: "Four Of Them.",
+  note:
+    "None of these are design opinions. Every one has a number attached, and every one is fixable without touching your ad budget.",
+};
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. /website-and-cro and /sample pass nothing and get COPY, so the
+// pages that already run this section are untouched.
+export default function WhatDecides({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   // On a phone the six cards become the same swipeable rail /paid-ads uses,
   // arrows and all. The hooks run at every width; only CSS decides whether
   // the list is the desktop ramp or a scroller, so nothing above 560 moves.
@@ -86,23 +102,21 @@ export default function WhatDecides() {
       <div className="container">
         <div className="pdw-head">
           <div className="pdw-head-main">
-            <p className="pdw-eyebrow">Where the money goes</p>
+            <p className="pdw-eyebrow">{c.eyebrow}</p>
 
             <h2 className="pdw-heading">
-              Six Leaks.{" "}
-              <span className="pdw-accent">Most Sites Have <br/>Four Of Them.</span>
+              {c.headA}{" "}
+              <span className="pdw-accent">{c.accent} <br/>{c.accent2}</span>
             </h2>
           </div>
 
-          <p className="pdw-note">
-    None of these are design opinions. Every one has a number attached, and every one is fixable without touching your ad budget.
-          </p>
+          <p className="pdw-note">{c.note}</p>
         </div>
 
         {/* The stack order is set in source order by z-index: hover only lifts
             a card, it never reorders the rail. */}
         <ul className="pdw-rail" ref={trackRef} onScroll={onScroll}>
-          {CARDS.map((card, i) => (
+          {cards.map((card, i) => (
             <li
               className={
                 "pdw-card pdw-card-" + (i + 1) + (i === lead ? " is-lead" : "")

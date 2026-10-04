@@ -16,6 +16,13 @@ const ICONS = "/assets/others/the-work/social-content/icons/";
 // dark → light → purple, then round again.
 const TONES = ["dark", "light", "purple"];
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Where we run them",
+  headA: "Six Places.",
+  accent: "Most Brands Need Two.",
+};
+
 const PLACES = [
   {
     name: "Google",
@@ -61,19 +68,34 @@ const PLACES = [
   },
 ];
 
-export default function Places() {
+// A stored row carries a finished path, the shipped list a bare filename.
+const iconSrc = (v) => (String(v || "").includes("/") ? v : ICONS + v);
+
+// The per-icon class is keyed off the file's own name, so it survives a
+// stored row holding the full path.
+const iconName = (v) =>
+  String(v || "")
+    .split("/")
+    .pop()
+    .replace(".png", "");
+
+export default function Places({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const places = d.places?.length ? d.places : PLACES;
+
   return (
     <section className="social-platforms paid-platforms">
       <div className="container">
-        <p className="spl-eyebrow">Where we run them</p>
+        <p className="spl-eyebrow">{c.eyebrow}</p>
         <h2 className="spl-heading">
-          Six Places.{" "}
-          <span className="spl-accent">Most Brands Need Two.</span>
+          {c.headA}{" "}
+          <span className="spl-accent">{c.accent}</span>
         </h2>
 
         <ul className="spl-cards">
-          {PLACES.map((p, i) => (
-            <li className={"spl-card spl-" + TONES[i % TONES.length]} key={p.name}>
+          {places.map((p, i) => (
+            <li className={"spl-card spl-" + TONES[i % TONES.length]} key={i}>
               <h3 className="spl-name">{p.name}</h3>
               <p className="spl-kicker">{p.kicker}</p>
               <p className="spl-body">{p.body}</p>
@@ -81,8 +103,8 @@ export default function Places() {
               {/* Decorative: the platform is already named above the icon,
                   so it carries no alt text. */}
               <img
-                className={"spl-icon spl-icon-" + p.icon.replace(".png", "")}
-                src={ICONS + p.icon}
+                className={"spl-icon spl-icon-" + iconName(p.icon)}
+                src={iconSrc(p.icon)}
                 alt=""
                 loading="lazy"
               />

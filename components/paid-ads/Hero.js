@@ -10,8 +10,14 @@
 // its floor.
 import React from "react";
 
-const SOURCE = "David Ogilvy";
-const NOTE = "That is the whole job. Everything else is a dashboard.";
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  title: "Paid Ads",
+  quoteA: "Never stop testing, and your advertising will",
+  quoteB: "never stop improving.",
+  attrib: "David Ogilvy",
+  note: "That is the whole job. Everything else is a dashboard.",
+};
 
 const STATS = [
   { figure: "3 yrs", label: "Running accounts" },
@@ -22,11 +28,15 @@ const STATS = [
   { figure: "10+", label: "Industries" },
 ];
 
-export default function Hero() {
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+
   return (
     <section className="social-hero paid-hero">
       <div className="container">
-        <h1 className="sch-title">Paid Ads</h1>
+        <h1 className="sch-title">{c.title}</h1>
 
         <div className="sch-rule" />
 
@@ -35,29 +45,28 @@ export default function Hero() {
               meant to turn after "your advertising" wherever it fits on two
               lines. */}
           <blockquote>
-            Never stop testing, and your advertising will<br /> never stop
-            improving.
+            {c.quoteA}<br /> {c.quoteB}
           </blockquote>
-          <figcaption className="sch-attrib mobile-none">{SOURCE}</figcaption>
+          <figcaption className="sch-attrib mobile-none">{c.attrib}</figcaption>
         </figure>
 
-        <p className="sch-note mobile-none">{NOTE}</p>
+        <p className="sch-note mobile-none">{c.note}</p>
 
         {/* On a phone the note and the source move inside the badge box, source
             underneath -- the same treatment the social content hero gets, and
             the same .hero-stat-badge it borrows from the home page. */}
         <div className="desktop-none">
           <div className="hero-stat-badge">
-            <p className="sch-note">{NOTE}</p>
-            <p className="sch-attrib-mobile">{SOURCE}</p>
+            <p className="sch-note">{c.note}</p>
+            <p className="sch-attrib-mobile">{c.attrib}</p>
           </div>
         </div>
 
         <div className="sch-rule" />
 
         <ul className="sch-stats">
-          {STATS.map((s) => (
-            <li className="sch-stat" key={s.label}>
+          {stats.map((s, i) => (
+            <li className="sch-stat" key={i}>
               <span className="sch-figure">{s.figure}</span>
               <span className="sch-label">{s.label}</span>
             </li>

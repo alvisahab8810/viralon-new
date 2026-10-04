@@ -27,28 +27,32 @@ const LAYERS = [
   },
 ];
 
-export default function Layers() {
+const INTRO =
+  "Ranking on page one does not guarantee you appear in AI answers. Appearing in AI answers does not require page one. Two games, one foundation, and the domains already ranking well tend to win both.";
+
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets the three layers above.
+export default function Layers({ d = {} }) {
+  const rows = d.rows?.length ? d.rows : LAYERS;
+
   return (
     <section className="smp-layers">
       <div className="container">
         <div className="sml-head">
           <div>
-            <p className="sml-eyebrow">What you get</p>
+            <p className="sml-eyebrow">{d.eyebrow || "What you get"}</p>
             <h2 className="sml-heading">
-              They <span className="sml-accent">Run Together.</span> Not Instead
-              Of Each Other.
+              {d.headA || "They"}{" "}
+              <span className="sml-accent">{d.accent || "Run Together."}</span>{" "}
+              {d.headB || "Not Instead Of Each Other."}
             </h2>
           </div>
 
-          <p className="sml-intro">
-            Ranking on page one does not guarantee you appear in AI answers.
-            Appearing in AI answers does not require page one. Two games, one
-            foundation, and the domains already ranking well tend to win both.
-          </p>
+          <p className="sml-intro">{d.intro || INTRO}</p>
         </div>
 
         <div className="sml-grid" role="table" aria-label="Search layers">
-          {LAYERS.map((layer) => (
+          {rows.map((layer) => (
             <div className="sml-col" role="row" key={layer.name}>
               <span className="sml-name" role="rowheader">
                 {layer.name}

@@ -54,7 +54,30 @@ const WORK = [
   
 ];
 
-export default function HaveLook() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "Brands",
+  accent: " we have built.",
+};
+
+// A card stored in the CRM carries its two figures as four flat boxes, which
+// is what an admin can fill in; they are folded back into the pair the markup
+// reads here.
+const toCard = (row) => ({
+  name: row.name,
+  img: row.img,
+  href: row.href || "#",
+  stats: [
+    { value: row.statOneValue, label: row.statOneLabel },
+    { value: row.statTwoValue, label: row.statTwoLabel },
+  ].filter((st) => st.value || st.label),
+});
+
+export default function HaveLook({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const work = d.cards?.length ? d.cards.map(toCard) : WORK;
+
   const { trackRef, atStart, atEnd, updateEdges, scrollByCard } =
     useSliderTrack(".workshow-card");
 
@@ -63,8 +86,8 @@ export default function HaveLook() {
       <div className="container">
         <div className="workshow-head">
           <h2 className="workshow-heading">
-            Brands 
-                    <span className="workshow-accent"> we have built.</span>
+            {c.headA}
+                    <span className="workshow-accent">{c.accent}</span>
           </h2>
 
           <SliderNav
@@ -78,15 +101,15 @@ export default function HaveLook() {
 
       <div className="workshow-track-wrap">
         <div className="workshow-track" ref={trackRef} onScroll={updateEdges}>
-          {WORK.map((item) => (
-            <article className="workshow-card" key={item.name}>
+          {work.map((item, i) => (
+            <article className="workshow-card" key={item.name + i}>
               <Link href={item.href} className="workshow-media">
                 <img src={item.img} alt={item.name} loading="lazy" />
               </Link>
 
               <div className="workshow-stats">
-                {item.stats.map((stat) => (
-                  <div className="workshow-stat" key={stat.label}>
+                {item.stats.map((stat, n) => (
+                  <div className="workshow-stat" key={stat.label + n}>
                     <strong>{stat.value}</strong>
                     <span>{stat.label}</span>
                   </div>

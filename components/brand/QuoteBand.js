@@ -14,16 +14,29 @@
 // the end of responsive.css.
 import React from "react";
 
-export default function QuoteBand() {
+// The three authored lines, the orange clause kept separate so it can be
+// re-worded without the breaks moving. A stored band overrides a line at a
+// time; an empty box leaves what is written here standing.
+const COPY = {
+  lineA: "“Most agencies",
+  accent: "start with the logo.",
+  lineB: "That is why so much branding looks good",
+  lineC: "and sells nothing”",
+};
+
+export default function QuoteBand({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="bquote-band">
       <div className="container">
         <blockquote className="bquote-text">
-          &ldquo;Most agencies <span className="bquote-accent">start with the logo.</span>
+          {c.lineA} <span className="bquote-accent">{c.accent}</span>
           <br />
-          That is why so much branding looks good
+          {c.lineB}
           <br />
-          and sells nothing&rdquo;
+          {c.lineC}
         </blockquote>
       </div>
     </section>

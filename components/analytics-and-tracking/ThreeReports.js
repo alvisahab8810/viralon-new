@@ -21,6 +21,14 @@ import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
 const DIR = "/assets/others/";
 
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "Three People,",
+  accent: "Three Reports.",
+  ctaText: "Have a look",
+  ctaHref: "/our-work",
+};
+
 const REPORTS = [
   {
     who: "Your media buyer",
@@ -54,7 +62,21 @@ const REPORTS = [
   },
 ];
 
-export default function ThreeReports() {
+// A stored card writes its three lines flat, one field each, because that is
+// what an admin form can edit; a shipped card already carries the array.
+const toItems = (r) =>
+  r.items || [r.itemOne, r.itemTwo, r.itemThree].filter(Boolean);
+
+// A stored row carries a finished path, the shipped list a bare filename.
+const src = (im) => (String(im || "").includes("/") ? im : DIR + im);
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function ThreeReports({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const reports = d.reports?.length ? d.reports : REPORTS;
+
   // On a phone the three cards become the same swipeable rail the rest of the
   // site uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the row is a grid or a scroller, so nothing above 560 moves.
@@ -65,19 +87,19 @@ export default function ThreeReports() {
     <section className="ant-reports">
       <div className="container">
         <h2 className="anq-heading anr-heading">
-          Three People,{" "}
-          <span className="anq-accent">Three Reports.</span>
+          {c.headA}{" "}
+          <span className="anq-accent">{c.accent}</span>
         </h2>
 
         <ul className="anr-row" ref={trackRef} onScroll={updateEdges}>
-          {REPORTS.map((report) => (
-            <li className="anr-card" key={report.who}>
+          {reports.map((report, ri) => (
+            <li className="anr-card" key={ri}>
               <p className="anr-who">{report.who}</p>
               <h3 className="anr-needs">{report.needs}</h3>
 
               <ul className="anr-items">
-                {report.items.map((item) => (
-                  <li className="anr-item" key={item}>
+                {toItems(report).map((item, ii) => (
+                  <li className="anr-item" key={ii}>
                     {item}
                   </li>
                 ))}
@@ -88,7 +110,7 @@ export default function ThreeReports() {
               <div className="anr-media">
                 <img
                   className="anr-image"
-                  src={DIR + report.image}
+                  src={src(report.image)}
                   alt=""
                   loading="lazy"
                 />
@@ -96,8 +118,8 @@ export default function ThreeReports() {
                 {/* The site's pill, the same one /search and /social-content
                     use -- .swy-cta is listed with theirs in custome.css, and
                     this section only says how much smaller it sets here. */}
-                <Link href="/our-work" className="swy-cta anr-cta">
-                  <span className="swy-cta-text">Have a look</span>
+                <Link href={c.ctaHref} className="swy-cta anr-cta">
+                  <span className="swy-cta-text">{c.ctaText}</span>
                   <span className="swy-cta-icon" aria-hidden="true">
                     <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                       <path

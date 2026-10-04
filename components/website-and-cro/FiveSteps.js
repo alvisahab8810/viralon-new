@@ -97,7 +97,39 @@ const STEPS = [
   },
 ];
 
-export default function FiveSteps() {
+const COPY = {
+  eyebrow: "How we work",
+  headA: "Five Steps.",
+  accent: "Diagnosis Before Design.",
+};
+
+// A stored step is flat -- one frame and two title/body pairs -- because that
+// is what an admin form can edit; it is folded back into the `slides` array
+// the row below turns through.
+function fold(rows) {
+  return rows
+    .map((r) => ({
+      image: r.img,
+      slides: [
+        { title: r.titleA, body: r.bodyA },
+        { title: r.titleB, body: r.bodyB },
+      ].filter((s) => s.title || s.body),
+    }))
+    // A frame with nothing written on it is an empty phone, so it is dropped
+    // rather than drawn blank.
+    .filter((s) => s.slides.length);
+}
+
+// A stored path is already absolute; the set above is named relative to DIR.
+const src = (im) => (String(im || "").startsWith("/") ? im : DIR + im);
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. /website-and-cro and /sample pass nothing and get the set above.
+export default function FiveSteps({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const steps = d.steps?.length ? fold(d.steps) : STEPS;
+
   const [slot, setSlot] = useState(0);
 
   useEffect(() => {
@@ -110,26 +142,25 @@ export default function FiveSteps() {
   return (
     <section className="pa-steps wcro-steps">
       <div className="container">
-        <p className="pst-eyebrow">How we work</p>
+        <p className="pst-eyebrow">{c.eyebrow}</p>
 
         <h2 className="pst-heading">
-          Five Steps.{" "}
-          <span className="pst-accent">Diagnosis Before Design.</span>
+          {c.headA} <span className="pst-accent">{c.accent}</span>
         </h2>
 
         <ol className="pst-row">
-          {STEPS.map((step, i) => {
+          {steps.map((step, i) => {
             const slide = step.slides[slot % step.slides.length];
             return (
               <li
                 className={"pst-phone pst-phone-" + (i + 1)}
-                key={step.slides[0].title}
+                key={step.slides[0].title || i}
               >
                 {/* Decorative: the frame is the container, the step written
                     across it is the content. */}
                 <img
                   className="pst-device"
-                  src={DIR + step.image}
+                  src={src(step.image)}
                   alt=""
                   loading="lazy"
                 />

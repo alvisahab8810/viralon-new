@@ -16,12 +16,25 @@ import React from "react";
 import Link from "next/link";
 import { openEnquiry } from "../common/EnquiryPopup";
 
-export default function Audit() {
+const COPY = {
+  heading: "Start with one question you cannot answer.",
+  note:
+    "Tell us the decision you are stuck on. We will tell you whether it is a tracking problem, a modelling problem, or a question only a holdout test can settle.",
+  ctaText: "Request an audit",
+  img: "/assets/others/start-abt.png",
+};
+
+// `d` is one section's stored content on a CRM-built page; /sample passes
+// nothing and gets COPY.
+export default function Audit({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="smp-audit">
       <img
         className="sma-art"
-        src="/assets/others/start-abt.png"
+        src={c.img}
         alt=""
         aria-hidden="true"
         loading="lazy"
@@ -29,15 +42,9 @@ export default function Audit() {
 
       <div className="container">
         <div className="sma-text">
-          <h2 className="sma-heading">
-            Start with one question you cannot answer.
-          </h2>
+          <h2 className="sma-heading">{c.heading}</h2>
 
-          <p className="sma-note">
-            Tell us the decision you are stuck on. We will tell you whether it
-            is a tracking problem, a modelling problem, or a question only a
-            holdout test can settle.
-          </p>
+          <p className="sma-note">{c.note}</p>
 
           <Link
             href="/contact-us"
@@ -47,7 +54,7 @@ export default function Audit() {
               openEnquiry();
             }}
           >
-            Request an audit
+            {c.ctaText}
           </Link>
         </div>
       </div>

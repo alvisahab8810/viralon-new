@@ -25,25 +25,40 @@ const TECH = [
   { image: "6.png", name: "Server side tracking" },
 ];
 
-export default function Tech() {
+const COPY = {
+  headA: "What",
+  accent: "We Build On.",
+  note:
+    "Chosen for what the business needs, not what we prefer to build. If WordPress is right for you, we will say so.",
+};
+
+// A stored path is already absolute; the set above is named relative to DIR.
+const src = (im) => (String(im || "").startsWith("/") ? im : DIR + im);
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. /website-and-cro and /sample pass nothing and get the set above.
+export default function Tech({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length
+    ? d.cards
+    : TECH.map((t) => ({ img: t.image, name: t.name }));
+
   return (
     <section className="wcro-tech">
       <div className="container">
         <h2 className="wct-heading">
-          What <span className="wct-accent">We Build On.</span>
+          {c.headA} <span className="wct-accent">{c.accent}</span>
         </h2>
 
-        <p className="wct-note">
-          Chosen for what the business needs, not what we prefer to build. If
-          WordPress is right for you, we will say so.
-        </p>
+        <p className="wct-note">{c.note}</p>
 
         <ul className="wct-row">
-          {TECH.map((item) => (
-            <li className="wct-card" key={item.image}>
+          {cards.map((item) => (
+            <li className="wct-card" key={item.img}>
               <img
                 className="wct-image"
-                src={DIR + item.image}
+                src={src(item.img)}
                 alt={item.name}
                 loading="lazy"
               />

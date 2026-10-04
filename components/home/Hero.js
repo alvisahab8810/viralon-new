@@ -110,7 +110,19 @@ function wedgePath(cx, cy, ri, ro, centerAngle, halfSpan, r) {
   ].join(" ");
 }
 
-export default function Hero() {
+/* The wording. Overridden by the home record when the CRM holds one, so a
+   bare <Hero /> renders exactly what it always did. */
+const COPY = {
+  headA: "Qualified",
+  headB: "leads come from",
+  strike: "one channel.",
+  subLead: "They come from",
+  subStrong: "brand, social content, search, paid ads, website and tracking",
+  subRest: ", working as one machine.",
+  subAccent: "We build that machine.",
+};
+
+export default function Hero({ d = {} }) {
   // `step` only ever counts up so the hand always sweeps clockwise and never
   // winds back the long way when it passes 06 -> 01.
   const [step, setStep] = useState(0);
@@ -120,8 +132,23 @@ export default function Hero() {
     return () => clearInterval(id);
   }, []);
 
-  const active = step % WHEEL_ITEMS.length;
-  const item = WHEEL_ITEMS[active];
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+  const markets = d.markets?.length
+    ? d.markets.map((m) => m.name).filter(Boolean)
+    : MARKETS;
+  // The ring's two description lines are stored as two fields in the CRM and
+  // as one array in the list above, so both are normalised to the array the
+  // SVG draws from.
+  const wheel = (d.wheel?.length ? d.wheel : WHEEL_ITEMS).map((w) => ({
+    num: w.num,
+    title: w.title,
+    desc: Array.isArray(w.desc) ? w.desc : [w.descA || "", w.descB || ""],
+  }));
+
+  const active = step % wheel.length;
+  const item = wheel[active];
 
   // The hand is drawn once in its authored 30deg pose, then pivoted about the
   // centre of the ring. Its tail runs back through the middle and is covered
@@ -139,15 +166,13 @@ export default function Hero() {
                 as Figma without hard breaks. The strike is line.svg, laid over
                 the span rather than a text-decoration rule. */}
             <h1 className="hero-heading">
-              Qualified <br/>leads come from{" "}
-              <span className="hero-strike">one channel.</span>
+              {c.headA} <br/>{c.headB}{" "}
+              <span className="hero-strike">{c.strike}</span>
             </h1>
             <p className="hero-sub">
-              They come from{" "}
-              <strong>
-                brand, social content, search, paid ads, website and tracking
-              </strong>
-              , working as one machine. <br/><span className="orange-col">We build that machine.</span>
+              {c.subLead}{" "}
+              <strong>{c.subStrong}</strong>
+              {c.subRest} <br/><span className="orange-col">{c.subAccent}</span>
             </p>
             {/* The panel the Figma now shows in place of the sentence
                 about 15 brands: three numbers on one line, the markets they
@@ -155,8 +180,8 @@ export default function Hero() {
                 panel itself stays the one the other heroes use; .hero-stats
                 only says how the three sit inside it. */}
             <div className="hero-stat-badge hero-stats">
-              {STATS.map((stat) => (
-                <div className="hero-stat" key={stat.label}>
+              {stats.map((stat, i) => (
+                <div className="hero-stat" key={stat.label + i}>
                   <p className="hero-stat-num">{stat.num}</p>
                   <p className="hero-stat-label">{stat.label}</p>
                 </div>
@@ -166,7 +191,7 @@ export default function Hero() {
             {/* The separators are orange, so they are their own element
                 rather than part of the string. */}
             <p className="hero-countries">
-              {MARKETS.map((market, i) => (
+              {markets.map((market, i) => (
                 <React.Fragment key={market}>
                   {i > 0 && <span className="hero-countries-dot">·</span>}
                   {market}
@@ -199,13 +224,13 @@ export default function Hero() {
 
               <circle cx={C} cy={C} r={BG_RADIUS} className="hero-wheel-bg" />
 
-              {WHEEL_ITEMS.map((seg, i) => {
-                const centerAngle = i * 60 + 30;
+              {wheel.map((seg, i) => {
+                const centerAngle = i * (360 / wheel.length) + 30;
                 const isActive = i === active;
                 const label = polar(C, C, LABEL_RADIUS, centerAngle);
                 return (
                   <g
-                    key={seg.num}
+                    key={seg.num + i}
                     className={`hero-wedge${isActive ? " is-active" : ""}`}
                   >
                     <path
@@ -216,7 +241,7 @@ export default function Hero() {
                         isActive ? ACTIVE_INNER : INACTIVE_INNER,
                         isActive ? ACTIVE_OUTER : INACTIVE_OUTER,
                         centerAngle,
-                        isActive ? ACTIVE_SPAN : INACTIVE_SPAN,
+                        (isActive ? ACTIVE_SPAN : INACTIVE_SPAN) * (6 / wheel.length),
                         CORNER
                       )}
                     />
@@ -235,7 +260,7 @@ export default function Hero() {
 
               <g
                 className="hero-wheel-arrow"
-                style={{ transform: `rotate(${step * 60}deg)` }}
+                style={{ transform: `rotate(${step * (360 / wheel.length)}deg)` }}
               >
                 <g transform={`translate(${armOffsetX} ${armOffsetY})`}>
                   <path

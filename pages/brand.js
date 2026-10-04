@@ -1,25 +1,27 @@
+// pages/brand.js
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the record the CRM holds (Website -> Pages -> Brand) and are
+// rendered by components/brand/BrandBands.js, so an admin can reorder, park,
+// duplicate or re-word any of them without a deploy. Nothing stored means
+// every component renders the copy written in its own file, so the page is
+// unchanged until somebody saves it once.
+//
+// The head is the record saved under Website -> Pages SEO (or the page's own
+// SEO tab), and its JSON-LD is finished in utils/sitePageProps.js from the
+// questions the page actually shows.
 import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/brand/Hero";
-import WhyItMatters from "../components/brand/WhyItMatters";
-import BrandsBuilt from "../components/brand/BrandsBuilt";
-import HowWeSee from "../components/brand/HowWeSee";
-import QuoteBand from "../components/brand/QuoteBand";
-import SooSocial from "../components/home/SooSocial";
-import PageFaq from "../components/PageFaq";
-import Form from "../components/home/Form";
-import LatestBlogs from "../components/common/LatestBlogs";
+import BrandBands from "../components/brand/BrandBands";
 import PageSeo from "../components/PageSeo";
-import { pageStaticProps } from "../utils/pageSeo";
-import HaveLook from "../components/brand/HaveLook";
-import WhatWeMake from "../components/brand/WhatWeMake";
+import { siteStaticProps } from "../utils/sitePageProps";
 
-// Shown until someone publishes a "brand" set in the payroll admin
-// (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
-// tell the difference -- the moment a real set is published it wins and this
-// block is never read again.
+const FALLBACK_TITLE = "Brand & Identity Design | Viralon";
+const FALLBACK_DESCRIPTION =
+  "Brand strategy, identity and design that makes a business recognisable and easier to buy from.";
+
 const FALLBACK_FAQ = {
   pageKey: "brand",
   kicker: "Still Having Queries ?",
@@ -49,44 +51,27 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function Brand({ faq, seo }) {
+export default function Brand({ seo, schemas, sections, faqs }) {
   return (
     <div className="bg-dark brand-page">
       <PageSeo
         seo={seo}
         path="/brand"
-        fallback={{
-          title: "Brand & Identity Design | Viralon",
-          description:
-            "Brand strategy, identity and design that makes a business recognisable and easier to buy from.",
-        }}
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: FALLBACK_DESCRIPTION }}
       />
       <Topbar />
       <Offcanvas />
-      <Hero />
-      <WhyItMatters />
-      <BrandsBuilt />
-      <HowWeSee />
-      <QuoteBand />
 
-      <HaveLook/>
-      <WhatWeMake/>
-           <SooSocial />
-      
-          
-      
-      
-            <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
-      
-             <Form variant="light" />
-            <LatestBlogs />
-   
+      <BrandBands sections={sections} faqs={faqs} />
+
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
-// the page's own path. Returns null when nothing is published under "brand",
-// and <PageFaq /> then renders nothing at all.
-export const getStaticProps = pageStaticProps("brand");
+// Bands, FAQ sets and structured data, all keyed on the page's own key.
+export const getStaticProps = siteStaticProps("brand", {
+  fallbackTitle: FALLBACK_TITLE,
+  fallbackFaq: FALLBACK_FAQ,
+});

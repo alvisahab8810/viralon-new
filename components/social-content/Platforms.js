@@ -24,6 +24,17 @@ const ICONS = "/assets/others/the-work/social-content/icons/";
 // dark → light → purple, then round again.
 const TONES = ["dark", "light", "purple"];
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Platforms we run",
+  headA: "Six Platforms. Each One",
+  accent: "Does A Different Job.",
+};
+
+// A stored row carries a finished path; the list below carries a file name out
+// of the icons folder, so both are accepted.
+const iconSrc = (v) => (String(v || "").includes("/") ? v : ICONS + v);
+
 const PLATFORMS = [
   {
     name: "Instagram",
@@ -69,7 +80,11 @@ const PLATFORMS = [
   },
 ];
 
-export default function Platforms() {
+export default function Platforms({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const rows = d.platforms?.length ? d.platforms : PLATFORMS;
+
   // On a phone the six cards become the same swipeable rail the rest of the
   // site uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a grid or a scroller, so nothing changes above 560.
@@ -79,22 +94,22 @@ export default function Platforms() {
   return (
     <section className="social-platforms">
       <div className="container">
-        <p className="spl-eyebrow">Platforms we run</p>
+        <p className="spl-eyebrow">{c.eyebrow}</p>
         <h2 className="spl-heading">
-          Six Platforms. Each One{" "}
-          <span className="spl-accent">Does A Different Job.</span>
+          {c.headA}{" "}
+          <span className="spl-accent">{c.accent}</span>
         </h2>
 
         <ul className="spl-cards" ref={trackRef} onScroll={updateEdges}>
-          {PLATFORMS.map((p, i) => (
-            <li className={"spl-card spl-" + TONES[i % TONES.length]} key={p.name}>
+          {rows.map((p, i) => (
+            <li className={"spl-card spl-" + TONES[i % TONES.length]} key={i}>
               <h3 className="spl-name">{p.name}</h3>
               <p className="spl-kicker">{p.kicker}</p>
               <p className="spl-body">{p.body}</p>
               <p className="spl-tags">{p.tags}</p>
               {/* Decorative: the platform is already named in the heading
                   above it, so the icon carries no alt text of its own. */}
-              <img className="spl-icon" src={ICONS + p.icon} alt="" loading="lazy" />
+              <img className="spl-icon" src={iconSrc(p.icon)} alt="" loading="lazy" />
             </li>
           ))}
         </ul>

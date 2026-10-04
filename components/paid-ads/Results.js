@@ -21,6 +21,15 @@ import React from "react";
 import Link from "next/link";
 import SliderNav, { useSliderTrack } from "../home/SliderNav";
 
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Results",
+  headA: "What the accounts",
+  accent: "actually did.",
+  clientLabel: "Client:",
+  ctaText: "Read Case Study",
+};
+
 const CARDS = [
   {
     kicker: "Travel · Kashmir",
@@ -56,7 +65,11 @@ const CARDS = [
   },
 ];
 
-export default function Results() {
+export default function Results({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const cards = d.cards?.length ? d.cards : CARDS;
+
   // On a phone the cards become the same swipeable rail the rest of the site
   // uses, arrows and all. The hooks run at every width; only CSS decides
   // whether the list is a grid or a scroller, so nothing changes on desktop.
@@ -66,15 +79,15 @@ export default function Results() {
   return (
     <section className="pa-results">
       <div className="container">
-        <p className="par-eyebrow">Results</p>
+        <p className="par-eyebrow">{c.eyebrow}</p>
 
         <h2 className="par-heading">
-          What the accounts <span className="par-accent">actually did.</span>
+          {c.headA} <span className="par-accent">{c.accent}</span>
         </h2>
 
         <ul className="par-cards" ref={trackRef} onScroll={updateEdges}>
-          {CARDS.map((card) => (
-            <li className="par-card" key={card.client}>
+          {cards.map((card, i) => (
+            <li className="par-card" key={i}>
               <p className="par-kicker">{card.kicker}</p>
               {/* The figure is the card's whole argument, so it is read as
                   part of the sentence rather than treated as decoration. */}
@@ -86,11 +99,12 @@ export default function Results() {
               </div>
 
               <p className="par-client">
-                Client: <span className="par-client-name">{card.client}</span>
+                {c.clientLabel}{" "}
+                <span className="par-client-name">{card.client}</span>
               </p>
 
-              <Link href={card.href} className="par-card-cta">
-                Read Case Study
+              <Link href={card.href || "#"} className="par-card-cta">
+                {c.ctaText}
                 <span className="par-card-arrow" aria-hidden="true">
                   &#8599;
                 </span>

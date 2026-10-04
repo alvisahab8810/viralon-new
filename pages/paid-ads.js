@@ -1,21 +1,26 @@
+// pages/paid-ads.js
+//
+// The bands between the header and the footer are no longer listed here: they
+// come from the record the CRM holds (Website -> Pages -> Paid Ads) and are
+// rendered by components/paid-ads/PaidAdsBands.js, so an admin can reorder,
+// park, duplicate or re-word any of them without a deploy. Nothing stored
+// means every component renders the copy written in its own file, so the page
+// is unchanged until somebody saves it once.
+//
+// The head is the record saved under Website -> Pages SEO (or the page's own
+// SEO tab), and its JSON-LD is finished in utils/sitePageProps.js from the
+// questions the page actually shows.
 import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
-import Hero from "../components/paid-ads/Hero";
-import Results from "../components/paid-ads/Results";
-import ReturnOnSpend from "../components/paid-ads/ReturnOnSpend";
-import WhatDecides from "../components/paid-ads/WhatDecides";
-import Dashboards from "../components/paid-ads/Dashboards";
-import SixSteps from "../components/paid-ads/SixSteps";
-import Places from "../components/paid-ads/Places";
-import Measure from "../components/paid-ads/Measure";
-import SooSocial from "../components/home/SooSocial";
-import PageFaq from "../components/PageFaq";
-import Form from "../components/home/Form";
-import LatestBlogs from "../components/common/LatestBlogs";
+import PaidAdsBands from "../components/paid-ads/PaidAdsBands";
 import PageSeo from "../components/PageSeo";
-import { pageStaticProps } from "../utils/pageSeo";
+import { siteStaticProps } from "../utils/sitePageProps";
+
+const FALLBACK_TITLE = "Paid Ads Management | Viralon";
+const FALLBACK_DESCRIPTION =
+  "Google and Meta ads run against profit, with the reporting to prove it.";
 
 // Shown until someone publishes a "paid-ads" set in the payroll admin
 // (Website -> FAQs). Same shape as a database document, so <PageFaq /> cannot
@@ -50,53 +55,27 @@ const FALLBACK_FAQ = {
   ],
 };
 
-export default function PaidAds({ faq, seo }) {
+export default function PaidAds({ seo, schemas, sections, faqs }) {
   return (
     <div className="paid-ads-page">
       <PageSeo
         seo={seo}
         path="/paid-ads"
-        fallback={{
-          title: "Paid Ads Management | Viralon",
-          description:
-            "Google and Meta ads run against profit, with the reporting to prove it.",
-        }}
+        schemas={schemas}
+        fallback={{ title: FALLBACK_TITLE, description: FALLBACK_DESCRIPTION }}
       />
       <Topbar />
       <Offcanvas />
-      <Hero />
 
-      <Results />
-      <ReturnOnSpend />
-      <WhatDecides />
-      <Dashboards />
-      <SixSteps />
-      <Places />
-      <Measure />
+      <PaidAdsBands sections={sections} faqs={faqs} />
 
-      {/* Further sections land here, one screenshot at a time. */}
-      
-      
-      
-      
-      
-      
-      
-
-
-           <SooSocial />
-    
-            <PageFaq faq={faq || FALLBACK_FAQ} variant="light" />
-      
-             <Form variant="light" />
-            <LatestBlogs />
-   
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website -> FAQs), keyed on
-// the page's own path. Returns null when nothing is published under "paid-ads",
-// and <PageFaq /> then renders nothing at all.
-export const getStaticProps = pageStaticProps("paid-ads");
+// Bands, FAQ sets and structured data, all keyed on the page's own key.
+export const getStaticProps = siteStaticProps("paid-ads", {
+  fallbackTitle: FALLBACK_TITLE,
+  fallbackFaq: FALLBACK_FAQ,
+});

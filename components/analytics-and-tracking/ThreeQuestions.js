@@ -20,6 +20,15 @@ import React, { useState } from "react";
 
 // Every question owns the layer it opens, so the phone's tabs have somewhere
 // to switch to. Question 01's layer is the one the desktop has always shown.
+// The copy the band ships with; a stored band overrides a line at a time.
+const COPY = {
+  eyebrow: "Start with the decision",
+  headA: "Three Questions.",
+  accent: "Three Different Answers.",
+  buildLabel: "What we build",
+  shot: "/assets/others/mob-abt.png",
+};
+
 const QUESTIONS = [
   {
     label: "Question 01",
@@ -68,25 +77,49 @@ const QUESTIONS = [
   },
 ];
 
-export default function ThreeQuestions() {
+// A stored question keeps its layer flat -- four fields rather than a nested
+// object -- because that is what an admin form can edit; it is folded back
+// into the shape the markup below reads.
+const toQuestion = (q) => ({
+  label: q.label,
+  title: q.title,
+  body: q.body,
+  owner: q.owner,
+  layer: q.layer || {
+    label: q.layerLabel,
+    title: q.layerTitle,
+    lead: q.layerLead,
+    build: q.layerBuild,
+  },
+});
+
+// `d` is one section's stored content when this band is placed on a page the
+// CRM built. A bare call renders exactly what the page shipped with.
+export default function ThreeQuestions({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const questions = (d.questions?.length ? d.questions : QUESTIONS).map(
+    toQuestion
+  );
+
   // Which layer is open. The tabs that change it are phone only, so above 560
   // this stays 0 and the section renders exactly what it always did.
   const [active, setActive] = useState(0);
-  const layer = QUESTIONS[active].layer;
+  const layer = questions[Math.min(active, questions.length - 1)]?.layer || {};
 
   return (
     <section className="ant-questions">
       <div className="container">
-        <p className="anq-eyebrow">Start with the decision</p>
+        <p className="anq-eyebrow">{c.eyebrow}</p>
 
         <h2 className="anq-heading">
-          Three Questions.
-          <span className="anq-accent">Three Different Answers.</span>
+          {c.headA}
+          <span className="anq-accent">{c.accent}</span>
         </h2>
 
         <ul className="anq-row">
-          {QUESTIONS.map((q) => (
-            <li className="anq-card" key={q.label}>
+          {questions.map((q, i) => (
+            <li className="anq-card" key={i}>
               <p className="anq-label">{q.label}</p>
               <h3 className="anq-title">{q.title}</h3>
               <p className="anq-body">{q.body}</p>
@@ -97,8 +130,8 @@ export default function ThreeQuestions() {
 
         {/* Phone only -- `display: none` above 560. */}
         <ul className="anq-tabs">
-          {QUESTIONS.map((q, i) => (
-            <li key={q.label}>
+          {questions.map((q, i) => (
+            <li key={i}>
               <button
                 type="button"
                 className={"anq-tab" + (i === active ? " is-on" : "")}
@@ -124,7 +157,7 @@ export default function ThreeQuestions() {
                 phone can run the two on one line, as the mock does. It is a
                 block above 560, which is how it has always drawn. */}
             <p className="anq-layer-body">
-              <span className="anq-label anq-build-label">What we build</span>
+              <span className="anq-label anq-build-label">{c.buildLabel}</span>
               {layer.build}
             </p>
           </div>
@@ -133,7 +166,7 @@ export default function ThreeQuestions() {
               columns of type and has never carried artwork. */}
           <img
             className="anq-shot"
-            src="/assets/others/mob-abt.png"
+            src={c.shot}
             alt=""
             loading="lazy"
           />

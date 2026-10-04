@@ -11,19 +11,22 @@
 // otherwise decide the heading's colour for us.
 import React from "react";
 
-export default function Dashboards() {
+// The copy the page ships with; a stored band overrides a line at a time.
+const COPY = {
+  headA: "76% of marketing leaders spend more time reading dashboards than working on creative.",
+  note: "The dashboard is where results appear. Creative is where they are made.",
+};
+
+export default function Dashboards({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+
   return (
     <section className="pa-dash">
       <div className="container">
-        <h2 className="pad-heading">
-          76% of marketing leaders spend more time reading dashboards than
-          working on creative.
-        </h2>
+        <h2 className="pad-heading">{c.headA}</h2>
 
-        <p className="pad-note">
-          The dashboard is where results appear. Creative is where they are
-          made.
-        </p>
+        <p className="pad-note">{c.note}</p>
       </div>
     </section>
   );

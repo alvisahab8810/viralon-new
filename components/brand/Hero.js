@@ -11,6 +11,16 @@
 // .bh-title would lose that cascade and the heading would come out white.
 import React from "react";
 
+// The copy the page ships with. A stored band overrides a line at a time, so
+// an empty box in the CRM leaves what is written here standing.
+const COPY = {
+  title: "Brand",
+  quoteA: "“Your brand is what people say about you when",
+  quoteB: "you are not in the room.”",
+  attrib: "Jeff Bezos",
+  note: "Most businesses never find out what that is.",
+};
+
 const STATS = [
   {
     figure: "10%",
@@ -26,35 +36,38 @@ const STATS = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ d = {} }) {
+  const c = { ...COPY };
+  for (const k of Object.keys(COPY)) if (d[k]) c[k] = d[k];
+  const stats = d.stats?.length ? d.stats : STATS;
+
   return (
     <section className="brand-hero">
       <div className="container">
-        <h1 className="bh-title">Brand</h1>
+        <h1 className="bh-title">{c.title}</h1>
 
         <div className="bh-rule" />
 
         <figure className="bh-quote">
           <blockquote>
-            &ldquo;Your brand is what people say about you when<br/> you are not in
-            the room.&rdquo;
+            {c.quoteA}<br/> {c.quoteB}
           </blockquote>
-      
+
         </figure>
 
             <div className="mobile-none">
-           <figcaption className="bh-attrib">Jeff Bezos</figcaption>
+           <figcaption className="bh-attrib">{c.attrib}</figcaption>
         <p className="bh-note">
-          Most businesses never find out what that is.
+          {c.note}
         </p>
       </div>
      <div className="desktop-none">
        <div className="hero-stat-badge ">
         <p className="bh-note">
-          Most businesses never find out what that is.
+          {c.note}
         </p>
 
-           <figcaption className="bh-attrib-mobile">Jeff Bezos</figcaption>
+           <figcaption className="bh-attrib-mobile">{c.attrib}</figcaption>
 
       </div>
      </div>
@@ -62,8 +75,8 @@ export default function Hero() {
         <div className="bh-rule" />
 
         <ul className="bh-stats">
-          {STATS.map((s) => (
-            <li className="bh-stat" key={s.figure}>
+          {stats.map((s, i) => (
+            <li className="bh-stat" key={s.figure + i}>
               <span className="bh-figure">{s.figure}</span>
               <span className="bh-label">{s.label}</span>
             </li>
