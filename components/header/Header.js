@@ -151,8 +151,8 @@ export default function Topbar() {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="/our-work">
-                    Our Work
+                  <Link className="nav-link" href="/case-study">
+                    Case Study
                   </Link>
                 </li>
                 <li className="nav-item">

@@ -78,7 +78,10 @@ Sidebar heading:  22px 'Manrope', sans-serif
 
 */
 
-@import url('../../../../css2');
+/* The Google Fonts import that belonged here was saved as a relative path at
+   some point and has been requesting /css2 off this origin ever since, which
+   404s on every page load. Manrope -- the family it was after -- is already
+   pulled in by custome.css and by the <head> in pages/_document.js. */
 
 
 /* Varialbes */

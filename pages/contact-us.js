@@ -4,6 +4,7 @@ import Footer from "../components/footer/Footer";
 import Offcanvas from "../components/header/Offcanvas";
 import Hero from "../components/contact-us/Hero";
 import Contact from "../components/contact-us/Contact";
+import Form from "../components/home/Form";
 import PageFaq from "../components/PageFaq";
 import PageSeo from "../components/PageSeo";
 import { pageStaticProps } from "../utils/pageSeo";
@@ -23,6 +24,10 @@ export default function ContactUs({ faq, seo }) {
       <Topbar />
       <Offcanvas />
       <Hero />
+      {/* The same panel the home page carries, drawn smaller here. */}
+      <div className="contact-form-band" id="lets-talk">
+        <Form formType="Contact Form" />
+      </div>
       <Contact />
       <div className="container pb-80 iframe-box">
         {/* Embed code taken straight from Google Maps for the Parsvnath Planet

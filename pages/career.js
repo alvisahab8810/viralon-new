@@ -2,16 +2,20 @@ import React from "react";
 import Topbar from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import CTA from "../components/home/CTA";
+import SooSocial from "../components/home/SooSocial";
 import Hero from "../components/career/Hero";
 import Journey from "../components/career/Journey";
+import Openings from "../components/career/Openings";
 import Working from "../components/career/Working";
 import Employes from "../components/career/Employes";
 import Offcanvas from "../components/header/Offcanvas";
 import PageFaq from "../components/PageFaq";
 import PageSeo from "../components/PageSeo";
-import { pageStaticProps } from "../utils/pageSeo";
+import { getPageSeo } from "../utils/pageSeo";
+import { getPageFaq } from "../utils/pageFaq";
+import { getOpenJobs } from "../utils/openJobs";
 
-export default function career({ faq, seo }) {
+export default function career({ faq, seo, jobs }) {
   return (
     <div className="bg-dark">
       <PageSeo
@@ -27,14 +31,28 @@ export default function career({ faq, seo }) {
       <Offcanvas />
       <Hero />
       <Journey />
+      <Openings jobs={jobs} />
       <Working />
       <Employes />
-      <CTA />
+      {/* <CTA /> */}
+      <SooSocial />
       <PageFaq faq={faq} topClass="pt-80" variant="light" />
       <Footer />
     </div>
   );
 }
 
-// FAQ block content comes from the payroll admin (Website → FAQs).
-export const getStaticProps = pageStaticProps("career");
+// The head and the FAQ block come from the payroll admin (Website → Page SEO
+// and Website → FAQs); the open roles come from Website → Job Positions. All
+// three are read here rather than in the browser, so the roles are in the
+// server's markup and a crawler sees them.
+export async function getStaticProps() {
+  return {
+    props: {
+      seo: await getPageSeo("career"),
+      faq: await getPageFaq("career"),
+      jobs: await getOpenJobs(),
+    },
+    revalidate: 60,
+  };
+}

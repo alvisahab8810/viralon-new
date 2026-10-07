@@ -185,8 +185,8 @@ export default function Offcanvas() {
               </li>
 
               <li className="nav-item">
-                <Link href="/our-work" className="nav-link">
-                  Our Work
+                <Link href="/case-study" className="nav-link">
+                  Case Study
                 </Link>
               </li>
               <li className="nav-item">

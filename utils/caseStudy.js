@@ -50,3 +50,22 @@ export async function getHomeCaseStudies() {
     return [];
   }
 }
+
+// Every published study, as the /case-study index draws it: the identity
+// strip, the heading's three pieces and whatever picture the record carries.
+// Ordered the same way as the home rail so the two never disagree, with the
+// studies kept off the home page falling in behind by recency.
+export async function getCaseStudyList() {
+  try {
+    await dbConnect();
+    const docs = await CaseStudy.find({ status: "published" })
+      .select(
+        "slug brandName brandLogo category dateLabel tags hero.heading hero.intro hero.media home.enabled home.order home.body home.image home.ctaLabel updatedAt"
+      )
+      .sort({ "home.order": 1, updatedAt: -1 })
+      .lean();
+    return JSON.parse(JSON.stringify(docs));
+  } catch {
+    return [];
+  }
+}

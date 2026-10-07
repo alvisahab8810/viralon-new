@@ -13,7 +13,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import blogImage from "../../utils/blogImage";
 import "swiper/css";
 
-const LIMIT = 3;
+const LIMIT = 4;
 const FALLBACK_THUMB = "/assets/img/seo/blogs/1.jpg";
 
 // The badge over the thumb wants the day and the month separately.
@@ -73,16 +73,17 @@ export default function LatestBlogs({
             spaceBetween={24}
             // Looping needs more slides than are on screen at once, otherwise
             // Swiper duplicates the few there are and the rail stutters.
-            loop={blogs.length > 3}
-            slidesPerView={3}
+            loop={blogs.length > 4}
+            slidesPerView={4}
             navigation={{
               nextEl: ".swiper-button-next-1",
               prevEl: ".swiper-button-prev-1",
             }}
             breakpoints={{
               240: { centeredSlides: blogs.length > 1, slidesPerView: 1.15, spaceBetween: 14 },
-              768: { slidesPerView: 2.2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 24 },
+              768: { slidesPerView: 2.2, spaceBetween: 18 },
+              1024: { slidesPerView: 3, spaceBetween: 20 },
+              1280: { slidesPerView: 4, spaceBetween: 20 },
             }}
             modules={[Autoplay, Navigation]}
             className="swiper mySwiperBlogs"
@@ -152,25 +153,6 @@ export default function LatestBlogs({
             })}
           </Swiper>
 
-          {/* Swiper sizes each slide to its own content, so a post with a
-              shorter standfirst left a visibly stubby card next to a taller
-              one. Stretching the slide and letting .item fill it makes every
-              card in the rail the same height. Scoped to this rail so the
-              site's other Swipers keep their own sizing. */}
-          <style jsx global>{`
-            .mySwiperBlogs .swiper-slide {
-              height: auto;
-              display: flex;
-            }
-            .mySwiperBlogs .swiper-slide > .item {
-              flex: 1 1 auto;
-              display: flex;
-              flex-direction: column;
-            }
-            .mySwiperBlogs .swiper-slide > .item .info {
-              flex: 1 1 auto;
-            }
-          `}</style>
         </div>
       </div>
     </section>

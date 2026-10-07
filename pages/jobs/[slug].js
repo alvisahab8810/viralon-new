@@ -10,8 +10,14 @@ import Footer from "../../components/footer/Footer";
 import Offcanvas from "../../components/header/Offcanvas";
 import Hero from "../../components/jobs/Hero";
 import ContentWriterForm from "../../components/jobs/internship/content-writer-form";
+import AtAGlance from "../../components/jobs/AtAGlance";
+import WhatWeOffer from "../../components/jobs/WhatWeOffer";
+import HowToApply from "../../components/jobs/HowToApply";
+import SooSocial from "../../components/home/SooSocial";
+import PageFaq from "../../components/PageFaq";
 import dbConnect from "../../utils/dbConnect";
 import JobPost from "../../models/JobPost";
+import { getPageFaq } from "../../utils/pageFaq";
 
 const isHtml = (v) => typeof v === "string" && v.includes("<");
 const hasContent = (v) => {
@@ -40,7 +46,7 @@ const RichList = ({ value }) =>
     <div dangerouslySetInnerHTML={{ __html: value }} />
   );
 
-export default function JobDetail({ post }) {
+export default function JobDetail({ post, faq }) {
   const year = new Date(post.createdAt).getFullYear();
 
   return (
@@ -108,23 +114,22 @@ export default function JobDetail({ post }) {
               </>
             )}
 
-            {hasContent(post.whatWeOffer) && (
-              <>
-                <h2>What We Offer:</h2>
-                <RichList value={post.whatWeOffer} />
-              </>
-            )}
-
-            {hasContent(post.howToApply) && (
-              <>
-                <h2>How to Apply:</h2>
-                <Rich value={post.howToApply} className="mb-0" />
-              </>
-            )}
           </div>
+        </div>
+      </section>
+
+      <AtAGlance />
+      <WhatWeOffer value={post.whatWeOffer} />
+      <HowToApply note={post.howToApply} />
+
+      <section className="job_description-section pb-80">
+        <div className="container">
           <ContentWriterForm position={post.title} />
         </div>
       </section>
+
+      <SooSocial />
+      <PageFaq faq={faq} topClass="pt-80" variant="light" />
 
       <Footer />
     </div>
@@ -160,7 +165,13 @@ export async function getServerSideProps({ params }) {
     const post = await JobPost.findOne({ slug: params.slug, status: "open" }).lean();
     if (!post) return { notFound: true };
     for (const f of RICH_FIELDS) post[f] = unwrapRich(post[f]);
-    return { props: { post: JSON.parse(JSON.stringify(post)) } };
+    return {
+      props: {
+        post: JSON.parse(JSON.stringify(post)),
+        // Every role shares the careers FAQ set (Website → FAQs → career).
+        faq: await getPageFaq("career"),
+      },
+    };
   } catch {
     return { notFound: true };
   }

@@ -1,27 +1,52 @@
+// components/contact-us/Hero.js — the opening band on /contact-us.
+//
+// The frame draws this page without the glob artwork and without the outlined
+// "CONTACT" wordmark the page used to open with: one centred line, a short
+// note under it, and the pill that drops to the query panel below. The old
+// markup's classes (.contact-main-class, .contact-us-heading, .contact-sub,
+// .our-contact-overlay) are left in the stylesheets — other pages still use
+// the `.seo-hero-img` treatment — they are simply no longer used here.
 import React from "react";
 
 export default function Hero() {
   return (
-    <>
-      <div className="contact-main-class">
-        <div className="seo-hero-img">
-          <img src="/assets/img/seo/hero-img.png" alt="round-img"></img>
-        </div>
-        <div className="container">
-          <div className="contact-hero-content">
-             <h1 className="contact-us-heading manrope">CONTACT</h1>
-               <div className="our-contact-overlay">
-                 <p>LET'S TALK</p>
-                  <h2 className="contact-sub manrope">
-                    ABOUT YOUR NEXT PROJECT
-                  </h2>
-               </div>
-               
-          </div>
+    <section className="contact-hero">
+      <div className="container">
+        <h1 className="cth-heading">
+          We Can Help You{" "}
+          <span className="cth-accent">
+            Grow
+            <svg
+              className="cth-chevron"
+              width="14"
+              height="9"
+              viewBox="0 0 14 9"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1.5L7 7.5L13 1.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          <br />
+          Your Business
+        </h1>
 
-        
-        </div>
+        <p className="cth-note">
+          We have a whole system that works in favour of your business, lets
+          connect and see how we can help you
+        </p>
+
+        {/* Drops to the query panel further down the page. */}
+        <a className="cth-btn" href="#lets-talk">
+          LET&apos;S TALK
+        </a>
       </div>
-    </>
+    </section>
   );
 }

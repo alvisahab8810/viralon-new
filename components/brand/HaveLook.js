@@ -120,6 +120,8 @@ export default function HaveLook({ d = {} }) {
         </div>
       </div>
 
+      
+
       {/* Phone layout puts the arrows under the rail, right-aligned; the copy
           in the head is hidden below 1024 and this one above it. Both drive the
           same shared scroll state. */}

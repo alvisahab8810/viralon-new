@@ -377,11 +377,15 @@ export default function BlogDetail({ blog, related }) {
 
               {/* Query Form — REACH OUT TO US style */}
               <div className="bdd-reach-card mobile-none">
-                <div className="bdd-reach-banner">
-                  <div className="bdd-reach-banner-overlay">
-                    <h4 className="bdd-reach-title">REACH OUT TO US</h4>
-                    <p className="bdd-reach-sub">Just A Few Details &amp; We're On It!</p>
-                  </div>
+                {/* The picture is its own block, with the words under it,
+                    which is how the frame draws this card. */}
+                <div className="bdd-reach-media">
+                  <img src="/assets/images/blogs/cta.webp" alt="" loading="lazy" />
+                </div>
+
+                <div className="bdd-reach-head">
+                  <h4 className="bdd-reach-title">REACH OUT TO US</h4>
+                  <p className="bdd-reach-sub">Just A Few Details &amp; We're On It!</p>
                 </div>
 
                 {querySent ? (

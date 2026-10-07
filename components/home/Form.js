@@ -58,7 +58,7 @@ function fireLead(payload) {
   } catch { }
 }
 
-export default function Form({ variant = "dark" }) {
+export default function Form({ variant = "dark", formType = "Query Form" }) {
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -68,7 +68,7 @@ export default function Form({ variant = "dark" }) {
     phone: "",
     email: "",
     runningAds: "",
-    formType: "Query Form",
+    formType,
   });
 
   const [website, setWebsite] = useState("");   // honeypot — people never see it
@@ -168,7 +168,7 @@ export default function Form({ variant = "dark" }) {
 
               {!done ? (
                 <form onSubmit={handleSubmit} className="vl-form">
-                  <input type="hidden" name="formType" value="Query Form" />
+                  <input type="hidden" name="formType" value={formType} />
 
                   {/* honeypot — off-screen, hidden from people and screen readers */}
                   <input

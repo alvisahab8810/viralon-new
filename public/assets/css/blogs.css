@@ -1004,19 +1004,6 @@
   border: 1px solid var(--bl-border);
   padding: 10px;
 }
-.bdd-reach-banner {
-  height: 160px;
-  display: flex;
-  background-image: url(/assets/images/blogs/cta.webp);
-  align-items: flex-start;
-  background-size: cover;
-  /* justify-content: center; */
-  border-radius: 10px;
-}
-.bdd-reach-banner-overlay {
-  text-align: center;
-  padding: 20px 20px;
-}
 .bdd-reach-title {
   font-size: 20px;
   border-bottom: 1px solid #ddddddc2;
@@ -1179,7 +1166,7 @@
   .bdd-faq-q { font-size: 14px; }
   .bdd-faq-answer { padding: 0 16px; }
   .bdd-faq-item.open .bdd-faq-answer { padding: 0 16px 16px; }
-  .bdd-reach-banner { height: 90px; }
+  .bdd-reach-media img { height: 110px; }
   .bdd-reach-title { font-size: 17px; }
 
   .bl-back-btn {
@@ -1334,3 +1321,323 @@
 
 .blogs-list-section .bl-badge,
 .blogs-list-section .latest-blogs-all { color: #fff !important; }
+
+/* ==========================================================================
+   Blog detail — dark theme
+   --------------------------------------------------------------------------
+   Everything above this line was written for a white page. The post now runs
+   on the site's own dark ground, so the colours are restated here rather than
+   edited in place: the light rules stay intact for anything still using them,
+   and this block repaints the detail page only. Palette matches the listing —
+   #0E0920 ground, #2C1C52 cards, #8668FF badges, #FE4601 the one accent.
+   ========================================================================== */
+
+.blog-detail-page {
+  --bdd-bg:    #0E0920;
+  --bdd-card:  #2C1C52;
+  --bdd-line:  rgba(255, 255, 255, 0.1);
+  --bdd-text:  #ffffff;
+  --bdd-muted: rgba(255, 255, 255, 0.62);
+  --bdd-faint: rgba(255, 255, 255, 0.42);
+  background: var(--bdd-bg);
+  color: var(--bdd-text);
+}
+
+/* -- the post itself -- */
+.blog-detail-page .bdd-hero-placeholder { background: var(--bdd-card); }
+
+.blog-detail-page .bl-back-btn,
+.blog-detail-page .bdd-title,
+.blog-detail-page .bdd-section-heading,
+.blog-detail-page .blog-detail-content h1,
+.blog-detail-page .blog-detail-content h2,
+.blog-detail-page .blog-detail-content h3,
+.blog-detail-page .blog-detail-content h4,
+.blog-detail-page .blog-detail-content h5,
+.blog-detail-page .blog-detail-content h6,
+.blog-detail-page .blog-detail-content strong {
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .bl-back-btn { border-color: var(--bdd-line); }
+.blog-detail-page .bl-back-btn:hover { background: rgba(255, 255, 255, 0.06); }
+
+.blog-detail-page .bdd-meta-item,
+.blog-detail-page .blog-detail-content,
+.blog-detail-page .blog-detail-content p,
+.blog-detail-page .blog-detail-content li {
+  color: var(--bdd-muted);
+}
+
+.blog-detail-page .bdd-summary {
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: var(--bl-primary);
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .blog-detail-content a { color: #A98BFF; }
+
+.blog-detail-page .blog-detail-content blockquote {
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: var(--bl-primary);
+  color: var(--bdd-muted);
+}
+
+.blog-detail-page .blog-detail-content code {
+  background: rgba(134, 104, 255, 0.16);
+  color: #D6C9FF;
+}
+
+.blog-detail-page .blog-detail-content pre {
+  background: #160E30;
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .blog-detail-content hr,
+.blog-detail-page .blog-detail-tags,
+.blog-detail-page .bdd-comments,
+.blog-detail-page .bdd-comment-item {
+  border-color: var(--bdd-line);
+}
+
+.blog-detail-page .blog-detail-content table th,
+.blog-detail-page .blog-detail-content table td {
+  border-color: var(--bdd-line);
+  color: var(--bdd-muted);
+}
+
+.blog-detail-page .blog-detail-content table th {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* -- badges and tags -- */
+.blog-detail-page .bl-badge,
+.blog-detail-page .bdd-cat-badge {
+  background: #8668FF;
+  color: #ffffff;
+}
+
+.blog-detail-page .blog-detail-tag,
+.blog-detail-page .bdd-tag-link {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--bdd-line);
+  color: var(--bdd-muted) !important;
+}
+
+.blog-detail-page .bdd-tag-link:hover {
+  background: var(--bl-primary) !important;
+  border-color: var(--bl-primary) !important;
+  color: #ffffff !important;
+}
+
+/* -- sidebar: contents -- */
+.blog-detail-page .bdd-toc-card {
+  background: var(--bdd-card);
+  border-color: var(--bdd-line);
+  box-shadow: none;
+}
+
+.blog-detail-page .bdd-toc-heading {
+  border-bottom-color: var(--bdd-line);
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .bdd-toc-list a { color: var(--bdd-muted); }
+.blog-detail-page .bdd-toc-list a:hover { color: var(--bdd-text); }
+.blog-detail-page .bdd-toc-item.active a { color: var(--bl-primary); }
+.blog-detail-page .bdd-toc-list::-webkit-scrollbar-thumb { background: var(--bdd-line); }
+
+/* -- sidebar: the enquiry card -- */
+.blog-detail-page .bdd-reach-card {
+  background: var(--bdd-card);
+  border-color: var(--bdd-line);
+  box-shadow: none;
+}
+
+/* The picture sits on top of the card as a block of its own. */
+.bdd-reach-media {
+  border-radius: 10px;
+  display: block;
+  overflow: hidden;
+}
+
+.bdd-reach-media img {
+  display: block;
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.bdd-reach-head {
+  padding: 16px 6px 2px;
+  text-align: center;
+}
+
+.blog-detail-page .bdd-reach-title {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+  color: var(--bdd-text);
+  padding-bottom: 6px;
+}
+
+.blog-detail-page .bdd-reach-sub { color: var(--bdd-muted); }
+
+.blog-detail-page .bdd-reach-form input,
+.blog-detail-page .bdd-reach-select,
+.blog-detail-page .bdd-phone-wrap {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--bdd-line);
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .bdd-reach-form input::placeholder { color: var(--bdd-faint); }
+.blog-detail-page .bdd-phone-input { color: var(--bdd-text); }
+.blog-detail-page .bdd-code { color: var(--bdd-text); }
+.blog-detail-page .bdd-divider { color: var(--bdd-faint); }
+
+.blog-detail-page .bdd-reach-form input:focus,
+.blog-detail-page .bdd-phone-wrap:focus-within {
+  border-color: var(--bl-primary);
+  box-shadow: 0 0 0 3px rgba(254, 70, 1, 0.14);
+}
+
+/* A native dropdown paints its own list, so the options need the dark too. */
+.blog-detail-page .bdd-reach-select option {
+  background: #19132F;
+  color: var(--bdd-text);
+}
+
+/* -- comments -- */
+.blog-detail-page .bdd-field label { color: var(--bdd-muted); }
+
+.blog-detail-page .bdd-field input,
+.blog-detail-page .bdd-field textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--bdd-line);
+  color: var(--bdd-text);
+}
+
+.blog-detail-page .bdd-field input::placeholder,
+.blog-detail-page .bdd-field textarea::placeholder { color: var(--bdd-faint); }
+
+.blog-detail-page .bdd-field input:focus,
+.blog-detail-page .bdd-field textarea:focus {
+  border-color: var(--bl-primary);
+  box-shadow: 0 0 0 3px rgba(254, 70, 1, 0.14);
+}
+
+.blog-detail-page .bdd-comment-author { color: var(--bdd-text); }
+.blog-detail-page .bdd-comment-body { color: var(--bdd-muted); }
+.blog-detail-page .bdd-comment-time { color: var(--bdd-faint); }
+
+.blog-detail-page .bdd-success-msg {
+  background: rgba(134, 104, 255, 0.14);
+  border-color: rgba(134, 104, 255, 0.4);
+  color: var(--bdd-text);
+}
+
+/* -- FAQs -- */
+.blog-detail-page .blog-faqs { background: var(--bdd-bg); }
+.blog-detail-page .blog-faqs-title { color: var(--bdd-text); }
+
+.blog-detail-page .bdd-faq-item {
+  background: var(--bdd-card);
+  border-color: var(--bdd-line);
+}
+
+.blog-detail-page .bdd-faq-item.open { border-color: rgba(254, 70, 1, 0.45); }
+.blog-detail-page .bdd-faq-trigger:hover { background: rgba(255, 255, 255, 0.04); }
+.blog-detail-page .bdd-faq-q { color: var(--bdd-text); }
+.blog-detail-page .bdd-faq-chevron { color: var(--bdd-muted); }
+.blog-detail-page .bdd-faq-answer,
+.blog-detail-page .bdd-faq-answer p { color: var(--bdd-muted); }
+
+/* -- "You might also like" -- */
+.blog-detail-page .bdd-related { background: var(--bdd-bg); }
+.blog-detail-page .blog-related-title { color: var(--bdd-text); }
+
+.blog-detail-page .bl-card {
+  background: var(--bdd-card);
+  border-color: var(--bdd-line);
+  box-shadow: none;
+}
+
+.blog-detail-page .bl-card:hover { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); }
+.blog-detail-page .bl-card-title { color: var(--bdd-text); }
+.blog-detail-page .bl-card-cat { color: #A98BFF; }
+.blog-detail-page .bl-card-summary { color: var(--bdd-muted); }
+.blog-detail-page .bl-card-footer { border-top-color: var(--bdd-line); }
+.blog-detail-page .bl-card-author { color: var(--bdd-muted); }
+.blog-detail-page .bl-card-date { color: var(--bdd-faint); }
+.blog-detail-page .bl-card-img-placeholder { background: rgba(255, 255, 255, 0.06); }
+
+/* -- the strip above the title: it was a pale pink bar on a white page -- */
+.blog-detail-page .blg-top-row {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bdd-line);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  padding: 8px 10px 8px 14px;
+}
+
+.blog-detail-page .bl-back-btn { border: none; color: var(--bdd-muted); }
+.blog-detail-page .bl-back-btn:hover { background: none; color: var(--bdd-text); }
+
+/* -- the enquiry card, tightened: it ran well past the fold -- */
+.blog-detail-page .bdd-reach-card { padding: 8px; }
+
+.blog-detail-page .bdd-reach-media img { height: 120px; }
+
+.blog-detail-page .bdd-reach-head { padding: 12px 6px 0; }
+
+.blog-detail-page .bdd-reach-title {
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  padding-bottom: 5px;
+}
+
+.blog-detail-page .bdd-reach-sub { font-size: 11.5px; }
+
+.blog-detail-page .bdd-reach-form {
+  gap: 7px;
+  padding: 12px 4px 4px;
+}
+
+/* style.css sets min-height: 50px on every input on the site, which beats a
+   plain height and is why these three rows never matched the select next to
+   them. The floor is restated here rather than touched there. */
+.blog-detail-page .bdd-reach-form input,
+.blog-detail-page .bdd-reach-form .bdd-reach-select,
+.blog-detail-page .bdd-phone-wrap {
+  border-radius: 8px;
+  font-size: 12.5px;
+  height: 38px;
+  line-height: 1.2;
+  min-height: 38px;
+  padding: 0 12px;
+}
+
+/* The arrow is drawn as a background image, so only the colour is restated. */
+.blog-detail-page .bdd-reach-form .bdd-reach-select {
+  background-color: rgba(255, 255, 255, 0.06);
+  background-position: right 12px center;
+}
+
+.blog-detail-page .bdd-reach-form .bdd-reach-select:invalid { color: var(--bdd-faint); }
+
+.blog-detail-page .bdd-phone-prefix { gap: 4px; padding: 0 8px 0 0; }
+.blog-detail-page .bdd-flag { font-size: 15px; }
+.blog-detail-page .bdd-code { font-size: 13px; }
+
+.blog-detail-page .bdd-phone-input {
+  font-size: 12.5px;
+  height: 100%;
+  padding: 0 0 0 2px !important;
+}
+
+.blog-detail-page .bdd-reach-btn {
+  border-radius: 8px;
+  font-size: 13px;
+  height: 40px;
+  margin-top: 4px;
+  padding: 0 18px;
+}
