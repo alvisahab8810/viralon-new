@@ -93,8 +93,6 @@ function sendThankYou(lead) {
      <style> block keep the desktop figures, which are the safe ones. */
   @media only screen and (max-width:480px) {
     .vq-pad { padding-left:20px !important; padding-right:20px !important; }
-    .vq-hero { padding-top:112px !important; background-size:100% auto !important; }
-    .vq-card { width:100% !important; }
     .vq-logo { width:60px !important; max-width:60px !important; }
     .vq-copy { font-size:14px !important; line-height:22px !important; }
   }
@@ -103,89 +101,22 @@ function sendThankYou(lead) {
 <body style="margin:0;padding:0;background:#F2F2F5;">
 <div style="background:#F2F2F5;padding:26px 12px 30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
 
-  <!-- Outlook gets the photograph as its own row: it ignores CSS background
-       images on a cell, so the overlap below would leave it with a gap and no
-       picture. Everything else draws the photo as the cell's background and
-       pads the card down onto its lower edge -- Gmail strips negative margins,
-       which is what used to make the overlap. -->
-  <!--[if mso]>
-  <table role="presentation" cellpadding="0" cellspacing="0" align="center" width="580" style="width:580px;">
-    <tr><td align="center" style="padding:0;">
-      <img src="${BANNER}" width="580" height="230" alt="" style="display:block;border:0;outline:none;" />
-    </td></tr>
-    <tr><td align="center" style="padding:0;">
-  <table class="vq-card" role="presentation" cellpadding="0" cellspacing="0" align="center" width="540" style="width:540px;max-width:540px;background:#ffffff;border-radius:16px;text-align:left;">
+  <!-- The white card's top edge is part of the photograph, so the overlap
+       survives clients that strip CSS backgrounds, media queries and negative
+       margins -- which is all three of the things the phone Gmail app strips.
+       Both are percentages of the same 580 wrapper, so they stay aligned at
+       any width. -->
+  <table role="presentation" cellpadding="0" cellspacing="0" align="center" width="580" style="width:100%;max-width:580px;margin:0 auto;border-collapse:collapse;">
     <tr>
-      <td align="center" style="padding:46px 28px 2px;text-align:center;">
-        <img class="vq-logo" src="${LOGO}" width="70" alt="Viralon" style="display:block;margin:0 auto;border:0;outline:none;width:70px;max-width:70px;height:auto;" />
-        <div style="margin:8px 0 0;color:#14121F;font-size:11px;line-height:15px;letter-spacing:.3px;font-weight:600;">Nothing works alone</div>
+      <td align="center" style="padding:0;font-size:0;line-height:0;">
+        <img src="${BANNER}" width="580" alt="" style="display:block;width:100%;max-width:580px;height:auto;border-radius:16px 16px 0 0;border:0;outline:none;" />
       </td>
     </tr>
-
     <tr>
-      <td class="vq-pad" style="padding:22px 30px 0;">
-        <p class="vq-copy" style="margin:0 0 10px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
-        <p class="vq-copy" style="margin:0 0 18px;color:#3F3D4A;font-size:15px;line-height:24px;">
-          Thank you for getting in touch. Our representative will call you within 24 hours.
-        </p>
-        <p class="vq-copy" style="margin:0 0 16px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">
-          Here is what you sent us:
-        </p>
-      </td>
-    </tr>
-
+      <td align="center" style="padding:0;text-align:center;">
+  <table class="vq-card" role="presentation" cellpadding="0" cellspacing="0" align="center" width="93%" style="width:93.1%;max-width:540px;background:#ffffff;border-radius:0 0 16px 16px;text-align:left;">
     <tr>
-      <td class="vq-pad" style="padding:0 30px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;">
-          ${rowsHtml}
-        </table>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="vq-pad" style="padding:24px 30px 0;">
-        <p class="vq-copy" style="margin:0 0 18px;color:#3F3D4A;font-size:15px;line-height:24px;">
-          Anything wrong, or anything you want us to look at before the call? Just reply to this email.
-        </p>
-        <p class="vq-copy" style="margin:0 0 2px;color:#14121F;font-size:15px;line-height:24px;">Regards,</p>
-        <p class="vq-copy" style="margin:0 0 26px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="vq-pad" align="center" style="padding:0 30px 20px;text-align:center;border-top:1px solid #EDEDF1;">
-        <p style="margin:18px 0 4px;color:#8A8A94;font-size:12px;line-height:18px;">
-          If you have any questions, please email us at
-          <a href="mailto:info@viralon.in" style="color:#14121F;text-decoration:none;font-weight:600;">info@viralon.in</a>
-        </p>
-        <p style="margin:0 0 14px;color:#8A8A94;font-size:12px;line-height:18px;">
-          Our team can answer anything about this enquiry, or talk you through what we would do next.
-        </p>
-        <div style="margin:0 0 4px;">${social}</div>
-      </td>
-    </tr>
-
-    <tr>
-      <td align="center" style="padding:14px 24px 16px;background:#E8F4FF;border-radius:0 0 16px 16px;text-align:center;">
-        <p style="margin:0 0 3px;font-size:12px;line-height:17px;">
-          <a href="${SITE}" style="color:#0088FF;text-decoration:none;font-weight:600;">Team Viralon &middot; viralon.in</a>
-        </p>
-        <p style="margin:0;color:#7C879B;font-size:11px;line-height:16px;">
-          Sent because you asked us to get in touch. Reply to this mail to reach us directly.
-        </p>
-      </td>
-    </tr>
-  </table>
-    </td></tr>
-  </table>
-  <![endif]-->
-  <!--[if !mso]><!-->
-  <table role="presentation" cellpadding="0" cellspacing="0" align="center" width="580" style="width:100%;max-width:580px;margin:0 auto;border-collapse:separate;">
-    <tr>
-      <td class="vq-hero" align="center" background="${BANNER}" style="padding:186px 0 0;text-align:center;border-radius:16px;background-image:url('${BANNER}');background-repeat:no-repeat;background-position:center top;background-size:580px 230px;">
-  <table class="vq-card" role="presentation" cellpadding="0" cellspacing="0" align="center" width="540" style="width:540px;max-width:540px;background:#ffffff;border-radius:16px;text-align:left;">
-    <tr>
-      <td align="center" style="padding:46px 28px 2px;text-align:center;">
+      <td align="center" style="padding:16px 28px 2px;text-align:center;">
         <img class="vq-logo" src="${LOGO}" width="70" alt="Viralon" style="display:block;margin:0 auto;border:0;outline:none;width:70px;max-width:70px;height:auto;" />
         <div style="margin:8px 0 0;color:#14121F;font-size:11px;line-height:15px;letter-spacing:.3px;font-weight:600;">Nothing works alone</div>
       </td>
@@ -248,7 +179,6 @@ function sendThankYou(lead) {
       </td>
     </tr>
   </table>
-  <!--<![endif]-->
 
 </div>
 </body>
