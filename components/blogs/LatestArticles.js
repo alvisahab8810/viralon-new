@@ -18,6 +18,11 @@ const FALLBACK_THUMB = "/assets/img/seo/blogs/1.jpg";
 
 const LIMIT = 8;
 
+// The banner above the list, the same arrangement /case-study uses: a
+// full-bleed band under the header with the heading on the page's own ground
+// below it.
+const HERO_IMAGE = "/assets/images/blogs/blog-hero.webp";
+
 function formatDate(d) {
   if (!d) return "";
   const dt = new Date(d);
@@ -131,10 +136,18 @@ export default function LatestArticles() {
   });
 
   return (
-    <section className="blogs-latest">
+    <>
+      <section className="bll-hero">
+        <img alt="" className="bll-hero-banner" src={HERO_IMAGE} />
+        <div className="container">
+          <h1 className="bll-hero-title">Blogs</h1>
+        </div>
+      </section>
+
+      <section className="blogs-latest">
       <div className="container">
         <div className="bll-head">
-          <h1 className="bll-heading">Latest articles</h1>
+          <h2 className="bll-heading">Latest articles</h2>
           {tag ? (
             <p className="bll-filter">
               Tagged <span className="bll-filter-tag">#{tag}</span>
@@ -186,6 +199,7 @@ export default function LatestArticles() {
           </div>
         ) : null}
       </div>
-    </section>
+      </section>
+    </>
   );
 }

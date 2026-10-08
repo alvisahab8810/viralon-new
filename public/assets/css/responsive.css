@@ -8173,16 +8173,27 @@ section#cs-how-it-ran {
 }
 
 @media only screen and (max-width: 767px) {
+    /* The card is nearly the width of the screen here, so a cover at its own
+       shape ran most of a screenful tall and pushed the headline and the
+       excerpt below the fold. Cropped back to a band. */
     .blog-lists-section .item .thumb img {
-        height: 340px;
+        height: 190px;
     }
 
     .blog-lists-section .item .info {
-        padding: 20px 18px;
+        padding: 16px 15px;
     }
 
     .blog-lists-section .item .info h4 {
         font-size: 16px;
+        line-height: 23px;
+    }
+
+    .blog-lists-section .item .info p {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        overflow: hidden;
     }
 }
 
@@ -8194,59 +8205,112 @@ section#cs-how-it-ran {
 }
 
 @media (max-width: 991px) {
-    .csl-section {
-        padding: 80px 0 64px;
+    .csl-hero {
+        padding-bottom: 56px;
     }
 
-    .csl-head {
+    .csl-hero-banner {
         margin-bottom: 40px;
+    }
+
+    .csl-section {
+        padding-bottom: 64px;
     }
 
     .csl-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .csl-card-title {
-        font-size: 17px;
-        line-height: 24px;
+    /* The card is wider once the row drops to two, so the fixed 163px picture
+       would read as a letterbox strip. */
+    .csl-media {
+        height: 200px;
     }
 
-    .csl-text {
-        font-size: 13px;
-        line-height: 21px;
-    }
 }
 
 @media (max-width: 767px) {
+    .csl-hero {
+        padding-bottom: 44px;
+    }
+
+    .csl-hero-banner {
+        height: 200px;
+        margin-bottom: 30px;
+    }
+
     .csl-section {
-        padding: 60px 0 50px;
+        padding-bottom: 50px;
+    }
+
+    .csl-hero-intro {
+        font-size: 14.5px;
+        line-height: 24px;
+    }
+
+    /* The chips scroll on one line rather than stacking into four rows above
+       the grid. The width is pinned because a flex item is free to grow past
+       its parent, and a row of nine chips was dragging the whole page sideways
+       rather than scrolling inside itself. */
+    .csl-chips {
+        flex-wrap: nowrap;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+        width: 100%;
+    }
+
+    .csl-chips::-webkit-scrollbar {
+        display: none;
+    }
+
+    .csl-chip {
+        flex: 0 0 auto;
+    }
+
+    .csl-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .csl-search {
+        width: 100%;
     }
 
     .csl-grid {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .csl-body {
-        padding: 20px 18px 18px;
+    /* The card keeps the sizes the design fixed; only the picture grows, since
+       it now has the full width of the screen to fill. */
+    .csl-media {
+        height: 210px;
+    }
+}
+
+/* /blogs banner — the picture steps down with the screen. */
+@media (max-width: 991px) {
+    .bll-hero-banner {
+        height: 360px;
     }
 
-    .csl-kicker {
-        font-size: 12px;
-        letter-spacing: 4px;
+    .bll-hero .container {
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .bll-hero {
+        padding-bottom: 34px;
     }
 
-    .csl-intro {
-        font-size: 14.5px;
-        line-height: 24px;
+    .bll-hero-banner {
+        height: 200px;
     }
 
-    .csl-card-title {
-        font-size: 19px;
-        line-height: 26px;
-    }
-
-    .csl-text {
-        font-size: 14px;
-        line-height: 23px;
+    .bll-hero .container {
+        padding-top: 30px;
     }
 }

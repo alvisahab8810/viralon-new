@@ -14329,81 +14329,172 @@ section#cs-how-it-ran {
    /case-study — the index of published studies (components/case-study/Listing.js)
    --------------------------------------------------------------------------
    The cards are database records, so nothing here may assume a fixed number of
-   them or a fixed length of copy: the titles are clamped and the picture is a
-   fixed ratio, otherwise one long write-up drags its row out of line with the
-   others.
+   them or a fixed length of copy: the titles and summaries are clamped and the
+   picture is a fixed ratio, otherwise one long write-up drags its row out of
+   line with the others. The query panel sits between runs of eight, which is
+   why these rules stop at the grid and leave the panel's own sizing alone.
    ========================================================================== */
 
-.csl-section {
+.csl-hero {
     background: #0E0A1F;
-    padding: 110px 0 90px;
-}
-
-.csl-head {
-    margin: 0 auto 56px;
-    max-width: 820px;
+    padding: 0 0 70px;
     text-align: center;
 }
 
-.csl-kicker {
-    color: #FF4D00;
+/* The design puts the photograph above the heading rather than behind it: a
+   full-bleed band straight under the header, at its own ratio, with the copy
+   on the page's own dark ground below. */
+.csl-hero-banner {
     display: block;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 6px;
-    margin-bottom: 18px;
-    text-transform: uppercase;
+    height: 560px;
+    margin-bottom: 54px;
+    object-fit: cover;
+    object-position: center 42%;
+    width: 100%;
 }
 
-.csl-title {
+.csl-hero-title {
     color: #ffffff;
     font-family: var(--font-heading);
-    font-size: clamp(30px, 4.4vw, 58px);
-    font-weight: 700;
+       font-size: clamp(34px, 5vw, 72px);
+    font-weight: 400;
     line-height: 1.1;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+}
+.csl-hero-intro {
+    color: #A1A1A1 !important;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32.5px;
+    margin: 0 auto;
+    max-width: 620px;
 }
 
-.csl-accent {
-    color: #FF4D00;
+.csl-section {
+    background: #0E0A1F;
+    padding: 0 0 90px;
 }
 
-.csl-intro {
-    color: rgba(255, 255, 255, 0.66);
-    font-size: 16px;
-    line-height: 26px;
-    margin: 0;
+.csl-controls {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+
+.csl-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.csl-chip {
+    background: #1C1238;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 18px;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.csl-chip:hover {
+    border-color: rgba(89, 86, 252, 0.55);
+    color: #ffffff;
+}
+
+.csl-chip.is-on {
+    background: #5956FC;
+    border-color: #5956FC;
+    color: #ffffff;
+}
+
+.csl-search {
+    align-items: center;
+    background: #171130;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    display: flex;
+    gap: 10px;
+    min-width: 260px;
+    padding: 0 18px;
+}
+
+/* Drawn rather than loaded: the page pulls no icon font of its own, and one
+   glass is not worth a request. */
+.csl-search-icon {
+    border: 1.6px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    flex: 0 0 auto;
+    height: 12px;
+    position: relative;
+    width: 12px;
+}
+
+.csl-search-icon::after {
+    background: rgba(255, 255, 255, 0.55);
+    bottom: -4px;
+    content: "";
+    height: 6px;
+    position: absolute;
+    right: -2px;
+    transform: rotate(-45deg);
+    width: 1.6px;
+}
+
+.csl-search input {
+    background: none;
+    border: 0;
+    color: #ffffff;
+    flex: 1 1 auto;
+    font-size: 13.5px;
+    height: 42px;
+    outline: none;
+    min-width: 0;
+}
+
+.csl-search input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
 }
 
 /* Four to a row, like the blog rails: the cards are summaries, and a wider
    card only buys a longer line of text nobody reads. */
 .csl-grid {
     display: grid;
-    gap: 20px;
+    gap: 15px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 20px;
 }
 
+/* The picture sits inside the card rather than running to its edges, which is
+   what gives the design its framed look: the padding here is the frame and the
+   media below carries its own radius. */
 .csl-card {
-    background: #171130;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+    background: #1C1238;
+    border: 1px solid #754CDA;
+    border-radius: 16.99px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding: 10px;
     text-decoration: none;
     transition: border-color .25s ease, transform .25s ease;
 }
 
 .csl-card:hover {
-    border-color: rgba(255, 77, 0, 0.55);
+    border-color: #9B7BFF;
     transform: translateY(-4px);
 }
 
 .csl-media {
     background: #0E0A1F;
+    border-radius: 12px;
     display: block;
+    height: 163px;
     overflow: hidden;
-    padding-top: 62%;
     position: relative;
 }
 
@@ -14425,85 +14516,94 @@ section#cs-how-it-ran {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    padding: 18px 17px 17px;
+    padding: 16px 8px 8px;
 }
 
-.csl-brand {
-    align-items: center;
+.csl-card-head {
+    align-items: flex-start;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 11px;
-}
-
-.csl-brand-name {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.csl-cat,
-.csl-date {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 10.5px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 8px;
 }
 
 .csl-card-title {
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
     color: #ffffff;
-    display: -webkit-box;
     font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 19.8px;
+}
+
+.csl-arrow {
+    color: rgba(255, 255, 255, 0.7);
+    flex: 0 0 auto;
     font-size: 16px;
-    font-weight: 600;
-    line-height: 23px;
-    margin-bottom: 9px;
-    overflow: hidden;
+    line-height: 19.8px;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.csl-card:hover .csl-arrow {
+    color: #9B7BFF;
+    transform: translate(2px, -2px);
 }
 
 .csl-text {
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    color: rgba(255, 255, 255, 0.62);
+    -webkit-line-clamp: 4;
+    color: #B9BBC6;
     display: -webkit-box;
-    font-size: 12.5px;
-    line-height: 20px;
-    margin-bottom: 13px;
+    font-size: 11.25px;
+    line-height: 14.2px;
+    margin-bottom: 16px;
     overflow: hidden;
 }
 
 .csl-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 18px;
 }
 
+/* Filled rather than outlined, in a wash of the brand orange over the card's
+   purple -- which is the muted maroon the design shows. */
 .csl-tag {
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 77, 0, 0.16);
     border-radius: 999px;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 10px;
-    letter-spacing: .8px;
-    padding: 3px 9px;
-    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12.8px;
+    line-height: 18px;
+    padding: 5px 12px;
 }
 
-/* Pushed to the foot of the card so the link sits on one line across the row
-   however much copy the cards above it carry. */
-.csl-cta {
-    color: #FF4D00;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.4px;
+/* Pinned to the foot of the card so the figures line up across the row
+   however much copy the cards beside it carry. */
+.csl-stats {
+    display: flex;
+    gap: 10px;
     margin-top: auto;
-    text-transform: uppercase;
+    padding-top: 4px;
 }
 
-.csl-cta::after {
-    content: " \2192";
+.csl-stat {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.csl-stat-value {
+    color: #ffffff;
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.csl-stat-label {
+    color: rgba(226, 221, 245, 0.55);
+    display: block;
+    font-size: 11.5px;
+    line-height: 16px;
 }
 
 .csl-empty {
@@ -14514,4 +14614,40 @@ section#cs-how-it-ran {
 
 .csl-empty a {
     color: #FF4D00;
+}
+
+/* ==========================================================================
+   /blogs — the banner above the listing
+   --------------------------------------------------------------------------
+   The same arrangement as the /case-study index: a full-bleed photograph
+   straight under the header, the heading on the page's own dark ground below
+   it. Prefixed .bll- like the rest of the listing, because style.css sets
+   `.bg-dark h1..h6 { color: white }` and these must not depend on it.
+   ========================================================================== */
+
+.bll-hero {
+    background: var(--dark);
+    padding: 0 0 50px;
+    text-align: center;
+}
+
+.bll-hero-banner {
+    display: block;
+    height: 560px;
+    object-fit: cover;
+    object-position: center 45%;
+    width: 100%;
+}
+
+.bll-hero .container {
+    padding-top: 54px;
+}
+
+.bll-hero-title {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
 }

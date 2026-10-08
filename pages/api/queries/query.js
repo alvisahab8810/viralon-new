@@ -24,6 +24,7 @@ const escapeRe = (v) => String(v).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // its lead mails.
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://viralon.in";
 const LOGO = `${SITE}/assets/images/brand-logo.png`;
+const BANNER = `${SITE}/assets/others/mail-img.webp`;
 
 const esc = (v) =>
   String(v == null ? "" : v)
@@ -51,15 +52,34 @@ function sendThankYou(lead) {
   // label width to line up, and at 320px that width is most of the screen --
   // the value then wrapped under itself and ran into the next row. Stacked,
   // every row is one column at any width and nothing has to be measured.
+  // One step per answer: the tick, the connector down to the next one, then
+  // the label over the value. Two columns, because the rail of ticks has to
+  // keep its own width however long the value beside it wraps.
   const rowsHtml = rows
     .map(
       ([k, v], n) => `
         <tr>
-          <td style="padding:11px 16px;${n < rows.length - 1 ? "border-bottom:1px solid #EDEDF1;" : ""}">
-            <div style="color:#6B6B76;font-size:12px;line-height:16px;letter-spacing:.3px;text-transform:uppercase;">${esc(k)}</div>
-            <div style="color:#14121F;font-size:15px;line-height:22px;font-weight:600;word-break:break-word;">${esc(v)}</div>
+          <td width="34" valign="top" style="width:34px;padding:0 10px 0 0;">
+            <div style="width:22px;height:22px;border-radius:11px;background:#FF4D00;color:#ffffff;font-size:13px;line-height:22px;text-align:center;font-weight:700;">&#10003;</div>
+            ${n < rows.length - 1 ? '<div style="width:2px;height:34px;background:#FFD2BF;margin:4px 0 0 10px;"></div>' : ""}
+          </td>
+          <td valign="top" style="padding:0 0 ${n < rows.length - 1 ? "6px" : "0"};">
+            <div style="color:#14121F;font-size:13px;line-height:18px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;">${esc(k)}</div>
+            <div style="color:#6B6B76;font-size:14px;line-height:21px;word-break:break-word;">${esc(v)}</div>
           </td>
         </tr>`
+    )
+    .join("");
+
+  const social = [
+    ["facebook", "https://www.facebook.com/people/Viralon-Digital-Services/61551774960535/"],
+    ["instagram", "https://www.instagram.com/viralon_digital_services/"],
+    ["youtube", "https://www.youtube.com/@ViralonDigtialServices"],
+    ["linkedin", "https://www.linkedin.com/company/viralon-digital-services/"],
+  ]
+    .map(
+      ([name, href]) =>
+        `<a href="${href}" style="text-decoration:none;display:inline-block;margin:0 7px;"><img src="${SITE}/assets/others/icons/mail/${name}.png" width="20" height="20" alt="${name}" style="display:block;border:0;outline:none;width:20px;height:20px;" /></a>`
     )
     .join("");
 
@@ -69,57 +89,95 @@ function sendThankYou(lead) {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  /* Phones get the smaller wordmark and tighter gutters. Clients that drop
-     the <style> block keep the desktop figures, which are the safe ones. */
+  /* Phones get tighter gutters and a shorter banner. Clients that drop the
+     <style> block keep the desktop figures, which are the safe ones. */
   @media only screen and (max-width:480px) {
-    .vq-pad { padding-left:18px !important; padding-right:18px !important; }
-    .vq-head { padding:16px 18px 15px !important; }
-    .vq-logo { width:46px !important; max-width:46px !important; }
-    .vq-tag { font-size:12px !important; line-height:16px !important; }
+    .vq-pad { padding-left:20px !important; padding-right:20px !important; }
+    .vq-banner { height:170px !important; }
+    .vq-logo { width:60px !important; max-width:60px !important; }
     .vq-copy { font-size:14px !important; line-height:22px !important; }
   }
 </style>
 </head>
-<body style="margin:0;padding:0;background:#F4F4F6;">
-<div style="background:#F4F4F6;padding:24px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #E7E7EC;">
+<body style="margin:0;padding:0;background:#F2F2F5;">
+<div style="background:#F2F2F5;padding:26px 12px 30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+
+  <!-- The photograph, with the card below lifted over its lower edge. A client
+       that drops the negative margin simply stacks the two, which still
+       reads. -->
+  <table role="presentation" cellpadding="0" cellspacing="0" align="center" width="580" style="max-width:580px;margin:0 auto;border-collapse:separate;">
     <tr>
-      <td class="vq-head" align="center" style="background:#19132F;padding:20px 24px 18px;text-align:center;">
-        <img class="vq-logo" src="${LOGO}" width="54" alt="Viralon" style="display:block;margin:0 auto;border:0;outline:none;width:54px;max-width:54px;height:auto;" />
-        <div class="vq-tag" style="margin:9px 0 0;color:#ffffff;font-size:13px;line-height:17px;font-weight:700;letter-spacing:.4px;">Nothing works alone</div>
+      <td style="padding:0;">
+        <img class="vq-banner" src="${BANNER}" width="580" alt="" style="display:block;width:100%;height:230px;object-fit:cover;border-radius:16px;border:0;outline:none;" />
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin:-34px auto 0;max-width:540px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" align="center" width="540" style="max-width:540px;margin:0 auto;background:#ffffff;border-radius:16px;">
+    <tr>
+      <td align="center" style="padding:46px 28px 2px;text-align:center;">
+        <img class="vq-logo" src="${LOGO}" width="70" alt="Viralon" style="display:block;margin:0 auto;border:0;outline:none;width:70px;max-width:70px;height:auto;" />
+        <div style="margin:8px 0 0;color:#8A8A94;font-size:11px;line-height:15px;letter-spacing:.3px;">Nothing works alone</div>
       </td>
     </tr>
 
     <tr>
-      <td class="vq-pad" style="padding:26px 28px 8px;">
-        <p class="vq-copy" style="margin:0 0 12px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
+      <td class="vq-pad" style="padding:22px 30px 0;">
+        <p class="vq-copy" style="margin:0 0 10px;color:#14121F;font-size:15px;line-height:24px;">Hi ${esc(first)},</p>
         <p class="vq-copy" style="margin:0 0 18px;color:#3F3D4A;font-size:15px;line-height:24px;">
           Thank you for getting in touch. Our representative will call you within 24 hours.
         </p>
-        <p class="vq-copy" style="margin:0 0 14px;color:#3F3D4A;font-size:15px;line-height:24px;">
+        <p class="vq-copy" style="margin:0 0 16px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">
           Here is what you sent us:
         </p>
       </td>
     </tr>
 
     <tr>
-      <td class="vq-pad" style="padding:0 28px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;background:#FAFAFB;border:1px solid #EDEDF1;border-radius:10px;">
+      <td class="vq-pad" style="padding:0 30px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;">
           ${rowsHtml}
         </table>
       </td>
     </tr>
 
     <tr>
-      <td class="vq-pad" style="padding:20px 28px 6px;">
-        <p class="vq-copy" style="margin:0 0 16px;color:#3F3D4A;font-size:15px;line-height:24px;">
+      <td class="vq-pad" style="padding:24px 30px 0;">
+        <p class="vq-copy" style="margin:0 0 18px;color:#3F3D4A;font-size:15px;line-height:24px;">
           Anything wrong, or anything you want us to look at before the call? Just reply to this email.
         </p>
         <p class="vq-copy" style="margin:0 0 2px;color:#14121F;font-size:15px;line-height:24px;">Regards,</p>
-        <p class="vq-copy" style="margin:0 0 24px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
+        <p class="vq-copy" style="margin:0 0 26px;color:#14121F;font-size:15px;line-height:24px;font-weight:700;">Team Viralon</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="vq-pad" align="center" style="padding:0 30px 20px;text-align:center;border-top:1px solid #EDEDF1;">
+        <p style="margin:18px 0 4px;color:#8A8A94;font-size:12px;line-height:18px;">
+          If you have any questions, please email us at
+          <a href="mailto:info@viralon.in" style="color:#FF4D00;text-decoration:none;">info@viralon.in</a>
+        </p>
+        <p style="margin:0 0 14px;color:#8A8A94;font-size:12px;line-height:18px;">
+          Our team can answer anything about this enquiry, or talk you through what we would do next.
+        </p>
+        <div style="margin:0 0 4px;">${social}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center" style="padding:14px 24px 16px;background:#EAF1FD;border-radius:0 0 16px 16px;text-align:center;">
+        <p style="margin:0 0 3px;font-size:12px;line-height:17px;">
+          <a href="${SITE}" style="color:#2563EB;text-decoration:none;font-weight:600;">Team Viralon &middot; viralon.in</a>
+        </p>
+        <p style="margin:0;color:#7C879B;font-size:11px;line-height:16px;">
+          Sent because you asked us to get in touch. Reply to this mail to reach us directly.
+        </p>
       </td>
     </tr>
   </table>
+  </div>
+
 </div>
 </body>
 </html>`;

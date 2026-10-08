@@ -60,7 +60,7 @@ export async function getCaseStudyList() {
     await dbConnect();
     const docs = await CaseStudy.find({ status: "published" })
       .select(
-        "slug brandName brandLogo category dateLabel tags hero.heading hero.intro hero.media home.enabled home.order home.body home.image home.ctaLabel updatedAt"
+        "slug brandName brandLogo category dateLabel tags hero.heading hero.intro hero.media hero.stats home.enabled home.order home.body home.image home.ctaLabel updatedAt"
       )
       .sort({ "home.order": 1, updatedAt: -1 })
       .lean();
